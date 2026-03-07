@@ -14,6 +14,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
+import { WebView } from 'react-native-webview';
 import { LessonBuilder } from './src/components/LessonBuilder';
 import { RandomSTEMBackground } from './src/components/RandomSTEMBackground';
 import { loadLessonsFileForClass } from './src/lib/storage';
@@ -90,14 +91,42 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
         </View>
       );
     case 'video':
+      const embedUrl = getYoutubeEmbedUrl(exercise.youtubeUrl);
+      const IFrame = 'iframe' as unknown as any;
       return (
         <View style={styles.exerciseBlock}>
-          <Pressable
-            style={styles.openVideoButton}
-            onPress={() => Linking.openURL(exercise.youtubeUrl)}
-          >
-            <Text style={styles.openVideoButtonText}>Open YouTube Video</Text>
-          </Pressable>
+          {embedUrl ? (
+            Platform.OS === 'web' ? (
+              <View style={styles.videoFrameWrapper}>
+                <IFrame
+                  src={embedUrl}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={styles.webVideoFrame}
+                />
+              </View>
+            ) : (
+              <View style={styles.videoFrameWrapper}>
+                <WebView source={{ uri: embedUrl }} style={styles.nativeVideoFrame} />
+              </View>
+            )
+          ) : (
+            <Pressable
+              style={styles.openVideoButton}
+              onPress={() => Linking.openURL(exercise.youtubeUrl)}
+            >
+              <Text style={styles.openVideoButtonText}>Open YouTube Video</Text>
+            </Pressable>
+          )}
+          {exercise.questions && exercise.questions.length > 0 ? (
+            <View style={styles.questionList}>
+              {exercise.questions.map((question, index) => (
+                <Text key={`${exercise.id}-video-q-${index}`} style={styles.exerciseText}>
+                  {index + 1}. {question}
+                </Text>
+              ))}
+            </View>
+          ) : null}
         </View>
       );
     case 'interactive_quiz':
@@ -142,6 +171,18 @@ function getQrCodeUrl(value: string) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(
     value
   )}`;
+}
+
+function getYoutubeEmbedUrl(url: string) {
+  const longForm = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+  if (longForm?.[1]) {
+    return `https://www.youtube.com/embed/${longForm[1]}`;
+  }
+  const shortForm = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+  if (shortForm?.[1]) {
+    return `https://www.youtube.com/embed/${shortForm[1]}`;
+  }
+  return '';
 }
 
 export default function App() {
@@ -284,6 +325,11 @@ export default function App() {
         if (exercise.type === 'video') {
           const safeUrl = escapeHtml(exercise.youtubeUrl);
           const qrUrl = escapeHtml(getQrCodeUrl(exercise.youtubeUrl));
+          const questions = exercise.questions?.length
+            ? `<ul>${exercise.questions
+                .map((question) => `<li>${escapeHtml(question)}</li>`)
+                .join('')}</ul>`
+            : '';
           return `
             ${pageBreak}
             <section class="card">
@@ -291,6 +337,7 @@ export default function App() {
               <p><strong>Type:</strong> video</p>
               <img src="${qrUrl}" alt="QR code to video" />
               <p><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">Open YouTube video</a></p>
+              ${questions}
             </section>
           `;
         }
@@ -679,6 +726,21 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 220,
     width: '100%'
+  },
+  videoFrameWrapper: {
+    backgroundColor: '#000000',
+    borderRadius: 8,
+    height: 220,
+    overflow: 'hidden',
+    width: '100%'
+  },
+  webVideoFrame: {
+    borderWidth: 0,
+    height: '100%',
+    width: '100%'
+  },
+  nativeVideoFrame: {
+    flex: 1
   },
   openVideoButton: {
     alignSelf: 'flex-start',

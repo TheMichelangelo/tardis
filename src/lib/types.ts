@@ -41,6 +41,7 @@ export type TextExercise = ExerciseBase & {
 export type VideoExercise = ExerciseBase & {
   type: 'video';
   youtubeUrl: string;
+  questions?: string[];
 };
 
 export type InteractiveQuizQuestion = {
