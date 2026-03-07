@@ -23,12 +23,7 @@ type ThemeTab = {
 
 type Props = {
   data: ClassLessonsFile;
-  onSaveLesson: (
-    template: LessonTemplate,
-    type: LessonType,
-    moduleId: string,
-    themeId: string
-  ) => Promise<void>;
+  onOpenLesson: (template: LessonTemplate, moduleId: string, themeId: string) => void;
 };
 
 function normalizeTypeLabel(type: LessonType) {
@@ -46,14 +41,13 @@ function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
   return lesson.exercises ?? lesson.exersices ?? [];
 }
 
-export function LessonBuilder({ data, onSaveLesson }: Props) {
+export function LessonBuilder({ data, onOpenLesson }: Props) {
   const { width, height } = useWindowDimensions();
   const [selectedThemeKey, setSelectedThemeKey] = useState<string>('');
-  const [isSaving, setIsSaving] = useState(false);
   const tabWidth = Math.max(130, Math.min(320, Math.round(width * 0.24)));
   const moduleFontSize = Math.max(10, Math.min(13, Math.round(width * 0.012)));
   const themeFontSize = Math.max(14, Math.min(22, Math.round(width * 0.02)));
-  const lessonsMaxHeight = Math.max(220, Math.round(height * 0.5));
+  const lessonsMaxHeight = Math.max(220, Math.round(height * 0.54));
 
   const themeTabs = useMemo<ThemeTab[]>(() => {
     return data.modules.flatMap((module) =>
@@ -76,19 +70,6 @@ export function LessonBuilder({ data, onSaveLesson }: Props) {
   const selectedTab = themeTabs.find(
     (tab) => `${tab.moduleId}:${tab.theme.id}` === selectedThemeKey
   );
-
-  const handleCreateLesson = async (template: LessonTemplate, type: LessonType) => {
-    if (!selectedTab || isSaving) {
-      return;
-    }
-
-    setIsSaving(true);
-    try {
-      await onSaveLesson(template, type, selectedTab.moduleId, selectedTab.theme.id);
-    } finally {
-      setIsSaving(false);
-    }
-  };
 
   const selectedThemeFormats = selectedTab
     ? Array.from(new Set(selectedTab.theme.lessons.flatMap((lesson) => lesson.formats)))
@@ -120,7 +101,7 @@ export function LessonBuilder({ data, onSaveLesson }: Props) {
               <Text style={[styles.tabModuleText, { fontSize: moduleFontSize }]}>
                 {tab.moduleTitle}
               </Text>
-              <Text style={[styles.tabThemeText, { fontSize: themeFontSize }]}>
+              <Text style={[styles.tabThemeText, { fontSize: themeFontSize }]}> 
                 {tab.theme.title}
               </Text>
             </Pressable>
@@ -147,7 +128,11 @@ export function LessonBuilder({ data, onSaveLesson }: Props) {
             showsVerticalScrollIndicator
           >
             {selectedTab.theme.lessons.map((lesson) => (
-              <View key={lesson.id} style={styles.lessonCard}>
+              <Pressable
+                key={lesson.id}
+                style={styles.lessonCard}
+                onPress={() => onOpenLesson(lesson, selectedTab.moduleId, selectedTab.theme.id)}
+              >
                 <Text style={styles.lessonTitle}>{lesson.title}</Text>
                 <Text style={styles.lessonTopic}>Topic: {lesson.topic}</Text>
                 <Text style={styles.lessonTopic}>
@@ -172,21 +157,8 @@ export function LessonBuilder({ data, onSaveLesson }: Props) {
                   ))}
                 </View>
 
-                <View style={styles.actionsRow}>
-                  {lesson.formats.map((format) => (
-                    <Pressable
-                      key={`create-${lesson.id}-${format}`}
-                      style={[styles.createButton, { backgroundColor: selectedTab.theme.color }]}
-                      onPress={() => handleCreateLesson(lesson, format)}
-                      disabled={isSaving}
-                    >
-                      <Text style={styles.createButtonText}>
-                        {isSaving ? 'Saving...' : `Create ${normalizeTypeLabel(format)}`}
-                      </Text>
-                    </Pressable>
-                  ))}
-                </View>
-              </View>
+                <Text style={styles.openHint}>Open lesson</Text>
+              </Pressable>
             ))}
           </ScrollView>
         </View>
@@ -307,21 +279,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700'
   },
-  actionsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 10
-  },
-  createButton: {
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8
-  },
-  createButtonText: {
-    color: '#FFFFFF',
+  openHint: {
+    color: '#1D4ED8',
     fontSize: 12,
-    fontWeight: '700'
+    fontWeight: '700',
+    marginTop: 10
   },
   errorText: {
     color: '#B91C1C',
