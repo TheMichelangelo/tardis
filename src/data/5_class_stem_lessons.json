@@ -1,0 +1,130 @@
+{
+  "modules": [
+    {
+      "id": "math-foundations",
+      "title": "Math Foundations",
+      "themes": [
+        {
+          "id": "fractions-and-ratios",
+          "title": "Fractions & Ratios",
+          "color": "#F97316",
+          "lessons": [
+            {
+              "id": "fractions-fundamentals",
+              "title": "Fractions Fundamentals",
+              "topic": "Math",
+              "formats": ["quiz", "story", "flashcards"],
+              "exercises": [
+                {
+                  "id": "half-of-eight",
+                  "prompt": "What is one-half of 8?",
+                  "hints": ["Divide by 2"],
+                  "choices": ["2", "4", "8"],
+                  "answer": "4",
+                  "explanation": "Half means split into two equal groups.",
+                  "narrative": "You share 8 apples equally between two students."
+                },
+                {
+                  "id": "equivalent-fraction",
+                  "prompt": "Choose the equivalent fraction to 1/2",
+                  "hints": ["Multiply top and bottom by same number"],
+                  "choices": ["2/4", "3/4", "4/5"],
+                  "answer": "2/4",
+                  "explanation": "1/2 and 2/4 represent the same ratio.",
+                  "narrative": "A recipe uses half a cup; your measuring tool marks quarters."
+                }
+              ]
+            },
+            {
+              "id": "fractions-fundamentals1",
+              "title": "Fractions Fundamentals1",
+              "topic": "Math1",
+              "formats": ["quiz", "story"],
+              "exercises": [
+                {
+                  "id": "half-of-eight",
+                  "prompt": "What is one-half of 8?",
+                  "hints": ["Divide by 2"],
+                  "choices": ["2", "4", "8"],
+                  "answer": "4",
+                  "explanation": "Half means split into two equal groups.",
+                  "narrative": "You share 8 apples equally between two students."
+                },
+                {
+                  "id": "equivalent-fraction",
+                  "prompt": "Choose the equivalent fraction to 1/2",
+                  "hints": ["Multiply top and bottom by same number"],
+                  "choices": ["2/4", "3/4", "4/5"],
+                  "answer": "2/4",
+                  "explanation": "1/2 and 2/4 represent the same ratio.",
+                  "narrative": "A recipe uses half a cup; your measuring tool marks quarters."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "geometry-basics",
+          "title": "Geometry Basics",
+          "color": "#10B981",
+          "lessons": [
+            {
+              "id": "angles-shapes",
+              "title": "Angles and Shapes",
+              "topic": "Geometry",
+              "formats": ["quiz", "flashcards"],
+              "exercises": [
+                {
+                  "id": "triangle-angle",
+                  "prompt": "How many degrees are inside any triangle?",
+                  "choices": ["90", "180", "360"],
+                  "answer": "180",
+                  "explanation": "Interior angles of a triangle always add to 180.",
+                  "narrative": "You design a bridge with triangular supports."
+                },
+                {
+                  "id": "identify-shape",
+                  "prompt": "Which shape has exactly 4 equal sides?",
+                  "choices": ["Rectangle", "Square", "Trapezoid"],
+                  "answer": "Square",
+                  "explanation": "A square has four equal sides and four right angles.",
+                  "narrative": "A robot map marks a square charging area."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "science-observation",
+      "title": "Science Observation",
+      "themes": [
+        {
+          "id": "plants-life-cycles",
+          "title": "Plants & Life Cycles",
+          "color": "#0EA5E9",
+          "lessons": [
+            {
+              "id": "seed-to-plant",
+              "title": "From Seed to Plant",
+              "topic": "Biology",
+              "formats": ["story", "quiz"],
+              "exercises": [
+                {
+                  "id": "germination-step",
+                  "prompt": "What do seeds need first to start germination?",
+                  "choices": ["Water", "Metal", "Glass"],
+                  "answer": "Water",
+                  "explanation": "Water activates seed growth processes.",
+                  "narrative": "Your class greenhouse tracks tiny sprouts every day."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lessons": []
+}
