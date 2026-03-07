@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.1",
-    "expo": "~52.0.34",
+    "expo": "^55.0.5",
     "expo-file-system": "~18.0.12",
+    "expo-print": "~14.0.3",
+    "expo-sharing": "~13.0.1",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
     "react-native": "0.76.7",

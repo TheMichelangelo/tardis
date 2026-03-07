@@ -17,10 +17,12 @@ export type ExerciseBase = {
 
 export type DiagramExercise = ExerciseBase & {
   type: 'diagram';
+  imageExt?: 'png' | 'jpg' | 'jpeg';
 };
 
 export type RebusExercise = ExerciseBase & {
   type: 'rebus';
+  imageExt?: 'png' | 'jpg' | 'jpeg';
 };
 
 export type TableExercise = ExerciseBase & {

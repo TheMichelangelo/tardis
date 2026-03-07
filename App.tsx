@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import {
   Image,
+  Linking,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -10,6 +12,8 @@ import {
   useWindowDimensions
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import * as Print from 'expo-print';
+import * as Sharing from 'expo-sharing';
 import { LessonBuilder } from './src/components/LessonBuilder';
 import { loadLessonsFileForClass } from './src/lib/storage';
 import {
@@ -77,18 +81,24 @@ function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
 
 function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise) {
   switch (exercise.type) {
-    case 'diagram':
+    case 'diagram': {
+      const diagramPath = getExerciseImagePath(lesson, exercise);
       return (
-        <Text style={styles.exerciseText}>
-          Diagram image: {`${lesson.id}/${exercise.id}`} (image file named by exercise id)
-        </Text>
+        <View style={styles.exerciseBlock}>
+          <Image source={{ uri: diagramPath }} style={styles.exerciseImage} resizeMode="contain" />
+          <Text style={styles.exerciseText}>Diagram image: {diagramPath}</Text>
+        </View>
       );
-    case 'rebus':
+    }
+    case 'rebus': {
+      const rebusPath = getExerciseImagePath(lesson, exercise);
       return (
-        <Text style={styles.exerciseText}>
-          Rebus image: {`${lesson.id}/${exercise.id}`} (image file named by exercise id)
-        </Text>
+        <View style={styles.exerciseBlock}>
+          <Image source={{ uri: rebusPath }} style={styles.exerciseImage} resizeMode="contain" />
+          <Text style={styles.exerciseText}>Rebus image: {rebusPath}</Text>
+        </View>
       );
+    }
     case 'table':
       return (
         <View style={styles.exerciseBlock}>
@@ -135,6 +145,23 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
     default:
       return null;
   }
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) {
+  if (exercise.type !== 'diagram' && exercise.type !== 'rebus') {
+    return '';
+  }
+  const ext = exercise.imageExt ?? 'png';
+  return `${lesson.id}/${exercise.id}.${ext}`;
 }
 
 export default function App() {
@@ -213,6 +240,149 @@ export default function App() {
   const singleExercise = lessonContext?.exercises[exerciseIndex];
   const isSmall = width < 760;
 
+  const downloadLessonPdf = async () => {
+    if (!lessonContext) {
+      return;
+    }
+
+    const exerciseHtml = lessonContext.exercises
+      .map((exercise, index) => {
+        const title = `<h3>${index + 1}. ${escapeHtml(exercise.label)}</h3>`;
+
+        if (exercise.type === 'diagram' || exercise.type === 'rebus') {
+          const imagePath = escapeHtml(getExerciseImagePath(lessonContext.lesson, exercise));
+          return `
+            <section class="card">
+              ${title}
+              <p><strong>Type:</strong> ${escapeHtml(exercise.type)}</p>
+              <img src="${imagePath}" alt="${escapeHtml(exercise.label)}" />
+              <p class="path">${imagePath}</p>
+            </section>
+          `;
+        }
+
+        if (exercise.type === 'table') {
+          return `
+            <section class="card">
+              ${title}
+              <p><strong>Type:</strong> table</p>
+              <p><strong>Columns:</strong> ${escapeHtml(exercise.columns.join(', '))}</p>
+              <p><strong>Rows:</strong> ${escapeHtml(
+                exercise.rows && exercise.rows.length > 0
+                  ? exercise.rows.join(', ')
+                  : 'No row names'
+              )}</p>
+              <p><strong>Data to fill:</strong> ${escapeHtml(exercise.dataToFill.join(', '))}</p>
+            </section>
+          `;
+        }
+
+        if (exercise.type === 'text') {
+          const questions = exercise.questions?.length
+            ? `<ul>${exercise.questions
+                .map((question) => `<li>${escapeHtml(question)}</li>`)
+                .join('')}</ul>`
+            : '';
+          return `
+            <section class="card">
+              ${title}
+              <p><strong>Type:</strong> text</p>
+              <p>${escapeHtml(exercise.text)}</p>
+              ${questions}
+            </section>
+          `;
+        }
+
+        if (exercise.type === 'video') {
+          return `
+            <section class="card">
+              ${title}
+              <p><strong>Type:</strong> video</p>
+              <p>${escapeHtml(exercise.youtubeUrl)}</p>
+            </section>
+          `;
+        }
+
+        if (exercise.type === 'interactive_quiz') {
+          const questions = exercise.questions
+            .map(
+              (question, qIndex) => `
+                <div class="quiz">
+                  <p><strong>Flashcard ${qIndex + 1}:</strong> ${escapeHtml(question.question)}</p>
+                  <p>Single choice: ${escapeHtml(question.answerTypes.singleChoice.join(' | '))}</p>
+                  <p>True/False: ${escapeHtml(question.answerTypes.trueFalse)}</p>
+                  <p>Short text: ${escapeHtml(question.answerTypes.shortText)}</p>
+                </div>
+              `
+            )
+            .join('');
+          return `
+            <section class="card">
+              ${title}
+              <p><strong>Type:</strong> interactive quiz</p>
+              ${questions}
+            </section>
+          `;
+        }
+
+        return '';
+      })
+      .join('');
+
+    const html = `
+      <html>
+        <head>
+          <meta charset="utf-8" />
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h1 { margin-bottom: 2px; }
+            h2 { margin-top: 2px; color: #475569; font-size: 14px; }
+            .card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin-top: 10px; page-break-inside: avoid; }
+            img { width: 100%; max-width: 540px; max-height: 320px; object-fit: contain; border-radius: 6px; background: #f8fafc; }
+            .path { color: #64748b; font-size: 12px; }
+            .quiz { background: #f8fafc; border-radius: 6px; padding: 8px; margin-top: 6px; }
+          </style>
+        </head>
+        <body>
+          <h1>${escapeHtml(lessonContext.lesson.title)}</h1>
+          <h2>Module: ${escapeHtml(lessonContext.module.title)} | Theme: ${escapeHtml(
+      lessonContext.theme.title
+    )}</h2>
+          ${exerciseHtml}
+        </body>
+      </html>
+    `;
+
+    try {
+      const file = await Print.printToFileAsync({ html });
+
+      if (Platform.OS === 'web') {
+        const webDoc = (globalThis as { document?: { createElement: (tag: string) => { href: string; download: string; click: () => void } } }).document;
+        if (webDoc) {
+          const anchor = webDoc.createElement('a');
+          anchor.href = file.uri;
+          anchor.download = `${lessonContext.lesson.id}.pdf`;
+          anchor.click();
+        } else {
+          await Linking.openURL(file.uri);
+        }
+        return;
+      }
+
+      if (await Sharing.isAvailableAsync()) {
+        await Sharing.shareAsync(file.uri, {
+          mimeType: 'application/pdf',
+          dialogTitle: 'Download lesson PDF'
+        });
+        return;
+      }
+
+      await Linking.openURL(file.uri);
+    } catch {
+      setError('Could not generate PDF file for this lesson.');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="dark" />
@@ -261,12 +431,17 @@ export default function App() {
 
       {screen.name === 'lesson' ? (
         <ScrollView contentContainerStyle={styles.lessonPageContainer}>
-          <Pressable
-            onPress={() => goToClassThemes(screen.classNumber)}
-            style={styles.backButton}
-          >
-            <Text style={styles.backButtonText}>Back to Themes</Text>
-          </Pressable>
+          <View style={styles.lessonTopBar}>
+            <Pressable
+              onPress={() => goToClassThemes(screen.classNumber)}
+              style={styles.backButton}
+            >
+              <Text style={styles.backButtonText}>Back to Themes</Text>
+            </Pressable>
+            <Pressable onPress={downloadLessonPdf} style={styles.downloadButton}>
+              <Text style={styles.downloadButtonText}>Download PDF</Text>
+            </Pressable>
+          </View>
 
           {lessonContext ? (
             <>
@@ -574,12 +749,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 12
   },
+  lessonTopBar: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   backButton: {
     alignSelf: 'flex-start',
     backgroundColor: 'rgba(226,232,240,0.95)',
     borderRadius: 10,
     paddingHorizontal: 18,
     paddingVertical: 12
+  },
+  downloadButton: {
+    backgroundColor: 'rgba(37,99,235,0.95)',
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10
+  },
+  downloadButtonText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '700'
   },
   backButtonText: {
     color: '#1E293B',
@@ -659,6 +850,12 @@ const styles = StyleSheet.create({
   },
   exerciseBlock: {
     marginTop: 8
+  },
+  exerciseImage: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 8,
+    height: 220,
+    width: '100%'
   },
   exerciseText: {
     color: '#1E293B',

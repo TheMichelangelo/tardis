@@ -42,12 +42,11 @@ function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
 }
 
 export function LessonBuilder({ data, onOpenLesson }: Props) {
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const [selectedThemeKey, setSelectedThemeKey] = useState<string>('');
   const tabWidth = Math.max(130, Math.min(320, Math.round(width * 0.24)));
   const moduleFontSize = Math.max(10, Math.min(13, Math.round(width * 0.012)));
   const themeFontSize = Math.max(14, Math.min(22, Math.round(width * 0.02)));
-  const lessonsMaxHeight = Math.max(220, Math.round(height * 0.54));
 
   const themeTabs = useMemo<ThemeTab[]>(() => {
     return data.modules.flatMap((module) =>
@@ -121,12 +120,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
             ))}
           </View>
 
-          <ScrollView
-            nestedScrollEnabled
-            style={{ maxHeight: lessonsMaxHeight }}
-            contentContainerStyle={styles.lessonsList}
-            showsVerticalScrollIndicator
-          >
+          <View style={styles.lessonsList}>
             {selectedTab.theme.lessons.map((lesson) => (
               <Pressable
                 key={lesson.id}
@@ -160,7 +154,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
                 <Text style={styles.openHint}>Open lesson</Text>
               </Pressable>
             ))}
-          </ScrollView>
+          </View>
         </View>
       ) : null}
     </View>
