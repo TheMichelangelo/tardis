@@ -159,7 +159,11 @@ function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExer
   );
 }
 
-function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise) {
+function renderExerciseContent(
+  lesson: LessonTemplate,
+  exercise: LessonExercise,
+  videoHeight: number
+) {
   switch (exercise.type) {
     case 'diagram': {
       const diagramPath = getExerciseImagePath(lesson, exercise);
@@ -202,23 +206,27 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
           ) : null}
         </View>
       );
-    case 'video':
+    case 'video': {
       const embedUrl = getYoutubeEmbedUrl(exercise.youtubeUrl);
       const IFrame = 'iframe' as unknown as any;
       return (
         <View style={styles.exerciseBlock}>
           {embedUrl ? (
             Platform.OS === 'web' ? (
-              <View style={styles.videoFrameWrapper}>
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
                 <IFrame
                   src={embedUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  style={styles.webVideoFrame}
+                  style={{
+                    border: '0',
+                    height: '100%',
+                    width: '100%'
+                  }}
                 />
               </View>
             ) : (
-              <View style={styles.videoFrameWrapper}>
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
                 <WebView source={{ uri: embedUrl }} style={styles.nativeVideoFrame} />
               </View>
             )
@@ -241,6 +249,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
           ) : null}
         </View>
       );
+    }
     case 'interactive_quiz':
       return <InteractiveQuizFlashcards exercise={exercise} />;
     default:
@@ -393,6 +402,7 @@ export default function App() {
 
   const singleExercise = filteredExercises[exerciseIndex];
   const isSmall = width < 760;
+  const videoHeight = Math.max(190, Math.min(430, Math.round(width * 0.56)));
 
   const downloadLessonPdf = async () => {
     if (!lessonContext) {
@@ -694,7 +704,7 @@ export default function App() {
                   {singleExercise ? (
                     <View style={styles.exerciseCard}>
                       <Text style={styles.exerciseTitle}>{singleExercise.label}</Text>
-                      {renderExerciseContent(lessonContext.lesson, singleExercise)}
+                      {renderExerciseContent(lessonContext.lesson, singleExercise, videoHeight)}
                     </View>
                   ) : (
                     <Text style={styles.infoText}>No exercises in this lesson.</Text>
@@ -737,7 +747,7 @@ export default function App() {
                     filteredExercises.map((exercise) => (
                       <View key={exercise.id} style={styles.exerciseCard}>
                         <Text style={styles.exerciseTitle}>{exercise.label}</Text>
-                        {renderExerciseContent(lessonContext.lesson, exercise)}
+                        {renderExerciseContent(lessonContext.lesson, exercise, videoHeight)}
                       </View>
                     ))
                   )}
@@ -902,13 +912,7 @@ const styles = StyleSheet.create({
   videoFrameWrapper: {
     backgroundColor: '#000000',
     borderRadius: 8,
-    height: 220,
     overflow: 'hidden',
-    width: '100%'
-  },
-  webVideoFrame: {
-    borderWidth: 0,
-    height: '100%',
     width: '100%'
   },
   nativeVideoFrame: {

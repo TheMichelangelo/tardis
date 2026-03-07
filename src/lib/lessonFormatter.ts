@@ -109,15 +109,6 @@ function toExerciseTasks(
         }
       }));
 
-    default:
-      return [
-        {
-          id: exercise.id,
-          title: exercise.label,
-          content: '',
-          metadata: { lessonType }
-        }
-      ];
   }
 }
 

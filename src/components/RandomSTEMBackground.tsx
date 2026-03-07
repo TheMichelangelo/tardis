@@ -16,8 +16,8 @@ type DecoItem = {
   id: string;
   text: string;
   color: string;
-  top: string;
-  left: string;
+  top: number;
+  left: number;
   size: number;
   rotate: string;
   opacity: number;
@@ -55,14 +55,14 @@ function randomFrom<T>(items: T[]) {
 function createItems(
   kind: 'formula' | 'rocket' | 'mechanic',
   count: number,
-  _width: number,
-  _height: number
+  width: number,
+  height: number
 ): DecoItem[] {
   const source = kind === 'formula' ? FORMULAS : kind === 'rocket' ? ROCKETS : MECHANICS;
 
   return Array.from({ length: count }, (_, index) => {
-    const top = `${randInt(4, 92)}%`;
-    const left = `${randInt(3, 92)}%`;
+    const top = Math.round((randInt(4, 92) / 100) * height);
+    const left = Math.round((randInt(3, 92) / 100) * width);
     const rotate = `${randInt(-30, 30)}deg`;
 
     const size =
