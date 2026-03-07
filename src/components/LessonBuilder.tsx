@@ -7,6 +7,7 @@ import {
   View,
   useWindowDimensions
 } from 'react-native';
+import { formatTypeLabel, tr } from '../localization';
 import {
   ClassLessonsFile,
   LessonExercise,
@@ -27,10 +28,10 @@ type Props = {
 };
 
 function normalizeTypeLabel(type: LessonFormat) {
-  if (type === 'flashcards' || type === 'competition') {
-    return 'Competition';
+  if (type === 'flashcards') {
+    return formatTypeLabel('competition');
   }
-  return type[0].toUpperCase() + type.slice(1);
+  return formatTypeLabel(type);
 }
 
 function normalizeExerciseTypeLabel(type: LessonExercise['type']) {
@@ -75,12 +76,12 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
     : [];
 
   if (themeTabs.length === 0) {
-    return <Text style={styles.errorText}>No themes found in class config.</Text>;
+    return <Text style={styles.errorText}>{tr('noThemes')}</Text>;
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Themes</Text>
+      <Text style={styles.heading}>{tr('themes')}</Text>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabsRow}>
         {themeTabs.map((tab) => {
@@ -100,7 +101,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
               <Text style={[styles.tabModuleText, { fontSize: moduleFontSize }]}>
                 {tab.moduleTitle}
               </Text>
-              <Text style={[styles.tabThemeText, { fontSize: themeFontSize }]}> 
+              <Text style={[styles.tabThemeText, { fontSize: themeFontSize }]}>
                 {tab.theme.title}
               </Text>
             </Pressable>
@@ -111,7 +112,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
       {selectedTab ? (
         <View style={[styles.themePanel, { borderColor: selectedTab.theme.color }]}> 
           <Text style={styles.themeTitle}>{selectedTab.theme.title}</Text>
-          <Text style={styles.moduleText}>Module: {selectedTab.moduleTitle}</Text>
+          <Text style={styles.moduleText}>{tr('module')}: {selectedTab.moduleTitle}</Text>
           <View style={styles.labelsRow}>
             {selectedThemeFormats.map((format) => (
               <View key={`theme-format-${format}`} style={styles.themeFormatLabel}>
@@ -128,9 +129,9 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
                 onPress={() => onOpenLesson(lesson, selectedTab.moduleId, selectedTab.theme.id)}
               >
                 <Text style={styles.lessonTitle}>{lesson.title}</Text>
-                <Text style={styles.lessonTopic}>Topic: {lesson.topic}</Text>
+                <Text style={styles.lessonTopic}>{tr('topic')}: {lesson.topic}</Text>
                 <Text style={styles.lessonTopic}>
-                  Exercises: {resolveLessonExercises(lesson).length}
+                  {tr('exercises')}: {resolveLessonExercises(lesson).length}
                 </Text>
 
                 <View style={styles.labelsRow}>
@@ -151,7 +152,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
                   ))}
                 </View>
 
-                <Text style={styles.openHint}>Open lesson</Text>
+                <Text style={styles.openHint}>{tr('openLesson')}</Text>
               </Pressable>
             ))}
           </View>

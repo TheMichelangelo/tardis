@@ -13,6 +13,7 @@ import {
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { WebView } from 'react-native-webview';
+import { formatTypeLabel, tr } from '../localization';
 import {
   ClassNumber,
   ExerciseFormat,
@@ -49,12 +50,9 @@ function normalizeFormat(format: LessonFormat | ExerciseFormat): 'all' | LessonT
 
 function formatLabel(format: 'all' | LessonType) {
   if (format === 'all') {
-    return 'All exercises';
+    return tr('allExercises');
   }
-  if (format === 'competition') {
-    return 'Competition';
-  }
-  return format[0].toUpperCase() + format.slice(1);
+  return formatTypeLabel(format);
 }
 
 function resolveExerciseFormats(exercise: LessonExercise): ('all' | LessonType)[] {
@@ -148,7 +146,7 @@ function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExer
 
         return (
           <View key={question.id} style={styles.flashcardCard}>
-            <Text style={styles.flashcardTitle}>Flashcard {index + 1}</Text>
+            <Text style={styles.flashcardTitle}>{tr('flashcard')} {index + 1}</Text>
             <Text style={styles.flashcardQuestion}>{question.question}</Text>
 
             <View style={styles.flashcardChoicesRow}>
@@ -173,8 +171,8 @@ function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExer
 
             {isRevealed ? (
               <View style={styles.answerBox}>
-                <Text style={styles.answerBoxText}>Correct answer: {correct}</Text>
-                {selected ? <Text style={styles.answerBoxText}>Your choice: {selected}</Text> : null}
+                <Text style={styles.answerBoxText}>{tr('correctAnswer')}: {correct}</Text>
+                {selected ? <Text style={styles.answerBoxText}>{tr('yourChoice')}: {selected}</Text> : null}
               </View>
             ) : null}
           </View>
@@ -205,11 +203,11 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
     case 'table':
       return (
         <View style={styles.exerciseBlock}>
-          <Text style={styles.exerciseText}>Columns: {exercise.columns.join(', ')}</Text>
+          <Text style={styles.exerciseText}>{tr('columns')}: {exercise.columns.join(', ')}</Text>
           <Text style={styles.exerciseText}>
-            Rows: {exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : 'No row names'}
+            {tr('rows')}: {exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : tr('noRowNames')}
           </Text>
-          <Text style={styles.exerciseText}>Data to fill: {exercise.dataToFill.join(', ')}</Text>
+          <Text style={styles.exerciseText}>{tr('dataToFill')}: {exercise.dataToFill.join(', ')}</Text>
         </View>
       );
     case 'text':
@@ -234,7 +232,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
         <View style={styles.exerciseBlock}>
           {embedUrl ? (
             Platform.OS === 'web' ? (
-              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}> 
                 <IFrame
                   src={embedUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -243,13 +241,13 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
                 />
               </View>
             ) : (
-              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}> 
                 <WebView source={{ uri: embedUrl }} style={styles.nativeVideoFrame} />
               </View>
             )
           ) : (
             <Pressable style={styles.openVideoButton} onPress={() => Linking.openURL(exercise.youtubeUrl)}>
-              <Text style={styles.openVideoButtonText}>Open YouTube Video</Text>
+              <Text style={styles.openVideoButtonText}>{tr('openYoutubeVideo')}</Text>
             </Pressable>
           )}
           {exercise.questions && exercise.questions.length > 0 ? (
@@ -274,7 +272,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
           {imagePath ? <Image source={{ uri: imagePath }} style={styles.exerciseImage} resizeMode="contain" /> : null}
           {embeddedVideo ? (
             Platform.OS === 'web' ? (
-              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}> 
                 <IFrame
                   src={embeddedVideo}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -283,7 +281,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
                 />
               </View>
             ) : (
-              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}> 
                 <WebView source={{ uri: embeddedVideo }} style={styles.nativeVideoFrame} />
               </View>
             )
@@ -341,18 +339,18 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
 
         if (exercise.type === 'diagram' || exercise.type === 'rebus') {
           const imagePath = escapeHtml(getExerciseImagePath(lesson, exercise));
-          return `${pageBreak}<section class="card">${title}<p><strong>Type:</strong> ${escapeHtml(exercise.type)}</p><img src="${imagePath}" alt="${escapeHtml(exercise.label)}" /></section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(exercise.type)}</p><img src="${imagePath}" alt="${escapeHtml(exercise.label)}" /></section>`;
         }
 
         if (exercise.type === 'table') {
-          return `${pageBreak}<section class="card">${title}<p><strong>Type:</strong> table</p><p><strong>Columns:</strong> ${escapeHtml(exercise.columns.join(', '))}</p><p><strong>Rows:</strong> ${escapeHtml(exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : 'No row names')}</p><p><strong>Data to fill:</strong> ${escapeHtml(exercise.dataToFill.join(', '))}</p></section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> table</p><p><strong>${escapeHtml(tr('columns'))}:</strong> ${escapeHtml(exercise.columns.join(', '))}</p><p><strong>${escapeHtml(tr('rows'))}:</strong> ${escapeHtml(exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : tr('noRowNames'))}</p><p><strong>${escapeHtml(tr('dataToFill'))}:</strong> ${escapeHtml(exercise.dataToFill.join(', '))}</p></section>`;
         }
 
         if (exercise.type === 'text') {
           const questions = exercise.questions?.length
             ? `<ul>${exercise.questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul>`
             : '';
-          return `${pageBreak}<section class="card">${title}<p><strong>Type:</strong> text</p><p>${escapeHtml(exercise.text)}</p>${questions}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> text</p><p>${escapeHtml(exercise.text)}</p>${questions}</section>`;
         }
 
         if (exercise.type === 'video') {
@@ -361,21 +359,21 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
           const questions = exercise.questions?.length
             ? `<ul>${exercise.questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul>`
             : '';
-          return `${pageBreak}<section class="card">${title}<p><strong>Type:</strong> video</p><img src="${qrUrl}" alt="QR code to video" /><p><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">Open YouTube video</a></p>${questions}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> video</p><img src="${qrUrl}" alt="QR code to video" /><p><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>${questions}</section>`;
         }
 
         if (exercise.type === 'interactive_quiz') {
           const questions = exercise.questions
-            .map((question, qIndex) => `<div class="quiz"><p><strong>Flashcard ${qIndex + 1}:</strong> ${escapeHtml(question.question)}</p><p>Single choice: ${escapeHtml(question.answerTypes.singleChoice.join(' | '))}</p><p>True/False: ${escapeHtml(question.answerTypes.trueFalse)}</p><p>Short text: ${escapeHtml(question.answerTypes.shortText)}</p></div>`)
+            .map((question, qIndex) => `<div class="quiz"><p><strong>${escapeHtml(tr('flashcard'))} ${qIndex + 1}:</strong> ${escapeHtml(question.question)}</p><p>Single choice: ${escapeHtml(question.answerTypes.singleChoice.join(' | '))}</p><p>True/False: ${escapeHtml(question.answerTypes.trueFalse)}</p><p>Short text: ${escapeHtml(question.answerTypes.shortText)}</p></div>`)
             .join('');
-          return `${pageBreak}<section class="card">${title}<p><strong>Type:</strong> interactive quiz</p>${questions}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> interactive quiz</p>${questions}</section>`;
         }
 
         if (exercise.type === 'homework') {
           const imagePath = escapeHtml(getHomeworkImagePath(lesson, exercise));
           const safeVideo = exercise.videoUrl ? escapeHtml(exercise.videoUrl) : '';
           const qrVideo = exercise.videoUrl ? escapeHtml(getQrCodeUrl(exercise.videoUrl)) : '';
-          return `${pageBreak}<section class="card">${title}<p><strong>Type:</strong> homework</p><p>${escapeHtml(exercise.text)}</p>${imagePath ? `<img src="${imagePath}" alt="Homework image" />` : ''}${safeVideo ? `<img src="${qrVideo}" alt="QR code to homework video" /><p><a href="${safeVideo}" target="_blank" rel="noopener noreferrer">Open homework video</a></p>` : ''}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> homework</p><p>${escapeHtml(exercise.text)}</p>${imagePath ? `<img src="${imagePath}" alt="Homework image" />` : ''}${safeVideo ? `<img src="${qrVideo}" alt="QR code to homework video" /><p><a href="${safeVideo}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>` : ''}</section>`;
         }
 
         return '';
@@ -394,7 +392,7 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
       .quiz { background: #f8fafc; border-radius: 6px; padding: 8px; margin-top: 6px; }
       </style></head><body>
       <h1>${escapeHtml(lesson.title)}</h1>
-      <h2>Module: ${escapeHtml(moduleTitle)} | Theme: ${escapeHtml(themeTitle)}</h2>
+      <h2>${escapeHtml(tr('module'))}: ${escapeHtml(moduleTitle)} | ${escapeHtml(tr('theme'))}: ${escapeHtml(themeTitle)}</h2>
       ${exerciseHtml}
       </body></html>
     `;
@@ -409,14 +407,14 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(file.uri, {
           mimeType: 'application/pdf',
-          dialogTitle: 'Download lesson PDF'
+          dialogTitle: tr('downloadPdfDialog')
         });
         return;
       }
 
       await Linking.openURL(file.uri);
     } catch {
-      onError('Could not generate PDF file for this lesson.');
+      onError(tr('errorDownloadPdf'));
     }
   };
 
@@ -424,17 +422,17 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
     <ScrollView contentContainerStyle={styles.lessonPageContainer}>
       <View style={styles.lessonTopBar}>
         <Pressable onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backButtonText}>Back to Themes</Text>
+          <Text style={styles.backButtonText}>{tr('backToThemes')}</Text>
         </Pressable>
         <Pressable onPress={downloadLessonPdf} style={styles.downloadButton}>
-          <Text style={styles.downloadButtonText}>Download PDF</Text>
+          <Text style={styles.downloadButtonText}>{tr('downloadPdf')}</Text>
         </Pressable>
       </View>
 
       <Text style={[styles.classTitle, isSmall && styles.classTitleSmall]}>{lesson.title}</Text>
-      <Text style={styles.lessonMetaText}>Class: {classNumber}</Text>
-      <Text style={styles.lessonMetaText}>Module: {moduleTitle}</Text>
-      <Text style={styles.lessonMetaText}>Theme: {themeTitle}</Text>
+      <Text style={styles.lessonMetaText}>{tr('classLabel')}: {classNumber}</Text>
+      <Text style={styles.lessonMetaText}>{tr('module')}: {moduleTitle}</Text>
+      <Text style={styles.lessonMetaText}>{tr('theme')}: {themeTitle}</Text>
 
       {availableSpecificFormats.length > 0 ? (
         <View style={styles.modeRow}>
@@ -471,7 +469,7 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
           style={[styles.modeButton, viewMode === 'all' && styles.modeButtonActive]}
         >
           <Text style={[styles.modeButtonText, viewMode === 'all' && styles.modeButtonTextActive]}>
-            See all exercises
+            {tr('seeAllExercises')}
           </Text>
         </Pressable>
         <Pressable
@@ -482,7 +480,7 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
           style={[styles.modeButton, viewMode === 'single' && styles.modeButtonActive]}
         >
           <Text style={[styles.modeButtonText, viewMode === 'single' && styles.modeButtonTextActive]}>
-            One by one
+            {tr('oneByOne')}
           </Text>
         </Pressable>
       </View>
@@ -491,8 +489,8 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
         <>
           <Text style={styles.counterText}>
             {filteredExercises.length === 0
-              ? '0 of 0 exercises'
-              : `${exerciseIndex + 1} of ${filteredExercises.length} exercises`}
+              ? `0 / 0 ${tr('exercises').toLowerCase()}`
+              : `${exerciseIndex + 1} / ${filteredExercises.length} ${tr('exercises').toLowerCase()}`}
           </Text>
 
           {singleExercise ? (
@@ -501,7 +499,7 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
               {renderExerciseContent(lesson, singleExercise, videoHeight)}
             </View>
           ) : (
-            <Text style={styles.infoText}>No exercises in this lesson.</Text>
+            <Text style={styles.infoText}>{tr('noExercises')}</Text>
           )}
 
           <View style={styles.navRow}>
@@ -510,7 +508,7 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
               style={[styles.navButton, exerciseIndex === 0 && styles.navButtonDisabled]}
               disabled={exerciseIndex === 0}
             >
-              <Text style={styles.navButtonText}>Prev</Text>
+              <Text style={styles.navButtonText}>{tr('prev')}</Text>
             </Pressable>
             <Pressable
               onPress={() => setExerciseIndex((prev) => Math.min(filteredExercises.length - 1, prev + 1))}
@@ -521,14 +519,14 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
               ]}
               disabled={filteredExercises.length === 0 || exerciseIndex === filteredExercises.length - 1}
             >
-              <Text style={styles.navButtonText}>Next</Text>
+              <Text style={styles.navButtonText}>{tr('next')}</Text>
             </Pressable>
           </View>
         </>
       ) : (
         <View style={styles.exerciseList}>
           {filteredExercises.length === 0 ? (
-            <Text style={styles.infoText}>No exercises in this lesson.</Text>
+            <Text style={styles.infoText}>{tr('noExercises')}</Text>
           ) : (
             filteredExercises.map((exercise) => (
               <View key={exercise.id} style={styles.exerciseCard}>

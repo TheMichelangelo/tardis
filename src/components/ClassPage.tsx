@@ -1,4 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { tr } from '../localization';
 import { ClassLessonsFile, ClassNumber, LessonTemplate } from '../lib/types';
 import { LessonBuilder } from './LessonBuilder';
 
@@ -14,15 +15,15 @@ export function ClassPage({ classNumber, data, error, onBack, onOpenLesson }: Pr
   return (
     <ScrollView contentContainerStyle={styles.classContainer}>
       <Pressable onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backButtonText}>Back</Text>
+        <Text style={styles.backButtonText}>{tr('back')}</Text>
       </Pressable>
 
-      <Text style={styles.classTitle}>Class {classNumber}</Text>
+      <Text style={styles.classTitle}>{tr('classLabel')} {classNumber}</Text>
 
       {data ? (
         <LessonBuilder key={`class-${classNumber}`} data={data} onOpenLesson={onOpenLesson} />
       ) : (
-        <Text style={styles.infoText}>Loading class data...</Text>
+        <Text style={styles.infoText}>{tr('loadingClassData')}</Text>
       )}
 
       {error ? <Text style={styles.errorText}>{error}</Text> : null}

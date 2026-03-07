@@ -1,4 +1,5 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { tr } from '../localization';
 import { ClassNumber } from '../lib/types';
 
 type Props = {
@@ -32,7 +33,7 @@ export function HomePage({ logoSource, isLoadingClass, error, onOpenClass }: Pro
         </Pressable>
       </View>
 
-      {isLoadingClass ? <Text style={styles.infoText}>Loading...</Text> : null}
+      {isLoadingClass ? <Text style={styles.infoText}>{tr('loading')}</Text> : null}
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </ScrollView>
   );

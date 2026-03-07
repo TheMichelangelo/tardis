@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { appConfig } from './src/config/appConfig';
 import { ClassPage } from './src/components/ClassPage';
 import { HomePage } from './src/components/HomePage';
 import { LessonPage } from './src/components/LessonPage';
 import { RandomSTEMBackground } from './src/components/RandomSTEMBackground';
+import { tr } from './src/localization';
 import { loadLessonsFileForClass } from './src/lib/storage';
 import {
   ClassLessonsFile,
@@ -36,11 +38,11 @@ export default function App() {
     setError('');
 
     try {
-      const classData = await loadLessonsFileForClass(classNumber);
+      const classData = await loadLessonsFileForClass(classNumber, appConfig.currentLanguage);
       setData(classData);
       setScreen({ name: 'class', classNumber });
     } catch {
-      setError('Failed to load class lessons JSON.');
+      setError(tr('errorLoadClass'));
     } finally {
       setIsLoadingClass(false);
     }
@@ -131,7 +133,7 @@ export default function App() {
           <ClassPage
             classNumber={screen.classNumber}
             data={data}
-            error={error || 'Lesson not found in current data.'}
+            error={error || tr('errorLessonNotFound')}
             onBack={goHome}
             onOpenLesson={openLesson}
           />

@@ -1,0 +1,162 @@
+{
+  "modules": [
+    {
+      "id": "math-foundations",
+      "title": "Math Foundations",
+      "themes": [
+        {
+          "id": "fractions-and-ratios",
+          "title": "Fractions & Ratios",
+          "color": "#F97316",
+          "lessons": [
+            {
+              "id": "fractions-fundamentals",
+              "title": "Fractions Fundamentals",
+              "topic": "Math",
+              "formats": ["quiz", "story", "flashcards"],
+              "exercises": [
+                {
+                  "id": "pizza-diagram",
+                  "label": "Study pizza fraction diagram and mark equal parts",
+                  "type": "diagram"
+                },
+                {
+                  "id": "equivalent-fractions-table",
+                  "label": "Fill equivalent fractions table",
+                  "type": "table",
+                  "columns": ["Fraction", "Equivalent 1", "Equivalent 2"],
+                  "rows": ["1/2", "1/3", "3/4"],
+                  "dataToFill": ["2/4", "3/6", "2/6", "3/9", "6/8", "9/12"]
+                },
+                {
+                  "id": "fractions-reading",
+                  "label": "Read text and note key ideas",
+                  "type": "text",
+                  "text": "Fractions represent parts of a whole. Equivalent fractions have different numerators and denominators but equal value.",
+                  "questions": [
+                    "What is an equivalent fraction for 1/2?",
+                    "Why can two fractions look different but be equal?"
+                  ]
+                },
+                {
+                  "id": "fraction-song-video",
+                  "label": "Watch introduction video",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "fraction-quiz-cards",
+                  "label": "Interactive fraction flashcards",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Which is equivalent to 1/2?",
+                      "answerTypes": {
+                        "singleChoice": ["2/4", "3/5", "5/8"],
+                        "trueFalse": "True",
+                        "shortText": "2/4"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "What is 1/2 of 10?",
+                      "answerTypes": {
+                        "singleChoice": ["3", "5", "7"],
+                        "trueFalse": "True",
+                        "shortText": "5"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "fractions-fundamentals1",
+              "title": "Fractions Fundamentals 1",
+              "topic": "Math",
+              "formats": ["quiz", "story"],
+              "exercises": [
+                {
+                  "id": "fraction-rebus",
+                  "label": "Solve fraction rebus",
+                  "type": "rebus"
+                },
+                {
+                  "id": "compare-fractions-table",
+                  "label": "Compare fractions table",
+                  "type": "table",
+                  "columns": ["A", "B", "Relation"],
+                  "dataToFill": ["1/2", "3/4", "<", "2/3", "4/6", "="]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "geometry-basics",
+          "title": "Geometry Basics",
+          "color": "#10B981",
+          "lessons": [
+            {
+              "id": "angles-shapes",
+              "title": "Angles and Shapes",
+              "topic": "Geometry",
+              "formats": ["quiz", "flashcards"],
+              "exercises": [
+                {
+                  "id": "shape-diagram",
+                  "label": "Identify shapes on the diagram",
+                  "type": "diagram"
+                },
+                {
+                  "id": "angles-text",
+                  "label": "Read angle rules and answer questions",
+                  "type": "text",
+                  "text": "A triangle has interior angles totaling 180 degrees.",
+                  "questions": ["How many degrees in a triangle?", "What is a right angle?"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "science-observation",
+      "title": "Science Observation",
+      "themes": [
+        {
+          "id": "plants-life-cycles",
+          "title": "Plants & Life Cycles",
+          "color": "#0EA5E9",
+          "lessons": [
+            {
+              "id": "seed-to-plant",
+              "title": "From Seed to Plant",
+              "topic": "Biology",
+              "formats": ["story", "quiz"],
+              "exercises": [
+                {
+                  "id": "life-cycle-video",
+                  "label": "Watch plant life cycle video",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "life-cycle-table",
+                  "label": "Arrange life cycle stages",
+                  "type": "table",
+                  "columns": ["Stage", "Description"],
+                  "rows": ["Seed", "Sprout", "Plant", "Flower"],
+                  "dataToFill": ["Dormant", "Germinates", "Grows leaves", "Produces seeds"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lessons": []
+}

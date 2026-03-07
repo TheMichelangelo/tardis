@@ -9,34 +9,47 @@ React Native (Expo) app targeting web first and Android.
 - Opening a class shows theme tabs (each tab has its own color).
 - Each theme tab shows lessons and available lesson formats.
 
+## Language config
+
+- Current UI/data language is configured in:
+  - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
+- Localized labels are stored in:
+  - `src/localization/index.ts`
+
 ## Lesson exercise model
 
-Each lesson now has its own `exercises` list (or `exersices` for compatibility).
+Each lesson has `exercises` (or `exersices` for compatibility).
 
 Exercise fields:
 
 - `id`: string
 - `label`: instruction text
+- `formats?`: optional list of formats (`quiz`, `story`, `competition`, `all`)
 - `type`: one of
-  - `diagram` (image path uses `<lesson-id>/<exercise-id>`)
+  - `diagram` (image path `<lesson-id>/<exercise-id>.<ext>`)
   - `table` (`columns`, optional `rows`, `dataToFill`)
   - `text` (`text`, optional `questions`)
-  - `rebus` (image path uses `<lesson-id>/<exercise-id>`)
-  - `video` (`youtubeUrl`)
-  - `interactive_quiz` (`questions[]` with `singleChoice`, `trueFalse`, `shortText` answer types)
+  - `rebus` (image path `<lesson-id>/<exercise-id>.<ext>`)
+  - `video` (`youtubeUrl`, optional `questions`)
+  - `interactive_quiz` (`questions[]` with `singleChoice`, `trueFalse`, `shortText`)
+  - `homework` (`text`, optional `imageExt`, optional `videoUrl`)
 
-`interactive_quiz` questions are generated as one-by-one flashcard tasks.
+`homework` is always visible regardless of selected format.
 
 ## Data configs
 
-- `src/data/5_class_stem_lessons.json`
-- `src/data/6_class_stem_lessons.json`
+Language-specific class files:
+
+- `src/data/5_class_stem_lesson_en.json`
+- `src/data/6_class_stem_lesson_en.json`
+- `src/data/5_class_stem_lesson_ua.json`
+- `src/data/6_class_stem_lesson_ua.json`
 
 ## Storage behavior
 
-- Web: class-specific `localStorage` keys.
-- Android/iOS: class-specific JSON files in Expo document directory.
-- When loading, app always uses latest module/theme config from JSON files and keeps saved generated lessons.
+- Web: class + language specific `localStorage` keys.
+- Android/iOS: class + language specific JSON files in Expo document directory.
+- When loading, app always uses latest module/theme config from language JSON files and keeps saved generated lessons.
 
 ## Run
 
