@@ -109,6 +109,20 @@ function toExerciseTasks(
         }
       }));
 
+    case 'homework':
+      return [
+        {
+          id: exercise.id,
+          title: `Homework: ${exercise.label}`,
+          content: exercise.text,
+          metadata: {
+            lessonType,
+            exerciseType: 'homework',
+            videoUrl: exercise.videoUrl ?? ''
+          }
+        }
+      ];
+
   }
 }
 

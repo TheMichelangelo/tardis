@@ -89,6 +89,9 @@ function isExerciseVisibleForFormat(
   exercise: LessonExercise,
   selectedFormat: 'all' | LessonType
 ) {
+  if (exercise.type === 'homework') {
+    return true;
+  }
   if (selectedFormat === 'all') {
     return true;
   }
@@ -207,7 +210,7 @@ function renderExerciseContent(
         </View>
       );
     case 'video': {
-      const embedUrl = getYoutubeEmbedUrl(exercise.youtubeUrl);
+      const embedUrl = getEmbeddableVideoUrl(exercise.youtubeUrl);
       const IFrame = 'iframe' as unknown as any;
       return (
         <View style={styles.exerciseBlock}>
@@ -250,6 +253,39 @@ function renderExerciseContent(
         </View>
       );
     }
+    case 'homework': {
+      const imagePath = getHomeworkImagePath(lesson, exercise);
+      const embeddedVideo = exercise.videoUrl ? getEmbeddableVideoUrl(exercise.videoUrl) : '';
+      const IFrame = 'iframe' as unknown as any;
+      return (
+        <View style={styles.exerciseBlock}>
+          <Text style={styles.exerciseText}>{exercise.text}</Text>
+          {imagePath ? (
+            <Image source={{ uri: imagePath }} style={styles.exerciseImage} resizeMode="contain" />
+          ) : null}
+          {embeddedVideo ? (
+            Platform.OS === 'web' ? (
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
+                <IFrame
+                  src={embeddedVideo}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{
+                    border: '0',
+                    height: '100%',
+                    width: '100%'
+                  }}
+                />
+              </View>
+            ) : (
+              <View style={[styles.videoFrameWrapper, { height: videoHeight }]}>
+                <WebView source={{ uri: embeddedVideo }} style={styles.nativeVideoFrame} />
+              </View>
+            )
+          ) : null}
+        </View>
+      );
+    }
     case 'interactive_quiz':
       return <InteractiveQuizFlashcards exercise={exercise} />;
     default:
@@ -274,6 +310,14 @@ function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
   return `${lesson.id}/${exercise.id}.${ext}`;
 }
 
+function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) {
+  if (exercise.type !== 'homework') {
+    return '';
+  }
+  const ext = exercise.imageExt ?? 'png';
+  return `${lesson.id}/homework.${ext}`;
+}
+
 function getQrCodeUrl(value: string) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(
     value
@@ -290,6 +334,14 @@ function getYoutubeEmbedUrl(url: string) {
     return `https://www.youtube.com/embed/${shortForm[1]}`;
   }
   return '';
+}
+
+function getEmbeddableVideoUrl(url: string) {
+  const yt = getYoutubeEmbedUrl(url);
+  if (yt) {
+    return yt;
+  }
+  return url;
 }
 
 export default function App() {
@@ -504,6 +556,26 @@ export default function App() {
               ${title}
               <p><strong>Type:</strong> interactive quiz</p>
               ${questions}
+            </section>
+          `;
+        }
+
+        if (exercise.type === 'homework') {
+          const imagePath = escapeHtml(getHomeworkImagePath(lessonContext.lesson, exercise));
+          const safeVideo = exercise.videoUrl ? escapeHtml(exercise.videoUrl) : '';
+          const qrVideo = exercise.videoUrl ? escapeHtml(getQrCodeUrl(exercise.videoUrl)) : '';
+          return `
+            ${pageBreak}
+            <section class="card">
+              ${title}
+              <p><strong>Type:</strong> homework</p>
+              <p>${escapeHtml(exercise.text)}</p>
+              ${imagePath ? `<img src="${imagePath}" alt="Homework image" />` : ''}
+              ${
+                safeVideo
+                  ? `<img src="${qrVideo}" alt="QR code to homework video" /><p><a href="${safeVideo}" target="_blank" rel="noopener noreferrer">Open homework video</a></p>`
+                  : ''
+              }
             </section>
           `;
         }
