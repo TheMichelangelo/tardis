@@ -15,6 +15,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { LessonBuilder } from './src/components/LessonBuilder';
+import { RandomSTEMBackground } from './src/components/RandomSTEMBackground';
 import { loadLessonsFileForClass } from './src/lib/storage';
 import {
   ClassLessonsFile,
@@ -41,40 +42,6 @@ const classButtonColors: Record<ClassNumber, string> = {
   6: '#4D96FF'
 };
 
-function STEMBackground() {
-  return (
-    <View style={styles.backgroundLayer} pointerEvents="none">
-      <Image source={logoImage} style={styles.backgroundLogoFull} resizeMode="cover" />
-      <Image source={logoImage} style={styles.backgroundLogoOverlay} resizeMode="contain" />
-
-      <Text style={[styles.bgItem, styles.formulaOne]}>E = mc²</Text>
-      <Text style={[styles.bgItem, styles.formulaTwo]}>πr²</Text>
-      <Text style={[styles.bgItem, styles.formulaThree]}>∑(a+b)</Text>
-      <Text style={[styles.bgItem, styles.formulaFour]}>x² + y² = z²</Text>
-      <Text style={[styles.bgItem, styles.formulaFive]}>F = ma</Text>
-      <Text style={[styles.bgItem, styles.formulaSix]}>a² + b² = c²</Text>
-      <Text style={[styles.bgItem, styles.formulaSeven]}>V = I · R</Text>
-      <Text style={[styles.bgItem, styles.formulaEight]}>A = πr²</Text>
-      <Text style={[styles.bgItem, styles.formulaNine]}>Δx/Δt</Text>
-      <Text style={[styles.bgItem, styles.formulaTen]}>∫ f(x)dx</Text>
-
-      <Text style={[styles.bgItem, styles.rocketOne]}>🚀</Text>
-      <Text style={[styles.bgItem, styles.rocketTwo]}>🚀</Text>
-      <Text style={[styles.bgItem, styles.rocketThree]}>🚀</Text>
-      <Text style={[styles.bgItem, styles.rocketFour]}>🚀</Text>
-      <Text style={[styles.bgItem, styles.rocketFive]}>🚀</Text>
-
-      <Text style={[styles.bgItem, styles.mechOne]}>⚙️</Text>
-      <Text style={[styles.bgItem, styles.mechTwo]}>⚙️</Text>
-      <Text style={[styles.bgItem, styles.mechThree]}>🔩</Text>
-      <Text style={[styles.bgItem, styles.mechFour]}>⚙️</Text>
-      <Text style={[styles.bgItem, styles.mechFive]}>🛠️</Text>
-      <Text style={[styles.bgItem, styles.mechSix]}>🔧</Text>
-      <Text style={[styles.bgItem, styles.mechSeven]}>⛓️</Text>
-    </View>
-  );
-}
-
 function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
   return lesson.exercises ?? lesson.exersices ?? [];
 }
@@ -86,7 +53,6 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
       return (
         <View style={styles.exerciseBlock}>
           <Image source={{ uri: diagramPath }} style={styles.exerciseImage} resizeMode="contain" />
-          <Text style={styles.exerciseText}>Diagram image: {diagramPath}</Text>
         </View>
       );
     }
@@ -95,7 +61,6 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
       return (
         <View style={styles.exerciseBlock}>
           <Image source={{ uri: rebusPath }} style={styles.exerciseImage} resizeMode="contain" />
-          <Text style={styles.exerciseText}>Rebus image: {rebusPath}</Text>
         </View>
       );
     }
@@ -125,7 +90,16 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
         </View>
       );
     case 'video':
-      return <Text style={styles.exerciseText}>Watch on YouTube: {exercise.youtubeUrl}</Text>;
+      return (
+        <View style={styles.exerciseBlock}>
+          <Pressable
+            style={styles.openVideoButton}
+            onPress={() => Linking.openURL(exercise.youtubeUrl)}
+          >
+            <Text style={styles.openVideoButtonText}>Open YouTube Video</Text>
+          </Pressable>
+        </View>
+      );
     case 'interactive_quiz':
       return (
         <View style={styles.exerciseBlock}>
@@ -162,6 +136,12 @@ function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
   }
   const ext = exercise.imageExt ?? 'png';
   return `${lesson.id}/${exercise.id}.${ext}`;
+}
+
+function getQrCodeUrl(value: string) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(
+    value
+  )}`;
 }
 
 export default function App() {
@@ -263,7 +243,6 @@ export default function App() {
               ${title}
               <p><strong>Type:</strong> ${escapeHtml(exercise.type)}</p>
               <img src="${imagePath}" alt="${escapeHtml(exercise.label)}" />
-              <p class="path">${imagePath}</p>
             </section>
           `;
         }
@@ -303,12 +282,15 @@ export default function App() {
         }
 
         if (exercise.type === 'video') {
+          const safeUrl = escapeHtml(exercise.youtubeUrl);
+          const qrUrl = escapeHtml(getQrCodeUrl(exercise.youtubeUrl));
           return `
             ${pageBreak}
             <section class="card">
               ${title}
               <p><strong>Type:</strong> video</p>
-              <p>${escapeHtml(exercise.youtubeUrl)}</p>
+              <img src="${qrUrl}" alt="QR code to video" />
+              <p><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">Open YouTube video</a></p>
             </section>
           `;
         }
@@ -352,7 +334,6 @@ export default function App() {
             .card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin-top: 10px; page-break-inside: avoid; }
             .page-break { break-before: page; page-break-before: always; height: 0; }
             img { width: 100%; max-width: 540px; max-height: 320px; object-fit: contain; border-radius: 6px; background: #f8fafc; }
-            .path { color: #64748b; font-size: 12px; }
             .quiz { background: #f8fafc; border-radius: 6px; padding: 8px; margin-top: 6px; }
           </style>
         </head>
@@ -391,7 +372,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="dark" />
-      <STEMBackground />
+      <RandomSTEMBackground logoSource={logoImage} />
 
       {screen.name === 'home' ? (
         <ScrollView contentContainerStyle={styles.homeContainer}>
@@ -494,7 +475,6 @@ export default function App() {
                   {singleExercise ? (
                     <View style={styles.exerciseCard}>
                       <Text style={styles.exerciseTitle}>{singleExercise.label}</Text>
-                      <Text style={styles.exerciseType}>Type: {singleExercise.type}</Text>
                       {renderExerciseContent(lessonContext.lesson, singleExercise)}
                     </View>
                   ) : (
@@ -538,7 +518,6 @@ export default function App() {
                     lessonContext.exercises.map((exercise) => (
                       <View key={exercise.id} style={styles.exerciseCard}>
                         <Text style={styles.exerciseTitle}>{exercise.label}</Text>
-                        <Text style={styles.exerciseType}>Type: {exercise.type}</Text>
                         {renderExerciseContent(lessonContext.lesson, exercise)}
                       </View>
                     ))
@@ -559,160 +538,6 @@ const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: '#FFFFFF',
     flex: 1
-  },
-  backgroundLayer: {
-    ...StyleSheet.absoluteFillObject,
-    overflow: 'hidden'
-  },
-  backgroundLogoFull: {
-    ...StyleSheet.absoluteFillObject,
-    opacity: 0.08
-  },
-  backgroundLogoOverlay: {
-    height: 700,
-    left: '-10%',
-    opacity: 0.08,
-    position: 'absolute',
-    top: '8%',
-    width: 700
-  },
-  bgItem: {
-    fontWeight: '800',
-    position: 'absolute'
-  },
-  formulaOne: {
-    color: '#F97316',
-    fontSize: 24,
-    left: 24,
-    top: 140,
-    transform: [{ rotate: '-8deg' }]
-  },
-  formulaTwo: {
-    color: '#2563EB',
-    fontSize: 28,
-    right: 20,
-    top: 220,
-    transform: [{ rotate: '10deg' }]
-  },
-  formulaThree: {
-    color: '#16A34A',
-    fontSize: 24,
-    left: 28,
-    top: '62%'
-  },
-  formulaFour: {
-    color: '#E11D48',
-    fontSize: 20,
-    right: 24,
-    top: '72%'
-  },
-  formulaFive: {
-    color: '#9333EA',
-    fontSize: 22,
-    right: 28,
-    top: '12%',
-    transform: [{ rotate: '-12deg' }]
-  },
-  formulaSix: {
-    color: '#0EA5E9',
-    fontSize: 19,
-    left: 20,
-    top: '46%',
-    transform: [{ rotate: '9deg' }]
-  },
-  formulaSeven: {
-    color: '#22C55E',
-    fontSize: 21,
-    right: 42,
-    top: '52%',
-    transform: [{ rotate: '-6deg' }]
-  },
-  formulaEight: {
-    color: '#F59E0B',
-    fontSize: 20,
-    left: '52%',
-    top: '30%',
-    transform: [{ rotate: '8deg' }]
-  },
-  formulaNine: {
-    color: '#EF4444',
-    fontSize: 22,
-    left: '62%',
-    top: '84%'
-  },
-  formulaTen: {
-    color: '#14B8A6',
-    fontSize: 20,
-    left: '12%',
-    top: '88%',
-    transform: [{ rotate: '-5deg' }]
-  },
-  rocketOne: {
-    fontSize: 32,
-    right: 52,
-    top: 120,
-    transform: [{ rotate: '18deg' }]
-  },
-  rocketTwo: {
-    fontSize: 28,
-    left: 44,
-    top: '78%',
-    transform: [{ rotate: '-25deg' }]
-  },
-  rocketThree: {
-    fontSize: 30,
-    left: '72%',
-    top: '22%',
-    transform: [{ rotate: '24deg' }]
-  },
-  rocketFour: {
-    fontSize: 26,
-    left: '18%',
-    top: '34%',
-    transform: [{ rotate: '-18deg' }]
-  },
-  rocketFive: {
-    fontSize: 34,
-    right: '16%',
-    top: '86%',
-    transform: [{ rotate: '10deg' }]
-  },
-  mechOne: {
-    fontSize: 34,
-    left: '48%',
-    top: 88
-  },
-  mechTwo: {
-    fontSize: 30,
-    right: '34%',
-    top: '56%'
-  },
-  mechThree: {
-    fontSize: 26,
-    left: '34%',
-    top: '82%'
-  },
-  mechFour: {
-    fontSize: 32,
-    right: '8%',
-    top: '42%'
-  },
-  mechFive: {
-    fontSize: 28,
-    left: '8%',
-    top: '58%',
-    transform: [{ rotate: '-15deg' }]
-  },
-  mechSix: {
-    fontSize: 28,
-    right: '40%',
-    top: '70%',
-    transform: [{ rotate: '20deg' }]
-  },
-  mechSeven: {
-    fontSize: 22,
-    left: '72%',
-    top: '64%'
   },
   homeContainer: {
     alignItems: 'center',
@@ -846,13 +671,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700'
   },
-  exerciseType: {
-    color: '#475569',
-    fontSize: 12,
-    fontWeight: '700',
-    marginTop: 2,
-    textTransform: 'uppercase'
-  },
   exerciseBlock: {
     marginTop: 8
   },
@@ -861,6 +679,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 220,
     width: '100%'
+  },
+  openVideoButton: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#DC2626',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8
+  },
+  openVideoButtonText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '700'
   },
   exerciseText: {
     color: '#1E293B',
