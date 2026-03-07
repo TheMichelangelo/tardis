@@ -22,6 +22,7 @@ import {
   ClassLessonsFile,
   ClassNumber,
   LessonExercise,
+  InteractiveQuizExercise,
   LessonTemplate
 } from './src/lib/types';
 
@@ -45,6 +46,59 @@ const classButtonColors: Record<ClassNumber, string> = {
 
 function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
   return lesson.exercises ?? lesson.exersices ?? [];
+}
+
+function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExercise }) {
+  const { width } = useWindowDimensions();
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+
+  const choiceBoxWidth = width < 520 ? '48%' : width < 900 ? '31%' : '23%';
+
+  return (
+    <View style={styles.exerciseBlock}>
+      {exercise.questions.map((question, index) => {
+        const selected = selectedAnswers[question.id];
+        const isRevealed = revealed[question.id];
+        const correct = question.answerTypes.shortText;
+
+        return (
+          <View key={question.id} style={styles.flashcardCard}>
+            <Text style={styles.flashcardTitle}>Flashcard {index + 1}</Text>
+            <Text style={styles.flashcardQuestion}>{question.question}</Text>
+
+            <View style={styles.flashcardChoicesRow}>
+              {question.answerTypes.singleChoice.map((choice) => (
+                <Pressable
+                  key={`${question.id}-${choice}`}
+                  style={[styles.choiceSquare, { width: choiceBoxWidth }]}
+                  onPress={() => {
+                    setSelectedAnswers((prev) => ({ ...prev, [question.id]: choice }));
+                    setRevealed((prev) => ({ ...prev, [question.id]: true }));
+                  }}
+                >
+                  <Text style={styles.choiceSquareText}>{choice}</Text>
+                </Pressable>
+              ))}
+            </View>
+
+            {isRevealed ? (
+              <View style={styles.answerBox}>
+                <Text style={styles.answerBoxText}>
+                  Correct answer: {correct}
+                </Text>
+                {selected ? (
+                  <Text style={styles.answerBoxText}>
+                    Your choice: {selected}
+                  </Text>
+                ) : null}
+              </View>
+            ) : null}
+          </View>
+        );
+      })}
+    </View>
+  );
 }
 
 function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise) {
@@ -130,21 +184,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise)
         </View>
       );
     case 'interactive_quiz':
-      return (
-        <View style={styles.exerciseBlock}>
-          {exercise.questions.map((question, index) => (
-            <View key={question.id} style={styles.quizCard}>
-              <Text style={styles.quizTitle}>Flashcard {index + 1}</Text>
-              <Text style={styles.exerciseText}>{question.question}</Text>
-              <Text style={styles.exerciseText}>
-                Single choice: {question.answerTypes.singleChoice.join(' | ')}
-              </Text>
-              <Text style={styles.exerciseText}>True/False: {question.answerTypes.trueFalse}</Text>
-              <Text style={styles.exerciseText}>Short text: {question.answerTypes.shortText}</Text>
-            </View>
-          ))}
-        </View>
-      );
+      return <InteractiveQuizFlashcards exercise={exercise} />;
     default:
       return null;
   }
@@ -773,6 +813,59 @@ const styles = StyleSheet.create({
     color: '#1D4ED8',
     fontSize: 13,
     fontWeight: '800'
+  },
+  flashcardCard: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 10,
+    marginTop: 8,
+    padding: 10
+  },
+  flashcardTitle: {
+    color: '#1D4ED8',
+    fontSize: 13,
+    fontWeight: '800'
+  },
+  flashcardQuestion: {
+    color: '#000000',
+    fontSize: 15,
+    fontStyle: 'italic',
+    marginTop: 6
+  },
+  flashcardChoicesRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 10
+  },
+  choiceSquare: {
+    alignItems: 'center',
+    backgroundColor: '#E2E8F0',
+    borderColor: '#94A3B8',
+    borderRadius: 8,
+    borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 76,
+    paddingHorizontal: 8,
+    paddingVertical: 8
+  },
+  choiceSquareText: {
+    color: '#0F172A',
+    fontSize: 13,
+    fontWeight: '700',
+    textAlign: 'center'
+  },
+  answerBox: {
+    backgroundColor: '#ECFEFF',
+    borderColor: '#67E8F9',
+    borderRadius: 8,
+    borderWidth: 1,
+    marginTop: 10,
+    padding: 8
+  },
+  answerBoxText: {
+    color: '#0F172A',
+    fontSize: 13,
+    fontWeight: '700'
   },
   navRow: {
     flexDirection: 'row',
