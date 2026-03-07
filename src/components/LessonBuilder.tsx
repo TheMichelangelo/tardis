@@ -10,8 +10,8 @@ import {
 import {
   ClassLessonsFile,
   LessonExercise,
+  LessonFormat,
   LessonTemplate,
-  LessonType,
   Theme
 } from '../lib/types';
 
@@ -26,9 +26,9 @@ type Props = {
   onOpenLesson: (template: LessonTemplate, moduleId: string, themeId: string) => void;
 };
 
-function normalizeTypeLabel(type: LessonType) {
-  if (type === 'flashcards') {
-    return 'Flashcards';
+function normalizeTypeLabel(type: LessonFormat) {
+  if (type === 'flashcards' || type === 'competition') {
+    return 'Competition';
   }
   return type[0].toUpperCase() + type.slice(1);
 }

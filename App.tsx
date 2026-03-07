@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Image,
   Linking,
@@ -21,8 +21,11 @@ import { loadLessonsFileForClass } from './src/lib/storage';
 import {
   ClassLessonsFile,
   ClassNumber,
-  LessonExercise,
+  ExerciseFormat,
   InteractiveQuizExercise,
+  LessonExercise,
+  LessonFormat,
+  LessonType,
   LessonTemplate
 } from './src/lib/types';
 
@@ -48,6 +51,54 @@ function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
   return lesson.exercises ?? lesson.exersices ?? [];
 }
 
+function normalizeFormat(
+  format: LessonFormat | ExerciseFormat
+): 'all' | LessonType {
+  if (format === 'all') {
+    return 'all';
+  }
+  if (format === 'flashcards') {
+    return 'competition';
+  }
+  return format;
+}
+
+function formatLabel(format: 'all' | LessonType) {
+  if (format === 'all') {
+    return 'All exercises';
+  }
+  if (format === 'competition') {
+    return 'Competition';
+  }
+  return format[0].toUpperCase() + format.slice(1);
+}
+
+function resolveExerciseFormats(exercise: LessonExercise): ('all' | LessonType)[] {
+  const raw = exercise.formats ?? [];
+  if (raw.length === 0) {
+    return ['all'];
+  }
+  const normalized = Array.from(new Set(raw.map((item) => normalizeFormat(item))));
+  if (normalized.length === 1 && normalized[0] === 'all') {
+    return ['all'];
+  }
+  return normalized;
+}
+
+function isExerciseVisibleForFormat(
+  exercise: LessonExercise,
+  selectedFormat: 'all' | LessonType
+) {
+  if (selectedFormat === 'all') {
+    return true;
+  }
+  const formats = resolveExerciseFormats(exercise);
+  if (formats.length === 0 || formats.includes('all')) {
+    return true;
+  }
+  return formats.includes(selectedFormat);
+}
+
 function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExercise }) {
   const { width } = useWindowDimensions();
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
@@ -71,7 +122,14 @@ function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExer
               {question.answerTypes.singleChoice.map((choice) => (
                 <Pressable
                   key={`${question.id}-${choice}`}
-                  style={[styles.choiceSquare, { width: choiceBoxWidth }]}
+                  style={[
+                    styles.choiceSquare,
+                    { width: choiceBoxWidth },
+                    selected === choice &&
+                      (choice === correct
+                        ? styles.choiceSquareCorrect
+                        : styles.choiceSquareWrong)
+                  ]}
                   onPress={() => {
                     setSelectedAnswers((prev) => ({ ...prev, [question.id]: choice }));
                     setRevealed((prev) => ({ ...prev, [question.id]: true }));
@@ -232,6 +290,7 @@ export default function App() {
   const [error, setError] = useState('');
   const [isLoadingClass, setIsLoadingClass] = useState(false);
   const [viewMode, setViewMode] = useState<'all' | 'single'>('single');
+  const [selectedFormat, setSelectedFormat] = useState<'all' | LessonType>('all');
   const [exerciseIndex, setExerciseIndex] = useState(0);
 
   const openClass = async (classNumber: ClassNumber) => {
@@ -255,6 +314,7 @@ export default function App() {
     }
 
     setViewMode('single');
+    setSelectedFormat('all');
     setExerciseIndex(0);
     setError('');
     setScreen({
@@ -298,7 +358,40 @@ export default function App() {
     };
   }, [data, screen]);
 
-  const singleExercise = lessonContext?.exercises[exerciseIndex];
+  const availableSpecificFormats = useMemo<LessonType[]>(() => {
+    if (!lessonContext) {
+      return [];
+    }
+    const lessonFormats = lessonContext.lesson.formats.map((item) => normalizeFormat(item));
+    const exerciseFormats = lessonContext.exercises.flatMap((exercise) =>
+      resolveExerciseFormats(exercise)
+    );
+    const combined = Array.from(new Set([...lessonFormats, ...exerciseFormats]));
+    return combined.filter(
+      (item): item is LessonType => item !== 'all'
+    );
+  }, [lessonContext]);
+
+  const filteredExercises = useMemo(() => {
+    if (!lessonContext) {
+      return [];
+    }
+    return lessonContext.exercises.filter((exercise) =>
+      isExerciseVisibleForFormat(exercise, selectedFormat)
+    );
+  }, [lessonContext, selectedFormat]);
+
+  useEffect(() => {
+    setExerciseIndex(0);
+  }, [selectedFormat, screen]);
+
+  useEffect(() => {
+    if (exerciseIndex > Math.max(filteredExercises.length - 1, 0)) {
+      setExerciseIndex(0);
+    }
+  }, [exerciseIndex, filteredExercises.length]);
+
+  const singleExercise = filteredExercises[exerciseIndex];
   const isSmall = width < 760;
 
   const downloadLessonPdf = async () => {
@@ -524,6 +617,45 @@ export default function App() {
               <Text style={styles.lessonMetaText}>Module: {lessonContext.module.title}</Text>
               <Text style={styles.lessonMetaText}>Theme: {lessonContext.theme.title}</Text>
 
+              {availableSpecificFormats.length > 0 ? (
+                <View style={styles.modeRow}>
+                  <Pressable
+                    onPress={() => setSelectedFormat('all')}
+                    style={[styles.modeButton, selectedFormat === 'all' && styles.modeButtonActive]}
+                  >
+                    <Text
+                      style={[
+                        styles.modeButtonText,
+                        selectedFormat === 'all' && styles.modeButtonTextActive
+                      ]}
+                    >
+                      {formatLabel('all')}
+                    </Text>
+                  </Pressable>
+                  {availableSpecificFormats.map((format) => (
+                    <Pressable
+                      key={`format-${format}`}
+                      onPress={() => setSelectedFormat(format)}
+                      style={[
+                        styles.modeButton,
+                        selectedFormat === format && styles.modeButtonActive
+                      ]}
+                    >
+                      <Text
+                        style={[
+                          styles.modeButtonText,
+                          selectedFormat === format && styles.modeButtonTextActive
+                        ]}
+                      >
+                        {formatLabel(format)}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              ) : (
+                <Text style={styles.lessonMetaText}>{formatLabel('all')}</Text>
+              )}
+
               <View style={styles.modeRow}>
                 <Pressable
                   onPress={() => {
@@ -554,9 +686,9 @@ export default function App() {
               {viewMode === 'single' ? (
                 <>
                   <Text style={styles.counterText}>
-                    {lessonContext.exercises.length === 0
+                    {filteredExercises.length === 0
                       ? '0 of 0 exercises'
-                      : `${exerciseIndex + 1} of ${lessonContext.exercises.length} exercises`}
+                      : `${exerciseIndex + 1} of ${filteredExercises.length} exercises`}
                   </Text>
 
                   {singleExercise ? (
@@ -579,18 +711,18 @@ export default function App() {
                     <Pressable
                       onPress={() =>
                         setExerciseIndex((prev) =>
-                          Math.min(lessonContext.exercises.length - 1, prev + 1)
+                          Math.min(filteredExercises.length - 1, prev + 1)
                         )
                       }
                       style={[
                         styles.navButton,
-                        (lessonContext.exercises.length === 0 ||
-                          exerciseIndex === lessonContext.exercises.length - 1) &&
+                        (filteredExercises.length === 0 ||
+                          exerciseIndex === filteredExercises.length - 1) &&
                           styles.navButtonDisabled
                       ]}
                       disabled={
-                        lessonContext.exercises.length === 0 ||
-                        exerciseIndex === lessonContext.exercises.length - 1
+                        filteredExercises.length === 0 ||
+                        exerciseIndex === filteredExercises.length - 1
                       }
                     >
                       <Text style={styles.navButtonText}>Next</Text>
@@ -599,10 +731,10 @@ export default function App() {
                 </>
               ) : (
                 <View style={styles.exerciseList}>
-                  {lessonContext.exercises.length === 0 ? (
+                  {filteredExercises.length === 0 ? (
                     <Text style={styles.infoText}>No exercises in this lesson.</Text>
                   ) : (
-                    lessonContext.exercises.map((exercise) => (
+                    filteredExercises.map((exercise) => (
                       <View key={exercise.id} style={styles.exerciseCard}>
                         <Text style={styles.exerciseTitle}>{exercise.label}</Text>
                         {renderExerciseContent(lessonContext.lesson, exercise)}
@@ -691,23 +823,23 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     color: '#1E293B',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '700'
   },
   classTitle: {
     alignSelf: 'center',
     color: '#0F172A',
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: '800',
     marginTop: 12,
     textAlign: 'center'
   },
   classTitleSmall: {
-    fontSize: 22
+    fontSize: 26
   },
   lessonMetaText: {
     color: '#334155',
-    fontSize: 14,
+    fontSize: 17,
     marginTop: 4,
     textAlign: 'center'
   },
@@ -729,7 +861,7 @@ const styles = StyleSheet.create({
   },
   modeButtonText: {
     color: '#1E293B',
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '700'
   },
   modeButtonTextActive: {
@@ -737,7 +869,7 @@ const styles = StyleSheet.create({
   },
   counterText: {
     color: '#0F172A',
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
     marginTop: 12,
     textAlign: 'center'
@@ -755,7 +887,7 @@ const styles = StyleSheet.create({
   },
   exerciseTitle: {
     color: '#0F172A',
-    fontSize: 17,
+    fontSize: 21,
     fontWeight: '700'
   },
   exerciseBlock: {
@@ -791,13 +923,13 @@ const styles = StyleSheet.create({
   },
   openVideoButtonText: {
     color: '#FFFFFF',
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '700'
   },
   exerciseText: {
     color: '#1E293B',
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: 17,
+    lineHeight: 24,
     marginTop: 6
   },
   questionList: {
@@ -822,12 +954,12 @@ const styles = StyleSheet.create({
   },
   flashcardTitle: {
     color: '#1D4ED8',
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '800'
   },
   flashcardQuestion: {
     color: '#000000',
-    fontSize: 15,
+    fontSize: 18,
     fontStyle: 'italic',
     marginTop: 6
   },
@@ -850,9 +982,17 @@ const styles = StyleSheet.create({
   },
   choiceSquareText: {
     color: '#0F172A',
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '700',
     textAlign: 'center'
+  },
+  choiceSquareCorrect: {
+    backgroundColor: '#86EFAC',
+    borderColor: '#16A34A'
+  },
+  choiceSquareWrong: {
+    backgroundColor: '#FCA5A5',
+    borderColor: '#DC2626'
   },
   answerBox: {
     backgroundColor: '#ECFEFF',
@@ -864,7 +1004,7 @@ const styles = StyleSheet.create({
   },
   answerBoxText: {
     color: '#0F172A',
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '700'
   },
   navRow: {
@@ -884,7 +1024,7 @@ const styles = StyleSheet.create({
   },
   navButtonText: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '700'
   },
   infoText: {

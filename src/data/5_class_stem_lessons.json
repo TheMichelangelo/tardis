@@ -42,7 +42,7 @@
                   "id": "fraction-song-video",
                   "label": "Watch introduction video",
                   "type": "video",
-                  "youtubeUrl": "https://www.youtube.com/watch?v=TWm8s4Q4Q5s"
+                  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
                 },
                 {
                   "id": "fraction-quiz-cards",
@@ -141,7 +141,7 @@
                   "id": "life-cycle-video",
                   "label": "Watch plant life cycle video",
                   "type": "video",
-                  "youtubeUrl": "https://www.youtube.com/watch?v=TKYVv0v4z9I"
+                  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
                 },
                 {
                   "id": "life-cycle-table",

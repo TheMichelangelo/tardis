@@ -1,4 +1,6 @@
-export type LessonType = 'quiz' | 'story' | 'flashcards';
+export type LessonType = 'quiz' | 'story' | 'competition';
+export type LessonFormat = LessonType | 'flashcards';
+export type ExerciseFormat = LessonType | 'flashcards' | 'all';
 export type ClassNumber = 5 | 6;
 
 export type ExerciseKind =
@@ -13,6 +15,7 @@ export type ExerciseBase = {
   id: string;
   label: string;
   type: ExerciseKind;
+  formats?: ExerciseFormat[];
 };
 
 export type DiagramExercise = ExerciseBase & {
@@ -71,7 +74,7 @@ export type LessonTemplate = {
   id: string;
   title: string;
   topic: string;
-  formats: LessonType[];
+  formats: LessonFormat[];
   exercises?: LessonExercise[];
   exersices?: LessonExercise[];
 };
