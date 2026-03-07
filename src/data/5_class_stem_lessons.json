@@ -16,48 +16,78 @@
               "formats": ["quiz", "story", "flashcards"],
               "exercises": [
                 {
-                  "id": "half-of-eight",
-                  "prompt": "What is one-half of 8?",
-                  "hints": ["Divide by 2"],
-                  "choices": ["2", "4", "8"],
-                  "answer": "4",
-                  "explanation": "Half means split into two equal groups.",
-                  "narrative": "You share 8 apples equally between two students."
+                  "id": "pizza-diagram",
+                  "label": "Study pizza fraction diagram and mark equal parts",
+                  "type": "diagram"
                 },
                 {
-                  "id": "equivalent-fraction",
-                  "prompt": "Choose the equivalent fraction to 1/2",
-                  "hints": ["Multiply top and bottom by same number"],
-                  "choices": ["2/4", "3/4", "4/5"],
-                  "answer": "2/4",
-                  "explanation": "1/2 and 2/4 represent the same ratio.",
-                  "narrative": "A recipe uses half a cup; your measuring tool marks quarters."
+                  "id": "equivalent-fractions-table",
+                  "label": "Fill equivalent fractions table",
+                  "type": "table",
+                  "columns": ["Fraction", "Equivalent 1", "Equivalent 2"],
+                  "rows": ["1/2", "1/3", "3/4"],
+                  "dataToFill": ["2/4", "3/6", "2/6", "3/9", "6/8", "9/12"]
+                },
+                {
+                  "id": "fractions-reading",
+                  "label": "Read text and note key ideas",
+                  "type": "text",
+                  "text": "Fractions represent parts of a whole. Equivalent fractions have different numerators and denominators but equal value.",
+                  "questions": [
+                    "What is an equivalent fraction for 1/2?",
+                    "Why can two fractions look different but be equal?"
+                  ]
+                },
+                {
+                  "id": "fraction-song-video",
+                  "label": "Watch introduction video",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=TWm8s4Q4Q5s"
+                },
+                {
+                  "id": "fraction-quiz-cards",
+                  "label": "Interactive fraction flashcards",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Which is equivalent to 1/2?",
+                      "answerTypes": {
+                        "singleChoice": ["2/4", "3/5", "5/8"],
+                        "trueFalse": "True",
+                        "shortText": "2/4"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "What is 1/2 of 10?",
+                      "answerTypes": {
+                        "singleChoice": ["3", "5", "7"],
+                        "trueFalse": "True",
+                        "shortText": "5"
+                      }
+                    }
+                  ]
                 }
               ]
             },
             {
               "id": "fractions-fundamentals1",
-              "title": "Fractions Fundamentals1",
-              "topic": "Math1",
+              "title": "Fractions Fundamentals 1",
+              "topic": "Math",
               "formats": ["quiz", "story"],
               "exercises": [
                 {
-                  "id": "half-of-eight",
-                  "prompt": "What is one-half of 8?",
-                  "hints": ["Divide by 2"],
-                  "choices": ["2", "4", "8"],
-                  "answer": "4",
-                  "explanation": "Half means split into two equal groups.",
-                  "narrative": "You share 8 apples equally between two students."
+                  "id": "fraction-rebus",
+                  "label": "Solve fraction rebus",
+                  "type": "rebus"
                 },
                 {
-                  "id": "equivalent-fraction",
-                  "prompt": "Choose the equivalent fraction to 1/2",
-                  "hints": ["Multiply top and bottom by same number"],
-                  "choices": ["2/4", "3/4", "4/5"],
-                  "answer": "2/4",
-                  "explanation": "1/2 and 2/4 represent the same ratio.",
-                  "narrative": "A recipe uses half a cup; your measuring tool marks quarters."
+                  "id": "compare-fractions-table",
+                  "label": "Compare fractions table",
+                  "type": "table",
+                  "columns": ["A", "B", "Relation"],
+                  "dataToFill": ["1/2", "3/4", "<", "2/3", "4/6", "="]
                 }
               ]
             }
@@ -75,20 +105,16 @@
               "formats": ["quiz", "flashcards"],
               "exercises": [
                 {
-                  "id": "triangle-angle",
-                  "prompt": "How many degrees are inside any triangle?",
-                  "choices": ["90", "180", "360"],
-                  "answer": "180",
-                  "explanation": "Interior angles of a triangle always add to 180.",
-                  "narrative": "You design a bridge with triangular supports."
+                  "id": "shape-diagram",
+                  "label": "Identify shapes on the diagram",
+                  "type": "diagram"
                 },
                 {
-                  "id": "identify-shape",
-                  "prompt": "Which shape has exactly 4 equal sides?",
-                  "choices": ["Rectangle", "Square", "Trapezoid"],
-                  "answer": "Square",
-                  "explanation": "A square has four equal sides and four right angles.",
-                  "narrative": "A robot map marks a square charging area."
+                  "id": "angles-text",
+                  "label": "Read angle rules and answer questions",
+                  "type": "text",
+                  "text": "A triangle has interior angles totaling 180 degrees.",
+                  "questions": ["How many degrees in a triangle?", "What is a right angle?"]
                 }
               ]
             }
@@ -112,12 +138,18 @@
               "formats": ["story", "quiz"],
               "exercises": [
                 {
-                  "id": "germination-step",
-                  "prompt": "What do seeds need first to start germination?",
-                  "choices": ["Water", "Metal", "Glass"],
-                  "answer": "Water",
-                  "explanation": "Water activates seed growth processes.",
-                  "narrative": "Your class greenhouse tracks tiny sprouts every day."
+                  "id": "life-cycle-video",
+                  "label": "Watch plant life cycle video",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=TKYVv0v4z9I"
+                },
+                {
+                  "id": "life-cycle-table",
+                  "label": "Arrange life cycle stages",
+                  "type": "table",
+                  "columns": ["Stage", "Description"],
+                  "rows": ["Seed", "Sprout", "Plant", "Flower"],
+                  "dataToFill": ["Dormant", "Germinates", "Grows leaves", "Produces seeds"]
                 }
               ]
             }

@@ -1,23 +1,76 @@
 export type LessonType = 'quiz' | 'story' | 'flashcards';
 export type ClassNumber = 5 | 6;
 
-export type ExerciseTemplate = {
+export type ExerciseKind =
+  | 'diagram'
+  | 'table'
+  | 'text'
+  | 'rebus'
+  | 'video'
+  | 'interactive_quiz';
+
+export type ExerciseBase = {
   id: string;
-  prompt: string;
-  hints?: string[];
-  choices?: string[];
-  answer?: string;
-  explanation?: string;
-  narrative?: string;
+  label: string;
+  type: ExerciseKind;
 };
+
+export type DiagramExercise = ExerciseBase & {
+  type: 'diagram';
+};
+
+export type RebusExercise = ExerciseBase & {
+  type: 'rebus';
+};
+
+export type TableExercise = ExerciseBase & {
+  type: 'table';
+  columns: string[];
+  rows?: string[];
+  dataToFill: string[];
+};
+
+export type TextExercise = ExerciseBase & {
+  type: 'text';
+  text: string;
+  questions?: string[];
+};
+
+export type VideoExercise = ExerciseBase & {
+  type: 'video';
+  youtubeUrl: string;
+};
+
+export type InteractiveQuizQuestion = {
+  id: string;
+  question: string;
+  answerTypes: {
+    singleChoice: string[];
+    trueFalse: 'True' | 'False';
+    shortText: string;
+  };
+};
+
+export type InteractiveQuizExercise = ExerciseBase & {
+  type: 'interactive_quiz';
+  questions: InteractiveQuizQuestion[];
+};
+
+export type LessonExercise =
+  | DiagramExercise
+  | RebusExercise
+  | TableExercise
+  | TextExercise
+  | VideoExercise
+  | InteractiveQuizExercise;
 
 export type LessonTemplate = {
   id: string;
   title: string;
   topic: string;
   formats: LessonType[];
-  exercises?: ExerciseTemplate[];
-  exersices?: ExerciseTemplate[];
+  exercises?: LessonExercise[];
+  exersices?: LessonExercise[];
 };
 
 export type Theme = {

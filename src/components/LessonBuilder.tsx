@@ -7,7 +7,13 @@ import {
   View,
   useWindowDimensions
 } from 'react-native';
-import { ClassLessonsFile, LessonTemplate, LessonType, Theme } from '../lib/types';
+import {
+  ClassLessonsFile,
+  LessonExercise,
+  LessonTemplate,
+  LessonType,
+  Theme
+} from '../lib/types';
 
 type ThemeTab = {
   moduleId: string;
@@ -32,13 +38,22 @@ function normalizeTypeLabel(type: LessonType) {
   return type[0].toUpperCase() + type.slice(1);
 }
 
+function normalizeExerciseTypeLabel(type: LessonExercise['type']) {
+  return type.replace('_', ' ');
+}
+
+function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
+  return lesson.exercises ?? lesson.exersices ?? [];
+}
+
 export function LessonBuilder({ data, onSaveLesson }: Props) {
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const [selectedThemeKey, setSelectedThemeKey] = useState<string>('');
   const [isSaving, setIsSaving] = useState(false);
   const tabWidth = Math.max(130, Math.min(320, Math.round(width * 0.24)));
   const moduleFontSize = Math.max(10, Math.min(13, Math.round(width * 0.012)));
   const themeFontSize = Math.max(14, Math.min(22, Math.round(width * 0.02)));
+  const lessonsMaxHeight = Math.max(220, Math.round(height * 0.5));
 
   const themeTabs = useMemo<ThemeTab[]>(() => {
     return data.modules.flatMap((module) =>
@@ -125,35 +140,55 @@ export function LessonBuilder({ data, onSaveLesson }: Props) {
             ))}
           </View>
 
-          {selectedTab.theme.lessons.map((lesson) => (
-            <View key={lesson.id} style={styles.lessonCard}>
-              <Text style={styles.lessonTitle}>{lesson.title}</Text>
-              <Text style={styles.lessonTopic}>Topic: {lesson.topic}</Text>
+          <ScrollView
+            nestedScrollEnabled
+            style={{ maxHeight: lessonsMaxHeight }}
+            contentContainerStyle={styles.lessonsList}
+            showsVerticalScrollIndicator
+          >
+            {selectedTab.theme.lessons.map((lesson) => (
+              <View key={lesson.id} style={styles.lessonCard}>
+                <Text style={styles.lessonTitle}>{lesson.title}</Text>
+                <Text style={styles.lessonTopic}>Topic: {lesson.topic}</Text>
+                <Text style={styles.lessonTopic}>
+                  Exercises: {resolveLessonExercises(lesson).length}
+                </Text>
 
-              <View style={styles.labelsRow}>
-                {lesson.formats.map((format) => (
-                  <View key={`${lesson.id}-${format}`} style={styles.formatLabel}>
-                    <Text style={styles.formatLabelText}>{normalizeTypeLabel(format)}</Text>
-                  </View>
-                ))}
-              </View>
+                <View style={styles.labelsRow}>
+                  {lesson.formats.map((format) => (
+                    <View key={`${lesson.id}-${format}`} style={styles.formatLabel}>
+                      <Text style={styles.formatLabelText}>{normalizeTypeLabel(format)}</Text>
+                    </View>
+                  ))}
+                </View>
 
-              <View style={styles.actionsRow}>
-                {lesson.formats.map((format) => (
-                  <Pressable
-                    key={`create-${lesson.id}-${format}`}
-                    style={[styles.createButton, { backgroundColor: selectedTab.theme.color }]}
-                    onPress={() => handleCreateLesson(lesson, format)}
-                    disabled={isSaving}
-                  >
-                    <Text style={styles.createButtonText}>
-                      {isSaving ? 'Saving...' : `Create ${normalizeTypeLabel(format)}`}
-                    </Text>
-                  </Pressable>
-                ))}
+                <View style={styles.labelsRow}>
+                  {resolveLessonExercises(lesson).map((exercise) => (
+                    <View key={`${lesson.id}-${exercise.id}`} style={styles.exerciseTypeLabel}>
+                      <Text style={styles.exerciseTypeLabelText}>
+                        {normalizeExerciseTypeLabel(exercise.type)}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+
+                <View style={styles.actionsRow}>
+                  {lesson.formats.map((format) => (
+                    <Pressable
+                      key={`create-${lesson.id}-${format}`}
+                      style={[styles.createButton, { backgroundColor: selectedTab.theme.color }]}
+                      onPress={() => handleCreateLesson(lesson, format)}
+                      disabled={isSaving}
+                    >
+                      <Text style={styles.createButtonText}>
+                        {isSaving ? 'Saving...' : `Create ${normalizeTypeLabel(format)}`}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
               </View>
-            </View>
-          ))}
+            ))}
+          </ScrollView>
         </View>
       ) : null}
     </View>
@@ -212,6 +247,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 2
   },
+  lessonsList: {
+    paddingBottom: 4
+  },
   lessonCard: {
     backgroundColor: '#FFFFFF',
     borderColor: '#E2E8F0',
@@ -255,6 +293,17 @@ const styles = StyleSheet.create({
   },
   themeFormatLabelText: {
     color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '700'
+  },
+  exerciseTypeLabel: {
+    backgroundColor: '#EEF2FF',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4
+  },
+  exerciseTypeLabelText: {
+    color: '#3730A3',
     fontSize: 12,
     fontWeight: '700'
   },

@@ -16,49 +16,47 @@
               "formats": ["quiz", "story", "flashcards"],
               "exercises": [
                 {
-                  "id": "planet-order",
-                  "prompt": "Put the planets in order from the Sun",
-                  "hints": ["Start from Mercury", "There are 8 planets"],
-                  "choices": [
-                    "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune",
-                    "Earth, Venus, Mercury, Mars, Jupiter, Saturn, Uranus, Neptune",
-                    "Mercury, Venus, Mars, Earth, Jupiter, Saturn, Uranus, Neptune"
-                  ],
-                  "answer": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune",
-                  "explanation": "The planets are ordered by average distance from the Sun.",
-                  "narrative": "You are a spaceship pilot charting a route through the Solar System."
+                  "id": "planet-order-diagram",
+                  "label": "Study planet order diagram",
+                  "type": "diagram"
                 },
                 {
-                  "id": "gas-giants",
-                  "prompt": "Identify the gas giants",
-                  "hints": ["Think large outer planets"],
-                  "choices": ["Jupiter and Saturn", "Earth and Mars", "Mercury and Venus"],
-                  "answer": "Jupiter and Saturn",
-                  "explanation": "Jupiter and Saturn are gas giants; Uranus and Neptune are ice giants.",
-                  "narrative": "You detect massive storms on giant worlds in the outer region."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "moon-and-tides",
-          "title": "Moon and Tides",
-          "color": "#EC4899",
-          "lessons": [
-            {
-              "id": "tides-and-gravity",
-              "title": "Tides and Gravity",
-              "topic": "Earth Science",
-              "formats": ["quiz", "story"],
-              "exercises": [
+                  "id": "planet-groups-table",
+                  "label": "Sort planets by type",
+                  "type": "table",
+                  "columns": ["Planet", "Type"],
+                  "rows": ["Mercury", "Jupiter", "Neptune"],
+                  "dataToFill": ["Rocky", "Gas giant", "Ice giant"]
+                },
                 {
-                  "id": "high-tide-cause",
-                  "prompt": "What mainly causes ocean tides?",
-                  "choices": ["Moon's gravity", "Wind", "Rain"],
-                  "answer": "Moon's gravity",
-                  "explanation": "The Moon's gravity pulls ocean water, causing tides.",
-                  "narrative": "A coastal research team records changing tide levels."
+                  "id": "solar-rebus",
+                  "label": "Solve solar rebus",
+                  "type": "rebus"
+                },
+                {
+                  "id": "solar-quiz-cards",
+                  "label": "Interactive solar flashcards",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Which planet is closest to the Sun?",
+                      "answerTypes": {
+                        "singleChoice": ["Mercury", "Earth", "Mars"],
+                        "trueFalse": "True",
+                        "shortText": "Mercury"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "Jupiter is a gas giant.",
+                      "answerTypes": {
+                        "singleChoice": ["True", "False", "Sometimes"],
+                        "trueFalse": "True",
+                        "shortText": "True"
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -82,12 +80,17 @@
               "formats": ["flashcards", "quiz"],
               "exercises": [
                 {
-                  "id": "lever-example",
-                  "prompt": "Which is an example of a lever?",
-                  "choices": ["Seesaw", "Wheel", "Pulley rope"],
-                  "answer": "Seesaw",
-                  "explanation": "A seesaw works as a first-class lever.",
-                  "narrative": "Your robotics team builds an arm to lift heavy parts."
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=8j6Q9M3vF2I"
                 }
               ]
             }

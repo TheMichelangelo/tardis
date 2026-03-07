@@ -14,6 +14,16 @@ const classDefaults: Record<ClassNumber, ClassLessonsFile> = {
   6: class6Lessons as ClassLessonsFile
 };
 
+function mergeWithLatestConfig(
+  defaults: ClassLessonsFile,
+  stored: ClassLessonsFile | null
+): ClassLessonsFile {
+  return {
+    modules: defaults.modules,
+    lessons: stored?.lessons ?? []
+  };
+}
+
 function isWeb() {
   return typeof window !== 'undefined';
 }
@@ -76,7 +86,9 @@ export async function loadLessonsFileForClass(classNumber: ClassNumber): Promise
   if (isWeb()) {
     const stored = readWebStorage(classNumber);
     if (stored) {
-      return stored;
+      const merged = mergeWithLatestConfig(defaults, stored);
+      writeWebStorage(classNumber, merged);
+      return merged;
     }
 
     writeWebStorage(classNumber, defaults);
@@ -85,7 +97,9 @@ export async function loadLessonsFileForClass(classNumber: ClassNumber): Promise
 
   const native = await readNativeFile(classNumber);
   if (native) {
-    return native;
+    const merged = mergeWithLatestConfig(defaults, native);
+    await writeNativeFile(classNumber, merged);
+    return merged;
   }
 
   await writeNativeFile(classNumber, defaults);
