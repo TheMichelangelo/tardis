@@ -245,13 +245,20 @@ export default function App() {
       return;
     }
 
+    const splitIndex =
+      lessonContext.exercises.length > 4
+        ? Math.ceil(lessonContext.exercises.length / 2)
+        : -1;
+
     const exerciseHtml = lessonContext.exercises
       .map((exercise, index) => {
+        const pageBreak = splitIndex > 0 && index === splitIndex ? '<div class="page-break"></div>' : '';
         const title = `<h3>${index + 1}. ${escapeHtml(exercise.label)}</h3>`;
 
         if (exercise.type === 'diagram' || exercise.type === 'rebus') {
           const imagePath = escapeHtml(getExerciseImagePath(lessonContext.lesson, exercise));
           return `
+            ${pageBreak}
             <section class="card">
               ${title}
               <p><strong>Type:</strong> ${escapeHtml(exercise.type)}</p>
@@ -263,6 +270,7 @@ export default function App() {
 
         if (exercise.type === 'table') {
           return `
+            ${pageBreak}
             <section class="card">
               ${title}
               <p><strong>Type:</strong> table</p>
@@ -284,6 +292,7 @@ export default function App() {
                 .join('')}</ul>`
             : '';
           return `
+            ${pageBreak}
             <section class="card">
               ${title}
               <p><strong>Type:</strong> text</p>
@@ -295,6 +304,7 @@ export default function App() {
 
         if (exercise.type === 'video') {
           return `
+            ${pageBreak}
             <section class="card">
               ${title}
               <p><strong>Type:</strong> video</p>
@@ -317,6 +327,7 @@ export default function App() {
             )
             .join('');
           return `
+            ${pageBreak}
             <section class="card">
               ${title}
               <p><strong>Type:</strong> interactive quiz</p>
@@ -334,10 +345,12 @@ export default function App() {
         <head>
           <meta charset="utf-8" />
           <style>
+            @page { size: A4; margin: 14mm; }
             body { font-family: Arial, sans-serif; padding: 20px; }
             h1 { margin-bottom: 2px; }
             h2 { margin-top: 2px; color: #475569; font-size: 14px; }
             .card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin-top: 10px; page-break-inside: avoid; }
+            .page-break { break-before: page; page-break-before: always; height: 0; }
             img { width: 100%; max-width: 540px; max-height: 320px; object-fit: contain; border-radius: 6px; background: #f8fafc; }
             .path { color: #64748b; font-size: 12px; }
             .quiz { background: #f8fafc; border-radius: 6px; padding: 8px; margin-top: 6px; }
@@ -354,20 +367,12 @@ export default function App() {
     `;
 
     try {
-      const file = await Print.printToFileAsync({ html });
-
       if (Platform.OS === 'web') {
-        const webDoc = (globalThis as { document?: { createElement: (tag: string) => { href: string; download: string; click: () => void } } }).document;
-        if (webDoc) {
-          const anchor = webDoc.createElement('a');
-          anchor.href = file.uri;
-          anchor.download = `${lessonContext.lesson.id}.pdf`;
-          anchor.click();
-        } else {
-          await Linking.openURL(file.uri);
-        }
+        await Print.printAsync({ html });
         return;
       }
+
+      const file = await Print.printToFileAsync({ html });
 
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(file.uri, {
