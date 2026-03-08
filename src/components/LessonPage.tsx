@@ -201,13 +201,54 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
       );
     }
     case 'table':
+      const columnCount = Math.max(exercise.columns.length, 1);
+      const generatedRowsCount = Math.floor(exercise.dataToFill.length / columnCount);
+      const generatedRows = Array.from({ length: generatedRowsCount }, (_, rowIndex) =>
+        exercise.dataToFill.slice(rowIndex * columnCount, rowIndex * columnCount + columnCount)
+      );
       return (
         <View style={styles.exerciseBlock}>
-          <Text style={styles.exerciseText}>{tr('columns')}: {exercise.columns.join(', ')}</Text>
-          <Text style={styles.exerciseText}>
-            {tr('rows')}: {exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : tr('noRowNames')}
-          </Text>
-          <Text style={styles.exerciseText}>{tr('dataToFill')}: {exercise.dataToFill.join(', ')}</Text>
+          <View style={styles.tableWrap}>
+            <View style={styles.tableHeaderRow}>
+              {exercise.rows && exercise.rows.length > 0 ? (
+                <View style={[styles.tableCell, styles.tableHeaderCell]} />
+              ) : null}
+              {exercise.columns.map((column) => (
+                <View key={`col-${column}`} style={[styles.tableCell, styles.tableHeaderCell]}>
+                  <Text style={styles.tableHeaderText}>{column}</Text>
+                </View>
+              ))}
+            </View>
+
+            {(exercise.rows && exercise.rows.length > 0
+              ? exercise.rows.map((row, index) => (
+                  <View key={`row-${row}-${index}`} style={styles.tableDataRow}>
+                    <View style={[styles.tableCell, styles.tableRowLabelCell]}>
+                      <Text style={styles.tableRowLabelText}>{row}</Text>
+                    </View>
+                    {exercise.columns.map((column, colIndex) => (
+                      <View key={`cell-${row}-${column}-${colIndex}`} style={styles.tableCell}>
+                        <Text style={styles.tableDataText}> </Text>
+                      </View>
+                    ))}
+                  </View>
+                ))
+              : generatedRows.map((_, index) => (
+                  <View key={`gen-row-${index}`} style={styles.tableDataRow}>
+                    {exercise.columns.map((column, colIndex) => (
+                      <View key={`gen-cell-${index}-${column}-${colIndex}`} style={styles.tableCell}>
+                        <Text style={styles.tableDataText}> </Text>
+                      </View>
+                    ))}
+                  </View>
+                )))}
+          </View>
+          <Text style={styles.exerciseText}>{tr('dataToFill')}:</Text>
+          {exercise.dataToFill.map((item, index) => (
+            <Text key={`fill-${index}-${item}`} style={styles.exerciseText}>
+              {index + 1}. {item}
+            </Text>
+          ))}
         </View>
       );
     case 'text':
@@ -574,23 +615,23 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     color: '#1E293B',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700'
   },
   classTitle: {
     alignSelf: 'center',
     color: '#0F172A',
-    fontSize: 32,
+    fontSize: 34,
     fontWeight: '800',
     marginTop: 12,
     textAlign: 'center'
   },
   classTitleSmall: {
-    fontSize: 26
+    fontSize: 28
   },
   lessonMetaText: {
     color: '#334155',
-    fontSize: 17,
+    fontSize: 19,
     marginTop: 4,
     textAlign: 'center'
   },
@@ -612,7 +653,7 @@ const styles = StyleSheet.create({
   },
   modeButtonText: {
     color: '#1E293B',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '700'
   },
   modeButtonTextActive: {
@@ -620,7 +661,7 @@ const styles = StyleSheet.create({
   },
   counterText: {
     color: '#0F172A',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
     marginTop: 12,
     textAlign: 'center'
@@ -638,7 +679,7 @@ const styles = StyleSheet.create({
   },
   exerciseTitle: {
     color: '#0F172A',
-    fontSize: 21,
+    fontSize: 23,
     fontWeight: '700'
   },
   exerciseBlock: {
@@ -668,13 +709,13 @@ const styles = StyleSheet.create({
   },
   openVideoButtonText: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '700'
   },
   exerciseText: {
     color: '#1E293B',
-    fontSize: 17,
-    lineHeight: 24,
+    fontSize: 19,
+    lineHeight: 26,
     marginTop: 6
   },
   questionList: {
@@ -688,12 +729,12 @@ const styles = StyleSheet.create({
   },
   flashcardTitle: {
     color: '#1D4ED8',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '800'
   },
   flashcardQuestion: {
     color: '#000000',
-    fontSize: 18,
+    fontSize: 20,
     fontStyle: 'italic',
     marginTop: 6
   },
@@ -716,7 +757,7 @@ const styles = StyleSheet.create({
   },
   choiceSquareText: {
     color: '#0F172A',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '700',
     textAlign: 'center'
   },
@@ -738,7 +779,7 @@ const styles = StyleSheet.create({
   },
   answerBoxText: {
     color: '#0F172A',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '700'
   },
   navRow: {
@@ -758,8 +799,54 @@ const styles = StyleSheet.create({
   },
   navButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '700'
+  },
+  tableWrap: {
+    borderColor: '#CBD5E1',
+    borderRadius: 8,
+    borderWidth: 1,
+    marginTop: 6,
+    overflow: 'hidden'
+  },
+  tableHeaderRow: {
+    backgroundColor: '#E2E8F0',
+    flexDirection: 'row'
+  },
+  tableDataRow: {
+    flexDirection: 'row'
+  },
+  tableCell: {
+    borderColor: '#CBD5E1',
+    borderRightWidth: 1,
+    borderTopWidth: 1,
+    flex: 1,
+    minHeight: 42,
+    paddingHorizontal: 6,
+    paddingVertical: 6
+  },
+  tableHeaderCell: {
+    backgroundColor: '#E2E8F0'
+  },
+  tableRowLabelCell: {
+    backgroundColor: '#F8FAFC'
+  },
+  tableHeaderText: {
+    color: '#0F172A',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'center'
+  },
+  tableRowLabelText: {
+    color: '#334155',
+    fontSize: 14,
+    fontWeight: '700',
+    textAlign: 'center'
+  },
+  tableDataText: {
+    color: '#0F172A',
+    fontSize: 14,
+    textAlign: 'center'
   },
   infoText: {
     color: '#475569',

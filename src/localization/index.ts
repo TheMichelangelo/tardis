@@ -2,6 +2,7 @@ import { appConfig, AppLanguage } from '../config/appConfig';
 
 const translations = {
   en: {
+    chooseClassWithLessons: 'Choose class with lessons',
     allExercises: 'All exercises',
     back: 'Back',
     backToThemes: 'Back to Themes',
@@ -41,6 +42,7 @@ const translations = {
     yourChoice: 'Your choice'
   },
   ua: {
+    chooseClassWithLessons: 'Оберіть клас з уроками',
     allExercises: 'Усі вправи',
     back: 'Назад',
     backToThemes: 'Назад до тем',

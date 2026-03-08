@@ -152,7 +152,9 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
                   ))}
                 </View>
 
-                <Text style={styles.openHint}>{tr('openLesson')}</Text>
+                <View style={styles.openLessonButton}>
+                  <Text style={styles.openHint}>{tr('openLesson')}</Text>
+                </View>
               </Pressable>
             ))}
           </View>
@@ -275,10 +277,18 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
   openHint: {
-    color: '#1D4ED8',
-    fontSize: 12,
+    color: '#FFFFFF',
+    fontSize: 15,
     fontWeight: '700',
-    marginTop: 10
+    textAlign: 'center'
+  },
+  openLessonButton: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#1D4ED8',
+    borderRadius: 8,
+    marginTop: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10
   },
   errorText: {
     color: '#B91C1C',

@@ -18,6 +18,7 @@ export function HomePage({ logoSource, isLoadingClass, error, onOpenClass }: Pro
   return (
     <ScrollView contentContainerStyle={styles.homeContainer}>
       <Image source={logoSource} style={styles.logo} resizeMode="contain" />
+      <Text style={styles.pageTitle}>{tr('chooseClassWithLessons')}</Text>
       <View style={styles.classButtonRow}>
         <Pressable
           style={[styles.classButton, { backgroundColor: classButtonColors[5] }]}
@@ -57,6 +58,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 20,
     marginBottom: 8
+  },
+  pageTitle: {
+    color: '#0F172A',
+    fontSize: 34,
+    fontWeight: '800',
+    marginBottom: 8,
+    textAlign: 'center'
   },
   classButton: {
     alignItems: 'center',
