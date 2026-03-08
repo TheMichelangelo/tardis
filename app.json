@@ -5,6 +5,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "platforms": ["ios", "android", "web"],
+    "experiments": {
+      "baseUrl": "/tardis"
+    },
     "web": {
       "bundler": "metro"
     }

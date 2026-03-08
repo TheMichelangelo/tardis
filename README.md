@@ -1,64 +1,66 @@
 # STEM Lesson Builder
 
-React Native (Expo) app targeting web first and Android.
+[English version](./README_EN.md)
 
-## Main flow
+React Native (Expo) застосунок з пріоритетом для вебу та можливістю запуску на Android.
 
-- Home page uses white base and displays `src/data/stem_logo.jpeg`.
-- Home page has colorful round class buttons: `5` and `6`.
-- Opening a class shows theme tabs (each tab has its own color).
-- Each theme tab shows lessons and available lesson formats.
+## Основний сценарій
 
-## Language config
+- Головна сторінка має білий фон і показує `src/data/stem_logo.jpeg`.
+- На головній сторінці є кольорові круглі кнопки класів: `5` і `6`.
+- Після відкриття класу відображаються вкладки тем (кожна тема має свій колір).
+- У кожній вкладці теми показуються уроки та доступні формати уроків.
 
-- Current UI/data language is configured in:
+## Конфігурація мов
+
+- Поточна мова інтерфейсу/даних налаштовується у:
   - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
-- Localized labels are stored in:
+- Локалізовані підписи зберігаються у:
   - `src/localization/index.ts`
 
-## Lesson exercise model
+## Модель вправ уроку
 
-Each lesson has `exercises` (or `exersices` for compatibility).
+Кожен урок містить `exercises` (або `exersices` для сумісності).
 
-Exercise fields:
+Поля вправи:
 
-- `id`: string
-- `label`: instruction text
-- `formats?`: optional list of formats (`quiz`, `story`, `competition`, `all`)
-- `type`: one of
-  - `diagram` (image path `<lesson-id>/<exercise-id>.<ext>`)
-  - `table` (`columns`, optional `rows`, `dataToFill`)
-  - `text` (`text`, optional `questions`)
-  - `rebus` (image path `<lesson-id>/<exercise-id>.<ext>`)
-  - `video` (`youtubeUrl`, optional `questions`)
-  - `interactive_quiz` (`questions[]` with `singleChoice`, `trueFalse`, `shortText`)
-  - `homework` (`text`, optional `imageExt`, optional `videoUrl`)
+- `id`: рядок
+- `label`: текст інструкції
+- `formats?`: необов’язковий список форматів (`quiz`, `story`, `competition`, `all`)
+- `type`: один із типів:
+  - `diagram` (шлях до зображення `<lesson-id>/<exercise-id>.<ext>`)
+  - `table` (`columns`, необов’язкові `rows`, `dataToFill`)
+  - `text` (`text`, необов’язкові `questions`)
+  - `rebus` (шлях до зображення `<lesson-id>/<exercise-id>.<ext>`)
+  - `video` (`youtubeUrl`, необов’язкові `questions`)
+  - `interactive_quiz` (`questions[]` з типами `singleChoice`, `trueFalse`, `shortText`)
+  - `homework` (`text`, необов’язкові `imageExt`, необов’язковий `videoUrl`)
 
-`homework` is always visible regardless of selected format.
+`homework` завжди відображається незалежно від вибраного формату.
 
-## Data configs
+## Конфіги даних
 
-Language-specific class files:
+Мовозалежні файли класів:
 
 - `src/data/5_class_stem_lesson_en.json`
 - `src/data/6_class_stem_lesson_en.json`
 - `src/data/5_class_stem_lesson_ua.json`
 - `src/data/6_class_stem_lesson_ua.json`
 
-## Storage behavior
+## Зберігання даних
 
-- Web: class + language specific `localStorage` keys.
-- Android/iOS: class + language specific JSON files in Expo document directory.
-- When loading, app always uses latest module/theme config from language JSON files and keeps saved generated lessons.
+- Веб: `localStorage` ключі з прив’язкою до класу та мови.
+- Android/iOS: JSON-файли з прив’язкою до класу та мови в директорії документів Expo.
+- Під час завантаження застосунок бере актуальну конфігурацію модулів/тем із мовних JSON-файлів і зберігає згенеровані уроки користувача.
 
-## Run
+## Запуск
 
 ```bash
 npm install
 npm run web
 ```
 
-For Android:
+Для Android:
 
 ```bash
 npm run android
