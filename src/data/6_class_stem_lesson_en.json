@@ -6,14 +6,17 @@
       "themes": [
         {
           "id": "solar-system",
-          "title": "Solar System",
           "color": "#8B5CF6",
           "lessons": [
             {
               "id": "solar-system-basics",
               "title": "Solar System Basics",
               "topic": "Astronomy",
-              "formats": ["quiz", "story", "flashcards"],
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
               "exercises": [
                 {
                   "id": "planet-order-diagram",
@@ -24,9 +27,20 @@
                   "id": "planet-groups-table",
                   "label": "Sort planets by type",
                   "type": "table",
-                  "columns": ["Planet", "Type"],
-                  "rows": ["Mercury", "Jupiter", "Neptune"],
-                  "dataToFill": ["Rocky", "Gas giant", "Ice giant"]
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
                 },
                 {
                   "id": "solar-rebus",
@@ -42,7 +56,11 @@
                       "id": "q1",
                       "question": "Which planet is closest to the Sun?",
                       "answerTypes": {
-                        "singleChoice": ["Mercury", "Earth", "Mars"],
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Mercury"
                       }
@@ -51,7 +69,11 @@
                       "id": "q2",
                       "question": "Jupiter is a gas giant.",
                       "answerTypes": {
-                        "singleChoice": ["True", "False", "Sometimes"],
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
                         "trueFalse": "True",
                         "shortText": "True"
                       }
@@ -70,21 +92,26 @@
       "themes": [
         {
           "id": "forces-and-machines",
-          "title": "Forces & Machines",
           "color": "#14B8A6",
           "lessons": [
             {
               "id": "simple-machines",
               "title": "Simple Machines",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",

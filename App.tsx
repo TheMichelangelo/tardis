@@ -123,7 +123,6 @@ export default function App() {
           <LessonPage
             classNumber={screen.classNumber}
             moduleTitle={lessonContext.module.title}
-            themeTitle={lessonContext.theme.title}
             lesson={lessonContext.lesson}
             error={error}
             onBack={() => goToClassThemes(screen.classNumber)}

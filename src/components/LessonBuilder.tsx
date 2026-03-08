@@ -43,7 +43,6 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
   const [selectedThemeKey, setSelectedThemeKey] = useState<string>('');
   const tabWidth = Math.max(130, Math.min(320, Math.round(width * 0.24)));
   const moduleFontSize = Math.max(10, Math.min(13, Math.round(width * 0.012)));
-  const themeFontSize = Math.max(14, Math.min(22, Math.round(width * 0.02)));
 
   const themeTabs = useMemo<ThemeTab[]>(() => {
     return data.modules.flatMap((module) =>
@@ -77,7 +76,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>{tr('themes')}</Text>
+      <Text style={styles.heading}>{tr('module')}</Text>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabsRow}>
         {themeTabs.map((tab) => {
@@ -97,9 +96,6 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
               <Text style={[styles.tabModuleText, { fontSize: moduleFontSize }]}>
                 {tab.moduleTitle}
               </Text>
-              <Text style={[styles.tabThemeText, { fontSize: themeFontSize }]}>
-                {tab.theme.title}
-              </Text>
             </Pressable>
           );
         })}
@@ -107,8 +103,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
 
       {selectedTab ? (
         <View style={[styles.themePanel, { borderColor: selectedTab.theme.color }]}> 
-          <Text style={styles.themeTitle}>{selectedTab.theme.title}</Text>
-          <Text style={styles.moduleText}>{tr('module')}: {selectedTab.moduleTitle}</Text>
+          <Text style={styles.themeTitle}>{selectedTab.moduleTitle}</Text>
           <View style={styles.labelsRow}>
             {selectedThemeFormats.map((format) => (
               <View key={`theme-format-${format}`} style={styles.themeFormatLabel}>
@@ -179,6 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     minHeight: 78,
     opacity: 0.6,
+    justifyContent: 'center',
     paddingHorizontal: 14,
     paddingVertical: 10
   },
@@ -189,12 +185,8 @@ const styles = StyleSheet.create({
   tabModuleText: {
     color: '#FFFFFF',
     fontWeight: '700',
-    textTransform: 'uppercase'
-  },
-  tabThemeText: {
-    color: '#FFFFFF',
-    fontWeight: '800',
-    marginTop: 6
+    textTransform: 'uppercase',
+    textAlign: 'center'
   },
   themePanel: {
     backgroundColor: 'rgba(255,255,255,0.94)',
@@ -206,11 +198,6 @@ const styles = StyleSheet.create({
     color: '#0F172A',
     fontSize: 22,
     fontWeight: '800'
-  },
-  moduleText: {
-    color: '#475569',
-    fontSize: 13,
-    marginTop: 2
   },
   lessonsList: {
     paddingBottom: 4

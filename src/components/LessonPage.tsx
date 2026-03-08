@@ -27,7 +27,6 @@ import {
 type Props = {
   classNumber: ClassNumber;
   moduleTitle: string;
-  themeTitle: string;
   lesson: LessonTemplate;
   error: string;
   onBack: () => void;
@@ -337,7 +336,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
   }
 }
 
-export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error, onBack, onError }: Props) {
+export function LessonPage({ classNumber, moduleTitle, lesson, error, onBack, onError }: Props) {
   const { width } = useWindowDimensions();
   const [viewMode, setViewMode] = useState<'all' | 'single'>('single');
   const [selectedFormat, setSelectedFormat] = useState<'all' | LessonType>('all');
@@ -433,7 +432,7 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
       .quiz { background: #f8fafc; border-radius: 6px; padding: 8px; margin-top: 6px; }
       </style></head><body>
       <h1>${escapeHtml(lesson.title)}</h1>
-      <h2>${escapeHtml(tr('module'))}: ${escapeHtml(moduleTitle)} | ${escapeHtml(tr('theme'))}: ${escapeHtml(themeTitle)}</h2>
+      <h2>${escapeHtml(tr('module'))}: ${escapeHtml(moduleTitle)}</h2>
       ${exerciseHtml}
       </body></html>
     `;
@@ -473,7 +472,6 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
       <Text style={[styles.classTitle, isSmall && styles.classTitleSmall]}>{lesson.title}</Text>
       <Text style={styles.lessonMetaText}>{tr('classLabel')}: {classNumber}</Text>
       <Text style={styles.lessonMetaText}>{tr('module')}: {moduleTitle}</Text>
-      <Text style={styles.lessonMetaText}>{tr('theme')}: {themeTitle}</Text>
 
       {availableSpecificFormats.length > 0 ? (
         <View style={styles.modeRow}>

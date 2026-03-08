@@ -6,14 +6,17 @@
       "themes": [
         {
           "id": "solar-system",
-          "title": "Україна - країна моєї мрії",
           "color": "#8B5CF6",
           "lessons": [
             {
               "id": "solar-system-basics",
               "title": "Моя країна - моє майбутнє",
               "topic": "Astronomy",
-              "formats": ["quiz", "story", "flashcards"],
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
               "exercises": [
                 {
                   "id": "planet-order-diagram",
@@ -24,9 +27,20 @@
                   "id": "planet-groups-table",
                   "label": "Sort planets by type",
                   "type": "table",
-                  "columns": ["Planet", "Type"],
-                  "rows": ["Mercury", "Jupiter", "Neptune"],
-                  "dataToFill": ["Rocky", "Gas giant", "Ice giant"]
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
                 },
                 {
                   "id": "solar-rebus",
@@ -42,7 +56,11 @@
                       "id": "q1",
                       "question": "Which planet is closest to the Sun?",
                       "answerTypes": {
-                        "singleChoice": ["Mercury", "Earth", "Mars"],
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Mercury"
                       }
@@ -51,7 +69,11 @@
                       "id": "q2",
                       "question": "Jupiter is a gas giant.",
                       "answerTypes": {
-                        "singleChoice": ["True", "False", "Sometimes"],
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
                         "trueFalse": "True",
                         "shortText": "True"
                       }
@@ -64,7 +86,11 @@
               "id": "solar-system-basics1",
               "title": "STEM - професії на карті мого регіону",
               "topic": "Astronomy",
-              "formats": ["quiz", "story", "flashcards"],
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
               "exercises": [
                 {
                   "id": "planet-order-diagram",
@@ -75,9 +101,20 @@
                   "id": "planet-groups-table",
                   "label": "Sort planets by type",
                   "type": "table",
-                  "columns": ["Planet", "Type"],
-                  "rows": ["Mercury", "Jupiter", "Neptune"],
-                  "dataToFill": ["Rocky", "Gas giant", "Ice giant"]
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
                 },
                 {
                   "id": "solar-rebus",
@@ -93,7 +130,11 @@
                       "id": "q1",
                       "question": "Which planet is closest to the Sun?",
                       "answerTypes": {
-                        "singleChoice": ["Mercury", "Earth", "Mars"],
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Mercury"
                       }
@@ -102,7 +143,11 @@
                       "id": "q2",
                       "question": "Jupiter is a gas giant.",
                       "answerTypes": {
-                        "singleChoice": ["True", "False", "Sometimes"],
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
                         "trueFalse": "True",
                         "shortText": "True"
                       }
@@ -115,7 +160,11 @@
               "id": "solar-system-basics",
               "title": "Професії в моїй сім'ї",
               "topic": "Astronomy",
-              "formats": ["quiz", "story", "flashcards"],
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
               "exercises": [
                 {
                   "id": "planet-order-diagram",
@@ -126,9 +175,20 @@
                   "id": "planet-groups-table",
                   "label": "Sort planets by type",
                   "type": "table",
-                  "columns": ["Planet", "Type"],
-                  "rows": ["Mercury", "Jupiter", "Neptune"],
-                  "dataToFill": ["Rocky", "Gas giant", "Ice giant"]
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
                 },
                 {
                   "id": "solar-rebus",
@@ -144,7 +204,11 @@
                       "id": "q1",
                       "question": "Which planet is closest to the Sun?",
                       "answerTypes": {
-                        "singleChoice": ["Mercury", "Earth", "Mars"],
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Mercury"
                       }
@@ -153,7 +217,11 @@
                       "id": "q2",
                       "question": "Jupiter is a gas giant.",
                       "answerTypes": {
-                        "singleChoice": ["True", "False", "Sometimes"],
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
                         "trueFalse": "True",
                         "shortText": "True"
                       }
@@ -172,21 +240,26 @@
       "themes": [
         {
           "id": "forces-and-machines",
-          "title": "Пізнай себе та світ навколо себе",
           "color": "#14B8A6",
           "lessons": [
             {
               "id": "simple-machines1",
               "title": "Я, мої таланти і захоплення",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",
@@ -200,14 +273,20 @@
               "id": "simple-machines2",
               "title": "Навички людини ХХІ століття",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",
@@ -221,14 +300,20 @@
               "id": "simple-machines3",
               "title": "Люди, які допомагають нам пізнати себе",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",
@@ -237,19 +322,25 @@
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
                 }
               ]
-            }
-            ,{
+            },
+            {
               "id": "simple-machines4",
               "title": "Десять запитань успішному психологу",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",
@@ -263,14 +354,20 @@
               "id": "simple-machines5",
               "title": "Я і моя команда",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",
@@ -284,14 +381,20 @@
               "id": "simple-machines6",
               "title": "Проект 'Галактина 6-го класу'",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",
@@ -305,14 +408,20 @@
               "id": "simple-machines7",
               "title": "Презентація проєктів",
               "topic": "Engineering",
-              "formats": ["flashcards", "quiz"],
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "machines-text",
                   "label": "Read text and answer",
                   "type": "text",
                   "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
-                  "questions": ["Name two simple machines.", "How does a lever help work?"]
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
                 },
                 {
                   "id": "machines-video",

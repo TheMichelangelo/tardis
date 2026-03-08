@@ -1,120 +1,94 @@
 {
   "modules": [
     {
-      "id": "math-foundations",
-      "title": "Math Foundations",
+      "id": "module-t0",
+      "title": "Вступ",
       "themes": [
         {
-          "id": "fractions-and-ratios",
-          "title": "Fractions & Ratios",
+          "id": "theme-t0",
           "color": "#F97316",
           "lessons": [
             {
-              "id": "fractions-fundamentals",
-              "title": "Fractions Fundamentals",
-              "topic": "Math",
-              "formats": ["quiz", "story", "flashcards"],
+              "id": "lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof",
+              "title": "Що таке STEM-освіта. Які бувають професії? STEM-професії. STEM-галузі",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
               "exercises": [
                 {
-                  "id": "pizza-diagram",
-                  "label": "Study pizza fraction diagram and mark equal parts",
-                  "type": "diagram"
+                  "id": "lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Створити коло асоціацій за акронімом STEM."
                 },
                 {
-                  "id": "equivalent-fractions-table",
-                  "label": "Fill equivalent fractions table",
-                  "type": "table",
-                  "columns": ["Fraction", "Equivalent 1", "Equivalent 2"],
-                  "rows": ["1/2", "1/3", "3/4"],
-                  "dataToFill": ["2/4", "3/6", "2/6", "3/9", "6/8", "9/12"]
+                  "id": "lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Вправа «Сортувальник»: розподілити професії на STEM/не STEM."
                 },
                 {
-                  "id": "fractions-reading",
-                  "label": "Read text and note key ideas",
-                  "type": "text",
-                  "text": "Fractions represent parts of a whole. Equivalent fractions have different numerators and denominators but equal value.",
-                  "questions": [
-                    "What is an equivalent fraction for 1/2?",
-                    "Why can two fractions look different but be equal?"
-                  ]
-                },
-                {
-                  "id": "fraction-song-video",
-                  "label": "Watch introduction video",
-                  "type": "video",
-                  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
-                },
-                {
-                  "id": "fraction-quiz-cards",
-                  "label": "Interactive fraction flashcards",
-                  "type": "interactive_quiz",
-                  "questions": [
-                    {
-                      "id": "q1",
-                      "question": "Which is equivalent to 1/2?",
-                      "answerTypes": {
-                        "singleChoice": ["2/4", "3/5", "5/8"],
-                        "trueFalse": "True",
-                        "shortText": "2/4"
-                      }
-                    },
-                    {
-                      "id": "q2",
-                      "question": "What is 1/2 of 10?",
-                      "answerTypes": {
-                        "singleChoice": ["3", "5", "7"],
-                        "trueFalse": "True",
-                        "shortText": "5"
-                      }
-                    }
-                  ]
+                  "id": "lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: ознайомитись з поняттям STEM."
                 }
               ]
             },
             {
-              "id": "fractions-fundamentals1",
-              "title": "Fractions Fundamentals 1",
-              "topic": "Math",
-              "formats": ["quiz", "story"],
+              "id": "lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu",
+              "title": "Що таке проєкт. Ознаки проєкту. Резюме проєкту",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
               "exercises": [
                 {
-                  "id": "fraction-rebus",
-                  "label": "Solve fraction rebus",
-                  "type": "rebus"
+                  "id": "lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Визначити мету, завдання і продукт власного мініпроєкту."
                 },
                 {
-                  "id": "compare-fractions-table",
-                  "label": "Compare fractions table",
-                  "type": "table",
-                  "columns": ["A", "B", "Relation"],
-                  "dataToFill": ["1/2", "3/4", "<", "2/3", "4/6", "="]
+                  "id": "lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Заповнити шаблон резюме проєкту (назва, проблема, очікуваний результат)."
+                },
+                {
+                  "id": "lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: розробити план власного проєкту."
                 }
               ]
-            }
-          ]
-        },
-        {
-          "id": "geometry-basics",
-          "title": "Geometry Basics",
-          "color": "#10B981",
-          "lessons": [
+            },
             {
-              "id": "angles-shapes",
-              "title": "Angles and Shapes",
-              "topic": "Geometry",
-              "formats": ["quiz", "flashcards"],
+              "id": "lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p",
+              "title": "Шлях до успіху. Мій найважливіший проєкт. Особистість як найважливіший проєкт",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
               "exercises": [
                 {
-                  "id": "shape-diagram",
-                  "label": "Identify shapes on the diagram",
-                  "type": "diagram"
+                  "id": "lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Створити індивідуальну карту «Проєкт від ідеї до втілення»."
                 },
                 {
-                  "id": "angles-text",
-                  "label": "Read angle rules and answer questions",
-                  "type": "text",
-                  "text": "A triangle has interior angles totaling 180 degrees.",
-                  "questions": ["How many degrees in a triangle?", "What is a right angle?"]
+                  "id": "lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Підготувати коротку самооцінку сильних сторін STEM-фахівця."
+                },
+                {
+                  "id": "lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: скласти кросворд «Професії» на 10 слів із підказками."
                 }
               ]
             }
@@ -123,33 +97,842 @@
       ]
     },
     {
-      "id": "science-observation",
-      "title": "Science Observation",
+      "id": "module-t1",
+      "title": "Модуль 1. Людина – людина. Я у школі. Моя школа. Мій клас",
       "themes": [
         {
-          "id": "plants-life-cycles",
-          "title": "Plants & Life Cycles",
+          "id": "theme-t1",
+          "color": "#10B981",
+          "lessons": [
+            {
+              "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola",
+              "title": "Я у закладі освіти та класі. Моя школа – це люди, які мене оточують. Професії сучасної школи",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Провести мініопитування про ролі учасників освітнього процесу."
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Скласти діаграму «Хто працює у школі»."
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: текст-опис однокласника (10-15 речень)."
+                }
+              ]
+            },
+            {
+              "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts",
+              "title": "Умови та засоби навчання, їх еволюція. Проблема енергоефективності школи",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Порівняти традиційні й цифрові засоби навчання у таблиці."
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Розрахувати витрати на освітлення для одного кабінету."
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: розв'язати 2 задачі з енергоефективності освітлення."
+                }
+              ]
+            },
+            {
+              "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh",
+              "title": "Моя школа: територія та будівля. Масштаб. План-схема. Карта. Google Maps. Макет",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Виміряти обраний простір і побудувати план у масштабі."
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Знайти школу на карті та позначити ключові об'єкти."
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: скласти таблицю питань/відповідей про заклад освіти."
+                }
+              ]
+            },
+            {
+              "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya",
+              "title": "Дослідження умов та засобів навчання",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Провести аудит одного навчального кабінету за критеріями."
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Підготувати інфографіку «Що можна покращити»."
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: створити 3D-модель будівлі школи."
+                }
+              ]
+            },
+            {
+              "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva",
+              "title": "Чому енергоефективність важлива",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Порівняти типи ламп за споживанням і строком служби."
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Скласти перелік 5 швидких рішень для економії енергії у школі."
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: запропонувати рішення для оптимізації освітлення вдома і в школі."
+                }
+              ]
+            },
+            {
+              "id": "lesson-9-enerhoefektyvna-syhnalna-systema",
+              "title": "Енергоефективна сигнальна система",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Спроєктувати схему простої сигнальної системи для класу."
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Обґрунтувати безпечне використання елементів живлення."
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: заповнити таблицю споживання електроенергії кабінетів школи."
+                }
+              ]
+            },
+            {
+              "id": "lesson-10-shkola-moyeyi-mriyi",
+              "title": "Школа моєї мрії",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Створити ескіз/макет «навчального кабінету моєї мрії»."
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Презентувати 3 ключові STEM-рішення для школи майбутнього."
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: скласти проєкт «Школа моєї мрії»."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-t3",
+      "title": "Модуль 3. Людина – техніка. Сила – це сила",
+      "themes": [
+        {
+          "id": "theme-t3",
           "color": "#0EA5E9",
           "lessons": [
             {
-              "id": "seed-to-plant",
-              "title": "From Seed to Plant",
-              "topic": "Biology",
-              "formats": ["story", "quiz"],
+              "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi",
+              "title": "Історія повітроплавання. Сили у природі та техніці",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
               "exercises": [
                 {
-                  "id": "life-cycle-video",
-                  "label": "Watch plant life cycle video",
-                  "type": "video",
-                  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Побудувати схему сил, що діють на повітряну кулю."
                 },
                 {
-                  "id": "life-cycle-table",
-                  "label": "Arrange life cycle stages",
-                  "type": "table",
-                  "columns": ["Stage", "Description"],
-                  "rows": ["Seed", "Sprout", "Plant", "Flower"],
-                  "dataToFill": ["Dormant", "Germinates", "Grows leaves", "Produces seeds"]
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Пояснити різницю між гарячим і холодним повітрям для підйому."
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: текст (8-10 речень) «Чому повітряні кулі здіймаються?»."
+                }
+              ]
+            },
+            {
+              "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von",
+              "title": "Сила тертя. Що станеться, якщо вона зникне?",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Провести дослід тертя на різних поверхнях."
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Заповнити таблицю «користь/ризики сили тертя»."
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: приклади з життя, де тертя допомагає або заважає."
+                }
+              ]
+            },
+            {
+              "id": "lesson-13-prosti-mashyny-ta-mekhanizmy",
+              "title": "Прості машини та механізми",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Визначити прості механізми в побутових предметах."
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити схему підйомного крана з доступних матеріалів."
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: намалювати кран і підписати використані механізми."
+                }
+              ]
+            },
+            {
+              "id": "lesson-14-kryla-chomu-vony-litayut",
+              "title": "Крила. Чому вони літають?",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Виготовити просту модель крила і перевірити підйомну силу."
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Порівняти форми крила за результатами тесту."
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: розв'язати логічні задачі (а, б) із зошита."
+                }
+              ]
+            },
+            {
+              "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya",
+              "title": "Крила. Чому вони літають? (продовження)",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Покращити модель крила за результатами попереднього тесту."
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Підготувати коротке пояснення впливу форми і маси."
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: повторити тему фізичних сил у природі."
+                }
+              ]
+            },
+            {
+              "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro",
+              "title": "Узагальнення знань за темою «Сили в природі»",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Мінітест із понять: сила, тертя, гравітація, механізм."
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Командний розбір STEM-кейсу про рух і рівновагу тіла."
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Домашнє: повторити матеріал за темою «Сили в природі»."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-t2",
+      "title": "Модуль 2. Людина – природа. Я у Всесвіті",
+      "themes": [
+        {
+          "id": "theme-t2",
+          "color": "#3B82F6",
+          "lessons": [
+            {
+              "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya-",
+              "title": "Об'єкти Всесвіту. Оптичні прилади для вивчення неба",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Створити карту об'єктів Сонячної системи."
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Виготовити «зоряний ліхтарик» або «зоряний проектор»."
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Порахувати співвідношення розмірів планет на моделі."
+                }
+              ]
+            },
+            {
+              "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap",
+              "title": "Історія освоєння космосу. Космічні апарати і станції",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Побудувати часову лінію ключових космічних подій."
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Зібрати модель ракети або космічної станції."
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Змоделювати рух апарата по орбіті у Scratch."
+                }
+              ]
+            },
+            {
+              "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm",
+              "title": "Небезпечні фактори космосу. Захист космонавтів",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Проаналізувати ризики (холод, сміття, радіація) у таблиці."
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Спроєктувати елемент захисного спорядження."
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Обґрунтувати вибір матеріалів для захисту."
+                }
+              ]
+            },
+            {
+              "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu",
+              "title": "Професії космосу сьогодні і в майбутньому",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Скласти профіль 3 космічних професій (навички, де навчатись)."
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Підготувати буклет «Космічні професії»."
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Презентувати власний маршрут до обраної професії."
+                }
+              ]
+            },
+            {
+              "id": "lesson-21-ukrayina-kosmichna",
+              "title": "Україна космічна",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Знайти 5 фактів про внесок України у космічну галузь."
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити інформаційний буклет «Україна космічна»."
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Захистити мініпроєкт у форматі 2-хвилинної презентації."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-t4",
+      "title": "Модуль 4. Людина – образ. Намалюю тобі Сонце. Промінь і світло",
+      "themes": [
+        {
+          "id": "theme-t4",
+          "color": "#8B5CF6",
+          "lessons": [
+            {
+              "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl",
+              "title": "Світло і колір. Розкладання білого світла",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Провести дослід зі спектром білого світла."
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Пояснити, чому небо синє, а трава зелена."
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Створити схему утворення кольорів."
+                }
+              ]
+            },
+            {
+              "id": "lesson-23-farby-i-vidtinky",
+              "title": "Фарби і відтінки",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-23-farby-i-vidtinky-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Змішати базові фарби та отримати шкалу відтінків."
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Виготовити фарби з природних матеріалів."
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Оформити таблицю «рецепт кольору»."
+                }
+              ]
+            },
+            {
+              "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo",
+              "title": "Поети і письменники про Сонце і світло",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Знайти й проаналізувати 2 уривки про світло."
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити візуалізацію образів світла (схема/колаж)."
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Написати короткий творчий текст за мотивами прочитаного."
+                }
+              ]
+            },
+            {
+              "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla",
+              "title": "Фотографія як мистецтво світла",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Зробити серію фото з різним освітленням."
+                },
+                {
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Визначити жанри фото та пояснити вибір."
+                },
+                {
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Створити сканограму або фотоколаж."
+                }
+              ]
+            },
+            {
+              "id": "lesson-26-proyekt-namalyuyu-tobi-sontse",
+              "title": "Проєкт «Намалюю тобі Сонце»",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Розробити ескіз фінальної роботи/постера."
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Підготувати короткий захист проєкту."
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Оцінити роботу за критеріями: ідея, техніка, пояснення."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-t5",
+      "title": "Модуль 5. Людина – знак. Під знаком STEM",
+      "themes": [
+        {
+          "id": "theme-t5",
+          "color": "#EF4444",
+          "lessons": [
+            {
+              "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch",
+              "title": "Знаки у комунікації. Природні та штучні знаки",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Класифікувати приклади знаків за типами."
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити набір піктограм для класу."
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Пояснити правила читання знакових повідомлень."
+                }
+              ]
+            },
+            {
+              "id": "lesson-28-profesiyi-systemy-lyudyna-znak",
+              "title": "Професії системи «людина-знак»",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Дослідити 5 професій: програміст, перекладач, журналіст тощо."
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Порівняти необхідні компетентності у таблиці."
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Підготувати мініінтерв'ю «Яка професія мені ближча»."
+                }
+              ]
+            },
+            {
+              "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy",
+              "title": "Графічні знакові системи. Геральдична символіка",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Проаналізувати герб регіону/міста за елементами."
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити ескіз сімейного герба."
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Підготувати пояснення символів герба."
+                }
+              ]
+            },
+            {
+              "id": "lesson-30-koduvannya-imeni-stem-symvolika",
+              "title": "Кодування імені. STEM-символіка",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Закодувати власне ім'я за обраною системою знаків."
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити візерунок/орнамент на основі коду."
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Порівняти 2 способи кодування інформації."
+                }
+              ]
+            },
+            {
+              "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem",
+              "title": "Проєкт «Розробка емблеми Я обираю STEM»",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Розробити 2 варіанти емблеми й обрати фінальний."
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Виготовити власну печатку з підручних матеріалів."
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Презентувати емблему та пояснити символічні елементи."
                 }
               ]
             }

@@ -6,14 +6,17 @@
       "themes": [
         {
           "id": "fractions-and-ratios",
-          "title": "Fractions & Ratios",
           "color": "#F97316",
           "lessons": [
             {
               "id": "fractions-fundamentals",
               "title": "Fractions Fundamentals",
               "topic": "Math",
-              "formats": ["quiz", "story", "flashcards"],
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
               "exercises": [
                 {
                   "id": "pizza-diagram",
@@ -24,9 +27,24 @@
                   "id": "equivalent-fractions-table",
                   "label": "Fill equivalent fractions table",
                   "type": "table",
-                  "columns": ["Fraction", "Equivalent 1", "Equivalent 2"],
-                  "rows": ["1/2", "1/3", "3/4"],
-                  "dataToFill": ["2/4", "3/6", "2/6", "3/9", "6/8", "9/12"]
+                  "columns": [
+                    "Fraction",
+                    "Equivalent 1",
+                    "Equivalent 2"
+                  ],
+                  "rows": [
+                    "1/2",
+                    "1/3",
+                    "3/4"
+                  ],
+                  "dataToFill": [
+                    "2/4",
+                    "3/6",
+                    "2/6",
+                    "3/9",
+                    "6/8",
+                    "9/12"
+                  ]
                 },
                 {
                   "id": "fractions-reading",
@@ -53,7 +71,11 @@
                       "id": "q1",
                       "question": "Which is equivalent to 1/2?",
                       "answerTypes": {
-                        "singleChoice": ["2/4", "3/5", "5/8"],
+                        "singleChoice": [
+                          "2/4",
+                          "3/5",
+                          "5/8"
+                        ],
                         "trueFalse": "True",
                         "shortText": "2/4"
                       }
@@ -62,7 +84,11 @@
                       "id": "q2",
                       "question": "What is 1/2 of 10?",
                       "answerTypes": {
-                        "singleChoice": ["3", "5", "7"],
+                        "singleChoice": [
+                          "3",
+                          "5",
+                          "7"
+                        ],
                         "trueFalse": "True",
                         "shortText": "5"
                       }
@@ -75,7 +101,10 @@
               "id": "fractions-fundamentals1",
               "title": "Fractions Fundamentals 1",
               "topic": "Math",
-              "formats": ["quiz", "story"],
+              "formats": [
+                "quiz",
+                "story"
+              ],
               "exercises": [
                 {
                   "id": "fraction-rebus",
@@ -86,8 +115,19 @@
                   "id": "compare-fractions-table",
                   "label": "Compare fractions table",
                   "type": "table",
-                  "columns": ["A", "B", "Relation"],
-                  "dataToFill": ["1/2", "3/4", "<", "2/3", "4/6", "="]
+                  "columns": [
+                    "A",
+                    "B",
+                    "Relation"
+                  ],
+                  "dataToFill": [
+                    "1/2",
+                    "3/4",
+                    "<",
+                    "2/3",
+                    "4/6",
+                    "="
+                  ]
                 }
               ]
             }
@@ -95,14 +135,16 @@
         },
         {
           "id": "geometry-basics",
-          "title": "Geometry Basics",
           "color": "#10B981",
           "lessons": [
             {
               "id": "angles-shapes",
               "title": "Angles and Shapes",
               "topic": "Geometry",
-              "formats": ["quiz", "flashcards"],
+              "formats": [
+                "quiz",
+                "flashcards"
+              ],
               "exercises": [
                 {
                   "id": "shape-diagram",
@@ -114,7 +156,10 @@
                   "label": "Read angle rules and answer questions",
                   "type": "text",
                   "text": "A triangle has interior angles totaling 180 degrees.",
-                  "questions": ["How many degrees in a triangle?", "What is a right angle?"]
+                  "questions": [
+                    "How many degrees in a triangle?",
+                    "What is a right angle?"
+                  ]
                 }
               ]
             }
@@ -128,14 +173,16 @@
       "themes": [
         {
           "id": "plants-life-cycles",
-          "title": "Plants & Life Cycles",
           "color": "#0EA5E9",
           "lessons": [
             {
               "id": "seed-to-plant",
               "title": "From Seed to Plant",
               "topic": "Biology",
-              "formats": ["story", "quiz"],
+              "formats": [
+                "story",
+                "quiz"
+              ],
               "exercises": [
                 {
                   "id": "life-cycle-video",
@@ -147,9 +194,22 @@
                   "id": "life-cycle-table",
                   "label": "Arrange life cycle stages",
                   "type": "table",
-                  "columns": ["Stage", "Description"],
-                  "rows": ["Seed", "Sprout", "Plant", "Flower"],
-                  "dataToFill": ["Dormant", "Germinates", "Grows leaves", "Produces seeds"]
+                  "columns": [
+                    "Stage",
+                    "Description"
+                  ],
+                  "rows": [
+                    "Seed",
+                    "Sprout",
+                    "Plant",
+                    "Flower"
+                  ],
+                  "dataToFill": [
+                    "Dormant",
+                    "Germinates",
+                    "Grows leaves",
+                    "Produces seeds"
+                  ]
                 }
               ]
             }

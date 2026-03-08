@@ -90,7 +90,6 @@ export type LessonTemplate = {
 
 export type Theme = {
   id: string;
-  title: string;
   color: string;
   lessons: LessonTemplate[];
 };
