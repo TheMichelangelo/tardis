@@ -172,12 +172,12 @@ const styles = StyleSheet.create({
     opacity: 0.07
   },
   backgroundLogoOverlay: {
-    height: 700,
+    height: 1400,
     left: '-10%',
     opacity: 0.08,
     position: 'absolute',
     top: '8%',
-    width: 700
+    width: 1400
   },
   bgItem: {
     fontWeight: '800',

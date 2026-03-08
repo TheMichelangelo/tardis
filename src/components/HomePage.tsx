@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     paddingTop: 28
   },
   logo: {
-    height: 280,
+    height: 560,
     marginBottom: 16,
-    maxWidth: 520,
+    maxWidth: 1040,
     width: '100%'
   },
   classButtonRow: {

@@ -94,7 +94,7 @@ function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
     return '';
   }
   const ext = exercise.imageExt ?? 'png';
-  return `src/data/${lesson.id}/${exercise.id}.${ext}`;
+  return `./src/data/${lesson.id}/${exercise.id}.${ext}`;
 }
 
 function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) {
@@ -102,7 +102,7 @@ function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
     return '';
   }
   const ext = exercise.imageExt ?? 'png';
-  return `src/data/${lesson.id}/${exercise.id}.${ext}`;
+  return `./src/data/${lesson.id}/${exercise.id}.${ext}`;
 }
 
 function getQrCodeUrl(value: string) {
@@ -686,7 +686,7 @@ const styles = StyleSheet.create({
   exerciseImage: {
     backgroundColor: '#F8FAFC',
     borderRadius: 8,
-    height: 220,
+    height: 440,
     width: '100%'
   },
   videoFrameWrapper: {

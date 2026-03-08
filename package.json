@@ -4,10 +4,11 @@
   "private": true,
   "main": "expo/AppEntry",
   "scripts": {
+    "sync-materials": "node scripts/sync-materials.mjs",
     "start": "expo start",
     "android": "expo start --android",
-    "web": "expo start --web",
-    "export:web": "expo export -p web --output-dir dist",
+    "web": "npm run sync-materials && expo start --web",
+    "export:web": "npm run sync-materials && expo export -p web --output-dir dist",
     "predeploy": "npm run export:web && touch dist/.nojekyll",
     "deploy": "gh-pages -d dist --dotfiles"
   },

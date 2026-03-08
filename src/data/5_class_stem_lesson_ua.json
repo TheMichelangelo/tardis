@@ -304,6 +304,158 @@
         }
       ]
     },
+        {
+      "id": "module-t2",
+      "title": "Модуль 2. Людина – природа. Я у Всесвіті",
+      "themes": [
+        {
+          "id": "theme-t2",
+          "color": "#3B82F6",
+          "lessons": [
+            {
+              "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya-",
+              "title": "Об'єкти Всесвіту. Оптичні прилади для вивчення неба",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Створити карту об'єктів Сонячної системи."
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Виготовити «зоряний ліхтарик» або «зоряний проектор»."
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Порахувати співвідношення розмірів планет на моделі."
+                }
+              ]
+            },
+            {
+              "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap",
+              "title": "Історія освоєння космосу. Космічні апарати і станції",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Побудувати часову лінію ключових космічних подій."
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Зібрати модель ракети або космічної станції."
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Змоделювати рух апарата по орбіті у Scratch."
+                }
+              ]
+            },
+            {
+              "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm",
+              "title": "Небезпечні фактори космосу. Захист космонавтів",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Проаналізувати ризики (холод, сміття, радіація) у таблиці."
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Спроєктувати елемент захисного спорядження."
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Обґрунтувати вибір матеріалів для захисту."
+                }
+              ]
+            },
+            {
+              "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu",
+              "title": "Професії космосу сьогодні і в майбутньому",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Скласти профіль 3 космічних професій (навички, де навчатись)."
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Підготувати буклет «Космічні професії»."
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Презентувати власний маршрут до обраної професії."
+                }
+              ]
+            },
+            {
+              "id": "lesson-21-ukrayina-kosmichna",
+              "title": "Україна космічна",
+              "topic": "STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-ex-1",
+                  "label": "Вправа 1",
+                  "type": "homework",
+                  "text": "Знайти 5 фактів про внесок України у космічну галузь."
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-ex-2",
+                  "label": "Вправа 2",
+                  "type": "homework",
+                  "text": "Створити інформаційний буклет «Україна космічна»."
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-ex-3",
+                  "label": "Вправа 3",
+                  "type": "homework",
+                  "text": "Захистити мініпроєкт у форматі 2-хвилинної презентації."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "module-t3",
       "title": "Модуль 3. Людина – техніка. Сила – це сила",
@@ -485,158 +637,6 @@
       ]
     },
     {
-      "id": "module-t2",
-      "title": "Модуль 2. Людина – природа. Я у Всесвіті",
-      "themes": [
-        {
-          "id": "theme-t2",
-          "color": "#3B82F6",
-          "lessons": [
-            {
-              "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya-",
-              "title": "Об'єкти Всесвіту. Оптичні прилади для вивчення неба",
-              "topic": "STEM",
-              "formats": [
-                "story"
-              ],
-              "exercises": [
-                {
-                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Створити карту об'єктів Сонячної системи."
-                },
-                {
-                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-2",
-                  "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Виготовити «зоряний ліхтарик» або «зоряний проектор»."
-                },
-                {
-                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--ex-3",
-                  "label": "Вправа 3",
-                  "type": "homework",
-                  "text": "Порахувати співвідношення розмірів планет на моделі."
-                }
-              ]
-            },
-            {
-              "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap",
-              "title": "Історія освоєння космосу. Космічні апарати і станції",
-              "topic": "STEM",
-              "formats": [
-                "story"
-              ],
-              "exercises": [
-                {
-                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Побудувати часову лінію ключових космічних подій."
-                },
-                {
-                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-2",
-                  "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Зібрати модель ракети або космічної станції."
-                },
-                {
-                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-ex-3",
-                  "label": "Вправа 3",
-                  "type": "homework",
-                  "text": "Змоделювати рух апарата по орбіті у Scratch."
-                }
-              ]
-            },
-            {
-              "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm",
-              "title": "Небезпечні фактори космосу. Захист космонавтів",
-              "topic": "STEM",
-              "formats": [
-                "story"
-              ],
-              "exercises": [
-                {
-                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Проаналізувати ризики (холод, сміття, радіація) у таблиці."
-                },
-                {
-                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-2",
-                  "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Спроєктувати елемент захисного спорядження."
-                },
-                {
-                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-ex-3",
-                  "label": "Вправа 3",
-                  "type": "homework",
-                  "text": "Обґрунтувати вибір матеріалів для захисту."
-                }
-              ]
-            },
-            {
-              "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu",
-              "title": "Професії космосу сьогодні і в майбутньому",
-              "topic": "STEM",
-              "formats": [
-                "story"
-              ],
-              "exercises": [
-                {
-                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Скласти профіль 3 космічних професій (навички, де навчатись)."
-                },
-                {
-                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-2",
-                  "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Підготувати буклет «Космічні професії»."
-                },
-                {
-                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-ex-3",
-                  "label": "Вправа 3",
-                  "type": "homework",
-                  "text": "Презентувати власний маршрут до обраної професії."
-                }
-              ]
-            },
-            {
-              "id": "lesson-21-ukrayina-kosmichna",
-              "title": "Україна космічна",
-              "topic": "STEM",
-              "formats": [
-                "story"
-              ],
-              "exercises": [
-                {
-                  "id": "lesson-21-ukrayina-kosmichna-ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Знайти 5 фактів про внесок України у космічну галузь."
-                },
-                {
-                  "id": "lesson-21-ukrayina-kosmichna-ex-2",
-                  "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Створити інформаційний буклет «Україна космічна»."
-                },
-                {
-                  "id": "lesson-21-ukrayina-kosmichna-ex-3",
-                  "label": "Вправа 3",
-                  "type": "homework",
-                  "text": "Захистити мініпроєкт у форматі 2-хвилинної презентації."
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "module-t4",
       "title": "Модуль 4. Людина – образ. Намалюю тобі Сонце. Промінь і світло",
       "themes": [
@@ -749,20 +749,23 @@
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-2",
                   "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Зробити серію фото з різним освітленням."
+                  "text": "Переглянь відео про камеру обскура",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=JSBsdX6yrL8",
+                  "questions": ["Яку головну ідею ти побачив?", "Який приклад запам'ятався?"]
                 },
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-3",
-                  "label": "Вправа 3",
-                  "type": "homework",
-                  "text": "Визначити жанри фото та пояснити вибір."
+                  "label": "Познач частини фотоапарата",
+                  "type": "diagram",
+                  "imageExt": "png"
                 },
                 {
-                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-4",
-                  "label": "Вправа 4",
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-7",
+                  "label": "Вправа 7. Домашнє завдання",
                   "type": "homework",
-                  "text": "Створити сканограму або фотоколаж."
+                  "text": "Створити сканограму або фотоколаж. Ознайомся з правилами створення сканограм.",
+                   "imageExt": "png"
                 }
               ]
             },
