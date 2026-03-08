@@ -733,7 +733,7 @@
               "title": "Фотографія як мистецтво світла",
               "topic": "STEM",
               "formats": [
-                "story"
+                "story", "competition"
               ],
               "exercises": [
                 {
@@ -749,6 +749,7 @@
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-2",
                   "label": "Вправа 2",
+                  "formats": ["story"],
                   "text": "Переглянь відео про камеру обскура",
                   "type": "video",
                   "youtubeUrl": "https://www.youtube.com/watch?v=JSBsdX6yrL8",
@@ -769,6 +770,7 @@
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-5",
                   "label": "Заповни порівняльну таблицю камери обскури та сучасного фотоапарата",
+                  "formats": ["competition"],
                   "type": "table",
                   "columns": ["Параметр", "Камера обскура", "Сучасний фотоапарат"],
                   "rows": [

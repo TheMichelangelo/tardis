@@ -161,6 +161,14 @@ Theme selection page showing available lessons within each theme.
 ![Extended theme view with details](./demo/class_with_themes_examle_2.png)
 Theme selection page showing available lessons within each theme.
 
+### Exercise Filtering by Format
+Lessons support different formats for adapting to various learning methods:
+
+- **Story** - narrative format for theory learning
+- **Competition** - competitive format for active learning
+- **Quiz** - test format for knowledge assessment
+- **All** - all available exercises
+
 ### Lesson Example
 ![Lesson execution interface](./demo/lesson_demo.png)
 Detailed view of selected lesson with description and exercises.
