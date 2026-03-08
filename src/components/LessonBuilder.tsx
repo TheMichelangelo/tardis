@@ -7,7 +7,7 @@ import {
   View,
   useWindowDimensions
 } from 'react-native';
-import { formatTypeLabel, tr } from '../localization';
+import { formatExerciseTypeLabel, formatTypeLabel, tr } from '../localization';
 import {
   ClassLessonsFile,
   LessonExercise,
@@ -32,10 +32,6 @@ function normalizeTypeLabel(type: LessonFormat) {
     return formatTypeLabel('competition');
   }
   return formatTypeLabel(type);
-}
-
-function normalizeExerciseTypeLabel(type: LessonExercise['type']) {
-  return type.replace('_', ' ');
 }
 
 function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
@@ -146,7 +142,7 @@ export function LessonBuilder({ data, onOpenLesson }: Props) {
                   {resolveLessonExercises(lesson).map((exercise) => (
                     <View key={`${lesson.id}-${exercise.id}`} style={styles.exerciseTypeLabel}>
                       <Text style={styles.exerciseTypeLabelText}>
-                        {normalizeExerciseTypeLabel(exercise.type)}
+                        {formatExerciseTypeLabel(exercise.type)}
                       </Text>
                     </View>
                   ))}

@@ -13,7 +13,7 @@ import {
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { WebView } from 'react-native-webview';
-import { formatTypeLabel, tr } from '../localization';
+import { formatExerciseTypeLabel, formatTypeLabel, tr } from '../localization';
 import {
   ClassNumber,
   ExerciseFormat,
@@ -380,18 +380,18 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
 
         if (exercise.type === 'diagram' || exercise.type === 'rebus') {
           const imagePath = escapeHtml(getExerciseImagePath(lesson, exercise));
-          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(exercise.type)}</p><img src="${imagePath}" alt="${escapeHtml(exercise.label)}" /></section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><img src="${imagePath}" alt="${escapeHtml(exercise.label)}" /></section>`;
         }
 
         if (exercise.type === 'table') {
-          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> table</p><p><strong>${escapeHtml(tr('columns'))}:</strong> ${escapeHtml(exercise.columns.join(', '))}</p><p><strong>${escapeHtml(tr('rows'))}:</strong> ${escapeHtml(exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : tr('noRowNames'))}</p><p><strong>${escapeHtml(tr('dataToFill'))}:</strong> ${escapeHtml(exercise.dataToFill.join(', '))}</p></section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><p><strong>${escapeHtml(tr('columns'))}:</strong> ${escapeHtml(exercise.columns.join(', '))}</p><p><strong>${escapeHtml(tr('rows'))}:</strong> ${escapeHtml(exercise.rows && exercise.rows.length > 0 ? exercise.rows.join(', ') : tr('noRowNames'))}</p><p><strong>${escapeHtml(tr('dataToFill'))}:</strong> ${escapeHtml(exercise.dataToFill.join(', '))}</p></section>`;
         }
 
         if (exercise.type === 'text') {
           const questions = exercise.questions?.length
             ? `<ul>${exercise.questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul>`
             : '';
-          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> text</p><p>${escapeHtml(exercise.text)}</p>${questions}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><p>${escapeHtml(exercise.text)}</p>${questions}</section>`;
         }
 
         if (exercise.type === 'video') {
@@ -400,21 +400,21 @@ export function LessonPage({ classNumber, moduleTitle, themeTitle, lesson, error
           const questions = exercise.questions?.length
             ? `<ul>${exercise.questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul>`
             : '';
-          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> video</p><img src="${qrUrl}" alt="QR code to video" /><p><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>${questions}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><img src="${qrUrl}" alt="QR code to video" /><p><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>${questions}</section>`;
         }
 
         if (exercise.type === 'interactive_quiz') {
           const questions = exercise.questions
             .map((question, qIndex) => `<div class="quiz"><p><strong>${escapeHtml(tr('flashcard'))} ${qIndex + 1}:</strong> ${escapeHtml(question.question)}</p><p>Single choice: ${escapeHtml(question.answerTypes.singleChoice.join(' | '))}</p><p>True/False: ${escapeHtml(question.answerTypes.trueFalse)}</p><p>Short text: ${escapeHtml(question.answerTypes.shortText)}</p></div>`)
             .join('');
-          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> interactive quiz</p>${questions}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p>${questions}</section>`;
         }
 
         if (exercise.type === 'homework') {
           const imagePath = escapeHtml(getHomeworkImagePath(lesson, exercise));
           const safeVideo = exercise.videoUrl ? escapeHtml(exercise.videoUrl) : '';
           const qrVideo = exercise.videoUrl ? escapeHtml(getQrCodeUrl(exercise.videoUrl)) : '';
-          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> homework</p><p>${escapeHtml(exercise.text)}</p>${imagePath ? `<img src="${imagePath}" alt="Homework image" />` : ''}${safeVideo ? `<img src="${qrVideo}" alt="QR code to homework video" /><p><a href="${safeVideo}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>` : ''}</section>`;
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><p>${escapeHtml(exercise.text)}</p>${imagePath ? `<img src="${imagePath}" alt="Homework image" />` : ''}${safeVideo ? `<img src="${qrVideo}" alt="QR code to homework video" /><p><a href="${safeVideo}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>` : ''}</section>`;
         }
 
         return '';

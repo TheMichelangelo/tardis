@@ -1,4 +1,5 @@
 import { appConfig, AppLanguage } from '../config/appConfig';
+import { ExerciseKind } from '../lib/types';
 
 const translations = {
   en: {
@@ -13,6 +14,13 @@ const translations = {
     dataToFill: 'Data to fill',
     downloadPdf: 'Download PDF',
     downloadPdfDialog: 'Download lesson PDF',
+    exerciseTypeDiagram: 'Diagram',
+    exerciseTypeHomework: 'Homework',
+    exerciseTypeInteractiveQuiz: 'Competition',
+    exerciseTypeRebus: 'Rebus',
+    exerciseTypeTable: 'Table',
+    exerciseTypeText: 'Text',
+    exerciseTypeVideo: 'Video',
     errorDownloadPdf: 'Could not generate PDF file for this lesson.',
     errorLessonNotFound: 'Lesson not found in current data.',
     errorLoadClass: 'Failed to load class lessons JSON.',
@@ -53,6 +61,13 @@ const translations = {
     dataToFill: 'Дані для заповнення',
     downloadPdf: 'Завантажити PDF',
     downloadPdfDialog: 'Завантажити PDF уроку',
+    exerciseTypeDiagram: 'Діаграма',
+    exerciseTypeHomework: 'Домашнє завдання',
+    exerciseTypeInteractiveQuiz: 'Змагання',
+    exerciseTypeRebus: 'Ребус',
+    exerciseTypeTable: 'Таблиця',
+    exerciseTypeText: 'Текст',
+    exerciseTypeVideo: 'Відео',
     errorDownloadPdf: 'Не вдалося створити PDF для цього уроку.',
     errorLessonNotFound: 'Урок не знайдено в поточних даних.',
     errorLoadClass: 'Не вдалося завантажити JSON дані класу.',
@@ -100,4 +115,25 @@ export function formatTypeLabel(type: 'all' | 'quiz' | 'story' | 'competition') 
     return tr('quiz');
   }
   return tr('story');
+}
+
+export function formatExerciseTypeLabel(type: ExerciseKind) {
+  switch (type) {
+    case 'diagram':
+      return tr('exerciseTypeDiagram');
+    case 'table':
+      return tr('exerciseTypeTable');
+    case 'text':
+      return tr('exerciseTypeText');
+    case 'rebus':
+      return tr('exerciseTypeRebus');
+    case 'video':
+      return tr('exerciseTypeVideo');
+    case 'interactive_quiz':
+      return tr('exerciseTypeInteractiveQuiz');
+    case 'homework':
+      return tr('exerciseTypeHomework');
+    default:
+      return type;
+  }
 }
