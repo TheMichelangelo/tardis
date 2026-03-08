@@ -38,6 +38,87 @@ Exercise fields:
 
 `homework` is always visible regardless of selected format.
 
+## Exercise type examples
+
+```json
+{
+  "id": "diagram-1",
+  "label": "Label the diagram parts",
+  "type": "diagram",
+  "imageExt": "png"
+}
+```
+
+```json
+{
+  "id": "table-1",
+  "label": "Fill the table",
+  "type": "table",
+  "columns": ["Parameter", "Value"],
+  "rows": ["Row 1", "Row 2"],
+  "dataToFill": ["Mass", "12 kg", "Force", "5 N"]
+}
+```
+
+```json
+{
+  "id": "text-1",
+  "label": "Read and answer",
+  "type": "text",
+  "text": "Light travels in straight lines in a uniform medium.",
+  "questions": ["What is a uniform medium?", "Give one example."]
+}
+```
+
+```json
+{
+  "id": "rebus-1",
+  "label": "Solve the rebus",
+  "type": "rebus",
+  "imageExt": "jpg"
+}
+```
+
+```json
+{
+  "id": "video-1",
+  "label": "Watch the video",
+  "type": "video",
+  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE",
+  "questions": ["What was the main idea?", "Which example do you remember?"]
+}
+```
+
+```json
+{
+  "id": "quiz-1",
+  "label": "Mini flashcards",
+  "type": "interactive_quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the unit of force?",
+      "answerTypes": {
+        "singleChoice": ["Newton", "Watt", "Pascal"],
+        "trueFalse": "True",
+        "shortText": "Newton"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "id": "homework-1",
+  "label": "Homework",
+  "type": "homework",
+  "text": "Prepare one real-life example of friction.",
+  "imageExt": "png",
+  "videoUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE"
+}
+```
+
 ## Data configs
 
 Language-specific class files:
