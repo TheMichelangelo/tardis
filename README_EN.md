@@ -146,3 +146,45 @@ For Android:
 ```bash
 npm run android
 ```
+
+## Demo - Web Version
+
+### Main Page
+![Application main page](./demo/main_page.png)
+Class selection and lesson setup page.
+
+### Class Selection with Themes
+![Class selection interface with available themes](./demo/class_with_themes_examle.png)
+Theme selection page showing available lessons within each theme.
+
+### Lesson Theme Details
+![Extended theme view with details](./demo/class_with_themes_examle_2.png)
+Theme selection page showing available lessons within each theme.
+
+### Lesson Example
+![Lesson execution interface](./demo/lesson_demo.png)
+Detailed view of selected lesson with description and exercises.
+
+### Rebus Exercise
+![Rebus exercise example](./demo/rebus_demo.png)
+Interactive rebus for developing logical thinking.
+
+### Table Exercise
+![Table exercise example](./demo/table.png)
+Filling tables for knowledge structuring.
+
+### Quiz
+![Interactive quiz example](./demo/quiz_demo.png)
+Knowledge testing in interactive quiz format.
+
+### Video Exercise
+![Video exercise example](./demo/video_exercies_demo.png)
+Learning material through educational videos.
+
+### Homework
+![Homework assignment example](./demo/homework%20example.png)
+Creative assignments for independent work.
+
+### Print Version
+![Print version exercise example](./demo/print_exersice_version.png)
+Optimized version for printing educational materials.
