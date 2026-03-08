@@ -94,7 +94,7 @@ function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
     return '';
   }
   const ext = exercise.imageExt ?? 'png';
-  return `${lesson.id}/${exercise.id}.${ext}`;
+  return `src/data/${lesson.id}/${exercise.id}.${ext}`;
 }
 
 function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) {
@@ -102,7 +102,7 @@ function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
     return '';
   }
   const ext = exercise.imageExt ?? 'png';
-  return `${lesson.id}/homework.${ext}`;
+  return `src/data/${lesson.id}/${exercise.id}.${ext}`;
 }
 
 function getQrCodeUrl(value: string) {

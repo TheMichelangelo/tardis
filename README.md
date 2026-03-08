@@ -21,13 +21,13 @@ React Native застосунок з пріоритетом для формув�
 - `label`: опис завадння
 - `formats?`: необов’язковий список форматів, для яких підходить вправа (`quiz`, `story`, `competition`, `all`)
 - `type`: один із типів вправи:
-  - `diagram` (шлях до зображення `<lesson-id>/<exercise-id>.<ext>`)
+  - `diagram` (шлях до зображення `src/data/<lesson-id>/<exercise-id>.<ext>`)
   - `table` (`columns`, необов’язкові `rows`, `dataToFill`)
   - `text` (`text`, необов’язкові `questions`)
-  - `rebus` (шлях до зображення `<lesson-id>/<exercise-id>.<ext>`)
+  - `rebus` (шлях до зображення `src/data/<lesson-id>/<exercise-id>.<ext>`)
   - `video` (`youtubeUrl`, необов’язкові `questions`)
   - `interactive_quiz` (`questions[]` з типами `singleChoice`, `trueFalse`, `shortText`)
-  - `homework` (`text`, необов’язкові `imageExt`, необов’язковий `videoUrl`)
+  - `homework` (`text`, необов’язкові `imageExt`, необов’язковий `videoUrl`; зображення: `src/data/<lesson-id>/<exercise-id>.<ext>`)
 
 `homework`- домашнє завдання, завжди відображається незалежно від вибраного формату.
 
