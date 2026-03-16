@@ -9,12 +9,19 @@ const translations = {
     backToThemes: 'Back to Themes',
     classLabel: 'Class',
     columns: 'Columns',
+    connectChooseFirst: 'Choose an item from the first column',
+    connectChooseSecond: 'Now choose the matching item',
+    connectCorrectPairs: 'Correct pairs',
+    connectResultCorrect: 'Correct',
+    connectResultWrong: 'Wrong',
+    connectResultsReady: 'All pairs connected',
     competition: 'Competition',
     correctAnswer: 'Correct answer',
     dataToFill: 'Data to fill',
     downloadPdf: 'Download PDF',
     downloadPdfDialog: 'Download lesson PDF',
     exerciseTypeDiagram: 'Diagram',
+    exerciseTypeConnect: 'Connect',
     exerciseTypeHomework: 'Homework',
     exerciseTypeInteractiveQuiz: 'Competition',
     exerciseTypeRebus: 'Rebus',
@@ -56,12 +63,19 @@ const translations = {
     backToThemes: 'Назад до тем',
     classLabel: 'Клас',
     columns: 'Колонки',
+    connectChooseFirst: 'Оберіть елемент з першої колонки',
+    connectChooseSecond: 'Тепер оберіть відповідний елемент',
+    connectCorrectPairs: 'Правильні пари',
+    connectResultCorrect: 'Правильно',
+    connectResultWrong: 'Неправильно',
+    connectResultsReady: 'Усі пари з’єднано',
     competition: 'Змагання',
     correctAnswer: 'Правильна відповідь',
     dataToFill: 'Дані для заповнення',
     downloadPdf: 'Завантажити PDF',
     downloadPdfDialog: 'Завантажити PDF уроку',
     exerciseTypeDiagram: 'Діаграма',
+    exerciseTypeConnect: 'З`єднання',
     exerciseTypeHomework: 'Домашнє завдання',
     exerciseTypeInteractiveQuiz: 'Змагання',
     exerciseTypeRebus: 'Ребус',
@@ -121,6 +135,8 @@ export function formatExerciseTypeLabel(type: ExerciseKind) {
   switch (type) {
     case 'diagram':
       return tr('exerciseTypeDiagram');
+    case 'connect':
+      return tr('exerciseTypeConnect');
     case 'table':
       return tr('exerciseTypeTable');
     case 'text':

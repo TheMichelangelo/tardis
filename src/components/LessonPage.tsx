@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   Image,
+  LayoutChangeEvent,
   Linking,
   Platform,
   Pressable,
@@ -16,6 +17,7 @@ import { WebView } from 'react-native-webview';
 import { formatExerciseTypeLabel, formatTypeLabel, tr } from '../localization';
 import {
   ClassNumber,
+  ConnectExercise,
   ExerciseFormat,
   InteractiveQuizExercise,
   LessonExercise,
@@ -127,6 +129,208 @@ function getEmbeddableVideoUrl(url: string) {
     return yt;
   }
   return url;
+}
+
+type ItemLayout = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+function getConnectAnchor(
+  layout: ItemLayout | undefined,
+  side: 'left' | 'right',
+  display: 'horizontal' | 'vertical'
+) {
+  if (!layout) {
+    return null;
+  }
+
+  if (display === 'vertical') {
+    return {
+      x: layout.x + layout.width / 2,
+      y: side === 'left' ? layout.y + layout.height : layout.y
+    };
+  }
+
+  return {
+    x: side === 'left' ? layout.x + layout.width : layout.x,
+    y: layout.y + layout.height / 2
+  };
+}
+
+function ConnectExerciseView({ exercise }: { exercise: ConnectExercise }) {
+  const [selectedLeft, setSelectedLeft] = useState<number | null>(null);
+  const [leftLayouts, setLeftLayouts] = useState<Record<number, ItemLayout>>({});
+  const [rightLayouts, setRightLayouts] = useState<Record<number, ItemLayout>>({});
+  const [connections, setConnections] = useState<Record<number, number>>({});
+
+  const totalPairs = Math.min(exercise.column1Items.length, exercise.column2Items.length);
+  const completed = Object.keys(connections).length === totalPairs && totalPairs > 0;
+  const correctPairs = Object.entries(connections).filter(
+    ([leftIndex, rightIndex]) => Number(leftIndex) === rightIndex
+  ).length;
+
+  const handleItemLayout =
+    (column: 'left' | 'right', index: number) =>
+    (event: LayoutChangeEvent) => {
+      const { x, y, width, height } = event.nativeEvent.layout;
+      const nextLayout = { x, y, width, height };
+      if (column === 'left') {
+        setLeftLayouts((prev) => ({ ...prev, [index]: nextLayout }));
+        return;
+      }
+      setRightLayouts((prev) => ({ ...prev, [index]: nextLayout }));
+    };
+
+  const handleConnect = (rightIndex: number) => {
+    if (selectedLeft === null) {
+      return;
+    }
+
+    setConnections((prev) => {
+      const next: Record<number, number> = {};
+      Object.entries(prev).forEach(([leftIndex, pairedRightIndex]) => {
+        if (Number(leftIndex) !== selectedLeft && pairedRightIndex !== rightIndex) {
+          next[Number(leftIndex)] = pairedRightIndex;
+        }
+      });
+      next[selectedLeft] = rightIndex;
+      return next;
+    });
+    setSelectedLeft(null);
+  };
+
+  return (
+    <View style={styles.exerciseBlock}>
+      <Text style={styles.exerciseText}>{exercise.text}</Text>
+      <Text style={styles.connectHintText}>
+        {selectedLeft === null ? tr('connectChooseFirst') : tr('connectChooseSecond')}
+      </Text>
+
+      <View
+        style={[
+          styles.connectArena,
+          exercise.display === 'vertical' ? styles.connectArenaVertical : styles.connectArenaHorizontal
+        ]}
+      >
+        {Object.entries(connections).map(([leftIndexText, rightIndex]) => {
+          const leftIndex = Number(leftIndexText);
+          const leftAnchor = getConnectAnchor(leftLayouts[leftIndex], 'left', exercise.display);
+          const rightAnchor = getConnectAnchor(rightLayouts[rightIndex], 'right', exercise.display);
+
+          if (!leftAnchor || !rightAnchor) {
+            return null;
+          }
+
+          const dx = rightAnchor.x - leftAnchor.x;
+          const dy = rightAnchor.y - leftAnchor.y;
+          const length = Math.sqrt(dx * dx + dy * dy);
+          const angle = `${Math.atan2(dy, dx)}rad`;
+          const isCorrect = leftIndex === rightIndex;
+
+          return (
+            <View
+              key={`line-${leftIndex}-${rightIndex}`}
+              pointerEvents="none"
+              style={[
+                styles.connectLine,
+                {
+                  backgroundColor: completed
+                    ? isCorrect
+                      ? '#16A34A'
+                      : '#DC2626'
+                    : '#2563EB',
+                  left: leftAnchor.x,
+                  top: leftAnchor.y,
+                  transform: [{ rotate: angle }],
+                  width: length
+                }
+              ]}
+            />
+          );
+        })}
+
+        <View
+          style={[
+            styles.connectColumnsWrap,
+            exercise.display === 'vertical'
+              ? styles.connectColumnsWrapVertical
+              : styles.connectColumnsWrapHorizontal
+          ]}
+        >
+          <View style={[styles.connectColumn, exercise.display === 'vertical' && styles.connectColumnVertical]}>
+            {exercise.column1Items.map((item, index) => {
+              const isSelected = selectedLeft === index;
+              const pairedRight = connections[index];
+              const isCorrect = completed && pairedRight === index;
+              const isWrong = completed && pairedRight !== undefined && pairedRight !== index;
+
+              return (
+                <Pressable
+                  key={`left-${exercise.id}-${index}`}
+                  onLayout={handleItemLayout('left', index)}
+                  onPress={() => setSelectedLeft(index)}
+                  style={[
+                    styles.connectItemButton,
+                    exercise.display === 'vertical' && styles.connectItemButtonVertical,
+                    isSelected && styles.connectItemSelected,
+                    isCorrect && styles.connectItemCorrect,
+                    isWrong && styles.connectItemWrong
+                  ]}
+                >
+                  <Text style={styles.connectItemText}>{item}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+
+          <View style={[styles.connectColumn, exercise.display === 'vertical' && styles.connectColumnVertical]}>
+            {exercise.column2Items.map((item, index) => {
+              const pairedLeft = Object.entries(connections).find(([, rightIndex]) => rightIndex === index)?.[0];
+              const isCorrect = completed && pairedLeft !== undefined && Number(pairedLeft) === index;
+              const isWrong = completed && pairedLeft !== undefined && Number(pairedLeft) !== index;
+
+              return (
+                <Pressable
+                  key={`right-${exercise.id}-${index}`}
+                  onLayout={handleItemLayout('right', index)}
+                  onPress={() => handleConnect(index)}
+                  style={[
+                    styles.connectItemButton,
+                    exercise.display === 'vertical' && styles.connectItemButtonVertical,
+                    isCorrect && styles.connectItemCorrect,
+                    isWrong && styles.connectItemWrong
+                  ]}
+                >
+                  <Text style={styles.connectItemText}>{item}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        </View>
+      </View>
+
+      {completed ? (
+        <View style={styles.answerBox}>
+          <Text style={styles.answerBoxText}>{tr('connectResultsReady')}</Text>
+          <Text style={styles.answerBoxText}>
+            {tr('connectCorrectPairs')}: {correctPairs} / {totalPairs}
+          </Text>
+          {Object.entries(connections).map(([leftIndex, rightIndex]) => {
+            const isCorrect = Number(leftIndex) === rightIndex;
+            return (
+              <Text key={`result-${leftIndex}-${rightIndex}`} style={styles.answerBoxText}>
+                {exercise.column1Items[Number(leftIndex)]} - {exercise.column2Items[rightIndex]}: {' '}
+                {isCorrect ? tr('connectResultCorrect') : tr('connectResultWrong')}
+              </Text>
+            );
+          })}
+        </View>
+      ) : null}
+    </View>
+  );
 }
 
 function InteractiveQuizFlashcards({ exercise }: { exercise: InteractiveQuizExercise }) {
@@ -329,6 +533,8 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
         </View>
       );
     }
+    case 'connect':
+      return <ConnectExerciseView exercise={exercise} />;
     case 'interactive_quiz':
       return <InteractiveQuizFlashcards exercise={exercise} />;
     default:
@@ -414,6 +620,16 @@ export function LessonPage({ classNumber, moduleTitle, lesson, error, onBack, on
           const safeVideo = exercise.videoUrl ? escapeHtml(exercise.videoUrl) : '';
           const qrVideo = exercise.videoUrl ? escapeHtml(getQrCodeUrl(exercise.videoUrl)) : '';
           return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><p>${escapeHtml(exercise.text)}</p>${imagePath ? `<img src="${imagePath}" alt="Homework image" />` : ''}${safeVideo ? `<img src="${qrVideo}" alt="QR code to homework video" /><p><a href="${safeVideo}" target="_blank" rel="noopener noreferrer">${escapeHtml(tr('watchYoutubeVideo'))}</a></p>` : ''}</section>`;
+        }
+
+        if (exercise.type === 'connect') {
+          const pairs = exercise.column1Items
+            .map(
+              (item, pairIndex) =>
+                `<li>${escapeHtml(item)} - ${escapeHtml(exercise.column2Items[pairIndex] ?? '')}</li>`
+            )
+            .join('');
+          return `${pageBreak}<section class="card">${title}<p><strong>${escapeHtml(tr('type'))}:</strong> ${escapeHtml(formatExerciseTypeLabel(exercise.type))}</p><p>${escapeHtml(exercise.text)}</p><p><strong>${escapeHtml(tr('columns'))} 1:</strong> ${escapeHtml(exercise.column1Items.join(', '))}</p><p><strong>${escapeHtml(tr('columns'))} 2:</strong> ${escapeHtml(exercise.column2Items.join(', '))}</p><p><strong>${escapeHtml(tr('connectCorrectPairs'))}:</strong></p><ul>${pairs}</ul></section>`;
         }
 
         return '';
@@ -741,6 +957,77 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 8,
     marginTop: 10
+  },
+  connectArena: {
+    marginTop: 10,
+    minHeight: 220,
+    position: 'relative'
+  },
+  connectArenaHorizontal: {
+    minHeight: 320
+  },
+  connectArenaVertical: {
+    minHeight: 460
+  },
+  connectColumnsWrap: {
+    gap: 18
+  },
+  connectColumnsWrapHorizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  connectColumnsWrapVertical: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
+  },
+  connectColumn: {
+    flex: 1,
+    gap: 14
+  },
+  connectColumnVertical: {
+    width: '100%'
+  },
+  connectHintText: {
+    color: '#2563EB',
+    fontSize: 17,
+    fontWeight: '700',
+    marginTop: 8
+  },
+  connectItemButton: {
+    backgroundColor: '#F8FAFC',
+    borderColor: '#94A3B8',
+    borderRadius: 12,
+    borderWidth: 2,
+    minHeight: 58,
+    paddingHorizontal: 12,
+    paddingVertical: 12
+  },
+  connectItemButtonVertical: {
+    width: '100%'
+  },
+  connectItemSelected: {
+    backgroundColor: '#DBEAFE',
+    borderColor: '#2563EB'
+  },
+  connectItemCorrect: {
+    backgroundColor: '#DCFCE7',
+    borderColor: '#16A34A'
+  },
+  connectItemWrong: {
+    backgroundColor: '#FEE2E2',
+    borderColor: '#DC2626'
+  },
+  connectItemText: {
+    color: '#0F172A',
+    fontSize: 18,
+    fontWeight: '700',
+    textAlign: 'center'
+  },
+  connectLine: {
+    height: 3,
+    position: 'absolute',
+    transformOrigin: 'left center',
+    zIndex: 1
   },
   choiceSquare: {
     alignItems: 'center',

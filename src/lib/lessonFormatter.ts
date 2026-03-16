@@ -123,6 +123,22 @@ function toExerciseTasks(
         }
       ];
 
+    case 'connect':
+      return [
+        {
+          id: exercise.id,
+          title: `Connect: ${exercise.label}`,
+          content: exercise.text,
+          metadata: {
+            lessonType,
+            exerciseType: 'connect',
+            column1Items: exercise.column1Items,
+            column2Items: exercise.column2Items,
+            display: exercise.display
+          }
+        }
+      ];
+
   }
 }
 

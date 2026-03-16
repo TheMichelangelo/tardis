@@ -10,7 +10,8 @@ export type ExerciseKind =
   | 'rebus'
   | 'video'
   | 'interactive_quiz'
-  | 'homework';
+  | 'homework'
+  | 'connect';
 
 export type ExerciseBase = {
   id: string;
@@ -70,6 +71,14 @@ export type HomeworkExercise = ExerciseBase & {
   videoUrl?: string;
 };
 
+export type ConnectExercise = ExerciseBase & {
+  type: 'connect';
+  text: string;
+  column1Items: string[];
+  column2Items: string[];
+  display: 'horizontal' | 'vertical';
+};
+
 export type LessonExercise =
   | DiagramExercise
   | RebusExercise
@@ -77,7 +86,8 @@ export type LessonExercise =
   | TextExercise
   | VideoExercise
   | InteractiveQuizExercise
-  | HomeworkExercise;
+  | HomeworkExercise
+  | ConnectExercise;
 
 export type LessonTemplate = {
   id: string;
