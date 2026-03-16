@@ -5,6 +5,7 @@ import { appConfig } from './src/config/appConfig';
 import { ClassPage } from './src/components/ClassPage';
 import { HomePage } from './src/components/HomePage';
 import { LessonPage } from './src/components/LessonPage';
+import { ProposalPage } from './src/components/ProposalPage';
 import { RandomSTEMBackground } from './src/components/RandomSTEMBackground';
 import { tr } from './src/localization';
 import { loadLessonsFileForClass } from './src/lib/storage';
@@ -19,6 +20,7 @@ const logoImage = require('./src/data/stem_logo.jpeg');
 type ScreenState =
   | { name: 'home' }
   | { name: 'class'; classNumber: ClassNumber }
+  | { name: 'proposal'; classNumber: ClassNumber }
   | {
       name: 'lesson';
       classNumber: ClassNumber;
@@ -61,6 +63,11 @@ export default function App() {
       themeId,
       lessonId: template.id
     });
+  };
+
+  const openProposal = (classNumber: ClassNumber) => {
+    setError('');
+    setScreen({ name: 'proposal', classNumber });
   };
 
   const goHome = () => {
@@ -115,6 +122,15 @@ export default function App() {
           error={error}
           onBack={goHome}
           onOpenLesson={openLesson}
+          onOpenProposal={() => openProposal(screen.classNumber)}
+        />
+      ) : null}
+
+      {screen.name === 'proposal' ? (
+        <ProposalPage
+          classNumber={screen.classNumber}
+          data={data}
+          onBack={() => goToClassThemes(screen.classNumber)}
         />
       ) : null}
 
@@ -135,6 +151,7 @@ export default function App() {
             error={error || tr('errorLessonNotFound')}
             onBack={goHome}
             onOpenLesson={openLesson}
+            onOpenProposal={() => openProposal(screen.classNumber)}
           />
         )
       ) : null}

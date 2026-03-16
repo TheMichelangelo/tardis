@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { tr } from '../localization';
 import { ClassLessonsFile, ClassNumber, LessonTemplate } from '../lib/types';
 import { LessonBuilder } from './LessonBuilder';
@@ -9,14 +9,20 @@ type Props = {
   error: string;
   onBack: () => void;
   onOpenLesson: (template: LessonTemplate, moduleId: string, themeId: string) => void;
+  onOpenProposal: () => void;
 };
 
-export function ClassPage({ classNumber, data, error, onBack, onOpenLesson }: Props) {
+export function ClassPage({ classNumber, data, error, onBack, onOpenLesson, onOpenProposal }: Props) {
   return (
     <ScrollView contentContainerStyle={styles.classContainer}>
-      <Pressable onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backButtonText}>{tr('back')}</Text>
-      </Pressable>
+      <View style={styles.topBar}>
+        <Pressable onPress={onBack} style={styles.backButton}>
+          <Text style={styles.backButtonText}>{tr('back')}</Text>
+        </Pressable>
+        <Pressable onPress={onOpenProposal} style={styles.proposalButton}>
+          <Text style={styles.proposalButtonText}>{tr('createProposal')}</Text>
+        </Pressable>
+      </View>
 
       <Text style={styles.classTitle}>{tr('classLabel')} {classNumber}</Text>
 
@@ -37,6 +43,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 12
   },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12
+  },
   backButton: {
     alignSelf: 'flex-start',
     backgroundColor: 'rgba(226,232,240,0.95)',
@@ -47,6 +58,17 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: '#1E293B',
     fontSize: 18,
+    fontWeight: '700'
+  },
+  proposalButton: {
+    backgroundColor: '#1D4ED8',
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 12
+  },
+  proposalButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
     fontWeight: '700'
   },
   classTitle: {
