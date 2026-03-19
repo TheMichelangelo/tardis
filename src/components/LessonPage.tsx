@@ -138,6 +138,23 @@ type ItemLayout = {
   height: number;
 };
 
+function toArenaLayout(layout: ItemLayout | undefined, parentLayout: ItemLayout | undefined) {
+  if (!layout) {
+    return undefined;
+  }
+
+  if (!parentLayout) {
+    return layout;
+  }
+
+  return {
+    x: layout.x + parentLayout.x,
+    y: layout.y + parentLayout.y,
+    width: layout.width,
+    height: layout.height
+  };
+}
+
 function getConnectAnchor(
   layout: ItemLayout | undefined,
   side: 'left' | 'right',
@@ -164,6 +181,10 @@ function ConnectExerciseView({ exercise }: { exercise: ConnectExercise }) {
   const [selectedLeft, setSelectedLeft] = useState<number | null>(null);
   const [leftLayouts, setLeftLayouts] = useState<Record<number, ItemLayout>>({});
   const [rightLayouts, setRightLayouts] = useState<Record<number, ItemLayout>>({});
+  const [columnLayouts, setColumnLayouts] = useState<Record<'left' | 'right', ItemLayout | undefined>>({
+    left: undefined,
+    right: undefined
+  });
   const [connections, setConnections] = useState<Record<number, number>>({});
 
   const totalPairs = Math.min(exercise.column1Items.length, exercise.column2Items.length);
@@ -182,6 +203,16 @@ function ConnectExerciseView({ exercise }: { exercise: ConnectExercise }) {
         return;
       }
       setRightLayouts((prev) => ({ ...prev, [index]: nextLayout }));
+    };
+
+  const handleColumnLayout =
+    (column: 'left' | 'right') =>
+    (event: LayoutChangeEvent) => {
+      const { x, y, width, height } = event.nativeEvent.layout;
+      setColumnLayouts((prev) => ({
+        ...prev,
+        [column]: { x, y, width, height }
+      }));
     };
 
   const handleConnect = (rightIndex: number) => {
@@ -217,8 +248,16 @@ function ConnectExerciseView({ exercise }: { exercise: ConnectExercise }) {
       >
         {Object.entries(connections).map(([leftIndexText, rightIndex]) => {
           const leftIndex = Number(leftIndexText);
-          const leftAnchor = getConnectAnchor(leftLayouts[leftIndex], 'left', exercise.display);
-          const rightAnchor = getConnectAnchor(rightLayouts[rightIndex], 'right', exercise.display);
+          const leftAnchor = getConnectAnchor(
+            toArenaLayout(leftLayouts[leftIndex], columnLayouts.left),
+            'left',
+            exercise.display
+          );
+          const rightAnchor = getConnectAnchor(
+            toArenaLayout(rightLayouts[rightIndex], columnLayouts.right),
+            'right',
+            exercise.display
+          );
 
           if (!leftAnchor || !rightAnchor) {
             return null;
@@ -260,7 +299,10 @@ function ConnectExerciseView({ exercise }: { exercise: ConnectExercise }) {
               : styles.connectColumnsWrapHorizontal
           ]}
         >
-          <View style={[styles.connectColumn, exercise.display === 'vertical' && styles.connectColumnVertical]}>
+          <View
+            onLayout={handleColumnLayout('left')}
+            style={[styles.connectColumn, exercise.display === 'vertical' && styles.connectColumnVertical]}
+          >
             {exercise.column1Items.map((item, index) => {
               const isSelected = selectedLeft === index;
               const pairedRight = connections[index];
@@ -286,7 +328,10 @@ function ConnectExerciseView({ exercise }: { exercise: ConnectExercise }) {
             })}
           </View>
 
-          <View style={[styles.connectColumn, exercise.display === 'vertical' && styles.connectColumnVertical]}>
+          <View
+            onLayout={handleColumnLayout('right')}
+            style={[styles.connectColumn, exercise.display === 'vertical' && styles.connectColumnVertical]}
+          >
             {exercise.column2Items.map((item, index) => {
               const pairedLeft = Object.entries(connections).find(([, rightIndex]) => rightIndex === index)?.[0];
               const isCorrect = completed && pairedLeft !== undefined && Number(pairedLeft) === index;
