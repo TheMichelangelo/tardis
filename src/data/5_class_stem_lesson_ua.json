@@ -919,21 +919,36 @@
               "exercises": [
                 {
                   "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Розробити ескіз фінальної роботи/постера."
+                  "label": "Вступ",
+                  "type": "diagram",
+                  "imageExt": "png"
                 },
                 {
-                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-2",
+                  "id": "lesson-26-proyekt-video",
                   "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Підготувати короткий захист проєкту."
+                  "formats": ["story"],
+                  "text": "Переглянь відео з завданням до проєкту",
+                  "type": "video",
+                  "youtubeUrl": "https://www.youtube.com/watch?v=b2eI0e5Rlb8",
+                  "questions": ["Яку головну ідею ти побачив?", "Який приклад запам'ятався?"]
                 },
                 {
                   "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-3",
+                  "label": "Виконайте в парах проект",
+                  "type": "diagram",
+                  "imageExt": "png"
+                },
+                                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-4",
+                  "label": "Виконайте в парах проект",
+                  "type": "diagram",
+                  "imageExt": "png"
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-5",
                   "label": "Вправа 3",
                   "type": "homework",
-                  "text": "Оцінити роботу за критеріями: ідея, техніка, пояснення."
+                  "text": "Виконайте один з запропонованих."
                 }
               ]
             }
@@ -958,22 +973,149 @@
               ],
               "exercises": [
                 {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-0",
+                  "label": "Ознайомтесь з означеннями",
+                  "type": "diagram",
+                  "imageExt": "png"
+                },
+                {
                   "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-1",
-                  "label": "Вправа 1",
-                  "type": "homework",
-                  "text": "Класифікувати приклади знаків за типами."
+                  "label": "Заповни таблицю: природні та штучні знаки",
+                  "formats": [
+                    "story"
+                  ],
+                  "type": "table",
+                  "columns": [
+                    "Знак",
+                    "Що повідомляє",
+                    "Природний чи штучний"
+                  ],
+                  "rows": [
+                    "Дим у лісі",
+                    "Червоне світло світлофора",
+                    "Сніг на землі",
+                    "Дзвінок у школі"
+                  ],
+                  "dataToFill": [
+                    "Є вогонь або пожежа",
+                    "Природний",
+                    "Рух заборонено, треба зупинитися",
+                    "Штучний",
+                    "Надворі холодно, зима",
+                    "Природний",
+                    "Початок або кінець уроку",
+                    "Штучний"
+                  ]
                 },
                 {
                   "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-2",
-                  "label": "Вправа 2",
-                  "type": "homework",
-                  "text": "Створити набір піктограм для класу."
+                  "label": "Установи відповідність між знаком і його типом",
+                  "formats": [
+                    "story"
+                  ],
+                  "type": "connect",
+                  "text": "Поєднай приклад знака з правильною категорією.",
+                  "column1Items": [
+                    "Веселка",
+                    "Буква А",
+                    "Слід лапи на снігу",
+                    "Смайлик",
+                    "Темні хмари",
+                    "Дорожній знак"
+                  ],
+                  "column2Items": [
+                    "Природний знак",
+                    "Штучний знак",
+                    "Природний знак",
+                    "Штучний знак",
+                    "Природний знак",
+                    "Штучний знак"
+                  ],
+                  "display": "horizontal"
                 },
                 {
                   "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-3",
-                  "label": "Вправа 3",
+                  "label": "Пройти вікторину",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Що таке знак у комунікації?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Те, що передає певну інформацію",
+                          "Лише малюнок у підручнику",
+                          "Будь-який предмет без значення"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Те, що передає певну інформацію"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "Який із наведених прикладів є природним знаком?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Темні хмари",
+                          "Світлофор",
+                          "Смайлик"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Темні хмари"
+                      }
+                    },
+                    {
+                      "id": "q3",
+                      "question": "Який знак створила людина спеціально для передавання інформації?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Дорожній знак",
+                          "Грім",
+                          "Слід тварини"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Дорожній знак"
+                      }
+                    },
+                    {
+                      "id": "q4",
+                      "question": "Дим може бути знаком вогню.",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Так",
+                          "Ні",
+                          "Лише вночі"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Так"
+                      }
+                    },
+                    {
+                      "id": "q5",
+                      "question": "До якої групи належать букви та цифри?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Штучні знаки",
+                          "Природні знаки",
+                          "Лише звукові знаки"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Штучні знаки"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-4",
+                  "label": "Вправа 4",
                   "type": "homework",
-                  "text": "Пояснити правила читання знакових повідомлень."
+                  "text": "Склади по 3 власні приклади природних і штучних знаків та поясни, яку інформацію вони передають."
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-ex-5",
+                  "label": "Вправа 5",
+                  "type": "homework",
+                  "text": "Створи 4 піктограми для класу або шкільного кабінету та коротко підпиши значення кожної."
                 }
               ]
             },
