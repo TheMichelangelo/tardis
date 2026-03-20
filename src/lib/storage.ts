@@ -7,6 +7,7 @@ import { AppLanguage } from '../config/appConfig';
 import { ClassLessonsFile, ClassNumber } from './types';
 
 const STORAGE_KEY_PREFIX = 'lesson_builder_data_v4_class_';
+const APP_NAVIGATION_STORAGE_KEY = 'lesson_builder_navigation_v1';
 type WebStorage = {
   getItem: (key: string) => string | null;
   setItem: (key: string, value: string) => void;
@@ -46,6 +47,10 @@ async function getFilePath(classNumber: ClassNumber, language: AppLanguage) {
   return `${FileSystem.documentDirectory}${classNumber}_class_stem_lesson_${language}.json`;
 }
 
+async function getNavigationStateFilePath() {
+  return `${FileSystem.documentDirectory}${APP_NAVIGATION_STORAGE_KEY}.json`;
+}
+
 async function readNativeFile(classNumber: ClassNumber, language: AppLanguage): Promise<ClassLessonsFile | null> {
   const path = await getFilePath(classNumber, language);
   const info = await FileSystem.getInfoAsync(path);
@@ -60,6 +65,23 @@ async function readNativeFile(classNumber: ClassNumber, language: AppLanguage): 
 
 async function writeNativeFile(classNumber: ClassNumber, language: AppLanguage, data: ClassLessonsFile) {
   const path = await getFilePath(classNumber, language);
+  await FileSystem.writeAsStringAsync(path, JSON.stringify(data, null, 2));
+}
+
+async function readNativeNavigationState<T>(): Promise<T | null> {
+  const path = await getNavigationStateFilePath();
+  const info = await FileSystem.getInfoAsync(path);
+
+  if (!info.exists) {
+    return null;
+  }
+
+  const raw = await FileSystem.readAsStringAsync(path);
+  return JSON.parse(raw) as T;
+}
+
+async function writeNativeNavigationState<T>(data: T) {
+  const path = await getNavigationStateFilePath();
   await FileSystem.writeAsStringAsync(path, JSON.stringify(data, null, 2));
 }
 
@@ -84,6 +106,29 @@ function writeWebStorage(classNumber: ClassNumber, language: AppLanguage, data: 
   }
 
   storage.setItem(getStorageKey(classNumber, language), JSON.stringify(data));
+}
+
+function readWebNavigationState<T>(): T | null {
+  const storage = getWebStorage();
+  if (!storage) {
+    return null;
+  }
+
+  const raw = storage.getItem(APP_NAVIGATION_STORAGE_KEY);
+  if (!raw) {
+    return null;
+  }
+
+  return JSON.parse(raw) as T;
+}
+
+function writeWebNavigationState<T>(data: T) {
+  const storage = getWebStorage();
+  if (!storage) {
+    return;
+  }
+
+  storage.setItem(APP_NAVIGATION_STORAGE_KEY, JSON.stringify(data));
 }
 
 export async function loadLessonsFileForClass(
@@ -126,4 +171,21 @@ export async function saveLessonsFileForClass(
   }
 
   await writeNativeFile(classNumber, language, data);
+}
+
+export async function loadNavigationState<T>(): Promise<T | null> {
+  if (isWeb()) {
+    return readWebNavigationState<T>();
+  }
+
+  return readNativeNavigationState<T>();
+}
+
+export async function saveNavigationState<T>(data: T) {
+  if (isWeb()) {
+    writeWebNavigationState(data);
+    return;
+  }
+
+  await writeNativeNavigationState(data);
 }

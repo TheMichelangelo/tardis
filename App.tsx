@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { appConfig } from './src/config/appConfig';
 import { ClassPage } from './src/components/ClassPage';
@@ -8,7 +8,7 @@ import { LessonPage } from './src/components/LessonPage';
 import { ProposalPage } from './src/components/ProposalPage';
 import { RandomSTEMBackground } from './src/components/RandomSTEMBackground';
 import { tr } from './src/localization';
-import { loadLessonsFileForClass } from './src/lib/storage';
+import { loadLessonsFileForClass, loadNavigationState, saveNavigationState } from './src/lib/storage';
 import {
   ClassLessonsFile,
   ClassNumber,
@@ -34,6 +34,57 @@ export default function App() {
   const [data, setData] = useState<ClassLessonsFile | null>(null);
   const [error, setError] = useState('');
   const [isLoadingClass, setIsLoadingClass] = useState(false);
+  const [isRestoringScreen, setIsRestoringScreen] = useState(true);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const restoreNavigation = async () => {
+      try {
+        const savedScreen = await loadNavigationState<ScreenState>();
+        if (!savedScreen) {
+          return;
+        }
+
+        if (savedScreen.name === 'home') {
+          setScreen(savedScreen);
+          return;
+        }
+
+        const classData = await loadLessonsFileForClass(savedScreen.classNumber, appConfig.currentLanguage);
+        if (!isActive) {
+          return;
+        }
+
+        setData(classData);
+        setScreen(savedScreen);
+      } catch {
+        if (isActive) {
+          setScreen({ name: 'home' });
+          setData(null);
+          setError('');
+        }
+      } finally {
+        if (isActive) {
+          setIsRestoringScreen(false);
+        }
+      }
+    };
+
+    void restoreNavigation();
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isRestoringScreen) {
+      return;
+    }
+
+    void saveNavigationState(screen);
+  }, [isRestoringScreen, screen]);
 
   const openClass = async (classNumber: ClassNumber) => {
     setIsLoadingClass(true);
@@ -106,7 +157,13 @@ export default function App() {
       <StatusBar style="dark" />
       <RandomSTEMBackground logoSource={logoImage} />
 
-      {screen.name === 'home' ? (
+      {isRestoringScreen ? (
+        <View style={styles.restoringContainer}>
+          <Text style={styles.restoringText}>{tr('loading')}</Text>
+        </View>
+      ) : null}
+
+      {!isRestoringScreen && screen.name === 'home' ? (
         <HomePage
           logoSource={logoImage}
           isLoadingClass={isLoadingClass}
@@ -115,7 +172,7 @@ export default function App() {
         />
       ) : null}
 
-      {screen.name === 'class' ? (
+      {!isRestoringScreen && screen.name === 'class' ? (
         <ClassPage
           classNumber={screen.classNumber}
           data={data}
@@ -126,7 +183,7 @@ export default function App() {
         />
       ) : null}
 
-      {screen.name === 'proposal' ? (
+      {!isRestoringScreen && screen.name === 'proposal' ? (
         <ProposalPage
           classNumber={screen.classNumber}
           data={data}
@@ -134,7 +191,7 @@ export default function App() {
         />
       ) : null}
 
-      {screen.name === 'lesson' ? (
+      {!isRestoringScreen && screen.name === 'lesson' ? (
         lessonContext ? (
           <LessonPage
             classNumber={screen.classNumber}
@@ -163,5 +220,17 @@ const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: '#FFFFFF',
     flex: 1
+  },
+  restoringContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 24
+  },
+  restoringText: {
+    color: '#0F172A',
+    fontSize: 18,
+    fontWeight: '700',
+    textAlign: 'center'
   }
 });
