@@ -25,6 +25,7 @@ import {
 } from './src/lib/types';
 
 const logoImage = require('./src/data/stem_logo.jpeg');
+const WEB_BASE_PATH = '/tardis';
 
 type ScreenState =
   | { name: 'home' }
@@ -38,6 +39,155 @@ type ScreenState =
       themeId: string;
       lessonId: string;
     };
+
+function isWeb() {
+  return typeof window !== 'undefined';
+}
+
+function getWebPathDetails() {
+  if (!isWeb()) {
+    return {
+      pathname: '/',
+      searchParams: new URLSearchParams()
+    };
+  }
+
+  const { pathname, search } = window.location;
+  const normalizedPath =
+    pathname === WEB_BASE_PATH
+      ? '/'
+      : pathname.startsWith(`${WEB_BASE_PATH}/`)
+        ? pathname.slice(WEB_BASE_PATH.length)
+        : pathname;
+
+  return {
+    pathname: normalizedPath || '/',
+    searchParams: new URLSearchParams(search)
+  };
+}
+
+function buildWebUrl(screen: ScreenState) {
+  const prefix = WEB_BASE_PATH;
+
+  switch (screen.name) {
+    case 'home':
+      return prefix;
+    case 'login':
+      return `${prefix}/login`;
+    case 'class':
+      return `${prefix}/class/${screen.classNumber}`;
+    case 'proposal':
+      return `${prefix}/propose?class=${screen.classNumber}`;
+    case 'lesson':
+      return `${prefix}/class/${screen.classNumber}/module/${encodeURIComponent(screen.moduleId)}/lesson/${encodeURIComponent(screen.lessonId)}`;
+    default:
+      return prefix;
+  }
+}
+
+async function resolveWebScreenFromUrl(
+  savedUser: AuthUser | null
+): Promise<{ screen: ScreenState; data: ClassLessonsFile | null } | null> {
+  const { pathname, searchParams } = getWebPathDetails();
+  const normalizedPath = pathname.replace(/\/+$/, '') || '/';
+
+  if (normalizedPath === '/') {
+    return {
+      screen: { name: 'home' },
+      data: null
+    };
+  }
+
+  if (normalizedPath === '/login') {
+    return {
+      screen: { name: 'login' },
+      data: null
+    };
+  }
+
+  if (normalizedPath === '/classes') {
+    const classParam = searchParams.get('class');
+    const classNumber = classParam === '5' || classParam === '6' ? Number(classParam) as ClassNumber : null;
+    if (!classNumber) {
+      return {
+        screen: { name: 'home' },
+        data: null
+      };
+    }
+
+    const classData = await loadLessonsFileForClass(classNumber, appConfig.currentLanguage);
+    return {
+      screen: { name: 'class', classNumber },
+      data: classData
+    };
+  }
+
+  const classMatch = normalizedPath.match(/^\/class\/(5|6)$/);
+  if (classMatch) {
+    const classNumber = Number(classMatch[1]) as ClassNumber;
+    const classData = await loadLessonsFileForClass(classNumber, appConfig.currentLanguage);
+    return {
+      screen: { name: 'class', classNumber },
+      data: classData
+    };
+  }
+
+  if (normalizedPath === '/propose') {
+    const classParam = searchParams.get('class');
+    const classNumber = classParam === '5' || classParam === '6' ? Number(classParam) as ClassNumber : null;
+    if (!classNumber) {
+      return {
+        screen: savedUser ? { name: 'home' } : { name: 'login' },
+        data: null
+      };
+    }
+
+    const classData = await loadLessonsFileForClass(classNumber, appConfig.currentLanguage);
+    return {
+      screen: savedUser ? { name: 'proposal', classNumber } : { name: 'login' },
+      data: classData
+    };
+  }
+
+  const lessonMatch = normalizedPath.match(/^\/class\/(5|6)\/module\/([^/]+)\/lesson\/([^/]+)$/);
+  if (lessonMatch) {
+    const classNumber = Number(lessonMatch[1]) as ClassNumber;
+    const moduleId = decodeURIComponent(lessonMatch[2]);
+    const lessonId = decodeURIComponent(lessonMatch[3]);
+    const classData = await loadLessonsFileForClass(classNumber, appConfig.currentLanguage);
+    const module = classData.modules.find((item) => item.id === moduleId);
+
+    if (module) {
+      for (const theme of module.themes) {
+        const lesson = theme.lessons.find((item) => item.id === lessonId);
+        if (!lesson) {
+          continue;
+        }
+
+        return {
+          screen: {
+            name: 'lesson',
+            classNumber,
+            moduleId,
+            themeId: theme.id,
+            lessonId
+          },
+          data: classData
+        };
+      }
+    }
+
+    return {
+      screen: { name: 'home' },
+      data: null
+    };
+  }
+
+  return {
+    screen: { name: 'home' },
+    data: null
+  };
+}
 
 export default function App() {
   const [screen, setScreen] = useState<ScreenState>({ name: 'home' });
@@ -55,11 +205,24 @@ export default function App() {
     const restoreNavigation = async () => {
       try {
         const savedUser = await loadAuthSession();
-        const savedScreen = await loadNavigationState<ScreenState>();
         if (savedUser && isActive) {
           setAuthUser(savedUser);
         }
 
+        if (isWeb()) {
+          const routedState = await resolveWebScreenFromUrl(savedUser);
+          if (routedState) {
+            if (!isActive) {
+              return;
+            }
+
+            setData(routedState.data);
+            setScreen(routedState.screen);
+            return;
+          }
+        }
+
+        const savedScreen = await loadNavigationState<ScreenState>();
         if (!savedScreen) {
           return;
         }
@@ -106,6 +269,18 @@ export default function App() {
     }
 
     void saveNavigationState(screen);
+  }, [isRestoringScreen, screen]);
+
+  useEffect(() => {
+    if (!isWeb() || isRestoringScreen) {
+      return;
+    }
+
+    const nextUrl = buildWebUrl(screen);
+    const currentUrl = `${window.location.pathname}${window.location.search}`;
+    if (currentUrl !== nextUrl) {
+      window.history.replaceState(null, '', nextUrl);
+    }
   }, [isRestoringScreen, screen]);
 
   const openClass = async (classNumber: ClassNumber) => {
