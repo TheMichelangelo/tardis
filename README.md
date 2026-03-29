@@ -8,6 +8,8 @@ React Native застосунок з пріоритетом для формув�
 
 - Поточна мова інтерфейсу/даних налаштовується у:
   - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
+- Поточний тип сховища даних налаштовується у:
+  - `src/config/appConfig.ts` (`dataStorage: 'json' | 'sqlite'`)
 - Локалізовані підписи зберігаються у:
   - `src/localization/index.ts`
 
@@ -123,9 +125,26 @@ React Native застосунок з пріоритетом для формув�
 
 ## Зберігання даних
 
-- Веб: `localStorage` ключі з прив’язкою до класу та мови.
-- Android/iOS: JSON-файли з прив’язкою до класу та мови в директорії документів Expo.
-- Під час завантаження застосунок бере актуальну конфігурацію модулів/тем із мовних JSON-файлів і зберігає згенеровані уроки користувача.
+- Тип сховища обирається через `appConfig.dataStorage`.
+- `json`:
+  - Веб: `localStorage` ключі з прив’язкою до класу та мови.
+  - Android/iOS: JSON-файли з прив’язкою до класу та мови в директорії документів Expo.
+- `sqlite`:
+  - Застосунок використовує `expo-sqlite` і локальну базу `stem_lesson_builder.db`.
+  - У таблиці `class_lessons` зберігаються модулі та згенеровані уроки по класу/мові.
+  - У таблиці `navigation_state` зберігається останній стан навігації.
+- Під час завантаження застосунок бере актуальну конфігурацію модулів/тем із мовних JSON-файлів і поєднує її зі збереженими уроками користувача.
+
+### Міграції SQLite
+
+- SQL-скрипти міграцій зберігаються в:
+  - `src/data/db/migrations/001_create_storage_tables.sql`
+  - `src/data/db/migrations/002_seed_navigation_state.sql`
+- Провайдер SQLite виконує міграції під час першого відкриття бази.
+- Логіка читання/запису ізольована у окремих компонентах:
+  - `src/lib/dataStorage/jsonDataStorage.ts`
+  - `src/lib/dataStorage/sqliteDataStorage.ts`
+  - `src/lib/dataStorage/index.ts`
 
 ## Запуск
 
@@ -133,6 +152,8 @@ React Native застосунок з пріоритетом для формув�
 npm install
 npm run web
 ```
+
+`npm install` також встановлює залежність `expo-sqlite`, потрібну для режиму `dataStorage: 'sqlite'`.
 
 Для Android:
 

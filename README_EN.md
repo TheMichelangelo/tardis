@@ -15,6 +15,8 @@ React Native (Expo) app targeting web first and Android.
 
 - Current UI/data language is configured in:
   - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
+- Current data storage type is configured in:
+  - `src/config/appConfig.ts` (`dataStorage: 'json' | 'sqlite'`)
 - Localized labels are stored in:
   - `src/localization/index.ts`
 
@@ -130,9 +132,26 @@ Language-specific class files:
 
 ## Storage behavior
 
-- Web: class + language specific `localStorage` keys.
-- Android/iOS: class + language specific JSON files in Expo document directory.
-- When loading, app always uses latest module/theme config from language JSON files and keeps saved generated lessons.
+- Storage backend is selected via `appConfig.dataStorage`.
+- `json`:
+  - Web: class + language specific `localStorage` keys.
+  - Android/iOS: class + language specific JSON files in Expo document directory.
+- `sqlite`:
+  - App uses `expo-sqlite` with a local `stem_lesson_builder.db` database.
+  - `class_lessons` stores module data and generated lessons per class/language.
+  - `navigation_state` stores the last navigation state.
+- On load, the app always takes the latest module/theme config from the language JSON files and merges it with saved user lessons.
+
+### SQLite migrations
+
+- SQL migration files live in:
+  - `src/data/db/migrations/001_create_storage_tables.sql`
+  - `src/data/db/migrations/002_seed_navigation_state.sql`
+- The SQLite storage provider runs migrations when the database is opened for the first time.
+- Read/write logic is isolated in dedicated storage components:
+  - `src/lib/dataStorage/jsonDataStorage.ts`
+  - `src/lib/dataStorage/sqliteDataStorage.ts`
+  - `src/lib/dataStorage/index.ts`
 
 ## Run
 
@@ -140,6 +159,8 @@ Language-specific class files:
 npm install
 npm run web
 ```
+
+`npm install` also installs `expo-sqlite`, which is required for `dataStorage: 'sqlite'`.
 
 For Android:
 
