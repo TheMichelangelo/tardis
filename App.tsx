@@ -5,11 +5,20 @@ import { appConfig } from './src/config/appConfig';
 import { ClassPage } from './src/components/ClassPage';
 import { HomePage } from './src/components/HomePage';
 import { LessonPage } from './src/components/LessonPage';
+import { LoginPage } from './src/components/LoginPage';
 import { ProposalPage } from './src/components/ProposalPage';
 import { RandomSTEMBackground } from './src/components/RandomSTEMBackground';
 import { tr } from './src/localization';
-import { loadLessonsFileForClass, loadNavigationState, saveNavigationState } from './src/lib/storage';
 import {
+  authenticateUser,
+  loadAuthSession,
+  loadLessonsFileForClass,
+  loadNavigationState,
+  saveAuthSession,
+  saveNavigationState
+} from './src/lib/storage';
+import {
+  AuthUser,
   ClassLessonsFile,
   ClassNumber,
   LessonTemplate
@@ -19,6 +28,7 @@ const logoImage = require('./src/data/stem_logo.jpeg');
 
 type ScreenState =
   | { name: 'home' }
+  | { name: 'login' }
   | { name: 'class'; classNumber: ClassNumber }
   | { name: 'proposal'; classNumber: ClassNumber }
   | {
@@ -32,8 +42,11 @@ type ScreenState =
 export default function App() {
   const [screen, setScreen] = useState<ScreenState>({ name: 'home' });
   const [data, setData] = useState<ClassLessonsFile | null>(null);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
   const [error, setError] = useState('');
+  const [loginError, setLoginError] = useState('');
   const [isLoadingClass, setIsLoadingClass] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isRestoringScreen, setIsRestoringScreen] = useState(true);
 
   useEffect(() => {
@@ -41,12 +54,17 @@ export default function App() {
 
     const restoreNavigation = async () => {
       try {
+        const savedUser = await loadAuthSession();
         const savedScreen = await loadNavigationState<ScreenState>();
+        if (savedUser && isActive) {
+          setAuthUser(savedUser);
+        }
+
         if (!savedScreen) {
           return;
         }
 
-        if (savedScreen.name === 'home') {
+        if (savedScreen.name === 'home' || savedScreen.name === 'login') {
           setScreen(savedScreen);
           return;
         }
@@ -57,7 +75,11 @@ export default function App() {
         }
 
         setData(classData);
-        setScreen(savedScreen);
+        setScreen(
+          savedScreen.name === 'proposal' && !savedUser
+            ? { name: 'class', classNumber: savedScreen.classNumber }
+            : savedScreen
+        );
       } catch {
         if (isActive) {
           setScreen({ name: 'home' });
@@ -101,6 +123,12 @@ export default function App() {
     }
   };
 
+  const openLogin = () => {
+    setLoginError('');
+    setError('');
+    setScreen({ name: 'login' });
+  };
+
   const openLesson = (template: LessonTemplate, moduleId: string, themeId: string) => {
     if (screen.name !== 'class') {
       return;
@@ -117,14 +145,50 @@ export default function App() {
   };
 
   const openProposal = (classNumber: ClassNumber) => {
+    if (!authUser) {
+      openLogin();
+      return;
+    }
+
     setError('');
     setScreen({ name: 'proposal', classNumber });
+  };
+
+  const login = async (email: string, password: string) => {
+    setIsLoggingIn(true);
+    setLoginError('');
+
+    try {
+      const user = await authenticateUser(email, password);
+      if (!user) {
+        setLoginError(tr('invalidLoginCredentials'));
+        return;
+      }
+
+      setAuthUser(user);
+      await saveAuthSession(user);
+      setScreen({ name: 'home' });
+    } catch {
+      setLoginError(tr('invalidLoginCredentials'));
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const logout = async () => {
+    setAuthUser(null);
+    setLoginError('');
+    await saveAuthSession(null);
+    if (screen.name === 'proposal') {
+      setScreen({ name: 'home' });
+    }
   };
 
   const goHome = () => {
     setScreen({ name: 'home' });
     setData(null);
     setError('');
+    setLoginError('');
   };
 
   const goToClassThemes = (classNumber: ClassNumber) => {
@@ -166,9 +230,22 @@ export default function App() {
       {!isRestoringScreen && screen.name === 'home' ? (
         <HomePage
           logoSource={logoImage}
+          isLoggedIn={Boolean(authUser)}
           isLoadingClass={isLoadingClass}
+          placeOfWork={authUser?.placeOfWork ?? ''}
           error={error}
+          onOpenLogin={openLogin}
+          onLogout={() => void logout()}
           onOpenClass={openClass}
+        />
+      ) : null}
+
+      {!isRestoringScreen && screen.name === 'login' ? (
+        <LoginPage
+          error={loginError}
+          isSubmitting={isLoggingIn}
+          onBack={goHome}
+          onLogin={login}
         />
       ) : null}
 
@@ -177,6 +254,7 @@ export default function App() {
           classNumber={screen.classNumber}
           data={data}
           error={error}
+          isLoggedIn={Boolean(authUser)}
           onBack={goHome}
           onOpenLesson={openLesson}
           onOpenProposal={() => openProposal(screen.classNumber)}
@@ -206,6 +284,7 @@ export default function App() {
             classNumber={screen.classNumber}
             data={data}
             error={error || tr('errorLessonNotFound')}
+            isLoggedIn={Boolean(authUser)}
             onBack={goHome}
             onOpenLesson={openLesson}
             onOpenProposal={() => openProposal(screen.classNumber)}

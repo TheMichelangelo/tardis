@@ -1,6 +1,6 @@
 import { AppLanguage } from '../config/appConfig';
 import { getDataStorageProvider } from './dataStorage';
-import { ClassLessonsFile, ClassNumber } from './types';
+import { AuthUser, ClassLessonsFile, ClassNumber } from './types';
 
 export async function loadLessonsFileForClass(
   classNumber: ClassNumber,
@@ -23,4 +23,16 @@ export async function loadNavigationState<T>(): Promise<T | null> {
 
 export async function saveNavigationState<T>(data: T) {
   await getDataStorageProvider().saveNavigationState(data);
+}
+
+export async function authenticateUser(email: string, password: string): Promise<AuthUser | null> {
+  return getDataStorageProvider().authenticateUser(email, password);
+}
+
+export async function loadAuthSession(): Promise<AuthUser | null> {
+  return getDataStorageProvider().loadAuthSession();
+}
+
+export async function saveAuthSession(user: AuthUser | null) {
+  await getDataStorageProvider().saveAuthSession(user);
 }

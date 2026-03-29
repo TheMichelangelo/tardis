@@ -1,5 +1,6 @@
+import { authenticateAgainstUsers } from '../auth';
 import { AppLanguage } from '../../config/appConfig';
-import { ClassLessonsFile, ClassNumber } from '../types';
+import { AuthUser, ClassLessonsFile, ClassNumber, StoredUser } from '../types';
 import { getDefaultLessonsFile, mergeWithLatestConfig } from './defaults';
 import { sqliteMigrations } from './sqliteMigrations';
 import { DataStorageProvider } from './types';
@@ -27,6 +28,18 @@ type StoredClassLessonsRow = {
 
 type StoredNavigationStateRow = {
   state_json: string | null;
+};
+
+type StoredUserRow = {
+  id: string;
+  email_hash: string;
+  password_hash: string;
+  place_of_work: string;
+};
+
+type StoredAuthSessionRow = {
+  user_id: string | null;
+  place_of_work: string | null;
 };
 
 let databasePromise: Promise<SQLiteDatabase> | null = null;
@@ -111,6 +124,15 @@ function parseClassLessonsRow(row: StoredClassLessonsRow): ClassLessonsFile {
   };
 }
 
+function parseStoredUser(row: StoredUserRow): StoredUser {
+  return {
+    id: row.id,
+    emailHash: row.email_hash,
+    passwordHash: row.password_hash,
+    placeOfWork: row.place_of_work
+  };
+}
+
 export const sqliteDataStorage: DataStorageProvider = {
   async loadLessonsFileForClass(classNumber, language) {
     const db = await getDatabase();
@@ -164,6 +186,48 @@ export const sqliteDataStorage: DataStorageProvider = {
           updated_at = excluded.updated_at
       `,
       JSON.stringify(data),
+      new Date().toISOString()
+    );
+  },
+
+  async authenticateUser(email, password) {
+    const db = await getDatabase();
+    const rows = await db.getAllAsync<StoredUserRow>(
+      'SELECT id, email_hash, password_hash, place_of_work FROM users'
+    );
+
+    return authenticateAgainstUsers(rows.map(parseStoredUser), email, password);
+  },
+
+  async loadAuthSession() {
+    const db = await getDatabase();
+    const row = await db.getFirstAsync<StoredAuthSessionRow>(
+      'SELECT user_id, place_of_work FROM auth_session WHERE id = 1'
+    );
+
+    if (!row?.user_id || !row.place_of_work) {
+      return null;
+    }
+
+    return {
+      id: row.user_id,
+      placeOfWork: row.place_of_work
+    };
+  },
+
+  async saveAuthSession(user) {
+    const db = await getDatabase();
+    await db.runAsync(
+      `
+        INSERT INTO auth_session (id, user_id, place_of_work, updated_at)
+        VALUES (1, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET
+          user_id = excluded.user_id,
+          place_of_work = excluded.place_of_work,
+          updated_at = excluded.updated_at
+      `,
+      user?.id ?? null,
+      user?.placeOfWork ?? null,
       new Date().toISOString()
     );
   }

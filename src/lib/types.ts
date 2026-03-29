@@ -133,3 +133,19 @@ export type ClassLessonsFile = {
   modules: Module[];
   lessons: GeneratedLesson[];
 };
+
+export type StoredUser = {
+  id: string;
+  emailHash: string;
+  passwordHash: string;
+  placeOfWork: string;
+};
+
+export type UserRecordFile = {
+  users: StoredUser[];
+};
+
+export type AuthUser = {
+  id: string;
+  placeOfWork: string;
+};

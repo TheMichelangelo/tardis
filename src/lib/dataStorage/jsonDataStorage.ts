@@ -1,11 +1,13 @@
 import * as FileSystem from 'expo-file-system';
+import { authenticateAgainstUsers } from '../auth';
 import { AppLanguage } from '../../config/appConfig';
-import { ClassLessonsFile, ClassNumber } from '../types';
-import { getDefaultLessonsFile, mergeWithLatestConfig } from './defaults';
+import { AuthUser, ClassLessonsFile, ClassNumber } from '../types';
+import { getDefaultLessonsFile, getDefaultUsers, mergeWithLatestConfig } from './defaults';
 import { DataStorageProvider } from './types';
 
 const STORAGE_KEY_PREFIX = 'lesson_builder_data_v4_class_';
 const APP_NAVIGATION_STORAGE_KEY = 'lesson_builder_navigation_v1';
+const AUTH_SESSION_STORAGE_KEY = 'lesson_builder_auth_session_v1';
 
 type WebStorage = {
   getItem: (key: string) => string | null;
@@ -30,6 +32,10 @@ function getFilePath(classNumber: ClassNumber, language: AppLanguage) {
 
 function getNavigationStateFilePath() {
   return `${FileSystem.documentDirectory}${APP_NAVIGATION_STORAGE_KEY}.json`;
+}
+
+function getAuthSessionFilePath() {
+  return `${FileSystem.documentDirectory}${AUTH_SESSION_STORAGE_KEY}.json`;
 }
 
 async function readNativeFile(
@@ -71,6 +77,23 @@ async function readNativeNavigationState<T>(): Promise<T | null> {
 async function writeNativeNavigationState<T>(data: T) {
   const path = getNavigationStateFilePath();
   await FileSystem.writeAsStringAsync(path, JSON.stringify(data, null, 2));
+}
+
+async function readNativeAuthSession(): Promise<AuthUser | null> {
+  const path = getAuthSessionFilePath();
+  const info = await FileSystem.getInfoAsync(path);
+
+  if (!info.exists) {
+    return null;
+  }
+
+  const raw = await FileSystem.readAsStringAsync(path);
+  return JSON.parse(raw) as AuthUser;
+}
+
+async function writeNativeAuthSession(user: AuthUser | null) {
+  const path = getAuthSessionFilePath();
+  await FileSystem.writeAsStringAsync(path, JSON.stringify(user, null, 2));
 }
 
 function readWebStorage(classNumber: ClassNumber, language: AppLanguage): ClassLessonsFile | null {
@@ -117,6 +140,29 @@ function writeWebNavigationState<T>(data: T) {
   }
 
   storage.setItem(APP_NAVIGATION_STORAGE_KEY, JSON.stringify(data));
+}
+
+function readWebAuthSession(): AuthUser | null {
+  const storage = getWebStorage();
+  if (!storage) {
+    return null;
+  }
+
+  const raw = storage.getItem(AUTH_SESSION_STORAGE_KEY);
+  if (!raw) {
+    return null;
+  }
+
+  return JSON.parse(raw) as AuthUser;
+}
+
+function writeWebAuthSession(user: AuthUser | null) {
+  const storage = getWebStorage();
+  if (!storage) {
+    return;
+  }
+
+  storage.setItem(AUTH_SESSION_STORAGE_KEY, JSON.stringify(user));
 }
 
 export const jsonDataStorage: DataStorageProvider = {
@@ -170,5 +216,26 @@ export const jsonDataStorage: DataStorageProvider = {
     }
 
     await writeNativeNavigationState(data);
+  },
+
+  async authenticateUser(email, password) {
+    return authenticateAgainstUsers(getDefaultUsers(), email, password);
+  },
+
+  async loadAuthSession() {
+    if (isWeb()) {
+      return readWebAuthSession();
+    }
+
+    return readNativeAuthSession();
+  },
+
+  async saveAuthSession(user) {
+    if (isWeb()) {
+      writeWebAuthSession(user);
+      return;
+    }
+
+    await writeNativeAuthSession(user);
   }
 };

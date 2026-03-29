@@ -2,8 +2,9 @@ import class5LessonsEn from '../../data/5_class_stem_lesson_en.json';
 import class6LessonsEn from '../../data/6_class_stem_lesson_en.json';
 import class5LessonsUa from '../../data/5_class_stem_lesson_ua.json';
 import class6LessonsUa from '../../data/6_class_stem_lesson_ua.json';
+import usersData from '../../data/users.json';
 import { AppLanguage } from '../../config/appConfig';
-import { ClassLessonsFile, ClassNumber } from '../types';
+import { ClassLessonsFile, ClassNumber, StoredUser, UserRecordFile } from '../types';
 
 const classDefaults: Record<AppLanguage, Record<ClassNumber, ClassLessonsFile>> = {
   en: {
@@ -31,4 +32,8 @@ export function mergeWithLatestConfig(
     modules: defaults.modules,
     lessons: stored?.lessons ?? []
   };
+}
+
+export function getDefaultUsers(): StoredUser[] {
+  return (usersData as UserRecordFile).users;
 }

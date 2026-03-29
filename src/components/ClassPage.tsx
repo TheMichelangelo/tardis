@@ -7,21 +7,32 @@ type Props = {
   classNumber: ClassNumber;
   data: ClassLessonsFile | null;
   error: string;
+  isLoggedIn: boolean;
   onBack: () => void;
   onOpenLesson: (template: LessonTemplate, moduleId: string, themeId: string) => void;
   onOpenProposal: () => void;
 };
 
-export function ClassPage({ classNumber, data, error, onBack, onOpenLesson, onOpenProposal }: Props) {
+export function ClassPage({
+  classNumber,
+  data,
+  error,
+  isLoggedIn,
+  onBack,
+  onOpenLesson,
+  onOpenProposal
+}: Props) {
   return (
     <ScrollView contentContainerStyle={styles.classContainer}>
       <View style={styles.topBar}>
         <Pressable onPress={onBack} style={styles.backButton}>
           <Text style={styles.backButtonText}>{tr('back')}</Text>
         </Pressable>
-        <Pressable onPress={onOpenProposal} style={styles.proposalButton}>
-          <Text style={styles.proposalButtonText}>{tr('createProposal')}</Text>
-        </Pressable>
+        {isLoggedIn ? (
+          <Pressable onPress={onOpenProposal} style={styles.proposalButton}>
+            <Text style={styles.proposalButtonText}>{tr('createProposal')}</Text>
+          </Pressable>
+        ) : null}
       </View>
 
       <Text style={styles.classTitle}>{tr('classLabel')} {classNumber}</Text>
