@@ -45,6 +45,10 @@ type StoredAuthSessionRow = {
 let databasePromise: Promise<SQLiteDatabase> | null = null;
 
 async function loadSQLiteModule(): Promise<SQLiteModule> {
+  // Only import SQLite on native platforms, not web
+  if (typeof document !== 'undefined') {
+    throw new Error('SQLite is not supported in web build');
+  }
   return (await import('expo-sqlite')) as unknown as SQLiteModule;
 }
 
