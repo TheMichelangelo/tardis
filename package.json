@@ -9,7 +9,7 @@
     "android": "expo start --android",
     "web": "npm run sync-materials && expo start --web",
     "export:web": "npm run sync-materials && expo export -p web --output-dir dist --clear",
-    "predeploy": "npm run export:web && touch dist/.nojekyll",
+    "predeploy": "npm run export:web && node scripts/prepare-gh-pages.mjs && touch dist/.nojekyll",
     "deploy": "gh-pages -d dist --dotfiles"
   },
   "dependencies": {
