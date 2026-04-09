@@ -96,7 +96,8 @@ function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
     return '';
   }
   const ext = exercise.imageExt ?? 'png';
-  return `./src/data/${lesson.id}/${exercise.id}.${ext}`;
+  const relativePath = `src/data/${lesson.id}/${exercise.id}.${ext}`;
+  return Platform.OS === 'web' ? `/${relativePath}` : `./${relativePath}`;
 }
 
 function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) {
@@ -104,7 +105,8 @@ function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
     return '';
   }
   const ext = exercise.imageExt ?? 'png';
-  return `./src/data/${lesson.id}/${exercise.id}.${ext}`;
+  const relativePath = `src/data/${lesson.id}/${exercise.id}.${ext}`;
+  return Platform.OS === 'web' ? `/${relativePath}` : `./${relativePath}`;
 }
 
 function getQrCodeUrl(value: string) {
