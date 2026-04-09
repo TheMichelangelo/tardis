@@ -14,6 +14,7 @@ import {
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { WebView } from 'react-native-webview';
+import { getActiveWebBasePath } from '../config/appConfig';
 import { formatExerciseTypeLabel, formatTypeLabel, tr } from '../localization';
 import {
   ClassNumber,
@@ -97,7 +98,9 @@ function getExerciseImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
   }
   const ext = exercise.imageExt ?? 'png';
   const relativePath = `src/data/${lesson.id}/${exercise.id}.${ext}`;
-  return Platform.OS === 'web' ? `/${relativePath}` : `./${relativePath}`;
+  return Platform.OS === 'web'
+    ? `${getActiveWebBasePath()}/${relativePath}`
+    : `./${relativePath}`;
 }
 
 function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) {
@@ -106,7 +109,9 @@ function getHomeworkImagePath(lesson: LessonTemplate, exercise: LessonExercise) 
   }
   const ext = exercise.imageExt ?? 'png';
   const relativePath = `src/data/${lesson.id}/${exercise.id}.${ext}`;
-  return Platform.OS === 'web' ? `/${relativePath}` : `./${relativePath}`;
+  return Platform.OS === 'web'
+    ? `${getActiveWebBasePath()}/${relativePath}`
+    : `./${relativePath}`;
 }
 
 function getQrCodeUrl(value: string) {

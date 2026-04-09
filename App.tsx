@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { appConfig } from './src/config/appConfig';
+import { appConfig, getActiveWebBasePath } from './src/config/appConfig';
 import { ClassPage } from './src/components/ClassPage';
 import { HomePage } from './src/components/HomePage';
 import { LessonPage } from './src/components/LessonPage';
@@ -25,8 +25,6 @@ import {
 } from './src/lib/types';
 
 const logoImage = require('./src/data/stem_logo.jpeg');
-const WEB_BASE_PATH = '/tardis';
-
 type ScreenState =
   | { name: 'home' }
   | { name: 'login' }
@@ -53,11 +51,12 @@ function getWebPathDetails() {
   }
 
   const { pathname, search } = window.location;
+  const webBasePath = getActiveWebBasePath();
   const normalizedPath =
-    pathname === WEB_BASE_PATH
+    pathname === webBasePath
       ? '/'
-      : pathname.startsWith(`${WEB_BASE_PATH}/`)
-        ? pathname.slice(WEB_BASE_PATH.length)
+      : webBasePath && pathname.startsWith(`${webBasePath}/`)
+        ? pathname.slice(webBasePath.length)
         : pathname;
 
   return {
@@ -67,7 +66,7 @@ function getWebPathDetails() {
 }
 
 function buildWebUrl(screen: ScreenState) {
-  const prefix = WEB_BASE_PATH;
+  const prefix = getActiveWebBasePath();
 
   switch (screen.name) {
     case 'home':
