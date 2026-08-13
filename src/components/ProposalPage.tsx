@@ -42,6 +42,7 @@ type ExerciseDraft = {
   label: string;
   type: ExerciseKind;
   formats: ('all' | LessonType)[];
+  solution: string;
   text: string;
   columnsText: string;
   rowsText: string;
@@ -84,6 +85,7 @@ function createExerciseDraft(type: ExerciseKind = 'text'): ExerciseDraft {
     label: '',
     type,
     formats: ['all'],
+    solution: '',
     text: '',
     columnsText: '',
     rowsText: '',
@@ -147,6 +149,7 @@ function buildExercisePayload(draft: ExerciseDraft) {
     id: draft.id.trim(),
     label: draft.label.trim(),
     type: draft.type,
+    ...(draft.solution.trim() ? { solution: draft.solution.trim() } : {}),
     formats:
       draft.formats.length === 0 || draft.formats.includes('all')
         ? ['all']
@@ -340,6 +343,14 @@ function ExerciseDraftEditor({
         selected={draft.formats}
         onToggle={toggleFormat}
         getLabel={(value) => (value === 'all' ? tr('allExercises') : formatTypeLabel(value))}
+      />
+
+      <Text style={styles.fieldLabel}>{tr('solutionOptional')}</Text>
+      <TextInput
+        value={draft.solution}
+        onChangeText={(value) => onChange({ ...draft, solution: value })}
+        multiline
+        style={[styles.input, styles.textArea]}
       />
 
       {(draft.type === 'diagram' || draft.type === 'rebus' || draft.type === 'homework') ? (

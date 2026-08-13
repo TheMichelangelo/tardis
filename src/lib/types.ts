@@ -18,6 +18,7 @@ export type ExerciseBase = {
   label: string;
   type: ExerciseKind;
   formats?: ExerciseFormat[];
+  solution?: string;
 };
 
 export type DiagramExercise = ExerciseBase & {

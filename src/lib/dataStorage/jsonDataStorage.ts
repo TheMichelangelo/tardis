@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import { authenticateAgainstUsers } from '../auth';
 import { AppLanguage } from '../../config/appConfig';
 import { AuthUser, ClassLessonsFile, ClassNumber } from '../types';

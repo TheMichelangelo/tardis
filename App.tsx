@@ -449,6 +449,7 @@ export default function App() {
             classNumber={screen.classNumber}
             moduleTitle={lessonContext.module.title}
             lesson={lessonContext.lesson}
+            isTeacher={Boolean(authUser)}
             error={error}
             onBack={() => goToClassThemes(screen.classNumber)}
             onError={setError}
