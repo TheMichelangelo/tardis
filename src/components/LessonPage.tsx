@@ -31,10 +31,33 @@ type Props = {
   classNumber: ClassNumber;
   moduleTitle: string;
   lesson: LessonTemplate;
+  isTeacher: boolean;
   error: string;
   onBack: () => void;
   onError: (message: string) => void;
 };
+
+function ExerciseSolution({ exercise, isTeacher }: { exercise: LessonExercise; isTeacher: boolean }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  if (!isTeacher || !exercise.solution?.trim()) {
+    return null;
+  }
+
+  return (
+    <View style={styles.solutionContainer}>
+      <Pressable
+        onPress={() => setIsVisible((current) => !current)}
+        style={styles.solutionButton}
+      >
+        <Text style={styles.solutionButtonText}>
+          {isVisible ? tr('hideSolution') : tr('showSolution')}
+        </Text>
+      </Pressable>
+      {isVisible ? <Text style={styles.solutionText}>{exercise.solution}</Text> : null}
+    </View>
+  );
+}
 
 function resolveLessonExercises(lesson: LessonTemplate): LessonExercise[] {
   return lesson.exercises ?? lesson.exersices ?? [];
@@ -594,7 +617,7 @@ function renderExerciseContent(lesson: LessonTemplate, exercise: LessonExercise,
   }
 }
 
-export function LessonPage({ classNumber, moduleTitle, lesson, error, onBack, onError }: Props) {
+export function LessonPage({ classNumber, moduleTitle, lesson, isTeacher, error, onBack, onError }: Props) {
   const { width } = useWindowDimensions();
   const [viewMode, setViewMode] = useState<'all' | 'single'>('single');
   const [selectedFormat, setSelectedFormat] = useState<'all' | LessonType>('all');
@@ -804,6 +827,11 @@ export function LessonPage({ classNumber, moduleTitle, lesson, error, onBack, on
             <View style={styles.exerciseCard}>
               <Text style={styles.exerciseTitle}>{singleExercise.label}</Text>
               {renderExerciseContent(lesson, singleExercise, videoHeight)}
+              <ExerciseSolution
+                key={singleExercise.id}
+                exercise={singleExercise}
+                isTeacher={isTeacher}
+              />
             </View>
           ) : (
             <Text style={styles.infoText}>{tr('noExercises')}</Text>
@@ -839,6 +867,7 @@ export function LessonPage({ classNumber, moduleTitle, lesson, error, onBack, on
               <View key={exercise.id} style={styles.exerciseCard}>
                 <Text style={styles.exerciseTitle}>{exercise.label}</Text>
                 {renderExerciseContent(lesson, exercise, videoHeight)}
+                <ExerciseSolution exercise={exercise} isTeacher={isTeacher} />
               </View>
             ))
           )}
@@ -983,6 +1012,33 @@ const styles = StyleSheet.create({
     fontSize: 19,
     lineHeight: 26,
     marginTop: 6
+  },
+  solutionContainer: {
+    alignItems: 'flex-start',
+    marginTop: 14
+  },
+  solutionButton: {
+    backgroundColor: '#0F766E',
+    borderRadius: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 9
+  },
+  solutionButtonText: {
+    color: '#FFFFFF',
+    fontSize: 17,
+    fontWeight: '700'
+  },
+  solutionText: {
+    backgroundColor: '#ECFDF5',
+    borderColor: '#A7F3D0',
+    borderRadius: 8,
+    borderWidth: 1,
+    color: '#134E4A',
+    fontSize: 18,
+    lineHeight: 25,
+    marginTop: 8,
+    padding: 12,
+    width: '100%'
   },
   questionList: {
     marginTop: 4
