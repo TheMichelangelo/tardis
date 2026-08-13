@@ -1,219 +1,197 @@
-# STEM Lesson Builder
+# STEM Laboratory
 
 [English version](./README_EN.md)
 
-React Native застосунок з пріоритетом для формування уроків STEM 5х і 6х класів.
+Кросплатформний застосунок на Flutter/Dart для проведення STEM-уроків у
+5-х і 6-х класах. Один код застосунку використовується для Android, iOS та
+Web. Навчальні матеріали завантажуються з локальних JSON-файлів і доступні без
+окремого серверного API.
 
-## Конфігурація мов
+## Можливості
 
-- Поточна мова інтерфейсу/даних налаштовується у:
-  - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
-- Поточний тип сховища даних налаштовується у:
-  - `src/config/appConfig.ts` (`dataStorage: 'json' | 'sqlite'`)
-- Локалізовані підписи зберігаються у:
-  - `src/localization/index.ts`
+- вибір 5-го або 6-го класу;
+- навігація за модулями, темами та уроками;
+- фільтрація вправ за форматом уроку: усі, тест, історія, змагання;
+- текстові вправи та запитання;
+- діаграми й ребуси із локальних зображень;
+- таблиці з полями для відповідей;
+- інтерактивні запитання з одним варіантом відповіді;
+- відкриття навчальних відео у зовнішньому застосунку або браузері;
+- домашні завдання;
+- вправи на встановлення відповідностей;
+- адаптивний інтерфейс для телефона, планшета і браузера.
 
-## Модель вправ уроку
+## Підтримувані платформи
 
-Кожен урок містить набір вправ - `exercises` (або `exersices` для сумісності).
+| Платформа | Стан | Результат складання |
+|---|---|---|
+| Android | підтримується | `build/app/outputs/flutter-apk/app-release.apk` |
+| Web | підтримується | `build/web/` |
+| iOS | проєкт підготовлено | архів створюється локально з Apple-підписом |
 
-Поля вправи:
+Для iOS потрібні Xcode, CocoaPods, Apple Developer Team і профіль підпису.
 
-- `id`: номер вправи
-- `label`: опис завадння
-- `formats?`: необов’язковий список форматів, для яких підходить вправа (`quiz`, `story`, `competition`, `all`)
-- `type`: один із типів вправи:
-  - `diagram` (шлях до зображення `src/data/<lesson-id>/<exercise-id>.<ext>`)
-  - `table` (`columns`, необов’язкові `rows`, `dataToFill`)
-  - `text` (`text`, необов’язкові `questions`)
-  - `rebus` (шлях до зображення `src/data/<lesson-id>/<exercise-id>.<ext>`)
-  - `video` (`youtubeUrl`, необов’язкові `questions`)
-  - `interactive_quiz` (`questions[]` з типами `singleChoice`, `trueFalse`, `shortText`)
-  - `homework` (`text`, необов’язкові `imageExt`, необов’язковий `videoUrl`; зображення: `src/data/<lesson-id>/<exercise-id>.<ext>`)
+## Вимоги
 
-`homework`- домашнє завдання, завжди відображається незалежно від вибраного формату.
+- Flutter 3.47 або новіший;
+- Dart 3.3 або новіший;
+- Android SDK для Android-збірки;
+- Xcode і CocoaPods для iOS-збірки;
+- Chrome для локального запуску веб-версії.
 
-## Приклади типів вправ
+Перевірити середовище:
 
-```json
-{
-  "id": "diagram-1",
-  "label": "Познач частини схеми",
-  "type": "diagram",
-  "imageExt": "png"
-}
+```bash
+flutter doctor -v
 ```
 
-```json
-{
-  "id": "table-1",
-  "label": "Заповни таблицю",
-  "type": "table",
-  "columns": ["Параметр", "Значення"],
-  "rows": ["Рядок 1", "Рядок 2"],
-  "dataToFill": ["Маса", "12 кг", "Сила", "5 Н"]
-}
+## Перший запуск
+
+```bash
+flutter pub get
+flutter run -d chrome
 ```
+
+Запуск на підключеному Android-пристрої:
+
+```bash
+flutter devices
+flutter run -d <device-id>
+```
+
+## Release-збірки
+
+### Web
+
+Проєкт публікується за базовим шляхом `/tardis/`:
+
+```bash
+flutter build web --release --base-href /tardis/
+```
+
+Готові статичні файли будуть у `build/web/`. Якщо сайт розміщується в корені
+домену, використайте `--base-href /`.
+
+### Android APK
+
+```bash
+flutter build apk --release
+```
+
+APK буде створено у:
+
+```text
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+### iOS
+
+```bash
+cd ios
+pod install
+cd ..
+flutter build ios --release
+```
+
+Для TestFlight або App Store відкрийте `ios/Runner.xcworkspace` у Xcode,
+виберіть команду розробника й створіть Archive.
+
+## Перевірка якості
+
+Перед створенням артефактів виконайте:
+
+```bash
+dart format --set-exit-if-changed lib test
+flutter analyze
+flutter test
+```
+
+## Структура Flutter-коду
+
+```text
+lib/
+├── main.dart                         # точка входу
+├── app.dart                          # MaterialApp і тема застосунку
+├── core/
+│   ├── app_assets.dart               # шляхи до ресурсів і мови даних
+│   ├── app_theme.dart                # кольори та глобальна тема
+│   ├── localization.dart             # українські підписи інтерфейсу
+│   └── parsing.dart                  # допоміжне перетворення кольорів
+├── models.dart                       # типізована модель уроків і вправ
+├── repository.dart                   # завантаження JSON через AssetBundle
+└── features/
+    ├── home/                         # вибір класу
+    ├── lessons/                      # теми, уроки та фільтри
+    └── exercises/                    # відображення типів вправ
+```
+
+Каталоги `android/`, `ios/` і `web/` містять платформні проєкти. Каталог
+`build/` генерується Flutter і не зберігається у Git.
+
+## Навчальні дані
+
+Локалізовані конфігурації класів:
+
+- `src/data/5_class_stem_lesson_ua.json`;
+- `src/data/6_class_stem_lesson_ua.json`;
+- `src/data/5_class_stem_lesson_en.json`;
+- `src/data/6_class_stem_lesson_en.json`.
+
+Українська мова використовується за замовчуванням. Вибір файлу виконує
+`LessonRepository`; підтримувані значення описані enum `AppLanguage`.
+
+Зображення вправ зберігаються за схемою:
+
+```text
+src/data/<lesson-id>/<exercise-id>.<extension>
+```
+
+Усі файли, які використовує Flutter, потрібно також оголосити в секції
+`flutter/assets` файла `pubspec.yaml`.
+
+## Формат JSON
+
+Скорочений приклад уроку:
 
 ```json
 {
-  "id": "text-1",
-  "label": "Прочитай текст і дай відповіді",
-  "type": "text",
-  "text": "Світло поширюється прямолінійно в однорідному середовищі.",
-  "questions": ["Що таке однорідне середовище?", "Наведи приклад."]
-}
-```
-
-```json
-{
-  "id": "rebus-1",
-  "label": "Розгадай ребус",
-  "type": "rebus",
-  "imageExt": "jpg"
-}
-```
-
-```json
-{
-  "id": "video-1",
-  "label": "Переглянь відео",
-  "type": "video",
-  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE",
-  "questions": ["Яку головну ідею ти побачив?", "Який приклад запам'ятався?"]
-}
-```
-
-```json
-{
-  "id": "quiz-1",
-  "label": "Мінікартки",
-  "type": "interactive_quiz",
-  "questions": [
+  "id": "lesson-1",
+  "title": "Урок 1",
+  "topic": "Що таке STEM",
+  "formats": ["story", "quiz", "competition"],
+  "exercises": [
     {
-      "id": "q1",
-      "question": "Яка одиниця сили?",
-      "answerTypes": {
-        "singleChoice": ["Ньютон", "Ват", "Паскаль"],
-        "trueFalse": "True",
-        "shortText": "Ньютон"
-      }
+      "id": "lesson-1-ex-1",
+      "label": "Прочитайте текст",
+      "type": "text",
+      "formats": ["story"],
+      "text": "Матеріал вправи",
+      "questions": ["Перше запитання?"]
     }
   ]
 }
 ```
 
-```json
-{
-  "id": "homework-1",
-  "label": "Домашнє завдання",
-  "type": "homework",
-  "text": "Підготуй приклад застосування сили тертя в побуті.",
-  "imageExt": "png",
-  "videoUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE"
-}
-```
+Для сумісності завантажувач приймає як правильне поле `exercises`, так і
+історичне поле `exersices`.
 
-## Конфіги даних
+Підтримувані типи вправ:
 
-Мовозалежні файли класів:
+- `diagram` — локальне зображення схеми;
+- `rebus` — локальне зображення ребуса;
+- `table` — `columns`, необов’язкові `rows`, `dataToFill`;
+- `text` — `text`, необов’язкові `questions`;
+- `video` — `youtubeUrl`;
+- `interactive_quiz` — масив `questions` і `answerTypes`;
+- `homework` — текст домашнього завдання;
+- `connect` — `column1Items` і `column2Items`.
 
-- `src/data/5_class_stem_lesson_en.json`
-- `src/data/6_class_stem_lesson_en.json`
-- `src/data/5_class_stem_lesson_ua.json`
-- `src/data/6_class_stem_lesson_ua.json`
+Вправа без `formats` доступна в усіх форматах. `homework` відображається
+завжди. Значення `flashcards` автоматично нормалізується до `competition`.
 
-## Зберігання даних
+## Legacy React-код
 
-- Тип сховища обирається через `appConfig.dataStorage`.
-- `json`:
-  - Веб: `localStorage` ключі з прив’язкою до класу та мови.
-  - Android/iOS: JSON-файли з прив’язкою до класу та мови в директорії документів Expo.
-- `sqlite`:
-  - Застосунок використовує `expo-sqlite` і локальну базу `stem_lesson_builder.db`.
-  - У таблиці `class_lessons` зберігаються модулі та згенеровані уроки по класу/мові.
-  - У таблиці `navigation_state` зберігається останній стан навігації.
-- Під час завантаження застосунок бере актуальну конфігурацію модулів/тем із мовних JSON-файлів і поєднує її зі збереженими уроками користувача.
-
-### Міграції SQLite
-
-- SQL-скрипти міграцій зберігаються в:
-  - `src/data/db/migrations/001_create_storage_tables.sql`
-  - `src/data/db/migrations/002_seed_navigation_state.sql`
-- Провайдер SQLite виконує міграції під час першого відкриття бази.
-- Логіка читання/запису ізольована у окремих компонентах:
-  - `src/lib/dataStorage/jsonDataStorage.ts`
-  - `src/lib/dataStorage/sqliteDataStorage.ts`
-  - `src/lib/dataStorage/index.ts`
-
-## Запуск
-
-```bash
-npm install
-npm run web
-```
-
-`npm install` також встановлює залежність `expo-sqlite`, потрібну для режиму `dataStorage: 'sqlite'`.
-
-Для Android:
-
-```bash
-npm run android
-```
-
-## Приклад роботи веб-версії
-
-### Головна сторінка
-![Головна сторінка додатку](./demo/main_page.png)
-Сторінка вибору класу та налаштувань уроку.
-
-### Вибір класу з темами
-![Інтерфейс вибору класу з доступними темами](./demo/class_with_themes_examle.png)
-Сторінка вибору теми з відображенням доступних уроків, що в неї входять.
-
-### Деталі теми уроку
-![Розширений вигляд тем з деталями](./demo/class_with_themes_examle_2.png)
-Сторінка вибору теми з відображенням доступних уроків, що в неї входять.
-
-### Фільтрація вправ за форматами
-Уроки підтримують різні формати для адаптації під різні методи навчання:
-
-- **Story** - розповідний формат для вивчення теорії
-- **Competition** - змагальний формат для активного навчання  
-- **Quiz** - тестовий формат для перевірки знань
-- **All** - усі доступні вправи
-
-![Фільтр за типом уроку](./demo/filter_example_1.png)
-![Фільтр за типом уроку](./demo/filter_example_2.png)
-![Фільтр за типом уроку](./demo/filter_example_3.png)
-![Фільтр за типом уроку](./demo/filter_example_4.png)
-
-Кількість завдань і їх порядок змінюються відповідно до вибраного фільтру. Фільтрація завдань задається в файлі з завданнями.
-
-### Приклад уроку
-![Інтерфейс виконання уроку](./demo/lesson_demo.png)
-Детальний перегляд обраного уроку з описом та вправами.
-
-### Відео-вправа
-![Приклад вправи з відео](./demo/video_exercies_demo.png)
-Вивчення матеріалу через освітні відео.
-
-### Вправа-ребус
-![Приклад вправи-ребусу](./demo/rebus_demo.png)
-Вправа для розвантаження - можливий варіант як фізкульт хвилинки, так і інтерактивний ребус для розвитку логічного мислення.
-
-### Таблична вправа
-![Приклад табличної вправи](./demo/table.png)
-Заповнення таблиць для структурування і узагальнення знань.
-
-### Вікторина
-![Приклад інтерактивної вікторини](./demo/quiz_demo.png)
-Тестування знань у форматі інтерактивної вікторини.
-
-### Домашнє завдання
-![Приклад домашнього завдання](./demo/homework%20example.png)
-Творчі завдання для самостійної роботи.
-
-### Версія для друку
-![Приклад версії вправи для друку](./demo/print_exersice_version.png)
-Оптимізована версія для друку навчальних матеріалів.
+Попередня реалізація React Native/Expo поки залишається в `App.tsx`, `src/`
+та `package.json` лише як джерело для перевірки міграції. Release-збірки
+створюються з Flutter-коду в `lib/`; команди `npm` для актуального застосунку
+не потрібні.

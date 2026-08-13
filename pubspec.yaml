@@ -1,0 +1,32 @@
+name: stem_laboratory
+description: STEM lesson laboratory for grades 5 and 6.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - src/data/stem_logo.jpeg
+    - src/data/5_class_stem_lesson_ua.json
+    - src/data/6_class_stem_lesson_ua.json
+    - src/data/5_class_stem_lesson_en.json
+    - src/data/6_class_stem_lesson_en.json
+    - src/data/lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof/
+    - src/data/lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu/
+    - src/data/lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p/
+    - src/data/lesson-25-fotohrafiya-yak-mystetstvo-svitla/
+    - src/data/lesson-26-proyekt-namalyuyu-tobi-sontse/
+    - src/data/lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch/

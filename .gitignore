@@ -4,3 +4,15 @@ node_modules
 dist
 npm-debug.*
 .DS_Store
+
+# Flutter/Dart generated files
+.dart_tool/
+.flutter-plugins-dependencies
+.idea/
+.metadata
+build/
+*.iml
+android/.gradle/
+android/local.properties
+ios/Flutter/ephemeral/
+ios/Pods/
