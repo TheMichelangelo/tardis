@@ -5,12 +5,14 @@
   "main": "expo/AppEntry",
   "scripts": {
     "sync-materials": "node scripts/sync-materials.mjs",
-    "start": "expo start",
-    "android": "expo start --android",
-    "web": "npm run sync-materials && expo start --web",
-    "export:web": "npm run sync-materials && expo export -p web --output-dir dist --clear",
-    "predeploy": "npm run export:web && node scripts/prepare-gh-pages.mjs && touch dist/.nojekyll",
-    "deploy": "gh-pages -d dist --dotfiles"
+    "start": "flutter run -d chrome",
+    "android": "flutter run",
+    "web": "flutter run -d chrome",
+    "build:flutter": "./scripts/build_flutter_releases.sh",
+    "predeploy": "npm run build:flutter",
+    "deploy": "gh-pages -d build/web --dotfiles",
+    "legacy:expo": "expo start",
+    "legacy:export:web": "npm run sync-materials && expo export -p web --output-dir dist --clear"
   },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.1",

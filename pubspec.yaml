@@ -7,8 +7,10 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  bcrypt: ^1.2.0
   flutter:
     sdk: flutter
+  shared_preferences: ^2.5.5
   url_launcher: ^6.3.1
 
 dev_dependencies:
@@ -24,6 +26,7 @@ flutter:
     - src/data/6_class_stem_lesson_ua.json
     - src/data/5_class_stem_lesson_en.json
     - src/data/6_class_stem_lesson_en.json
+    - src/data/users.json
     - src/data/lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof/
     - src/data/lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu/
     - src/data/lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p/

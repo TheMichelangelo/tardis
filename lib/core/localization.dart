@@ -26,6 +26,17 @@ abstract final class AppStrings {
     'answer': 'Ваша відповідь',
     'loadError': 'Не вдалося завантажити матеріали класу.',
     'noThemes': 'Для цього класу ще немає тем.',
+    'login': 'Увійти',
+    'logout': 'Вийти',
+    'email': 'Email',
+    'emailHint': 'Введіть email',
+    'password': 'Пароль',
+    'passwordHint': 'Введіть пароль',
+    'loginHelp': 'Використайте дані, надані адміністратором.',
+    'invalidCredentials': 'Неправильний email або пароль.',
+    'loading': 'Завантаження…',
+    'downloadAndroid': 'Завантажити Android APK',
+    'downloadError': 'Не вдалося відкрити файл APK.',
   };
 
   static String get(String key) => _uk[key] ?? key;
