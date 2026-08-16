@@ -36,12 +36,32 @@ enum ExerciseType {
 }
 
 class StemClass {
-  const StemClass({required this.modules});
+  const StemClass({required this.modules, this.generatedLessons = const []});
   final List<StemModule> modules;
+  final List<Map<String, dynamic>> generatedLessons;
 
   factory StemClass.fromJson(Map<String, dynamic> json) {
     return StemClass(
       modules: _mapList(json['modules'], StemModule.fromJson),
+      generatedLessons: _values(json['lessons'])
+          .whereType<Map<String, dynamic>>()
+          .map(Map<String, dynamic>.from)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'modules': modules.map((module) => module.toJson()).toList(),
+        'lessons': generatedLessons,
+      };
+
+  StemClass copyWith({
+    List<StemModule>? modules,
+    List<Map<String, dynamic>>? generatedLessons,
+  }) {
+    return StemClass(
+      modules: modules ?? this.modules,
+      generatedLessons: generatedLessons ?? this.generatedLessons,
     );
   }
 }
@@ -64,6 +84,16 @@ class StemModule {
       themes: _mapList(json['themes'], StemTheme.fromJson),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'themes': themes.map((theme) => theme.toJson()).toList(),
+      };
+
+  StemModule copyWith({List<StemTheme>? themes}) {
+    return StemModule(id: id, title: title, themes: themes ?? this.themes);
+  }
 }
 
 class StemTheme {
@@ -83,6 +113,16 @@ class StemTheme {
       color: _string(json['color'], fallback: '#2563eb'),
       lessons: _mapList(json['lessons'], StemLesson.fromJson),
     );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'color': color,
+        'lessons': lessons.map((lesson) => lesson.toJson()).toList(),
+      };
+
+  StemTheme copyWith({List<StemLesson>? lessons}) {
+    return StemTheme(id: id, color: color, lessons: lessons ?? this.lessons);
   }
 }
 
@@ -116,6 +156,29 @@ class StemLesson {
     return exercises
         .where((exercise) => exercise.isVisibleFor(selected))
         .toList();
+  }
+
+  Set<LessonFormat> get availableFormats => {
+        ...formats,
+        ...exercises.expand((exercise) => exercise.formats),
+      }..remove(LessonFormat.all);
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'topic': topic,
+        'formats': formats.map((format) => format.jsonValue).toList(),
+        'exercises': exercises.map((exercise) => exercise.toJson()).toList(),
+      };
+
+  StemLesson copyWith({List<StemExercise>? exercises}) {
+    return StemLesson(
+      id: id,
+      title: title,
+      topic: topic,
+      formats: formats,
+      exercises: exercises ?? this.exercises,
+    );
   }
 }
 
@@ -155,6 +218,15 @@ class StemExercise {
   List<Map<String, dynamic>> objectList(String key) {
     return _values(data[key]).whereType<Map<String, dynamic>>().toList();
   }
+
+  String get solution => text('solution');
+
+  Map<String, dynamic> toJson() => Map<String, dynamic>.from(data)
+    ..['id'] = id
+    ..['label'] = label
+    ..['type'] =
+        type == ExerciseType.interactiveQuiz ? 'interactive_quiz' : type.name
+    ..['formats'] = formats.map((format) => format.jsonValue).toList();
 
   bool isVisibleFor(LessonFormat selected) {
     return selected == LessonFormat.all ||

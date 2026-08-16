@@ -1,11 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stem_laboratory/core/app_assets.dart';
 import 'package:stem_laboratory/repository.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences.setMockInitialValues({});
 
-  const repository = LessonRepository();
+  final repository = LessonRepository();
 
   for (final language in AppLanguage.values) {
     for (final classNumber in [5, 6]) {

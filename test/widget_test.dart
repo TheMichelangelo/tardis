@@ -9,6 +9,6 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('5'), findsOneWidget);
     expect(find.text('6'), findsOneWidget);
-    expect(find.text('Увійти'), findsOneWidget);
+    expect(find.text('Я вчитель'), findsOneWidget);
   });
 }

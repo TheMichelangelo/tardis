@@ -1,219 +1,71 @@
-# STEM Lesson Builder
+# STEM Laboratory
 
 [Українська версія](./README.md)
 
-React Native (Expo) app targeting web first and Android.
+Flutter/Dart application for grade 5–6 STEM lessons, built from one codebase for
+Android, iOS, and Web.
 
-## Main flow
+## Features
 
-- Home page uses white base and displays `src/data/stem_logo.jpeg`.
-- Home page has colorful round class buttons: `5` and `6`.
-- Opening a class shows theme tabs (each tab has its own color).
-- Each theme tab shows lessons and available lesson formats.
+- Ukrainian and English lesson data and UI;
+- class, module, theme, and lesson navigation with deep links;
+- all/single exercise views and format filters;
+- diagrams, rebuses, tables, text, embedded video, homework, quizzes, and
+  connect-the-pairs exercises;
+- lesson PDF print/download/share;
+- persistent navigation, language, teacher session, and lesson storage;
+- bcrypt-based teacher login, JSON proposal builder, and teacher-only solutions;
+- Android APK download button on the web home page.
 
-## Language config
+## Setup
 
-- Current UI/data language is configured in:
-  - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
-- Current data storage type is configured in:
-  - `src/config/appConfig.ts` (`dataStorage: 'json' | 'sqlite'`)
-- Localized labels are stored in:
-  - `src/localization/index.ts`
-
-## Lesson exercise model
-
-Each lesson has `exercises` (or `exersices` for compatibility).
-
-Exercise fields:
-
-- `id`: string
-- `label`: instruction text
-- `formats?`: optional list of formats (`quiz`, `story`, `competition`, `all`)
-- `type`: one of
-  - `diagram` (image path `src/data/<lesson-id>/<exercise-id>.<ext>`)
-  - `table` (`columns`, optional `rows`, `dataToFill`)
-  - `text` (`text`, optional `questions`)
-  - `rebus` (image path `src/data/<lesson-id>/<exercise-id>.<ext>`)
-  - `video` (`youtubeUrl`, optional `questions`)
-  - `interactive_quiz` (`questions[]` with `singleChoice`, `trueFalse`, `shortText`)
-  - `homework` (`text`, optional `imageExt`, optional `videoUrl`; image path `src/data/<lesson-id>/<exercise-id>.<ext>`)
-
-`homework` is always visible regardless of selected format.
-
-## Exercise type examples
-
-```json
-{
-  "id": "diagram-1",
-  "label": "Label the diagram parts",
-  "type": "diagram",
-  "imageExt": "png"
-}
-```
-
-```json
-{
-  "id": "table-1",
-  "label": "Fill the table",
-  "type": "table",
-  "columns": ["Parameter", "Value"],
-  "rows": ["Row 1", "Row 2"],
-  "dataToFill": ["Mass", "12 kg", "Force", "5 N"]
-}
-```
-
-```json
-{
-  "id": "text-1",
-  "label": "Read and answer",
-  "type": "text",
-  "text": "Light travels in straight lines in a uniform medium.",
-  "questions": ["What is a uniform medium?", "Give one example."]
-}
-```
-
-```json
-{
-  "id": "rebus-1",
-  "label": "Solve the rebus",
-  "type": "rebus",
-  "imageExt": "jpg"
-}
-```
-
-```json
-{
-  "id": "video-1",
-  "label": "Watch the video",
-  "type": "video",
-  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE",
-  "questions": ["What was the main idea?", "Which example do you remember?"]
-}
-```
-
-```json
-{
-  "id": "quiz-1",
-  "label": "Mini flashcards",
-  "type": "interactive_quiz",
-  "questions": [
-    {
-      "id": "q1",
-      "question": "What is the unit of force?",
-      "answerTypes": {
-        "singleChoice": ["Newton", "Watt", "Pascal"],
-        "trueFalse": "True",
-        "shortText": "Newton"
-      }
-    }
-  ]
-}
-```
-
-```json
-{
-  "id": "homework-1",
-  "label": "Homework",
-  "type": "homework",
-  "text": "Prepare one real-life example of friction.",
-  "imageExt": "png",
-  "videoUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE"
-}
-```
-
-## Data configs
-
-Language-specific class files:
-
-- `src/data/5_class_stem_lesson_en.json`
-- `src/data/6_class_stem_lesson_en.json`
-- `src/data/5_class_stem_lesson_ua.json`
-- `src/data/6_class_stem_lesson_ua.json`
-
-## Storage behavior
-
-- Storage backend is selected via `appConfig.dataStorage`.
-- `json`:
-  - Web: class + language specific `localStorage` keys.
-  - Android/iOS: class + language specific JSON files in Expo document directory.
-- `sqlite`:
-  - App uses `expo-sqlite` with a local `stem_lesson_builder.db` database.
-  - `class_lessons` stores module data and generated lessons per class/language.
-  - `navigation_state` stores the last navigation state.
-- On load, the app always takes the latest module/theme config from the language JSON files and merges it with saved user lessons.
-
-### SQLite migrations
-
-- SQL migration files live in:
-  - `src/data/db/migrations/001_create_storage_tables.sql`
-  - `src/data/db/migrations/002_seed_navigation_state.sql`
-- The SQLite storage provider runs migrations when the database is opened for the first time.
-- Read/write logic is isolated in dedicated storage components:
-  - `src/lib/dataStorage/jsonDataStorage.ts`
-  - `src/lib/dataStorage/sqliteDataStorage.ts`
-  - `src/lib/dataStorage/index.ts`
-
-## Run
+Install Flutter stable, then run:
 
 ```bash
-npm install
-npm run web
+flutter pub get
+flutter run -d chrome
 ```
 
-`npm install` also installs `expo-sqlite`, which is required for `dataStorage: 'sqlite'`.
+On macOS, `brew install --cask flutter` is the shortest installation path. If
+zsh reports `command not found: flutter`, reopen the terminal after installation
+and verify with `which flutter` and `flutter doctor -v`.
 
-For Android:
+## Verification and releases
 
 ```bash
-npm run android
+dart format --set-exit-if-changed lib test
+flutter analyze
+flutter test
+flutter build apk --release
+flutter build web --release --base-href /tardis/
 ```
 
-## Demo - Web Version
+Run `./scripts/build_flutter_releases.sh` to verify the project, build Android,
+copy the APK to `web/downloads/stem-laboratory.apk`, and build GitHub Pages.
 
-### Main Page
-![Application main page](./demo/main_page.png)
-Class selection and lesson setup page.
+For iOS, install CocoaPods, run `pod install` inside `ios/`, and use
+`flutter build ios --release`. App Store distribution additionally requires an
+Apple Developer Team and signing profile.
 
-### Class Selection with Themes
-![Class selection interface with available themes](./demo/class_with_themes_examle.png)
-Theme selection page showing available lessons within each theme.
+## GitHub Pages
 
-### Lesson Theme Details
-![Extended theme view with details](./demo/class_with_themes_examle_2.png)
-Theme selection page showing available lessons within each theme.
+`.github/workflows/flutter-pages.yml` runs on every push/merge to `main`. It
+tests the project, creates a fresh APK, bundles it with Flutter Web, and deploys
+the site. Configure **Settings → Pages → Source → GitHub Actions** once. Change
+the workflow branch and `/tardis/` base path if the default branch or repository
+name differs.
 
-### Exercise Filtering by Format
-Lessons support different formats for adapting to various learning methods:
+## Storage
 
-- **Story** - narrative format for theory learning
-- **Competition** - competitive format for active learning
-- **Quiz** - test format for knowledge assessment
-- **All** - all available exercises
+The default JSON-backed mode uses local preferences. Native builds can select
+SQLite with:
 
-### Lesson Example
-![Lesson execution interface](./demo/lesson_demo.png)
-Detailed view of selected lesson with description and exercises.
+```bash
+flutter run --dart-define=STEM_STORAGE=sqlite
+```
 
-### Rebus Exercise
-![Rebus exercise example](./demo/rebus_demo.png)
-Interactive rebus for developing logical thinking.
+Web falls back to browser local storage. Initial lesson files remain in
+`src/data/*_class_stem_lesson_{ua,en}.json`.
 
-### Table Exercise
-![Table exercise example](./demo/table.png)
-Filling tables for knowledge structuring.
-
-### Quiz
-![Interactive quiz example](./demo/quiz_demo.png)
-Knowledge testing in interactive quiz format.
-
-### Video Exercise
-![Video exercise example](./demo/video_exercies_demo.png)
-Learning material through educational videos.
-
-### Homework
-![Homework assignment example](./demo/homework%20example.png)
-Creative assignments for independent work.
-
-### Print Version
-![Print version exercise example](./demo/print_exersice_version.png)
-Optimized version for printing educational materials.
+The old Expo/React Native code remains in `App.tsx` and `src/` as a migration
+reference. Production builds use the Flutter code under `lib/`.

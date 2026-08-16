@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'core/app_assets.dart';
+import 'data/storage/lesson_storage.dart';
+import 'data/storage/storage_factory.dart';
 import 'models.dart';
 
 class LessonLoadException implements Exception {
@@ -16,7 +18,10 @@ class LessonLoadException implements Exception {
 }
 
 class LessonRepository {
-  const LessonRepository();
+  LessonRepository({LessonStorage? storage})
+      : _storage = storage ?? createLessonStorage();
+
+  final LessonStorage _storage;
 
   Future<StemClass> load(
     int classNumber, {
@@ -27,10 +32,11 @@ class LessonRepository {
     }
 
     try {
-      final raw = await rootBundle.loadString(
+      final bundledRaw = await rootBundle.loadString(
         AppAssets.classLessons(classNumber, language),
       );
-      final json = jsonDecode(raw);
+      final storedRaw = await _storage.read(classNumber, language.code);
+      final json = jsonDecode(storedRaw ?? bundledRaw);
       if (json is! Map<String, dynamic>) {
         throw const FormatException('Root JSON value must be an object.');
       }
@@ -43,5 +49,24 @@ class LessonRepository {
         error,
       );
     }
+  }
+
+  Future<void> save(
+    int classNumber,
+    StemClass data, {
+    AppLanguage language = AppLanguage.ukrainian,
+  }) async {
+    await _storage.write(
+      classNumber,
+      language.code,
+      jsonEncode(data.toJson()),
+    );
+  }
+
+  Future<void> reset(
+    int classNumber, {
+    AppLanguage language = AppLanguage.ukrainian,
+  }) {
+    return _storage.clear(classNumber, language.code);
   }
 }

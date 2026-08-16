@@ -51,6 +51,24 @@ class LessonCard extends StatelessWidget {
                     )
                     .toList(),
               ),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: lesson.exercises
+                    .map((exercise) => exercise.type)
+                    .toSet()
+                    .map(
+                      (type) => Chip(
+                        backgroundColor: const Color(0xffeef2ff),
+                        labelStyle: const TextStyle(
+                          color: AppTheme.exerciseLabel,
+                        ),
+                        label: Text(AppStrings.exerciseType(type)),
+                      ),
+                    )
+                    .toList(),
+              ),
               const SizedBox(height: 8),
               Align(
                 alignment: Alignment.centerRight,

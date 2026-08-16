@@ -45,5 +45,29 @@ void main() {
 
       expect(lesson.exercisesFor(LessonFormat.quiz), hasLength(1));
     });
+
+    test('round trip preserves teacher solution and exercise formats', () {
+      final lesson = StemLesson.fromJson({
+        'id': 'lesson-1',
+        'title': 'Lesson',
+        'topic': 'Topic',
+        'formats': ['story'],
+        'exercises': [
+          {
+            'id': 'exercise-1',
+            'label': 'Question',
+            'type': 'text',
+            'formats': ['story'],
+            'text': 'Read me',
+            'solution': 'Teacher answer',
+          },
+        ],
+      });
+
+      final restored = StemLesson.fromJson(lesson.toJson());
+
+      expect(restored.exercises.single.solution, 'Teacher answer');
+      expect(restored.exercises.single.formats, [LessonFormat.story]);
+    });
   });
 }
