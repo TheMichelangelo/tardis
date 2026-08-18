@@ -1,219 +1,253 @@
-# STEM Lesson Builder
+# STEM Laboratory
 
 [English version](./README_EN.md)
 
-React Native застосунок з пріоритетом для формування уроків STEM 5х і 6х класів.
+Кросплатформний застосунок для STEM-уроків у 5-х і 6-х класах. Актуальна
+реалізація написана на Flutter/Dart і з одного коду збирається для Android,
+iOS та Web. Серверний API для перегляду навчальних матеріалів не потрібний.
 
-## Конфігурація мов
+## Можливості
 
-- Поточна мова інтерфейсу/даних налаштовується у:
-  - `src/config/appConfig.ts` (`currentLanguage: 'en' | 'ua'`)
-- Поточний тип сховища даних налаштовується у:
-  - `src/config/appConfig.ts` (`dataStorage: 'json' | 'sqlite'`)
-- Локалізовані підписи зберігаються у:
-  - `src/localization/index.ts`
+- український та англійський інтерфейс із локалізованими матеріалами;
+- вибір класу, модуля, теми й уроку;
+- прямі web-посилання на клас або урок і відновлення останньої сторінки;
+- фільтри «усі», «тест», «історія», «змагання»;
+- показ усіх вправ або покроковий режим із кнопками «Назад» і «Далі»;
+- діаграми, ребуси, текст, таблиці, відео, домашні завдання;
+- інтерактивні тести з перевіркою відповіді;
+- вправи на встановлення відповідностей із перевіркою пар;
+- вбудоване відтворення YouTube-відео;
+- друк, завантаження та поширення PDF уроку;
+- адаптивний STEM-фон для телефона, планшета та браузера;
+- завантаження готового Android APK кнопкою на головній сторінці.
 
-## Модель вправ уроку
+## Функції вчителя
 
-Кожен урок містить набір вправ - `exercises` (або `exersices` для сумісності).
+Облікові записи знаходяться в `src/data/users.json`. Email і пароль не
+зберігаються відкритим текстом: застосунок перевіряє bcrypt-хеші. Після входу
+локально зберігаються лише безпечні дані сесії, а кнопка «Вийти» очищає їх.
 
-Поля вправи:
+Авторизований учитель може:
 
-- `id`: номер вправи
-- `label`: опис завадння
-- `formats?`: необов’язковий список форматів, для яких підходить вправа (`quiz`, `story`, `competition`, `all`)
-- `type`: один із типів вправи:
-  - `diagram` (шлях до зображення `src/data/<lesson-id>/<exercise-id>.<ext>`)
-  - `table` (`columns`, необов’язкові `rows`, `dataToFill`)
-  - `text` (`text`, необов’язкові `questions`)
-  - `rebus` (шлях до зображення `src/data/<lesson-id>/<exercise-id>.<ext>`)
-  - `video` (`youtubeUrl`, необов’язкові `questions`)
-  - `interactive_quiz` (`questions[]` з типами `singleChoice`, `trueFalse`, `shortText`)
-  - `homework` (`text`, необов’язкові `imageExt`, необов’язковий `videoUrl`; зображення: `src/data/<lesson-id>/<exercise-id>.<ext>`)
+- відкрити конструктор пропозиції уроку або окремої вправи;
+- додати текст, таблицю, зображення, відео, тест, відповідності чи домашнє
+  завдання;
+- вибрати формати вправи та горизонтальний/вертикальний режим відповідностей;
+- додати кілька структурованих запитань тесту;
+- додати необов'язковий розв'язок;
+- отримати готову JSON-пропозицію;
+- бачити та приховувати розв'язки у вправах. Для учня розв'язки не показуються.
 
-`homework`- домашнє завдання, завжди відображається незалежно від вибраного формату.
+Локальна авторизація керує інтерфейсом офлайн-застосунку, але не замінює
+серверну авторизацію для захищених мережевих даних.
 
-## Приклади типів вправ
+## Підтримувані платформи
 
-```json
-{
-  "id": "diagram-1",
-  "label": "Познач частини схеми",
-  "type": "diagram",
-  "imageExt": "png"
-}
+| Платформа | Стан | Результат складання |
+|---|---|---|
+| Android | підтримується | `build/app/outputs/flutter-apk/app-release.apk` |
+| Web | підтримується | `build/web/` |
+| iOS | проєкт підготовлено | локальна збірка або Archive з Apple-підписом |
+
+Файл для кнопки завантаження зберігається в репозиторії за адресою
+`web/downloads/stem-laboratory.apk`. Під час CI створюється новий APK і
+вкладається безпосередньо в опублікований сайт.
+
+## Встановлення Flutter
+
+Потрібні Flutter stable, Android SDK, а для iOS також Xcode і CocoaPods.
+
+На macOS найпростіше встановити Flutter через Homebrew:
+
+```bash
+brew install --cask flutter
+flutter doctor -v
 ```
 
-```json
-{
-  "id": "table-1",
-  "label": "Заповни таблицю",
-  "type": "table",
-  "columns": ["Параметр", "Значення"],
-  "rows": ["Рядок 1", "Рядок 2"],
-  "dataToFill": ["Маса", "12 кг", "Сила", "5 Н"]
-}
+Якщо термінал показує `zsh: command not found: flutter`, Flutter ще не
+встановлено або його каталог `bin` відсутній у `PATH`. Після інсталяції
+закрийте й знову відкрийте Terminal та перевірте:
+
+```bash
+which flutter
+flutter --version
+flutter doctor -v
 ```
 
-```json
-{
-  "id": "text-1",
-  "label": "Прочитай текст і дай відповіді",
-  "type": "text",
-  "text": "Світло поширюється прямолінійно в однорідному середовищі.",
-  "questions": ["Що таке однорідне середовище?", "Наведи приклад."]
-}
+Для ручного встановлення завантажте Flutter SDK з офіційного сайту, розпакуйте
+його і додайте `<шлях-до-flutter>/bin` до `PATH` у `~/.zshrc`.
+
+## Перший запуск
+
+```bash
+flutter pub get
+flutter run -d chrome
 ```
 
-```json
-{
-  "id": "rebus-1",
-  "label": "Розгадай ребус",
-  "type": "rebus",
-  "imageExt": "jpg"
-}
+Android-пристрій або емулятор:
+
+```bash
+flutter devices
+flutter run -d <device-id>
 ```
 
-```json
-{
-  "id": "video-1",
-  "label": "Переглянь відео",
-  "type": "video",
-  "youtubeUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE",
-  "questions": ["Яку головну ідею ти побачив?", "Який приклад запам'ятався?"]
-}
+## Перевірка якості
+
+```bash
+dart format --set-exit-if-changed lib test
+flutter analyze
+flutter test
 ```
 
-```json
-{
-  "id": "quiz-1",
-  "label": "Мінікартки",
-  "type": "interactive_quiz",
-  "questions": [
-    {
-      "id": "q1",
-      "question": "Яка одиниця сили?",
-      "answerTypes": {
-        "singleChoice": ["Ньютон", "Ват", "Паскаль"],
-        "trueFalse": "True",
-        "shortText": "Ньютон"
-      }
-    }
-  ]
-}
+## Release-збірки
+
+### Android APK
+
+```bash
+flutter build apk --release
 ```
 
-```json
-{
-  "id": "homework-1",
-  "label": "Домашнє завдання",
-  "type": "homework",
-  "text": "Підготуй приклад застосування сили тертя в побуті.",
-  "imageExt": "png",
-  "videoUrl": "https://www.youtube.com/watch?v=VAgt2vo9HdE"
-}
+Результат: `build/app/outputs/flutter-apk/app-release.apk`.
+
+### Web
+
+Для GitHub Pages репозиторію `tardis`:
+
+```bash
+flutter build web --release --base-href /tardis/
 ```
 
-## Конфіги даних
+Якщо сайт публікується в корені домену, використайте `--base-href /`. Для
+форка з іншою назвою репозиторію замініть `/tardis/` на відповідний шлях.
 
-Мовозалежні файли класів:
+### Android і Web однією командою
 
-- `src/data/5_class_stem_lesson_en.json`
-- `src/data/6_class_stem_lesson_en.json`
-- `src/data/5_class_stem_lesson_ua.json`
-- `src/data/6_class_stem_lesson_ua.json`
+```bash
+./scripts/build_flutter_releases.sh
+```
+
+Скрипт запускає аналіз і тести, створює APK, оновлює
+`web/downloads/stem-laboratory.apk`, збирає Web і додає файли для коректного
+перезавантаження маршрутів GitHub Pages. Оновлений APK потрібно додати до
+коміту разом із кодом.
+
+### iOS
+
+```bash
+cd ios
+pod install
+cd ..
+flutter build ios --release
+```
+
+Для TestFlight/App Store відкрийте `ios/Runner.xcworkspace` у Xcode, виберіть
+Apple Developer Team і створіть Archive. Підписаний IPA не зберігається в
+репозиторії, оскільки підпис залежить від облікового запису розробника.
+
+## Автоматична збірка GitHub Pages
+
+Workflow `.github/workflows/flutter-pages.yml` запускається після кожного push
+або merge у гілку `main` і виконує:
+
+1. `flutter pub get`, статичний аналіз і тести;
+2. release-збірку Android APK;
+3. копіювання APK у каталог завантажень сайту;
+4. release-збірку Flutter Web із базовим шляхом `/tardis/`;
+5. публікацію `build/web` у GitHub Pages.
+
+У налаштуваннях репозиторію один раз виберіть **Settings → Pages → Source →
+GitHub Actions**. Після цього merge цієї гілки в `main` автоматично перебудує
+і сайт, і APK для кнопки завантаження. Якщо основна гілка справді називається
+`master`, змініть `branches: [main]` у workflow на `branches: [master]`.
+
+## Навігація
+
+Підтримуються маршрути:
+
+```text
+/
+/login
+/class/5
+/class/6
+/propose?class=5
+/class/<5|6>/module/<module-id>/lesson/<lesson-id>
+```
+
+Старе посилання `/classes?class=5` також підтримується. На Android та iOS
+останній відкритий маршрут відновлюється після перезапуску.
 
 ## Зберігання даних
 
-- Тип сховища обирається через `appConfig.dataStorage`.
-- `json`:
-  - Веб: `localStorage` ключі з прив’язкою до класу та мови.
-  - Android/iOS: JSON-файли з прив’язкою до класу та мови в директорії документів Expo.
-- `sqlite`:
-  - Застосунок використовує `expo-sqlite` і локальну базу `stem_lesson_builder.db`.
-  - У таблиці `class_lessons` зберігаються модулі та згенеровані уроки по класу/мові.
-  - У таблиці `navigation_state` зберігається останній стан навігації.
-- Під час завантаження застосунок бере актуальну конфігурацію модулів/тем із мовних JSON-файлів і поєднує її зі збереженими уроками користувача.
-
-### Міграції SQLite
-
-- SQL-скрипти міграцій зберігаються в:
-  - `src/data/db/migrations/001_create_storage_tables.sql`
-  - `src/data/db/migrations/002_seed_navigation_state.sql`
-- Провайдер SQLite виконує міграції під час першого відкриття бази.
-- Логіка читання/запису ізольована у окремих компонентах:
-  - `src/lib/dataStorage/jsonDataStorage.ts`
-  - `src/lib/dataStorage/sqliteDataStorage.ts`
-  - `src/lib/dataStorage/index.ts`
-
-## Запуск
+За замовчуванням зміни JSON зберігаються локально через
+`shared_preferences`. Дані розділені за класом і мовою. Для нативної SQLite
+збірки використайте:
 
 ```bash
-npm install
-npm run web
+flutter run --dart-define=STEM_STORAGE=sqlite
+flutter build apk --release --dart-define=STEM_STORAGE=sqlite
 ```
 
-`npm install` також встановлює залежність `expo-sqlite`, потрібну для режиму `dataStorage: 'sqlite'`.
+На Web режим SQLite автоматично переходить на JSON/local storage. Сесія,
+обрана мова та навігація також зберігаються локально.
 
-Для Android:
+Локалізовані початкові матеріали:
 
-```bash
-npm run android
+- `src/data/5_class_stem_lesson_ua.json`;
+- `src/data/6_class_stem_lesson_ua.json`;
+- `src/data/5_class_stem_lesson_en.json`;
+- `src/data/6_class_stem_lesson_en.json`.
+
+Зображення вправ мають шлях:
+
+```text
+src/data/<lesson-id>/<exercise-id>.<extension>
 ```
 
-## Приклад роботи веб-версії
+## Формат вправ
 
-### Головна сторінка
-![Головна сторінка додатку](./demo/main_page.png)
-Сторінка вибору класу та налаштувань уроку.
+Підтримуються `diagram`, `rebus`, `table`, `text`, `video`,
+`interactive_quiz`, `homework` і `connect`. Поле `formats` може містити
+`all`, `quiz`, `story`, `competition`; історичне значення `flashcards`
+нормалізується до `competition`. Завантажувач приймає і `exercises`, і стару
+помилкову назву `exersices`. Домашнє завдання показується в кожному форматі.
 
-### Вибір класу з темами
-![Інтерфейс вибору класу з доступними темами](./demo/class_with_themes_examle.png)
-Сторінка вибору теми з відображенням доступних уроків, що в неї входять.
+Скорочений приклад:
 
-### Деталі теми уроку
-![Розширений вигляд тем з деталями](./demo/class_with_themes_examle_2.png)
-Сторінка вибору теми з відображенням доступних уроків, що в неї входять.
+```json
+{
+  "id": "lesson-1-ex-1",
+  "label": "Прочитайте текст",
+  "type": "text",
+  "formats": ["story"],
+  "text": "Матеріал вправи",
+  "questions": ["Перше запитання?"],
+  "solution": "Необов'язковий розв'язок для вчителя"
+}
+```
 
-### Фільтрація вправ за форматами
-Уроки підтримують різні формати для адаптації під різні методи навчання:
+## Структура актуального коду
 
-- **Story** - розповідний формат для вивчення теорії
-- **Competition** - змагальний формат для активного навчання  
-- **Quiz** - тестовий формат для перевірки знань
-- **All** - усі доступні вправи
+```text
+lib/
+├── main.dart                 # точка входу та URL strategy
+├── app.dart                  # маршрути й ініціалізація контролерів
+├── core/                     # тема, локалізація, навігація, фон
+├── data/storage/             # JSON та SQLite сховища
+├── features/
+│   ├── auth/                 # вхід і сесія вчителя
+│   ├── home/                 # вибір класу та APK download
+│   ├── lessons/              # класи, уроки, PDF і маршрути
+│   ├── exercises/            # усі типи вправ
+│   └── proposals/            # конструктор JSON-пропозицій
+├── models.dart
+└── repository.dart
+```
 
-![Фільтр за типом уроку](./demo/filter_example_1.png)
-![Фільтр за типом уроку](./demo/filter_example_2.png)
-![Фільтр за типом уроку](./demo/filter_example_3.png)
-![Фільтр за типом уроку](./demo/filter_example_4.png)
+Каталоги `android/`, `ios/` і `web/` містять платформні проєкти. `build/`
+генерується Flutter і не зберігається в Git.
 
-Кількість завдань і їх порядок змінюються відповідно до вибраного фільтру. Фільтрація завдань задається в файлі з завданнями.
+## Legacy React
 
-### Приклад уроку
-![Інтерфейс виконання уроку](./demo/lesson_demo.png)
-Детальний перегляд обраного уроку з описом та вправами.
-
-### Відео-вправа
-![Приклад вправи з відео](./demo/video_exercies_demo.png)
-Вивчення матеріалу через освітні відео.
-
-### Вправа-ребус
-![Приклад вправи-ребусу](./demo/rebus_demo.png)
-Вправа для розвантаження - можливий варіант як фізкульт хвилинки, так і інтерактивний ребус для розвитку логічного мислення.
-
-### Таблична вправа
-![Приклад табличної вправи](./demo/table.png)
-Заповнення таблиць для структурування і узагальнення знань.
-
-### Вікторина
-![Приклад інтерактивної вікторини](./demo/quiz_demo.png)
-Тестування знань у форматі інтерактивної вікторини.
-
-### Домашнє завдання
-![Приклад домашнього завдання](./demo/homework%20example.png)
-Творчі завдання для самостійної роботи.
-
-### Версія для друку
-![Приклад версії вправи для друку](./demo/print_exersice_version.png)
-Оптимізована версія для друку навчальних матеріалів.
+Попередня Expo/React Native реалізація залишається в `App.tsx`, `src/` і
+`package.json` як еталон міграції. Release-збірки створюються з Flutter-коду в
+`lib/`; `npm` не потрібний для запуску актуального застосунку.
