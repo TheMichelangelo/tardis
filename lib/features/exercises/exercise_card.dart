@@ -47,7 +47,11 @@ class ExerciseCard extends StatelessWidget {
                   ?.copyWith(fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 12),
-            ExerciseContent(lessonId: lessonId, exercise: exercise),
+            ExerciseContent(
+              lessonId: lessonId,
+              exercise: exercise,
+              isTeacher: isTeacher,
+            ),
             if (isTeacher && exercise.solution.trim().isNotEmpty)
               _ExerciseSolution(solution: exercise.solution),
           ],

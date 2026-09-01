@@ -585,6 +585,41 @@
           ]
         }
       ]
+    },
+    {
+      "id": "module-diagnostic",
+      "title": "Діагностувальні роботи",
+      "themes": [
+        {
+          "id": "diagnostic-works",
+          "color": "#F59E0B",
+          "lessons": [
+            {
+              "id": "diagnostic-5-residual-knowledge",
+              "title": "Діагностувальна робота за залишковими знаннями 5-го класу",
+              "topic": "Математичні вміння та базові поняття STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "diagnostic-5-residual-knowledge-download",
+                  "label": "Діагностувальна робота за залишковими знаннями 5-го класу",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "Робота містить два рівноцінні варіанти по п’ять завдань. Вона допоможе визначити, які математичні вміння та базові поняття STEM потрібно повторити перед вивченням нових тем. Робота не оцінюється.",
+                  "studentPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge.pdf",
+                  "studentTex": "src/data/6_diagnostic/diagnostic_5_residual_knowledge.tex",
+                  "teacherPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf",
+                  "teacherTex": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.tex"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "lessons": []

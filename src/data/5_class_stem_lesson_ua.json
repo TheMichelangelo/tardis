@@ -1881,6 +1881,17 @@
           ]
         }
       ]
+    },
+    {
+      "id": "module-diagnostic",
+      "title": "Діагностувальні роботи",
+      "themes": [
+        {
+          "id": "diagnostic-works",
+          "color": "#F59E0B",
+          "lessons": []
+        }
+      ]
     }
   ],
   "lessons": []

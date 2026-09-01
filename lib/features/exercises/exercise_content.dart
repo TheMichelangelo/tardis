@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../core/app_assets.dart';
@@ -12,11 +14,13 @@ class ExerciseContent extends StatelessWidget {
   const ExerciseContent({
     required this.lessonId,
     required this.exercise,
+    required this.isTeacher,
     super.key,
   });
 
   final String lessonId;
   final StemExercise exercise;
+  final bool isTeacher;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,7 @@ class ExerciseContent extends StatelessWidget {
       ExerciseType.homework => _HomeworkExercise(
           lessonId: lessonId,
           exercise: exercise,
+          isTeacher: isTeacher,
         ),
       ExerciseType.video => _VideoExercise(
           url: exercise.text('youtubeUrl'),
@@ -162,15 +167,64 @@ class _EmbeddedYoutubeVideoState extends State<EmbeddedYoutubeVideo> {
 }
 
 class _HomeworkExercise extends StatelessWidget {
-  const _HomeworkExercise({required this.lessonId, required this.exercise});
+  const _HomeworkExercise({
+    required this.lessonId,
+    required this.exercise,
+    required this.isTeacher,
+  });
   final String lessonId;
   final StemExercise exercise;
+  final bool isTeacher;
+
+  Future<void> _download(
+    BuildContext context,
+    String assetPath,
+  ) async {
+    try {
+      final data = await rootBundle.load(assetPath);
+      final bytes = data.buffer.asUint8List(
+        data.offsetInBytes,
+        data.lengthInBytes,
+      );
+      final fileName = assetPath.split('/').last;
+      final isPdf = fileName.toLowerCase().endsWith('.pdf');
+      await FilePicker.saveFile(
+        fileName: fileName,
+        bytes: bytes,
+        mimeType: isPdf ? 'application/pdf' : 'application/x-tex',
+        dialogTitle: AppStrings.get('saveDiagnosticFile'),
+      );
+    } catch (_) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppStrings.get('downloadDiagnosticError'))),
+      );
+    }
+  }
+
+  Widget _downloadButton(
+    BuildContext context, {
+    required String assetPath,
+    required String label,
+    required IconData icon,
+  }) {
+    return OutlinedButton.icon(
+      onPressed: () => _download(context, assetPath),
+      icon: Icon(icon),
+      label: Text(label),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final hasImage = exercise.text('imageData').isNotEmpty ||
         exercise.data.containsKey('imageExt');
     final videoUrl = exercise.text('videoUrl');
+    final studentPdf = exercise.text('studentPdf');
+    final studentTex = exercise.text('studentTex');
+    final teacherPdf = exercise.text('teacherPdf');
+    final teacherTex = exercise.text('teacherTex');
+    final hasDiagnosticFiles = studentPdf.isNotEmpty || studentTex.isNotEmpty;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -182,6 +236,62 @@ class _HomeworkExercise extends StatelessWidget {
         if (videoUrl.isNotEmpty) ...[
           const SizedBox(height: 12),
           EmbeddedYoutubeVideo(url: videoUrl),
+        ],
+        if (hasDiagnosticFiles) ...[
+          const SizedBox(height: 16),
+          Text(
+            AppStrings.get('studentVersionNoAnswers'),
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if (studentPdf.isNotEmpty)
+                _downloadButton(
+                  context,
+                  assetPath: studentPdf,
+                  label: AppStrings.get('downloadStudentPdf'),
+                  icon: Icons.picture_as_pdf,
+                ),
+              if (studentTex.isNotEmpty)
+                _downloadButton(
+                  context,
+                  assetPath: studentTex,
+                  label: AppStrings.get('downloadStudentTex'),
+                  icon: Icons.code,
+                ),
+            ],
+          ),
+        ],
+        if (isTeacher && (teacherPdf.isNotEmpty || teacherTex.isNotEmpty)) ...[
+          const SizedBox(height: 16),
+          Text(
+            AppStrings.get('teacherVersionWithAnswers'),
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if (teacherPdf.isNotEmpty)
+                _downloadButton(
+                  context,
+                  assetPath: teacherPdf,
+                  label: AppStrings.get('downloadTeacherPdf'),
+                  icon: Icons.lock,
+                ),
+              if (teacherTex.isNotEmpty)
+                _downloadButton(
+                  context,
+                  assetPath: teacherTex,
+                  label: AppStrings.get('downloadTeacherTex'),
+                  icon: Icons.code,
+                ),
+            ],
+          ),
         ],
       ],
     );
