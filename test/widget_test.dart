@@ -24,9 +24,7 @@ void main() {
       'formats': ['story'],
       'text': 'Завантажте потрібну версію.',
       'studentPdf': 'src/data/6_diagnostic/student.pdf',
-      'studentTex': 'src/data/6_diagnostic/student.tex',
       'teacherPdf': 'src/data/6_diagnostic/teacher.pdf',
-      'teacherTex': 'src/data/6_diagnostic/teacher.tex',
     });
 
     Future<void> pumpCard({required bool isTeacher}) async {
@@ -43,15 +41,11 @@ void main() {
     }
 
     await pumpCard(isTeacher: false);
-    expect(find.text('Завантажити PDF без відповідей'), findsOneWidget);
-    expect(find.text('Завантажити TeX без відповідей'), findsOneWidget);
+    expect(find.text('Завантажити PDF'), findsOneWidget);
     expect(find.text('Завантажити PDF з відповідями'), findsNothing);
-    expect(find.text('Завантажити TeX з відповідями'), findsNothing);
 
     await pumpCard(isTeacher: true);
-    expect(find.text('Завантажити PDF без відповідей'), findsOneWidget);
-    expect(find.text('Завантажити TeX без відповідей'), findsOneWidget);
+    expect(find.text('Завантажити PDF'), findsOneWidget);
     expect(find.text('Завантажити PDF з відповідями'), findsOneWidget);
-    expect(find.text('Завантажити TeX з відповідями'), findsOneWidget);
   });
 }

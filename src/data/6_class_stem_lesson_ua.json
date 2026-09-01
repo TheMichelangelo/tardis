@@ -611,9 +611,7 @@
                   ],
                   "text": "Робота містить два рівноцінні варіанти по п’ять завдань. Вона допоможе визначити, які математичні вміння та базові поняття STEM потрібно повторити перед вивченням нових тем. Робота не оцінюється.",
                   "studentPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge.pdf",
-                  "studentTex": "src/data/6_diagnostic/diagnostic_5_residual_knowledge.tex",
-                  "teacherPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf",
-                  "teacherTex": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.tex"
+                  "teacherPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf"
                 }
               ]
             }

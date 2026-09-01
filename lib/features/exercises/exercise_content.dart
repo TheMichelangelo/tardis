@@ -221,10 +221,8 @@ class _HomeworkExercise extends StatelessWidget {
         exercise.data.containsKey('imageExt');
     final videoUrl = exercise.text('videoUrl');
     final studentPdf = exercise.text('studentPdf');
-    final studentTex = exercise.text('studentTex');
     final teacherPdf = exercise.text('teacherPdf');
-    final teacherTex = exercise.text('teacherTex');
-    final hasDiagnosticFiles = studentPdf.isNotEmpty || studentTex.isNotEmpty;
+    final hasDiagnosticFiles = studentPdf.isNotEmpty;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -255,17 +253,10 @@ class _HomeworkExercise extends StatelessWidget {
                   label: AppStrings.get('downloadStudentPdf'),
                   icon: Icons.picture_as_pdf,
                 ),
-              if (studentTex.isNotEmpty)
-                _downloadButton(
-                  context,
-                  assetPath: studentTex,
-                  label: AppStrings.get('downloadStudentTex'),
-                  icon: Icons.code,
-                ),
             ],
           ),
         ],
-        if (isTeacher && (teacherPdf.isNotEmpty || teacherTex.isNotEmpty)) ...[
+        if (isTeacher && teacherPdf.isNotEmpty) ...[
           const SizedBox(height: 16),
           Text(
             AppStrings.get('teacherVersionWithAnswers'),
@@ -282,13 +273,6 @@ class _HomeworkExercise extends StatelessWidget {
                   assetPath: teacherPdf,
                   label: AppStrings.get('downloadTeacherPdf'),
                   icon: Icons.lock,
-                ),
-              if (teacherTex.isNotEmpty)
-                _downloadButton(
-                  context,
-                  assetPath: teacherTex,
-                  label: AppStrings.get('downloadTeacherTex'),
-                  icon: Icons.code,
                 ),
             ],
           ),
