@@ -38,6 +38,8 @@ flutter:
     - src/data/5_class_stem_lesson_en.json
     - src/data/6_class_stem_lesson_en.json
     - src/data/users.json
+    - src/data/5_diagnostic/stem_5_plan_32_hours.tex
+    - src/data/5_diagnostic/stem_5_plan_48_hours.tex
     - src/data/lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof/
     - src/data/lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu/
     - src/data/lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p/

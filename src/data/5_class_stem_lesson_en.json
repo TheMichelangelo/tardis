@@ -216,6 +216,68 @@
           ]
         }
       ]
+    },
+    {
+      "id": "module-diagnostic",
+      "title": "Diagnostic materials",
+      "themes": [
+        {
+          "id": "diagnostic-works",
+          "color": "#F59E0B",
+          "lessons": [
+            {
+              "id": "stem-5-plan-32-hours",
+              "title": "STEM teaching plan: 1 h/week (32 hours)",
+              "topic": "Teaching plans",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-5-plan-32-download",
+                  "label": "STEM teaching plan: 1 h/week (32 hours)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "Grade 5. Semester 1: 15 weeks, 15 hours; semester 2: 17 weeks, 17 hours. Topics, practical activities, learning outcomes and workbook references. Document in Ukrainian; compile with XeLaTeX.",
+                  "attachments": [
+                    {
+                      "path": "src/data/5_diagnostic/stem_5_plan_32_hours.tex",
+                      "label": "Download LaTeX (.tex)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stem-5-plan-48-hours",
+              "title": "STEM teaching plan: 1.5 h/week (48 hours)",
+              "topic": "Teaching plans",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-5-plan-48-download",
+                  "label": "STEM teaching plan: 1.5 h/week (48 hours)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "Grade 5. Semester 1: 15 weeks, 22,5 hours; semester 2: 17 weeks, 25,5 hours. Topics, practical activities, learning outcomes and workbook references. Document in Ukrainian; compile with XeLaTeX.",
+                  "attachments": [
+                    {
+                      "path": "src/data/5_diagnostic/stem_5_plan_48_hours.tex",
+                      "label": "Download LaTeX (.tex)"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "lessons": []

@@ -1889,7 +1889,58 @@
         {
           "id": "diagnostic-works",
           "color": "#F59E0B",
-          "lessons": []
+          "lessons": [
+            {
+              "id": "stem-5-plan-32-hours",
+              "title": "Навчальний план STEM: 1 год/тиждень (32 год)",
+              "topic": "Календарно-тематичне планування",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-5-plan-32-download",
+                  "label": "Навчальний план STEM: 1 год/тиждень (32 год)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "5 клас. І семестр: 15 тижнів, 15 год; ІІ семестр: 17 тижнів, 17 год. План містить теми, практичні роботи, очікувані результати та сторінки сканованого зошита. Файл українською мовою; компіляція XeLaTeX.",
+                  "attachments": [
+                    {
+                      "path": "src/data/5_diagnostic/stem_5_plan_32_hours.tex",
+                      "label": "Завантажити LaTeX (.tex)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stem-5-plan-48-hours",
+              "title": "Навчальний план STEM: 1,5 год/тиждень (48 год)",
+              "topic": "Календарно-тематичне планування",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-5-plan-48-download",
+                  "label": "Навчальний план STEM: 1,5 год/тиждень (48 год)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "5 клас. І семестр: 15 тижнів, 22,5 год; ІІ семестр: 17 тижнів, 25,5 год. План містить теми, практичні роботи, очікувані результати та сторінки сканованого зошита. Файл українською мовою; компіляція XeLaTeX.",
+                  "attachments": [
+                    {
+                      "path": "src/data/5_diagnostic/stem_5_plan_48_hours.tex",
+                      "label": "Завантажити LaTeX (.tex)"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }

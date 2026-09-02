@@ -222,11 +222,31 @@ class _HomeworkExercise extends StatelessWidget {
     final videoUrl = exercise.text('videoUrl');
     final studentPdf = exercise.text('studentPdf');
     final teacherPdf = exercise.text('teacherPdf');
+    final attachments = exercise.objectList('attachments');
     final hasDiagnosticFiles = studentPdf.isNotEmpty;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(exercise.text('text')),
+        if (attachments.isNotEmpty) ...[
+          const SizedBox(height: 16),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final attachment in attachments)
+                if (attachment['path'] is String &&
+                    (attachment['path'] as String).isNotEmpty)
+                  _downloadButton(
+                    context,
+                    assetPath: attachment['path'] as String,
+                    label: attachment['label'] as String? ??
+                        (attachment['path'] as String).split('/').last,
+                    icon: Icons.download,
+                  ),
+            ],
+          ),
+        ],
         if (hasImage) ...[
           const SizedBox(height: 12),
           _ExerciseImage(lessonId: lessonId, exercise: exercise),
