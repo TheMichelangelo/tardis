@@ -614,6 +614,58 @@
                   "teacherPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf"
                 }
               ]
+            },
+            {
+              "id": "stem-6-plan-32-hours",
+              "title": "Навчальний план STEM: 1 год/тиждень (32 год)",
+              "topic": "Календарно-тематичне планування",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-6-plan-32-download",
+                  "planAsset": "src/data/6_diagnostic/stem_6_plan_32_hours.json",
+                  "label": "Навчальний план STEM: 1 год/тиждень (32 год)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "6 клас. І семестр: 15 тижнів, 15 год; ІІ семестр: 17 тижнів, 17 год. План укладено за модельною програмою без прив’язки до зошита. Містить теми, практичні роботи, очікувані результати та сторінки програми. Читайте на сайті або завантажуйте PDF.",
+                  "attachments": [
+                    {
+                      "path": "src/data/6_diagnostic/stem_6_plan_32_hours.pdf",
+                      "label": "Завантажити"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stem-6-plan-48-hours",
+              "title": "Навчальний план STEM: 1,5 год/тиждень (48 год)",
+              "topic": "Календарно-тематичне планування",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-6-plan-48-download",
+                  "planAsset": "src/data/6_diagnostic/stem_6_plan_48_hours.json",
+                  "label": "Навчальний план STEM: 1,5 год/тиждень (48 год)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "6 клас. І семестр: 15 тижнів, 22,5 год; ІІ семестр: 17 тижнів, 25,5 год. План укладено за модельною програмою без прив’язки до зошита. Містить теми, практичні роботи, очікувані результати та сторінки програми. Читайте на сайті або завантажуйте PDF.",
+                  "attachments": [
+                    {
+                      "path": "src/data/6_diagnostic/stem_6_plan_48_hours.pdf",
+                      "label": "Завантажити"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

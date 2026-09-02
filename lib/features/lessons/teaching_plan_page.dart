@@ -170,7 +170,7 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
               for (final week in weeks) ...[
                 Text(
                   'Тиждень ${week['week']} • ${week['hours']} год • '
-                  'Зошит: с. ${week['pages']}',
+                  '${week['referenceLabel'] ?? 'Зошит'}: с. ${week['pages']}',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 const SizedBox(height: 6),

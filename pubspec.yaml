@@ -50,3 +50,7 @@ flutter:
     - src/data/lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch/
     - src/data/6_diagnostic/diagnostic_5_residual_knowledge.pdf
     - src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf
+    - src/data/6_diagnostic/stem_6_plan_32_hours.pdf
+    - src/data/6_diagnostic/stem_6_plan_32_hours.json
+    - src/data/6_diagnostic/stem_6_plan_48_hours.pdf
+    - src/data/6_diagnostic/stem_6_plan_48_hours.json

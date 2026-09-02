@@ -1,4 +1,4 @@
-"""Export website reading data from the two checked-in LaTeX teaching plans.
+"""Export website reading data from the grade 5 and 6 LaTeX teaching plans.
 
 Run after editing a plan: python3 scripts/export_stem_plan_reading.py
 Recompile its PDF with XeLaTeX twice separately. The LaTeX source stays out
@@ -10,7 +10,7 @@ import json
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1] / 'src/data/5_diagnostic'
+ROOT = Path(__file__).resolve().parents[1] / 'src/data'
 
 
 def plain(value):
@@ -24,9 +24,10 @@ def plain(value):
     return value
 
 
-def export(total):
-    stem = f'stem_5_plan_{total}_hours'
-    source = (ROOT / f'{stem}.tex').read_text()
+def export(total, grade=5):
+    directory = ROOT / f'{grade}_diagnostic'
+    stem = f'stem_{grade}_plan_{total}_hours'
+    source = (directory / f'{stem}.tex').read_text()
     parts = re.split(r'\\section\*\{([^}]+)\}', source)
     sections = []
     weeks = []
@@ -43,6 +44,8 @@ def export(total):
                 entry = dict(week=int(number), hours=hours, module=plain(module),
                              topic=plain(topic), pages=plain(cells[3]),
                              activity=plain(cells[4]), outcome=plain(cells[5]))
+                if grade == 6:
+                    entry['referenceLabel'] = 'Програма'
                 entries.append(entry)
                 weeks.append(entry)
             sections.append(dict(title=title, weeks=entries))
@@ -61,11 +64,12 @@ def export(total):
     assert sum(float(w['hours'].replace(',', '.')) for w in weeks) == total
     assert len(sections[-2]['weeks']) == 15
     assert len(sections[-1]['weeks']) == 17
-    (ROOT / f'{stem}.json').write_text(
+    (directory / f'{stem}.json').write_text(
         json.dumps(dict(sections=sections), ensure_ascii=False, indent=2) + '\n'
     )
 
 
 if __name__ == '__main__':
-    for total in (32, 48):
-        export(total)
+    for grade in (5, 6):
+        for total in (32, 48):
+            export(total, grade)

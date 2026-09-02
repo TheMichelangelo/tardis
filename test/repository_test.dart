@@ -41,7 +41,9 @@ void main() {
     final diagnosticModule = class6.modules.singleWhere(
       (module) => module.id == 'module-diagnostic',
     );
-    final lesson = diagnosticModule.themes.single.lessons.single;
+    final lesson = diagnosticModule.themes.single.lessons.singleWhere(
+      (lesson) => lesson.id == 'diagnostic-5-residual-knowledge',
+    );
     final exercise = lesson.exercises.single;
 
     expect(lesson.id, 'diagnostic-5-residual-knowledge');
