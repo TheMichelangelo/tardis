@@ -6,6 +6,7 @@ import '../../core/stem_background.dart';
 import '../../models.dart';
 import '../exercises/exercise_card.dart';
 import 'lesson_pdf_service.dart';
+import 'teaching_plan_page.dart';
 
 enum ExerciseViewMode { single, all }
 
@@ -58,6 +59,12 @@ class _LessonPageState extends State<LessonPage> {
 
   @override
   Widget build(BuildContext context) {
+    final plan = widget.lesson.exercises
+        .where((exercise) => exercise.text('planAsset').isNotEmpty)
+        .firstOrNull;
+    if (plan != null) {
+      return TeachingPlanPage(title: widget.lesson.title, exercise: plan);
+    }
     final exercises = widget.lesson.exercisesFor(_selectedFormat);
     if (_exerciseIndex >= exercises.length) _exerciseIndex = 0;
     return Scaffold(

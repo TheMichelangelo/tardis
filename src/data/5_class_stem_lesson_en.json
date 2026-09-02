@@ -235,16 +235,17 @@
               "exercises": [
                 {
                   "id": "stem-5-plan-32-download",
+                  "planAsset": "src/data/5_diagnostic/stem_5_plan_32_hours.json",
                   "label": "STEM teaching plan: 1 h/week (32 hours)",
                   "type": "homework",
                   "formats": [
                     "story"
                   ],
-                  "text": "Grade 5. Semester 1: 15 weeks, 15 hours; semester 2: 17 weeks, 17 hours. Topics, practical activities, learning outcomes and workbook references. Document in Ukrainian; compile with XeLaTeX.",
+                  "text": "Grade 5. Semester 1: 15 weeks, 15 hours; semester 2: 17 weeks, 17 hours. Topics, practical activities, learning outcomes and workbook references. Read the Ukrainian plan below or download it as a PDF.",
                   "attachments": [
                     {
-                      "path": "src/data/5_diagnostic/stem_5_plan_32_hours.tex",
-                      "label": "Download LaTeX (.tex)"
+                      "path": "src/data/5_diagnostic/stem_5_plan_32_hours.pdf",
+                      "label": "Download"
                     }
                   ]
                 }
@@ -260,16 +261,17 @@
               "exercises": [
                 {
                   "id": "stem-5-plan-48-download",
+                  "planAsset": "src/data/5_diagnostic/stem_5_plan_48_hours.json",
                   "label": "STEM teaching plan: 1.5 h/week (48 hours)",
                   "type": "homework",
                   "formats": [
                     "story"
                   ],
-                  "text": "Grade 5. Semester 1: 15 weeks, 22,5 hours; semester 2: 17 weeks, 25,5 hours. Topics, practical activities, learning outcomes and workbook references. Document in Ukrainian; compile with XeLaTeX.",
+                  "text": "Grade 5. Semester 1: 15 weeks, 22,5 hours; semester 2: 17 weeks, 25,5 hours. Topics, practical activities, learning outcomes and workbook references. Read the Ukrainian plan below or download it as a PDF.",
                   "attachments": [
                     {
-                      "path": "src/data/5_diagnostic/stem_5_plan_48_hours.tex",
-                      "label": "Download LaTeX (.tex)"
+                      "path": "src/data/5_diagnostic/stem_5_plan_48_hours.pdf",
+                      "label": "Download"
                     }
                   ]
                 }
