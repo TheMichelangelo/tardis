@@ -30,37 +30,40 @@ class StemBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: LayoutBuilder(builder: (context, constraints) {
-        final random = Random(7305);
-        return Stack(
-          children: List.generate(28, (index) {
-            final symbol = _symbols[index % _symbols.length];
-            final left =
-                random.nextDouble() * max(1, constraints.maxWidth - 70);
-            final top =
-                random.nextDouble() * max(1, constraints.maxHeight - 40);
-            return Positioned(
-              left: left,
-              top: top,
-              child: Transform.rotate(
-                angle: (random.nextDouble() - .5) * .7,
-                child: Opacity(
-                  opacity: .10,
-                  child: Text(
-                    symbol,
-                    style: TextStyle(
-                      color: _colors[index % _colors.length],
-                      fontSize: symbol.length <= 2 ? 34 : 20,
-                      fontWeight: FontWeight.w700,
+    return ExcludeSemantics(
+      child: IgnorePointer(
+        child: LayoutBuilder(builder: (context, constraints) {
+          final random = Random(7305);
+          return Stack(
+            children: List.generate(28, (index) {
+              final symbol = _symbols[index % _symbols.length];
+              final left =
+                  random.nextDouble() * max(1, constraints.maxWidth - 70);
+              final top =
+                  random.nextDouble() * max(1, constraints.maxHeight - 40);
+              return Positioned(
+                left: left,
+                top: top,
+                child: Transform.rotate(
+                  angle: (random.nextDouble() - .5) * .7,
+                  child: Opacity(
+                    opacity: .10,
+                    child: Text(
+                      symbol,
+                      textScaler: TextScaler.noScaling,
+                      style: TextStyle(
+                        color: _colors[index % _colors.length],
+                        fontSize: symbol.length <= 2 ? 34 : 20,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          }),
-        );
-      }),
+              );
+            }),
+          );
+        }),
+      ),
     );
   }
 }

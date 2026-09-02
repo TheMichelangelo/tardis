@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
 import '../../core/localization.dart';
+import '../../core/reading_settings.dart';
+import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
 import '../../models.dart';
 import '../exercises/exercise_card.dart';
@@ -69,8 +71,10 @@ class _LessonPageState extends State<LessonPage> {
     if (_exerciseIndex >= exercises.length) _exerciseIndex = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.lesson.title),
+        title: Text(widget.lesson.title,
+            maxLines: 1, overflow: TextOverflow.ellipsis),
         actions: [
+          const TextSizeButton(),
           IconButton(
             tooltip: AppStrings.get('printPdf'),
             onPressed: () => _runPdf(() => _pdf.printLesson(
@@ -93,7 +97,7 @@ class _LessonPageState extends State<LessonPage> {
       ),
       body: StemBackgroundBody(
         child: ListView(
-          padding: const EdgeInsets.all(20),
+          padding: pagePadding(context),
           children: [
             Text(
               '${AppStrings.get('class')} ${widget.classNumber} '
@@ -102,12 +106,20 @@ class _LessonPageState extends State<LessonPage> {
             ),
             const SizedBox(height: 8),
             Text(
-              widget.lesson.topic,
+              widget.lesson.title,
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall
                   ?.copyWith(fontWeight: FontWeight.w800),
             ),
+            if (widget.lesson.topic != widget.lesson.title)
+              Text(
+                widget.lesson.topic,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.w800),
+              ),
             const SizedBox(height: 14),
             Wrap(
               spacing: 8,
@@ -121,24 +133,27 @@ class _LessonPageState extends State<LessonPage> {
               }).toList(),
             ),
             const SizedBox(height: 10),
-            SegmentedButton<ExerciseViewMode>(
-              segments: [
-                ButtonSegment(
-                  value: ExerciseViewMode.all,
-                  label: Text(AppStrings.get('allExercises')),
-                  icon: const Icon(Icons.view_list),
-                ),
-                ButtonSegment(
-                  value: ExerciseViewMode.single,
-                  label: Text(AppStrings.get('oneByOne')),
-                  icon: const Icon(Icons.view_carousel),
-                ),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final mode in ExerciseViewMode.values)
+                  ChoiceChip(
+                    avatar: Icon(
+                        mode == ExerciseViewMode.all
+                            ? Icons.view_list
+                            : Icons.view_carousel,
+                        size: 20),
+                    label: Text(AppStrings.get(mode == ExerciseViewMode.all
+                        ? 'allExercises'
+                        : 'oneByOne')),
+                    selected: _viewMode == mode,
+                    onSelected: (_) => setState(() {
+                      _viewMode = mode;
+                      _exerciseIndex = 0;
+                    }),
+                  ),
               ],
-              selected: {_viewMode},
-              onSelectionChanged: (value) => setState(() {
-                _viewMode = value.first;
-                _exerciseIndex = 0;
-              }),
             ),
             const SizedBox(height: 14),
             if (exercises.isEmpty)
@@ -153,8 +168,11 @@ class _LessonPageState extends State<LessonPage> {
               ),
               const SizedBox(height: 8),
               _card(exercises[_exerciseIndex]),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              OverflowBar(
+                alignment: MainAxisAlignment.spaceBetween,
+                overflowAlignment: OverflowBarAlignment.end,
+                spacing: 12,
+                overflowSpacing: 8,
                 children: [
                   FilledButton.tonalIcon(
                     onPressed: _exerciseIndex == 0
@@ -181,6 +199,7 @@ class _LessonPageState extends State<LessonPage> {
 
   Widget _card(StemExercise exercise) {
     return ExerciseCard(
+      key: ValueKey('${widget.lesson.id}/${exercise.id}'),
       lessonId: widget.lesson.id,
       exercise: exercise,
       isTeacher: widget.isTeacher,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/app_assets.dart';
 import '../../core/app_routes.dart';
 import '../../core/localization.dart';
+import '../../core/reading_settings.dart';
+import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
 import '../auth/auth_controller.dart';
 import '../../models.dart';
@@ -59,11 +61,12 @@ class _ClassPageState extends State<ClassPage> {
       appBar: AppBar(
         title: Text('${AppStrings.get('class')} ${widget.classNumber}'),
         actions: [
+          const TextSizeButton(),
           if (widget.authController.isLoggedIn)
-            TextButton.icon(
+            IconButton(
               onPressed: _openProposal,
               icon: const Icon(Icons.edit_note),
-              label: Text(AppStrings.get('createProposal')),
+              tooltip: AppStrings.get('createProposal'),
             ),
         ],
       ),
@@ -86,7 +89,7 @@ class _ClassPageState extends State<ClassPage> {
             final selectedIndex = _selectedIndex.clamp(0, tabs.length - 1);
             final selected = tabs[selectedIndex];
             return ListView(
-              padding: const EdgeInsets.all(20),
+              padding: pagePadding(context),
               children: [
                 Text(
                   AppStrings.get('module'),

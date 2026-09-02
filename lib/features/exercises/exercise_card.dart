@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
 import '../../core/localization.dart';
+import '../../core/reading_settings.dart';
 import '../../models.dart';
 import 'exercise_content.dart';
 
-class ExerciseCard extends StatelessWidget {
+class ExerciseCard extends StatefulWidget {
   const ExerciseCard({
     required this.lessonId,
     required this.exercise,
@@ -18,7 +19,18 @@ class ExerciseCard extends StatelessWidget {
   final bool isTeacher;
 
   @override
+  State<ExerciseCard> createState() => _ExerciseCardState();
+}
+
+class _ExerciseCardState extends State<ExerciseCard>
+    with AutomaticKeepAliveClientMixin<ExerciseCard> {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+    final exercise = widget.exercise;
     return Card(
       margin: const EdgeInsets.only(bottom: 14),
       color: Colors.white,
@@ -31,12 +43,19 @@ class ExerciseCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppStrings.exerciseType(exercise.type),
-              style: const TextStyle(
-                color: AppTheme.exerciseLabel,
-                fontWeight: FontWeight.w700,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    AppStrings.exerciseType(exercise.type),
+                    style: const TextStyle(
+                      color: AppTheme.exerciseLabel,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                const TextSizeButton(),
+              ],
             ),
             const SizedBox(height: 4),
             Text(
@@ -48,11 +67,11 @@ class ExerciseCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             ExerciseContent(
-              lessonId: lessonId,
+              lessonId: widget.lessonId,
               exercise: exercise,
-              isTeacher: isTeacher,
+              isTeacher: widget.isTeacher,
             ),
-            if (isTeacher && exercise.solution.trim().isNotEmpty)
+            if (widget.isTeacher && exercise.solution.trim().isNotEmpty)
               _ExerciseSolution(solution: exercise.solution),
           ],
         ),

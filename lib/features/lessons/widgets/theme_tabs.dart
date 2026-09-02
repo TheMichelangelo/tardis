@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/parsing.dart';
+import '../../../core/responsive_layout.dart';
 import '../../../models.dart';
 
 class ThemeTab {
@@ -36,28 +37,51 @@ class ThemeTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 82,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: tabs.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemBuilder: (context, index) {
-          final tab = tabs[index];
-          return SizedBox(
-            width: 230,
-            child: FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: tab.color.withValues(
-                  alpha: index == selectedIndex ? 1 : .6,
+    return LayoutBuilder(builder: (context, constraints) {
+      final scale = readingScale(context);
+      if (constraints.maxWidth / scale < 700) {
+        return Card(
+          clipBehavior: Clip.antiAlias,
+          child: ExpansionTile(
+            key: ValueKey(selectedIndex),
+            title: Text(tabs[selectedIndex].module.title),
+            children: [
+              for (final (index, tab) in tabs.indexed)
+                ListTile(
+                  title: Text(tab.module.title),
+                  selected: index == selectedIndex,
+                  leading: Icon(index == selectedIndex
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_off),
+                  onTap: () => onSelected(index),
                 ),
+            ],
+          ),
+        );
+      }
+      final count = (constraints.maxWidth / (240 * scale)).floor().clamp(2, 4);
+      final width = (constraints.maxWidth - (count - 1) * 10) / count;
+      return Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          for (final (index, tab) in tabs.indexed)
+            SizedBox(
+              width: width,
+              child: FilledButton(
+                style: FilledButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                  backgroundColor: tab.color.withValues(
+                    alpha: index == selectedIndex ? 1 : .6,
+                  ),
+                ),
+                onPressed: () => onSelected(index),
+                child: Text(tab.module.title, textAlign: TextAlign.center),
               ),
-              onPressed: () => onSelected(index),
-              child: Text(tab.module.title, textAlign: TextAlign.center),
             ),
-          );
-        },
-      ),
-    );
+        ],
+      );
+    });
   }
 }

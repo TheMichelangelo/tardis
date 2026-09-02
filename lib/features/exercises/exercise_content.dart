@@ -7,6 +7,7 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../core/app_assets.dart';
 import '../../core/localization.dart';
+import '../../core/responsive_layout.dart';
 import '../../models.dart';
 import 'quiz_question.dart';
 
@@ -61,10 +62,9 @@ class _ExerciseImage extends StatelessWidget {
   final String lessonId;
   final StemExercise exercise;
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _image() {
     final encoded = exercise.text('imageData');
-    final image = encoded.isNotEmpty
+    return encoded.isNotEmpty
         ? Image.memory(base64Decode(encoded), fit: BoxFit.contain)
         : Image.asset(
             AppAssets.exerciseImage(
@@ -77,9 +77,95 @@ class _ExerciseImage extends StatelessWidget {
               child: Icon(Icons.image_not_supported, size: 48),
             ),
           );
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 520),
-      child: Center(child: image),
+  }
+
+  void _zoom(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _ImageViewer(image: _image()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InkWell(
+          onTap: () => _zoom(context),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+                maxHeight: MediaQuery.sizeOf(context).height * .75),
+            child: Center(child: _image()),
+          ),
+        ),
+        TextButton.icon(
+          onPressed: () => _zoom(context),
+          icon: const Icon(Icons.zoom_in),
+          label: Text(AppStrings.get('zoomImage')),
+        ),
+      ],
+    );
+  }
+}
+
+class _ImageViewer extends StatefulWidget {
+  const _ImageViewer({required this.image});
+  final Widget image;
+
+  @override
+  State<_ImageViewer> createState() => _ImageViewerState();
+}
+
+class _ImageViewerState extends State<_ImageViewer> {
+  final _transform = TransformationController();
+
+  void _zoom(double factor) {
+    final scale =
+        (_transform.value.getMaxScaleOnAxis() * factor).clamp(1.0, 6.0);
+    _transform.value = Matrix4.diagonal3Values(scale, scale, 1);
+  }
+
+  @override
+  void dispose() {
+    _transform.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog.fullscreen(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const CloseButton(),
+          title: Text(AppStrings.get('image'),
+              maxLines: 1, overflow: TextOverflow.ellipsis),
+          actions: [
+            IconButton(
+                tooltip: AppStrings.get('zoomOut'),
+                onPressed: () => _zoom(1 / 1.5),
+                icon: const Icon(Icons.remove)),
+            IconButton(
+                tooltip: AppStrings.get('zoomIn'),
+                onPressed: () => _zoom(1.5),
+                icon: const Icon(Icons.add)),
+          ],
+        ),
+        body: LayoutBuilder(builder: (context, constraints) {
+          return InteractiveViewer(
+            transformationController: _transform,
+            alignment: Alignment.center,
+            minScale: 1,
+            maxScale: 6,
+            trackpadScrollCausesScale: true,
+            child: SizedBox(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: widget.image,
+            ),
+          );
+        }),
+      ),
     );
   }
 }
@@ -324,21 +410,43 @@ class _TableExercise extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-            columns: [
-              if (rows.isNotEmpty) const DataColumn(label: Text('')),
-              ...columns.map((column) => DataColumn(label: Text(column))),
+        ScrollableTable(
+          minWidth: (columns.length + (rows.isNotEmpty ? 1 : 0)) *
+              170 *
+              readingScale(context),
+          child: Table(
+            border: TableBorder.all(color: Theme.of(context).dividerColor),
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            children: [
+              TableRow(
+                decoration: const BoxDecoration(color: Color(0xfff1f5f9)),
+                children: [
+                  if (rows.isNotEmpty) const SizedBox.shrink(),
+                  for (final column in columns)
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(column,
+                          style: const TextStyle(fontWeight: FontWeight.w700)),
+                    ),
+                ],
+              ),
+              for (var row = 0; row < _rowCount; row++)
+                TableRow(children: [
+                  if (rows.isNotEmpty)
+                    Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Text(rows[row])),
+                  for (final column in columns)
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Semantics(
+                        label:
+                            '${rows.isNotEmpty ? rows[row] : row + 1}, $column',
+                        child: const TextField(maxLines: null),
+                      ),
+                    ),
+                ]),
             ],
-            rows: List.generate(_rowCount, (rowIndex) {
-              return DataRow(cells: [
-                if (rows.isNotEmpty) DataCell(Text(rows[rowIndex])),
-                ...columns.map((_) => const DataCell(
-                      SizedBox(width: 110, child: TextField()),
-                    )),
-              ]);
-            }),
           ),
         ),
         if (values.isNotEmpty) ...[
@@ -397,14 +505,17 @@ class _ConnectExerciseState extends State<_ConnectExercise> {
           _selectedLeft == null ? 'connectChooseFirst' : 'connectChooseSecond',
         )),
         const SizedBox(height: 8),
-        if (widget.exercise.text('display') == 'vertical')
-          Column(children: columns)
-        else
-          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        LayoutBuilder(builder: (context, constraints) {
+          if (widget.exercise.text('display') == 'vertical' ||
+              constraints.maxWidth / readingScale(context) < 580) {
+            return Column(children: columns);
+          }
+          return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Expanded(child: columns[0]),
             columns[1],
             Expanded(child: columns[2]),
-          ]),
+          ]);
+        }),
         if (complete)
           Text('${AppStrings.get('correctPairs')}: $correct / ${left.length}',
               style: const TextStyle(fontWeight: FontWeight.bold)),

@@ -7,6 +7,13 @@ abstract final class AppStrings {
   static void setLanguage(AppLanguage value) => _language = value;
 
   static const _uk = <String, String>{
+    'textSize': 'Розмір тексту',
+    'textSizeStandard': 'Звичайний',
+    'textSizeLarge': 'Великий',
+    'textSizeProjector': 'Для проєктора',
+    'zoomImage': 'Збільшити зображення',
+    'zoomIn': 'Збільшити',
+    'zoomOut': 'Зменшити',
     'choose': 'Оберіть клас з уроками',
     'class': 'Клас',
     'module': 'Модуль',
@@ -101,6 +108,13 @@ abstract final class AppStrings {
   };
 
   static const _en = <String, String>{
+    'textSize': 'Text size',
+    'textSizeStandard': 'Standard',
+    'textSizeLarge': 'Large',
+    'textSizeProjector': 'Projector',
+    'zoomImage': 'Enlarge image',
+    'zoomIn': 'Zoom in',
+    'zoomOut': 'Zoom out',
     'choose': 'Choose a class with lessons',
     'class': 'Class',
     'module': 'Module',

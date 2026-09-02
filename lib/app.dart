@@ -6,6 +6,7 @@ import 'core/app_theme.dart';
 import 'core/language_controller.dart';
 import 'core/localization.dart';
 import 'core/navigation_store.dart';
+import 'core/reading_settings.dart';
 import 'features/auth/auth_controller.dart';
 import 'features/auth/login_page.dart';
 import 'features/home/home_page.dart';
@@ -15,10 +16,15 @@ import 'features/proposals/proposal_page.dart';
 import 'repository.dart';
 
 class StemApp extends StatefulWidget {
-  const StemApp({this.authController, this.languageController, super.key});
+  const StemApp(
+      {this.authController,
+      this.languageController,
+      this.readingSettings,
+      super.key});
 
   final AuthController? authController;
   final LanguageController? languageController;
+  final ReadingSettings? readingSettings;
 
   @override
   State<StemApp> createState() => _StemAppState();
@@ -31,6 +37,8 @@ class _StemAppState extends State<StemApp> {
       widget.languageController ?? LanguageController();
   late final bool _ownsAuthController = widget.authController == null;
   late final bool _ownsLanguageController = widget.languageController == null;
+  late final ReadingSettings _readingSettings =
+      widget.readingSettings ?? ReadingSettings();
   final _navigationStore = NavigationStore();
   final _repository = LessonRepository();
   late final Future<String> _initialization = _initialize();
@@ -39,6 +47,7 @@ class _StemAppState extends State<StemApp> {
     await Future.wait([
       _authController.initialize(),
       _languageController.initialize(),
+      _readingSettings.initialize(),
     ]);
     final route = WidgetsBinding.instance.platformDispatcher.defaultRouteName;
     if (kIsWeb) {
@@ -52,6 +61,7 @@ class _StemAppState extends State<StemApp> {
   void dispose() {
     if (_ownsAuthController) _authController.dispose();
     if (_ownsLanguageController) _languageController.dispose();
+    if (widget.readingSettings == null) _readingSettings.dispose();
     super.dispose();
   }
 
@@ -138,6 +148,10 @@ class _StemAppState extends State<StemApp> {
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
             initialRoute: snapshot.requireData,
+            builder: (context, child) => ReadingSettingsScope(
+              settings: _readingSettings,
+              child: child!,
+            ),
             onGenerateRoute: _route,
             navigatorObservers: [
               PersistingNavigatorObserver(_navigationStore),

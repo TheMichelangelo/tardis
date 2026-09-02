@@ -63,9 +63,9 @@ void main() {
     }
   });
 
-  testWidgets('plans open for reading with one PDF button on a narrow screen',
+  testWidgets('plans fit a narrow screen with large text and one PDF button',
       (tester) async {
-    tester.view.physicalSize = const Size(390, 844);
+    tester.view.physicalSize = const Size(320, 740);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
@@ -74,6 +74,11 @@ void main() {
           await tester.runAsync(() => plans(AppLanguage.ukrainian, grade));
       for (final plan in loadedPlans!) {
         await tester.pumpWidget(MaterialApp(
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(1.7)),
+            child: child!,
+          ),
           home: LessonPage(
             classNumber: grade,
             moduleTitle: 'Діагностувальні роботи',

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/localization.dart';
+import '../../core/reading_settings.dart';
+import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
 import 'auth_controller.dart';
 
@@ -41,13 +43,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(actions: const [TextSizeButton()]),
       body: StemBackgroundBody(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: pagePadding(context),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 480),
+              constraints:
+                  BoxConstraints(maxWidth: 480 * readingScale(context)),
               child: Card(
                 color: Colors.white,
                 child: Padding(

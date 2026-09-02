@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/localization.dart';
+import '../../core/reading_settings.dart';
+import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
 import '../../models.dart';
 
@@ -70,16 +72,23 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
   Widget build(BuildContext context) {
     final attachment = widget.exercise.objectList('attachments').single;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(
+        title: Text(widget.title, maxLines: 1, overflow: TextOverflow.ellipsis),
+        actions: const [TextSizeButton()],
+      ),
       body: StemBackgroundBody(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: pagePadding(context),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1100),
+              constraints:
+                  BoxConstraints(maxWidth: 1120 * readingScale(context)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(widget.title,
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  const SizedBox(height: 12),
                   Text(widget.exercise.text('text')),
                   const SizedBox(height: 16),
                   FilledButton(
@@ -143,28 +152,32 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
               Text(section['text'] as String,
                   style: const TextStyle(height: 1.6)),
             if (rows != null)
-              Table(
-                columnWidths: const {
-                  0: FlexColumnWidth(4),
-                  1: FlexColumnWidth(),
-                  2: FlexColumnWidth(),
-                  3: FlexColumnWidth(),
-                },
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                border: TableBorder.all(color: Theme.of(context).dividerColor),
-                children: [
-                  for (final row in [
-                    ['Розділ', 'І сем.', 'ІІ сем.', 'Разом'],
-                    ...rows,
-                  ])
-                    TableRow(children: [
-                      for (final value in row as List)
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(value as String),
-                        ),
-                    ]),
-                ],
+              ScrollableTable(
+                minWidth: 540 * readingScale(context),
+                child: Table(
+                  columnWidths: const {
+                    0: FlexColumnWidth(4),
+                    1: FlexColumnWidth(),
+                    2: FlexColumnWidth(),
+                    3: FlexColumnWidth(),
+                  },
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  border:
+                      TableBorder.all(color: Theme.of(context).dividerColor),
+                  children: [
+                    for (final row in [
+                      ['Розділ', 'І сем.', 'ІІ сем.', 'Разом'],
+                      ...rows,
+                    ])
+                      TableRow(children: [
+                        for (final value in row as List)
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(value as String),
+                          ),
+                      ]),
+                  ],
+                ),
               ),
             if (weeks != null)
               for (final week in weeks) ...[

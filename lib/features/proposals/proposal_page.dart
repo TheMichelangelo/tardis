@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_assets.dart';
 import '../../core/localization.dart';
+import '../../core/reading_settings.dart';
+import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
 import '../../models.dart';
 import '../../repository.dart';
@@ -197,7 +199,11 @@ class _ProposalPageState extends State<ProposalPage> {
           body: Center(child: Text(AppStrings.get('invalidCredentials'))));
     }
     return Scaffold(
-      appBar: AppBar(title: Text(AppStrings.get('createProposal'))),
+      appBar: AppBar(
+        title: Text(AppStrings.get('createProposal'),
+            maxLines: 1, overflow: TextOverflow.ellipsis),
+        actions: const [TextSizeButton()],
+      ),
       body: StemBackgroundBody(
         child: FutureBuilder<StemClass>(
           future: _data,
@@ -218,25 +224,28 @@ class _ProposalPageState extends State<ProposalPage> {
             }).firstOrNull;
             _lessonId ??= selected?.$2.lessons.firstOrNull?.id;
             return ListView(
-              padding: const EdgeInsets.all(20),
+              padding: pagePadding(context),
               children: [
-                SegmentedButton<ProposalTarget>(
-                  segments: [
-                    ButtonSegment(
-                      value: ProposalTarget.lesson,
-                      label: Text(AppStrings.get('newLesson')),
-                    ),
-                    ButtonSegment(
-                      value: ProposalTarget.exercise,
-                      label: Text(AppStrings.get('newExercise')),
-                    ),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final target in ProposalTarget.values)
+                      ChoiceChip(
+                        label: Text(AppStrings.get(
+                            target == ProposalTarget.lesson
+                                ? 'newLesson'
+                                : 'newExercise')),
+                        selected: _target == target,
+                        onSelected: (_) => setState(() => _target = target),
+                      ),
                   ],
-                  selected: {_target},
-                  onSelectionChanged: (value) =>
-                      setState(() => _target = value.first),
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
+                  isExpanded: true,
+                  isDense: false,
+                  itemHeight: null,
                   initialValue: _themeKey,
                   decoration:
                       InputDecoration(labelText: AppStrings.get('selectTheme')),
@@ -257,6 +266,9 @@ class _ProposalPageState extends State<ProposalPage> {
                 const SizedBox(height: 12),
                 if (_target == ProposalTarget.exercise && selected != null)
                   DropdownButtonFormField<String>(
+                    isExpanded: true,
+                    isDense: false,
+                    itemHeight: null,
                     initialValue: _lessonId,
                     decoration: InputDecoration(
                         labelText: AppStrings.get('selectLesson')),
@@ -352,6 +364,9 @@ class ExerciseDraftEditor extends StatelessWidget {
             _field(AppStrings.get('id'), (value) => draft.id = value),
             _field(AppStrings.get('title'), (value) => draft.label = value),
             DropdownButtonFormField<ExerciseType>(
+              isExpanded: true,
+              isDense: false,
+              itemHeight: null,
               initialValue: draft.type,
               decoration: InputDecoration(labelText: AppStrings.get('type')),
               items: ExerciseType.values
@@ -419,22 +434,20 @@ class ExerciseDraftEditor extends StatelessWidget {
             AppStrings.get('rightItems'), (value) => draft.rightItems = value,
             lines: 4),
         const SizedBox(height: 12),
-        SegmentedButton<String>(
-          segments: [
-            ButtonSegment(
-              value: 'horizontal',
-              label: Text(AppStrings.get('horizontal')),
-            ),
-            ButtonSegment(
-              value: 'vertical',
-              label: Text(AppStrings.get('vertical')),
-            ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final display in ['horizontal', 'vertical'])
+              ChoiceChip(
+                label: Text(AppStrings.get(display)),
+                selected: draft.display == display,
+                onSelected: (_) {
+                  draft.display = display;
+                  onChanged();
+                },
+              ),
           ],
-          selected: {draft.display},
-          onSelectionChanged: (value) {
-            draft.display = value.first;
-            onChanged();
-          },
         ),
       ]);
     }
@@ -457,6 +470,9 @@ class ExerciseDraftEditor extends StatelessWidget {
                         (value) => entry.$2.singleChoice = value,
                         lines: 4),
                     DropdownButtonFormField<String>(
+                      isExpanded: true,
+                      isDense: false,
+                      itemHeight: null,
                       initialValue: entry.$2.trueFalse,
                       decoration: InputDecoration(
                         labelText: AppStrings.get('trueFalse'),
