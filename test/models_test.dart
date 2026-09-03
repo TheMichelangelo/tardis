@@ -46,6 +46,46 @@ void main() {
       expect(lesson.exercisesFor(LessonFormat.quiz), hasLength(1));
     });
 
+    test('always displays homework after the other visible exercises', () {
+      final lesson = StemLesson.fromJson({
+        'id': 'lesson-1',
+        'title': 'Lesson',
+        'topic': 'Topic',
+        'formats': ['story'],
+        'exercises': [
+          {
+            'id': 'homework-1',
+            'label': 'Homework 1',
+            'type': 'homework',
+            'formats': ['story'],
+          },
+          {
+            'id': 'text-1',
+            'label': 'Text',
+            'type': 'text',
+            'formats': ['story'],
+          },
+          {
+            'id': 'homework-2',
+            'label': 'Homework 2',
+            'type': 'homework',
+            'formats': ['story'],
+          },
+          {
+            'id': 'quiz-1',
+            'label': 'Quiz',
+            'type': 'interactive_quiz',
+            'formats': ['story'],
+          },
+        ],
+      });
+
+      expect(
+        lesson.exercisesFor(LessonFormat.story).map((exercise) => exercise.id),
+        ['text-1', 'quiz-1', 'homework-1', 'homework-2'],
+      );
+    });
+
     test('round trip preserves teacher solution and exercise formats', () {
       final lesson = StemLesson.fromJson({
         'id': 'lesson-1',

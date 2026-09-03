@@ -153,9 +153,12 @@ class StemLesson {
   }
 
   List<StemExercise> exercisesFor(LessonFormat selected) {
-    return exercises
-        .where((exercise) => exercise.isVisibleFor(selected))
-        .toList();
+    final visible =
+        exercises.where((exercise) => exercise.isVisibleFor(selected)).toList();
+    return [
+      ...visible.where((exercise) => exercise.type != ExerciseType.homework),
+      ...visible.where((exercise) => exercise.type == ExerciseType.homework),
+    ];
   }
 
   Set<LessonFormat> get availableFormats => {
