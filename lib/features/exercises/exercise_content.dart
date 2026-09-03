@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../core/app_assets.dart';
+import '../../data/material_cache.dart';
 import '../../core/localization.dart';
 import '../../core/responsive_layout.dart';
 import '../../models.dart';
@@ -66,16 +67,18 @@ class _ExerciseImage extends StatelessWidget {
     final encoded = exercise.text('imageData');
     return encoded.isNotEmpty
         ? Image.memory(base64Decode(encoded), fit: BoxFit.contain)
-        : Image.asset(
-            AppAssets.exerciseImage(
+        : FutureBuilder<Uint8List>(
+            future: MaterialCache.readBytes(AppAssets.exerciseImage(
               lessonId: lessonId,
               exerciseId: exercise.id,
               extension: exercise.text('imageExt', fallback: 'png'),
-            ),
-            fit: BoxFit.contain,
-            errorBuilder: (context, error, stackTrace) => const Center(
-              child: Icon(Icons.image_not_supported, size: 48),
-            ),
+            )),
+            builder: (context, snapshot) => snapshot.hasData
+                ? Image.memory(snapshot.requireData, fit: BoxFit.contain)
+                : snapshot.hasError
+                    ? const Center(
+                        child: Icon(Icons.image_not_supported, size: 48))
+                    : const SizedBox(height: 48),
           );
   }
 
@@ -267,11 +270,7 @@ class _HomeworkExercise extends StatelessWidget {
     String assetPath,
   ) async {
     try {
-      final data = await rootBundle.load(assetPath);
-      final bytes = data.buffer.asUint8List(
-        data.offsetInBytes,
-        data.lengthInBytes,
-      );
+      final bytes = await MaterialCache.readBytes(assetPath);
       final fileName = assetPath.split('/').last;
       final isPdf = fileName.toLowerCase().endsWith('.pdf');
       await FilePicker.saveFile(

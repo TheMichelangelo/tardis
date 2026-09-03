@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'core/app_assets.dart';
 import 'data/storage/lesson_storage.dart';
 import 'data/storage/storage_factory.dart';
+import 'data/material_cache.dart';
 import 'models.dart';
 
 class LessonLoadException implements Exception {
@@ -32,9 +33,13 @@ class LessonRepository {
     }
 
     try {
-      final bundledRaw = await rootBundle.loadString(
-        AppAssets.classLessons(classNumber, language),
-      );
+      final path = AppAssets.classLessons(classNumber, language);
+      String bundledRaw;
+      try {
+        bundledRaw = await MaterialCache.readString(path);
+      } catch (_) {
+        bundledRaw = await rootBundle.loadString(path);
+      }
       final storedRaw = await _storage.read(classNumber, language.code);
       final json = jsonDecode(storedRaw ?? bundledRaw);
       if (json is! Map<String, dynamic>) {

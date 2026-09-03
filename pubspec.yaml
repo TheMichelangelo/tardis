@@ -18,6 +18,8 @@ dependencies:
   pdf: ^3.13.0
   printing: ^5.15.0
   shared_preferences: ^2.5.5
+  http: ^1.5.0
+  path_provider: ^2.1.5
   sqflite: ^2.4.3
   url_launcher: ^6.3.1
   youtube_player_iframe: ^6.0.2
@@ -38,19 +40,7 @@ flutter:
     - src/data/5_class_stem_lesson_en.json
     - src/data/6_class_stem_lesson_en.json
     - src/data/users.json
-    - src/data/5_diagnostic/stem_5_plan_32_hours.pdf
     - src/data/5_diagnostic/stem_5_plan_32_hours.json
-    - src/data/5_diagnostic/stem_5_plan_48_hours.pdf
     - src/data/5_diagnostic/stem_5_plan_48_hours.json
-    - src/data/lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof/
-    - src/data/lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu/
-    - src/data/lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p/
-    - src/data/lesson-25-fotohrafiya-yak-mystetstvo-svitla/
-    - src/data/lesson-26-proyekt-namalyuyu-tobi-sontse/
-    - src/data/lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch/
-    - src/data/6_diagnostic/diagnostic_5_residual_knowledge.pdf
-    - src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf
-    - src/data/6_diagnostic/stem_6_plan_32_hours.pdf
     - src/data/6_diagnostic/stem_6_plan_32_hours.json
-    - src/data/6_diagnostic/stem_6_plan_48_hours.pdf
     - src/data/6_diagnostic/stem_6_plan_48_hours.json

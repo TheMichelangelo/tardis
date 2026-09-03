@@ -75,24 +75,26 @@ class _LessonPageState extends State<LessonPage> {
             maxLines: 1, overflow: TextOverflow.ellipsis),
         actions: [
           const TextSizeButton(),
-          IconButton(
-            tooltip: AppStrings.get('printPdf'),
-            onPressed: () => _runPdf(() => _pdf.printLesson(
-                  lesson: widget.lesson,
-                  moduleTitle: widget.moduleTitle,
-                  classNumber: widget.classNumber,
-                )),
-            icon: const Icon(Icons.print),
-          ),
-          IconButton(
-            tooltip: AppStrings.get('downloadPdf'),
-            onPressed: () => _runPdf(() => _pdf.shareLesson(
-                  lesson: widget.lesson,
-                  moduleTitle: widget.moduleTitle,
-                  classNumber: widget.classNumber,
-                )),
-            icon: const Icon(Icons.picture_as_pdf),
-          ),
+          if (widget.isTeacher) ...[
+            IconButton(
+              tooltip: AppStrings.get('printPdf'),
+              onPressed: () => _runPdf(() => _pdf.printLesson(
+                    lesson: widget.lesson,
+                    moduleTitle: widget.moduleTitle,
+                    classNumber: widget.classNumber,
+                  )),
+              icon: const Icon(Icons.print),
+            ),
+            IconButton(
+              tooltip: AppStrings.get('downloadPdf'),
+              onPressed: () => _runPdf(() => _pdf.shareLesson(
+                    lesson: widget.lesson,
+                    moduleTitle: widget.moduleTitle,
+                    classNumber: widget.classNumber,
+                  )),
+              icon: const Icon(Icons.picture_as_pdf),
+            ),
+          ],
         ],
       ),
       body: StemBackgroundBody(

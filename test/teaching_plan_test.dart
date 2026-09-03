@@ -24,8 +24,7 @@ void main() {
         .toList();
   }
 
-  test('both language catalogs bundle PDFs and complete reading plans, no TeX',
-      () async {
+  test('catalogs bundle reading plans but keep PDFs out of the APK', () async {
     final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     expect(
         manifest.listAssets().where((path) => path.endsWith('.tex')), isEmpty);
@@ -38,8 +37,7 @@ void main() {
           final attachment = exercise.objectList('attachments').single;
           final path = attachment['path'] as String;
           expect(path, endsWith('.pdf'));
-          final bytes = await rootBundle.load(path);
-          expect(ascii.decode(bytes.buffer.asUint8List(0, 5)), '%PDF-');
+          expect(manifest.listAssets(), isNot(contains(path)));
           final document = jsonDecode(
             await rootBundle.loadString(exercise.text('planAsset')),
           );

@@ -10,6 +10,7 @@ import 'core/reading_settings.dart';
 import 'features/auth/auth_controller.dart';
 import 'features/auth/login_page.dart';
 import 'features/home/home_page.dart';
+import 'features/onboarding/material_setup.dart';
 import 'features/lessons/class_page.dart';
 import 'features/lessons/lesson_route_page.dart';
 import 'features/proposals/proposal_page.dart';
@@ -31,6 +32,7 @@ class StemApp extends StatefulWidget {
 }
 
 class _StemAppState extends State<StemApp> {
+  bool _materialsReady = false;
   late final AuthController _authController =
       widget.authController ?? AuthController();
   late final LanguageController _languageController =
@@ -49,6 +51,7 @@ class _StemAppState extends State<StemApp> {
       _languageController.initialize(),
       _readingSettings.initialize(),
     ]);
+    _materialsReady = kIsWeb || await MaterialSetup.isComplete();
     final route = WidgetsBinding.instance.platformDispatcher.defaultRouteName;
     if (kIsWeb) {
       return route.isEmpty ? AppRoutes.home : route;
@@ -144,10 +147,16 @@ class _StemAppState extends State<StemApp> {
             _languageController,
           ]),
           builder: (context, _) => MaterialApp(
+            key: ValueKey(_materialsReady),
             title: 'STEM Laboratory',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
-            initialRoute: snapshot.requireData,
+            initialRoute: _materialsReady ? snapshot.requireData : null,
+            home: _materialsReady
+                ? null
+                : MaterialSetupPage(
+                    onComplete: () => setState(() => _materialsReady = true),
+                  ),
             builder: (context, child) => ReadingSettingsScope(
               settings: _readingSettings,
               child: child!,

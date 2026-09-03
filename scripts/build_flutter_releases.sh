@@ -8,7 +8,9 @@ cd "$project_root"
 flutter pub get
 flutter analyze
 flutter test
-flutter build apk --release
+npm run sync-materials
+flutter build apk --release \
+  --dart-define=STEM_MATERIALS_URL=https://themichelangelo.github.io/tardis/
 
 mkdir -p web/downloads
 cp build/app/outputs/flutter-apk/app-release.apk \

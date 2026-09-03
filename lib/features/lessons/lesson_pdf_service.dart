@@ -5,6 +5,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 import '../../core/app_assets.dart';
+import '../../data/material_cache.dart';
 import '../../core/localization.dart';
 import '../../models.dart';
 
@@ -148,12 +149,12 @@ class LessonPdfService {
       return null;
     }
     try {
-      final data = await rootBundle.load(AppAssets.exerciseImage(
+      final data = await MaterialCache.readBytes(AppAssets.exerciseImage(
         lessonId: lessonId,
         exerciseId: exercise.id,
         extension: exercise.text('imageExt', fallback: 'png'),
       ));
-      return pw.MemoryImage(data.buffer.asUint8List());
+      return pw.MemoryImage(data);
     } catch (_) {
       return null;
     }

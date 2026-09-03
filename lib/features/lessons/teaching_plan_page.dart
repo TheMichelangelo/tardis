@@ -8,6 +8,7 @@ import '../../core/localization.dart';
 import '../../core/reading_settings.dart';
 import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
+import '../../data/material_cache.dart';
 import '../../models.dart';
 
 /// A reading view of the complete plan; downloads use the compiled source PDF.
@@ -52,10 +53,10 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
     try {
       final attachment = widget.exercise.objectList('attachments').single;
       final path = attachment['path'] as String;
-      final data = await rootBundle.load(path);
+      final data = await MaterialCache.readBytes(path);
       await FilePicker.saveFile(
         fileName: path.split('/').last,
-        bytes: data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+        bytes: data,
         mimeType: 'application/pdf',
       );
     } catch (_) {
