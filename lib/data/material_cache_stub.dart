@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +19,7 @@ class MaterialCache {
   }
 
   static Future<String> readString(String path) async =>
-      String.fromCharCodes(await readBytes(path));
+      utf8.decode(await readBytes(path));
 
   static Future<void> download(String path) async => readBytes(path);
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
@@ -37,7 +38,7 @@ class MaterialCache {
   }
 
   static Future<String> readString(String path) async =>
-      String.fromCharCodes(await readBytes(path));
+      utf8.decode(await readBytes(path));
 
   static Future<void> download(String path) async {
     final response = await http.get(remoteUri(path));
