@@ -290,16 +290,16 @@ void main() {
             isTeacher: false,
           )),
         )));
-    await tester.enterText(find.byType(TextField).first, 'Міцний матеріал');
+    await tester.tap(find.text('Міцність конструкції'));
+    await tester.tap(find.byKey(const ValueKey('table-cell-0')));
     await settings.select(ReadingSize.projector);
     _screen(tester, const Size(320, 740));
     await tester.pumpAndSettle();
     expect(
-        tester
-            .widget<EditableText>(find.byType(EditableText).first)
-            .controller
-            .text,
-        'Міцний матеріал');
+        find.descendant(
+            of: find.byKey(const ValueKey('table-cell-0')),
+            matching: find.text('Міцність конструкції')),
+        findsOneWidget);
     expect(find.byType(Scrollbar), findsOneWidget);
     expect(tester.takeException(), isNull);
   });

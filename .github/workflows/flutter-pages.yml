@@ -1,4 +1,4 @@
-name: Build Flutter and deploy Pages
+name: Build Flutter Web and deploy Pages
 
 on:
   push:
@@ -22,10 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-java@v6
-        with:
-          distribution: temurin
-          java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -33,11 +29,6 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      - run: flutter build apk --release
-      - run: |
-          mkdir -p web/downloads
-          cp build/app/outputs/flutter-apk/app-release.apk \
-            web/downloads/stem-laboratory.apk
       - run: flutter build web --release --base-href /tardis/
       - run: |
           cp build/web/index.html build/web/404.html

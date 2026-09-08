@@ -50,4 +50,16 @@ void main() {
     expect(exercise.text('studentPdf'), endsWith('.pdf'));
     expect(exercise.text('teacherPdf'), endsWith('_answers.pdf'));
   });
+
+  test('Ukrainian lesson text is decoded as UTF-8', () async {
+    final stemClass = await repository.load(5);
+    final text = stemClass.modules
+        .expand((module) => module.themes)
+        .expand((theme) => theme.lessons)
+        .map((lesson) => '${lesson.title} ${lesson.topic}')
+        .join(' ');
+
+    expect(text, contains(RegExp(r'[іїєґІЇЄҐ]')));
+    expect(text, isNot(contains('Ð')));
+  });
 }

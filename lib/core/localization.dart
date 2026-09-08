@@ -83,6 +83,10 @@ abstract final class AppStrings {
     'questions': 'Питання',
     'columns': 'Колонки',
     'rows': 'Рядки',
+    'tableCheck': 'Перевірка',
+    'tableHint':
+        'Перетягни відповідь у комірку або вибери відповідь і натисни комірку. Натисни заповнену комірку, щоб повернути відповідь.',
+    'tableEmpty': 'Місце для відповіді',
     'dataToFill': 'Дані для заповнення',
     'youtubeUrl': 'YouTube URL',
     'leftItems': 'Елементи ліворуч',
@@ -183,6 +187,10 @@ abstract final class AppStrings {
     'questions': 'Questions',
     'columns': 'Columns',
     'rows': 'Rows',
+    'tableCheck': 'Check',
+    'tableHint':
+        'Drag an answer into a cell, or select an answer and tap a cell. Tap a filled cell to return its answer.',
+    'tableEmpty': 'Drop answer here',
     'dataToFill': 'Data to fill',
     'youtubeUrl': 'YouTube URL',
     'leftItems': 'Left items',

@@ -49,11 +49,19 @@ Apple Developer Team and signing profile.
 
 ## GitHub Pages
 
-`.github/workflows/flutter-pages.yml` runs on every push/merge to `main`. It
-tests the project, creates a fresh APK, bundles it with Flutter Web, and deploys
-the site. Configure **Settings → Pages → Source → GitHub Actions** once. Change
-the workflow branch and `/tardis/` base path if the default branch or repository
-name differs.
+Two independent workflows run on every push/merge to `main` and support manual
+runs through **Actions → Run workflow**:
+
+- `.github/workflows/flutter-android.yml` installs Java and Flutter, runs analysis
+  and tests, builds a release APK, and uploads the `stem-laboratory-android`
+  artifact to the workflow run.
+- `.github/workflows/flutter-pages.yml` runs analysis and tests, builds Flutter
+  Web, and deploys GitHub Pages. The download button uses the APK committed at
+  `web/downloads/stem-laboratory.apk`; replace that file to update the website's APK.
+
+The workflows do not wait for each other and have separate concurrency groups.
+Configure **Settings → Pages → Source → GitHub Actions** once. Change the branch
+in both workflows and the `/tardis/` base path if needed.
 
 ## Storage
 

@@ -50,8 +50,9 @@ iOS та Web. Серверний API для перегляду навчальн�
 | iOS | проєкт підготовлено | локальна збірка або Archive з Apple-підписом |
 
 Файл для кнопки завантаження зберігається в репозиторії за адресою
-`web/downloads/stem-laboratory.apk`. Під час CI створюється новий APK і
-вкладається безпосередньо в опублікований сайт.
+`web/downloads/stem-laboratory.apk`. Вебзбірка вкладає цей файл у сайт.
+Android workflow зберігає новий APK окремим артефактом GitHub Actions; щоб
+оновити кнопку завантаження, замініть APK у репозиторії.
 
 ## Встановлення Flutter
 
@@ -146,19 +147,20 @@ Apple Developer Team і створіть Archive. Підписаний IPA не 
 
 ## Автоматична збірка GitHub Pages
 
-Workflow `.github/workflows/flutter-pages.yml` запускається після кожного push
-або merge у гілку `main` і виконує:
+Два незалежні workflow запускаються після push або merge у `main`, а також
+вручну через **Actions → Run workflow**:
 
-1. `flutter pub get`, статичний аналіз і тести;
-2. release-збірку Android APK;
-3. копіювання APK у каталог завантажень сайту;
-4. release-збірку Flutter Web із базовим шляхом `/tardis/`;
-5. публікацію `build/web` у GitHub Pages.
+1. `.github/workflows/flutter-android.yml` — встановлює Java та Flutter,
+   запускає аналіз і тести, компілює release APK та зберігає його як артефакт
+   `stem-laboratory-android` на сторінці запуску.
+2. `.github/workflows/flutter-pages.yml` — встановлює Flutter, запускає аналіз
+   і тести, компілює Flutter Web із базовим шляхом `/tardis/` та публікує сайт
+   у GitHub Pages. Використовує готовий APK із `web/downloads/` у репозиторії.
 
-У налаштуваннях репозиторію один раз виберіть **Settings → Pages → Source →
-GitHub Actions**. Після цього merge цієї гілки в `main` автоматично перебудує
-і сайт, і APK для кнопки завантаження. Якщо основна гілка справді називається
-`master`, змініть `branches: [main]` у workflow на `branches: [master]`.
+Збірки не очікують одна на одну й мають окремі групи скасування запусків.
+Для публікації сайту один раз виберіть **Settings → Pages → Source → GitHub
+Actions**. Якщо основна гілка називається `master`, змініть `branches: [main]`
+на `branches: [master]` в обох workflow.
 
 ## Навігація
 

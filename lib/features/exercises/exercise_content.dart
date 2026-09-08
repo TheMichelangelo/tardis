@@ -11,6 +11,7 @@ import '../../core/localization.dart';
 import '../../core/responsive_layout.dart';
 import '../../models.dart';
 import 'quiz_question.dart';
+import 'table_exercise.dart';
 
 class ExerciseContent extends StatelessWidget {
   const ExerciseContent({
@@ -44,7 +45,8 @@ class ExerciseContent extends StatelessWidget {
           url: exercise.text('youtubeUrl'),
           questions: exercise.stringList('questions'),
         ),
-      ExerciseType.table => _TableExercise(
+      ExerciseType.table => TableExercise(
+          key: ValueKey('$lessonId/${exercise.id}'),
           columns: exercise.stringList('columns'),
           rows: exercise.stringList('rows'),
           values: exercise.stringList('dataToFill'),
@@ -381,78 +383,6 @@ class _HomeworkExercise extends StatelessWidget {
                 ),
             ],
           ),
-        ],
-      ],
-    );
-  }
-}
-
-class _TableExercise extends StatelessWidget {
-  const _TableExercise({
-    required this.columns,
-    required this.rows,
-    required this.values,
-  });
-  final List<String> columns;
-  final List<String> rows;
-  final List<String> values;
-
-  int get _rowCount {
-    if (rows.isNotEmpty) return rows.length;
-    if (columns.isEmpty) return 0;
-    return (values.length / columns.length).ceil();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (columns.isEmpty) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ScrollableTable(
-          minWidth: (columns.length + (rows.isNotEmpty ? 1 : 0)) *
-              170 *
-              readingScale(context),
-          child: Table(
-            border: TableBorder.all(color: Theme.of(context).dividerColor),
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            children: [
-              TableRow(
-                decoration: const BoxDecoration(color: Color(0xfff1f5f9)),
-                children: [
-                  if (rows.isNotEmpty) const SizedBox.shrink(),
-                  for (final column in columns)
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Text(column,
-                          style: const TextStyle(fontWeight: FontWeight.w700)),
-                    ),
-                ],
-              ),
-              for (var row = 0; row < _rowCount; row++)
-                TableRow(children: [
-                  if (rows.isNotEmpty)
-                    Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Text(rows[row])),
-                  for (final column in columns)
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Semantics(
-                        label:
-                            '${rows.isNotEmpty ? rows[row] : row + 1}, $column',
-                        child: const TextField(maxLines: null),
-                      ),
-                    ),
-                ]),
-            ],
-          ),
-        ),
-        if (values.isNotEmpty) ...[
-          Text('${AppStrings.get('dataToFill')}:',
-              style: const TextStyle(fontWeight: FontWeight.bold)),
-          ...values.indexed
-              .map((entry) => Text('${entry.$1 + 1}. ${entry.$2}')),
         ],
       ],
     );
