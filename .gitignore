@@ -16,3 +16,5 @@ android/.gradle/
 android/local.properties
 ios/Flutter/ephemeral/
 ios/Pods/
+output/
+outputs/
