@@ -71,16 +71,16 @@ class _StemAppState extends State<StemApp> {
   Route<dynamic> _route(RouteSettings settings) {
     final uri = Uri.parse(settings.name ?? AppRoutes.home);
     Widget page;
-    final classMatch = RegExp(r'^/class/(5|6)$').firstMatch(uri.path);
+    final classMatch = RegExp(r'^/class/(5|6|7)$').firstMatch(uri.path);
     final lessonMatch = RegExp(
-      r'^/class/(5|6)/module/([^/]+)/lesson/([^/]+)$',
+      r'^/class/(5|6|7)/module/([^/]+)/lesson/([^/]+)$',
     ).firstMatch(uri.path);
 
     if (uri.path == AppRoutes.login) {
       page = LoginPage(controller: _authController);
     } else if (uri.path == '/propose') {
       final classNumber = int.tryParse(uri.queryParameters['class'] ?? '');
-      if (classNumber != 5 && classNumber != 6) {
+      if (classNumber != 5 && classNumber != 6 && classNumber != 7) {
         page = HomePage(
           authController: _authController,
           languageController: _languageController,
@@ -109,7 +109,9 @@ class _StemAppState extends State<StemApp> {
       final classNumber =
           classMatch == null ? legacyClass : int.parse(classMatch.group(1)!);
       page = ClassPage(
-        classNumber == 5 || classNumber == 6 ? classNumber! : 5,
+        classNumber == 5 || classNumber == 6 || classNumber == 7
+            ? classNumber!
+            : 5,
         repository: _repository,
         authController: _authController,
         language: _languageController.language,

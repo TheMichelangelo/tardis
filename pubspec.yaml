@@ -39,6 +39,8 @@ flutter:
     - src/data/6_class_stem_lesson_ua.json
     - src/data/5_class_stem_lesson_en.json
     - src/data/6_class_stem_lesson_en.json
+    - src/data/7_class_stem_lesson_ua.json
+    - src/data/7_class_stem_lesson_en.json
     - src/data/users.json
     - src/data/5_diagnostic/stem_5_plan_32_hours.json
     - src/data/5_diagnostic/stem_5_plan_48_hours.json

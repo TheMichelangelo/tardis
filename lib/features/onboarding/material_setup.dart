@@ -22,7 +22,7 @@ class MaterialSetup {
     int? classNumber,
     required ValueChanged<double> onProgress,
   }) async {
-    final classes = role == AppRole.teacher ? const [5, 6] : [classNumber!];
+    final classes = role == AppRole.teacher ? const [5, 6, 7] : [classNumber!];
     final paths = <String>{};
     for (final number in classes) {
       for (final language in AppLanguage.values) {
@@ -155,7 +155,8 @@ class _MaterialSetupPageState extends State<MaterialSetupPage> {
                       labelText: 'Оберіть клас', border: OutlineInputBorder()),
                   items: const [
                     DropdownMenuItem(value: 5, child: Text('5 клас')),
-                    DropdownMenuItem(value: 6, child: Text('6 клас'))
+                    DropdownMenuItem(value: 6, child: Text('6 клас')),
+                    DropdownMenuItem(value: 7, child: Text('7 клас'))
                   ],
                   onChanged: (value) => setState(() => _classNumber = value!),
                 ),

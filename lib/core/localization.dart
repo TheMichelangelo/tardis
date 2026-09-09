@@ -104,6 +104,10 @@ abstract final class AppStrings {
     'connectCorrect': 'Правильно',
     'connectWrong': 'Неправильно',
     'correctPairs': 'Правильних пар',
+    'connectPairHint':
+        'З’єднані елементи мають однаковий номер. Щоб змінити пару, оберіть елемент ліворуч, а потім праворуч.',
+    'connectComplete': 'Усі пари з’єднано',
+    'connectReset': 'Скинути пари',
     'language': 'Мова',
     'horizontal': 'Горизонтально',
     'vertical': 'Вертикально',
@@ -208,6 +212,10 @@ abstract final class AppStrings {
     'connectCorrect': 'Correct',
     'connectWrong': 'Wrong',
     'correctPairs': 'Correct pairs',
+    'connectPairHint':
+        'Connected items share a number. To change a pair, choose an item on the left, then on the right.',
+    'connectComplete': 'All pairs connected',
+    'connectReset': 'Reset pairs',
     'language': 'Language',
     'horizontal': 'Horizontal',
     'vertical': 'Vertical',

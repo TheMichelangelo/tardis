@@ -28,7 +28,7 @@ class LessonRepository {
     int classNumber, {
     AppLanguage language = AppLanguage.ukrainian,
   }) async {
-    if (classNumber != 5 && classNumber != 6) {
+    if (classNumber != 5 && classNumber != 6 && classNumber != 7) {
       throw LessonLoadException('Unsupported class number: $classNumber');
     }
 

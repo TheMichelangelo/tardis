@@ -22,9 +22,17 @@ void main() {
     }
   }
 
+  for (final language in AppLanguage.values) {
+    test('class 7 has an empty template in ${language.code}', () async {
+      final data = await repository.load(7, language: language);
+      expect(data.modules, isEmpty);
+      expect(data.generatedLessons, isEmpty);
+    });
+  }
+
   test('rejects an unsupported class number', () {
     expect(
-      () => repository.load(7),
+      () => repository.load(8),
       throwsA(isA<LessonLoadException>()),
     );
   });

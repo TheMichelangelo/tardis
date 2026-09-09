@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,8 @@ class ExerciseContent extends StatelessWidget {
       ExerciseType.interactiveQuiz => _QuizExercise(
           questions: exercise.objectList('questions'),
         ),
-      ExerciseType.connect => _ConnectExercise(exercise: exercise),
+      ExerciseType.connect => _ConnectExercise(
+          key: ValueKey('$lessonId/${exercise.id}'), exercise: exercise),
       ExerciseType.unknown => const SizedBox.shrink(),
     };
   }
@@ -400,7 +402,7 @@ class _QuizExercise extends StatelessWidget {
 }
 
 class _ConnectExercise extends StatefulWidget {
-  const _ConnectExercise({required this.exercise});
+  const _ConnectExercise({required this.exercise, super.key});
   final StemExercise exercise;
 
   @override
@@ -410,6 +412,23 @@ class _ConnectExercise extends StatefulWidget {
 class _ConnectExerciseState extends State<_ConnectExercise> {
   int? _selectedLeft;
   final _connections = <int, int>{};
+  late final List<int> _rightOrder;
+
+  @override
+  void initState() {
+    super.initState();
+    _rightOrder = List.generate(
+        widget.exercise.stringList('column2Items').length, (index) => index);
+    // Sattolo's shuffle moves every answer away from its original row.
+    // Keep original indices for scoring and preserve the order on rebuilds.
+    final random = Random();
+    for (var i = _rightOrder.length - 1; i > 0; i--) {
+      final j = random.nextInt(i);
+      final previous = _rightOrder[i];
+      _rightOrder[i] = _rightOrder[j];
+      _rightOrder[j] = previous;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -431,8 +450,13 @@ class _ConnectExerciseState extends State<_ConnectExercise> {
       children: [
         Text(widget.exercise.text('text')),
         Text(AppStrings.get(
-          _selectedLeft == null ? 'connectChooseFirst' : 'connectChooseSecond',
+          complete && _selectedLeft == null
+              ? 'connectComplete'
+              : _selectedLeft == null
+                  ? 'connectChooseFirst'
+                  : 'connectChooseSecond',
         )),
+        Text(AppStrings.get('connectPairHint')),
         const SizedBox(height: 8),
         LayoutBuilder(builder: (context, constraints) {
           if (widget.exercise.text('display') == 'vertical' ||
@@ -448,13 +472,25 @@ class _ConnectExerciseState extends State<_ConnectExercise> {
         if (complete)
           Text('${AppStrings.get('correctPairs')}: $correct / ${left.length}',
               style: const TextStyle(fontWeight: FontWeight.bold)),
+        if (_connections.isNotEmpty || _selectedLeft != null)
+          TextButton.icon(
+            onPressed: () => setState(() {
+              _connections.clear();
+              _selectedLeft = null;
+            }),
+            icon: const Icon(Icons.restart_alt),
+            label: Text(AppStrings.get('connectReset')),
+          ),
       ],
     );
   }
 
   Widget _column(List<String> items, bool isLeft, bool complete) {
     return Column(
-      children: items.indexed.map((entry) {
+      children: (isLeft
+              ? items.indexed
+              : _rightOrder.map((index) => (index, items[index])))
+          .map((entry) {
         final connectedLeft = isLeft
             ? entry.$1
             : _connections.entries
@@ -463,7 +499,8 @@ class _ConnectExerciseState extends State<_ConnectExercise> {
                 ?.key;
         final connected =
             connectedLeft == null ? null : _connections[connectedLeft];
-        final isCorrect = complete && connectedLeft == connected;
+        final isCorrect =
+            complete && connected != null && connectedLeft == connected;
         final isWrong = complete && connected != null && !isCorrect;
         return Card(
           color: isCorrect
@@ -474,10 +511,23 @@ class _ConnectExerciseState extends State<_ConnectExercise> {
                       ? Colors.blue.shade100
                       : null,
           child: ListTile(
+            key: ValueKey('connect-${isLeft ? 'left' : 'right'}-${entry.$1}'),
+            leading: connected == null
+                ? null
+                : CircleAvatar(child: Text('${connectedLeft! + 1}')),
             title: Text(entry.$2),
+            trailing: isLeft && _selectedLeft == entry.$1
+                ? const Icon(Icons.touch_app)
+                : isCorrect
+                    ? const Icon(Icons.check_circle)
+                    : isWrong
+                        ? const Icon(Icons.cancel)
+                        : connected != null
+                            ? const Icon(Icons.link)
+                            : null,
             onTap: () => setState(() {
               if (isLeft) {
-                _selectedLeft = entry.$1;
+                _selectedLeft = _selectedLeft == entry.$1 ? null : entry.$1;
               } else if (_selectedLeft != null) {
                 _connections.removeWhere((_, value) => value == entry.$1);
                 _connections[_selectedLeft!] = entry.$1;

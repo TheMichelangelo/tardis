@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stem_laboratory/app.dart';
+import 'package:stem_laboratory/core/localization.dart';
 import 'package:stem_laboratory/features/exercises/exercise_card.dart';
 import 'package:stem_laboratory/features/lessons/lesson_page.dart';
 import 'package:stem_laboratory/models.dart';
 
 void main() {
-  testWidgets('home shows both supported classes', (tester) async {
+  testWidgets('home shows all supported classes and opens empty class 7',
+      (tester) async {
     SharedPreferences.setMockInitialValues({
       'app_role_v1': 'student',
       'student_class_v1': 5,
@@ -16,7 +18,18 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('5'), findsOneWidget);
     expect(find.text('6'), findsOneWidget);
+    expect(find.text('7'), findsOneWidget);
     expect(find.text('Я вчитель'), findsOneWidget);
+    await tester.tap(find.text('7'));
+    await tester.pump();
+    await tester.runAsync(() async {
+      // Allow bundled asset I/O to complete outside the fake test clock.
+      await Future<void>.delayed(const Duration(milliseconds: 100));
+    });
+    await tester.pumpAndSettle();
+    expect(find.text('Клас 7'), findsOneWidget);
+    expect(find.text(AppStrings.get('noThemes')), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('students cannot print or export lessons', (tester) async {

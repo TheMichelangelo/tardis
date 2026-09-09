@@ -167,6 +167,8 @@ class HomePage extends StatelessWidget {
                                         number: 5, color: Color(0xffff6b6b)),
                                     _ClassButton(
                                         number: 6, color: Color(0xff4d96ff)),
+                                    _ClassButton(
+                                        number: 7, color: Color(0xff16a34a)),
                                   ],
                                 ),
                               ],
