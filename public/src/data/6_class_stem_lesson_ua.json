@@ -1,0 +1,676 @@
+{
+  "modules": [
+    {
+      "id": "1",
+      "title": "Вступ",
+      "themes": [
+        {
+          "id": "solar-system",
+          "color": "#8B5CF6",
+          "lessons": [
+            {
+              "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny",
+              "title": "Урок 1. Україна — країна мрії. Моя сім’я та професії моїх рідних. Династія",
+              "topic": "STEM",
+              "formats": [
+                "story",
+                "quiz",
+                "competition"
+              ],
+              "exercises": [
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-1",
+                  "label": "Україна, яку створюємо ми",
+                  "formats": [
+                    "story"
+                  ],
+                  "type": "text",
+                  "text": "Майбутнє України залежить не лише від природних ресурсів, підприємств і технологій, а передусім від людей, їхніх знань, умінь, творчості та відповідальності. Сукупність цих якостей називають людським капіталом. Кожна професія допомагає розвивати громаду й державу: фермер вирощує продукти, лікар дбає про здоров’я, учитель допомагає здобувати знання, інженер створює технічні рішення, програміст розробляє цифрові інструменти. На уроці ми дослідимо професії свого краю та розпочнемо проєкт про професійний досвід родини.",
+                  "questions": [
+                    "Що, крім природних ресурсів, впливає на розвиток країни?",
+                    "Як ти розумієш поняття «людський капітал»?",
+                    "Яка професія особливо важлива для твоєї громади? Поясни думку."
+                  ]
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-2",
+                  "label": "Досліди професії свого регіону",
+                  "formats": [
+                    "competition"
+                  ],
+                  "type": "table",
+                  "columns": [
+                    "Особливість регіону",
+                    "Галузь або організація",
+                    "Потрібні професії"
+                  ],
+                  "rows": [
+                    "Природні ресурси й клімат",
+                    "Відоме підприємство або установа",
+                    "Потреба громади"
+                  ],
+                  "dataToFill": [
+                    "Наприклад: родючі ґрунти, ліси, море, корисні копалини",
+                    "Наприклад: сільське господарство, туризм, енергетика",
+                    "Наприклад: агроном, еколог, інженер",
+                    "Назва місцевого підприємства, лікарні, школи або ІТ-компанії",
+                    "Чим займається ця організація",
+                    "Які фахівці там працюють",
+                    "Що потрібно покращити у громаді",
+                    "Яка галузь може розв’язати цю проблему",
+                    "Які професії для цього потрібні"
+                  ],
+                  "solution": "Відповіді залежать від регіону. У кожному рядку має бути логічний зв’язок: особливість або потреба регіону → відповідна галузь → професії фахівців."
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-3",
+                  "label": "Професія та її внесок у майбутнє України",
+                  "formats": [
+                    "competition"
+                  ],
+                  "type": "connect",
+                  "text": "Поєднай професію з результатом її праці.",
+                  "column1Items": [
+                    "Еколог",
+                    "Інженер",
+                    "Агроном",
+                    "Програміст",
+                    "Лікар"
+                  ],
+                  "column2Items": [
+                    "Досліджує стан довкілля та пропонує способи його захисту",
+                    "Проєктує споруди, механізми й технічні системи",
+                    "Допомагає ефективно та відповідально вирощувати рослини",
+                    "Створює програми й цифрові сервіси",
+                    "Діагностує хвороби та допомагає людям зберігати здоров’я"
+                  ],
+                  "display": "horizontal"
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-4",
+                  "label": "Що таке професійна династія",
+                  "formats": [
+                    "story"
+                  ],
+                  "type": "text",
+                  "text": "Професійна династія — це кілька поколінь однієї родини, представники яких обирають ту саму професію або працюють в одній галузі. Наприклад, у родині можуть бути покоління вчителів, лікарів, військових, інженерів чи майстрів. Проте родина, у якій усі мають різні професії, не менш цікава для дослідження: різний досвід показує, як змінюються технології, освіта й потреби суспільства. Професія не визначає цінність людини, а дитина не зобов’язана повторювати професійний вибір рідних.",
+                  "questions": [
+                    "Скільки поколінь має охоплювати професійна династія?",
+                    "Чи можна досліджувати родину, якщо її члени мають різні професії?",
+                    "Які знання або вміння можуть передаватися між поколіннями?"
+                  ]
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-5",
+                  "label": "Паспорт професії",
+                  "formats": [
+                    "competition"
+                  ],
+                  "type": "table",
+                  "columns": [
+                    "Професія",
+                    "Що робить фахівець",
+                    "Знання, інструменти й особисті якості"
+                  ],
+                  "rows": [
+                    "Професія когось із рідних або знайомої дорослої людини"
+                  ],
+                  "dataToFill": [
+                    "Назва професії",
+                    "2–3 основні професійні завдання",
+                    "Потрібні знання, інструменти та важливі якості"
+                  ],
+                  "solution": "Приклад: інженер-будівельник → проєктує та перевіряє споруди → математика, фізика, креслення, комп’ютерні програми, точність і відповідальність."
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-6",
+                  "label": "Перевір себе",
+                  "formats": [
+                    "quiz"
+                  ],
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Що найкраще пояснює поняття «людський капітал»?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Знання, уміння, досвід і творчі здібності людей",
+                          "Лише гроші підприємств",
+                          "Тільки природні ресурси країни"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Знання, уміння, досвід і творчі здібності людей"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "Що називають професійною династією?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Кілька поколінь родини, пов’язаних однією професією або галуззю",
+                          "Усіх працівників одного підприємства",
+                          "Перелік професій майбутнього"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Кілька поколінь родини, пов’язаних однією професією або галуззю"
+                      }
+                    },
+                    {
+                      "id": "q3",
+                      "question": "Вибір професій у регіоні може залежати від його клімату, ресурсів, підприємств і потреб громади.",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Так",
+                          "Ні",
+                          "Лише від погоди"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Так"
+                      }
+                    },
+                    {
+                      "id": "q4",
+                      "question": "Чи зобов’язана дитина обрати професію своїх рідних?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Ні, професійний вибір має бути власним",
+                          "Так, завжди",
+                          "Так, якщо це сімейна традиція"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Ні, професійний вибір має бути власним"
+                      }
+                    },
+                    {
+                      "id": "q5",
+                      "question": "Який зв’язок потрібно знайти під час дослідження регіону?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Особливості регіону → галузі → потрібні професії",
+                          "Назва міста → колір прапора → пора року",
+                          "Вік людини → улюблений предмет → погода"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Особливості регіону → галузі → потрібні професії"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-7",
+                  "label": "Старт проєкту «Моя сім’я та професії моїх рідних. Династія»",
+                  "formats": [
+                    "story"
+                  ],
+                  "type": "text",
+                  "text": "Мета проєкту — дослідити професійний досвід двох або трьох поколінь родини та з’ясувати, які знання, уміння, інструменти й цінності змінювалися або передавалися. Сьогодні обери 2–4 людей для дослідження, запиши їхні професії або заняття та підготуй запитання для короткого інтерв’ю. Не записуй домашні адреси, телефони, місця перебування, документи чи інші приватні дані. Якщо досліджувати власну родину незручно або неможливо, обери знайому дорослу людину, вигадану родину чи професійну династію відомих українців.",
+                  "questions": [
+                    "Кого ти можеш запросити до короткого інтерв’ю?",
+                    "Які три запитання допоможуть зрозуміти професію цієї людини?",
+                    "Який результат проєкту ти хотів би створити: схему, плакат чи цифрову презентацію?"
+                  ]
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-8",
+                  "label": "Рефлексія «Квиток з уроку»",
+                  "formats": [
+                    "story"
+                  ],
+                  "type": "text",
+                  "text": "Заверши три речення: 1. Сьогодні я дізнався/дізналася… 2. Мене здивувало… 3. Для розвитку моєї громади потрібна професія…, тому що…",
+                  "questions": [
+                    "Яке нове поняття ти запам’ятав/запам’ятала?",
+                    "Яке завдання було найцікавішим?",
+                    "Що ти зробиш першим для свого проєкту?"
+                  ]
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-ex-9",
+                  "label": "Домашнє завдання: професійне інтерв’ю",
+                  "type": "homework",
+                  "text": "Проведи коротке інтерв’ю з одним дорослим. Запитай: 1) Як називається ваша професія або заняття? 2) Які завдання ви виконуєте? 3) Які знання й уміння потрібні? 4) Якими інструментами або технологіями ви користуєтеся? 5) Що змінилося у цій роботі з часом? 6) Чим ваша праця корисна людям або Україні? Запиши відповіді стисло. Додай професії ще 1–3 представників родини, якщо це можливо. Не збирай приватних даних. За потреби виконай альтернативу: досліди професію знайомої дорослої людини або професійну династію відомих українців."
+                }
+              ]
+            },
+            {
+              "id": "solar-system-basics1",
+              "title": "STEM - професії на карті мого регіону",
+              "topic": "Astronomy",
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
+              "exercises": [
+                {
+                  "id": "planet-order-diagram",
+                  "label": "Study planet order diagram",
+                  "type": "diagram"
+                },
+                {
+                  "id": "planet-groups-table",
+                  "label": "Sort planets by type",
+                  "type": "table",
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
+                },
+                {
+                  "id": "solar-rebus",
+                  "label": "Solve solar rebus",
+                  "type": "rebus"
+                },
+                {
+                  "id": "solar-quiz-cards",
+                  "label": "Interactive solar flashcards",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Which planet is closest to the Sun?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Mercury"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "Jupiter is a gas giant.",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "True"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "solar-system-basics",
+              "title": "Професії в моїй сім'ї",
+              "topic": "Astronomy",
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
+              "exercises": [
+                {
+                  "id": "planet-order-diagram",
+                  "label": "Study planet order diagram",
+                  "type": "diagram"
+                },
+                {
+                  "id": "planet-groups-table",
+                  "label": "Sort planets by type",
+                  "type": "table",
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
+                },
+                {
+                  "id": "solar-rebus",
+                  "label": "Solve solar rebus",
+                  "type": "rebus"
+                },
+                {
+                  "id": "solar-quiz-cards",
+                  "label": "Interactive solar flashcards",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Which planet is closest to the Sun?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Mercury"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "Jupiter is a gas giant.",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "True"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Людина – людина",
+      "themes": [
+        {
+          "id": "forces-and-machines",
+          "color": "#14B8A6",
+          "lessons": [
+            {
+              "id": "simple-machines1",
+              "title": "Я, мої таланти і захоплення",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            },
+            {
+              "id": "simple-machines2",
+              "title": "Навички людини ХХІ століття",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            },
+            {
+              "id": "simple-machines3",
+              "title": "Люди, які допомагають нам пізнати себе",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            },
+            {
+              "id": "simple-machines4",
+              "title": "Десять запитань успішному психологу",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            },
+            {
+              "id": "simple-machines5",
+              "title": "Я і моя команда",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            },
+            {
+              "id": "simple-machines6",
+              "title": "Проект 'Галактина 6-го класу'",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            },
+            {
+              "id": "simple-machines7",
+              "title": "Презентація проєктів",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-diagnostic",
+      "title": "Діагностувальні роботи",
+      "themes": [
+        {
+          "id": "diagnostic-works",
+          "color": "#F59E0B",
+          "lessons": [
+            {
+              "id": "diagnostic-5-residual-knowledge",
+              "title": "Діагностувальна робота за залишковими знаннями 5-го класу",
+              "topic": "Математичні вміння та базові поняття STEM",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "diagnostic-5-residual-knowledge-download",
+                  "label": "Діагностувальна робота за залишковими знаннями 5-го класу",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "Робота містить два рівноцінні варіанти по п’ять завдань. Вона допоможе визначити, які математичні вміння та базові поняття STEM потрібно повторити перед вивченням нових тем. Робота не оцінюється.",
+                  "studentPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge.pdf",
+                  "teacherPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf"
+                }
+              ]
+            },
+            {
+              "id": "stem-6-plan-32-hours",
+              "title": "Навчальний план STEM: 1 год/тиждень (32 год)",
+              "topic": "Календарно-тематичне планування",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-6-plan-32-download",
+                  "planAsset": "src/data/6_diagnostic/stem_6_plan_32_hours.json",
+                  "label": "Навчальний план STEM: 1 год/тиждень (32 год)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "6 клас. І семестр: 15 тижнів, 15 год; ІІ семестр: 17 тижнів, 17 год. План укладено за модельною програмою без прив’язки до зошита. Містить теми, практичні роботи, очікувані результати та сторінки програми. Читайте на сайті або завантажуйте PDF.",
+                  "attachments": [
+                    {
+                      "path": "src/data/6_diagnostic/stem_6_plan_32_hours.pdf",
+                      "label": "Завантажити"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stem-6-plan-48-hours",
+              "title": "Навчальний план STEM: 1,5 год/тиждень (48 год)",
+              "topic": "Календарно-тематичне планування",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-6-plan-48-download",
+                  "planAsset": "src/data/6_diagnostic/stem_6_plan_48_hours.json",
+                  "label": "Навчальний план STEM: 1,5 год/тиждень (48 год)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "6 клас. І семестр: 15 тижнів, 22,5 год; ІІ семестр: 17 тижнів, 25,5 год. План укладено за модельною програмою без прив’язки до зошита. Містить теми, практичні роботи, очікувані результати та сторінки програми. Читайте на сайті або завантажуйте PDF.",
+                  "attachments": [
+                    {
+                      "path": "src/data/6_diagnostic/stem_6_plan_48_hours.pdf",
+                      "label": "Завантажити"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lessons": []
+}

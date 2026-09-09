@@ -1,0 +1,194 @@
+{
+  "modules": [
+    {
+      "id": "space-and-earth",
+      "title": "Space and Earth",
+      "themes": [
+        {
+          "id": "solar-system",
+          "color": "#8B5CF6",
+          "lessons": [
+            {
+              "id": "solar-system-basics",
+              "title": "Solar System Basics",
+              "topic": "Astronomy",
+              "formats": [
+                "quiz",
+                "story",
+                "flashcards"
+              ],
+              "exercises": [
+                {
+                  "id": "planet-order-diagram",
+                  "label": "Study planet order diagram",
+                  "type": "diagram"
+                },
+                {
+                  "id": "planet-groups-table",
+                  "label": "Sort planets by type",
+                  "type": "table",
+                  "columns": [
+                    "Planet",
+                    "Type"
+                  ],
+                  "rows": [
+                    "Mercury",
+                    "Jupiter",
+                    "Neptune"
+                  ],
+                  "dataToFill": [
+                    "Rocky",
+                    "Gas giant",
+                    "Ice giant"
+                  ]
+                },
+                {
+                  "id": "solar-rebus",
+                  "label": "Solve solar rebus",
+                  "type": "rebus"
+                },
+                {
+                  "id": "solar-quiz-cards",
+                  "label": "Interactive solar flashcards",
+                  "type": "interactive_quiz",
+                  "questions": [
+                    {
+                      "id": "q1",
+                      "question": "Which planet is closest to the Sun?",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "Mercury",
+                          "Earth",
+                          "Mars"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "Mercury"
+                      }
+                    },
+                    {
+                      "id": "q2",
+                      "question": "Jupiter is a gas giant.",
+                      "answerTypes": {
+                        "singleChoice": [
+                          "True",
+                          "False",
+                          "Sometimes"
+                        ],
+                        "trueFalse": "True",
+                        "shortText": "True"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engineering-lab",
+      "title": "Engineering Lab",
+      "themes": [
+        {
+          "id": "forces-and-machines",
+          "color": "#14B8A6",
+          "lessons": [
+            {
+              "id": "simple-machines",
+              "title": "Simple Machines",
+              "topic": "Engineering",
+              "formats": [
+                "flashcards",
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "machines-text",
+                  "label": "Read text and answer",
+                  "type": "text",
+                  "text": "Simple machines change force direction or magnitude. Examples are lever, pulley, wheel and axle.",
+                  "questions": [
+                    "Name two simple machines.",
+                    "How does a lever help work?"
+                  ]
+                },
+                {
+                  "id": "machines-video",
+                  "label": "Watch simple machines video",
+                  "type": "video",
+                  "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-diagnostic",
+      "title": "Diagnostic materials",
+      "themes": [
+        {
+          "id": "diagnostic-works",
+          "color": "#F59E0B",
+          "lessons": [
+            {
+              "id": "stem-6-plan-32-hours",
+              "title": "STEM teaching plan: 1 h/week (32 hours)",
+              "topic": "Teaching plans",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-6-plan-32-download",
+                  "planAsset": "src/data/6_diagnostic/stem_6_plan_32_hours.json",
+                  "label": "STEM teaching plan: 1 h/week (32 hours)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "Grade 6. Semester 1: 15 weeks, 15 hours; semester 2: 17 weeks, 17 hours. Based on the model curriculum, with topics, practical activities, outcomes and curriculum page references. No workbook references. Read the Ukrainian plan below or download the PDF.",
+                  "attachments": [
+                    {
+                      "path": "src/data/6_diagnostic/stem_6_plan_32_hours.pdf",
+                      "label": "Download"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stem-6-plan-48-hours",
+              "title": "STEM teaching plan: 1.5 h/week (48 hours)",
+              "topic": "Teaching plans",
+              "formats": [
+                "story"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-6-plan-48-download",
+                  "planAsset": "src/data/6_diagnostic/stem_6_plan_48_hours.json",
+                  "label": "STEM teaching plan: 1.5 h/week (48 hours)",
+                  "type": "homework",
+                  "formats": [
+                    "story"
+                  ],
+                  "text": "Grade 6. Semester 1: 15 weeks, 22.5 hours; semester 2: 17 weeks, 25.5 hours. Based on the model curriculum, with topics, practical activities, outcomes and curriculum page references. No workbook references. Read the Ukrainian plan below or download the PDF.",
+                  "attachments": [
+                    {
+                      "path": "src/data/6_diagnostic/stem_6_plan_48_hours.pdf",
+                      "label": "Download"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lessons": []
+}
