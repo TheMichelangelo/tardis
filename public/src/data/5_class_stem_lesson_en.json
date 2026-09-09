@@ -226,6 +226,26 @@
           "color": "#F59E0B",
           "lessons": [
             {
+              "id": "stem-5-semester-1-diagnostic",
+              "title": "STEM diagnostic assessment: Semester 1",
+              "topic": "Semester 1, Grade 5",
+              "formats": [
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-5-semester-1-diagnostic-download",
+                  "label": "STEM diagnostic assessment: Semester 1",
+                  "type": "homework",
+                  "formats": [
+                    "quiz"
+                  ],
+                  "text": "Grade 5, Semester 1. Two variants without answers: multiple-choice, written and practical tasks. The PDF is in Ukrainian.",
+                  "studentPdf": "src/data/5_diagnostic/kontrolna-stem-2-varianty-bez-vidpovidey.pdf"
+                }
+              ]
+            },
+            {
               "id": "stem-5-semester-assessment",
               "title": "STEM semester assessment",
               "topic": "Space, visual media and symbols",

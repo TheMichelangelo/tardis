@@ -1891,6 +1891,26 @@
           "color": "#F59E0B",
           "lessons": [
             {
+              "id": "stem-5-semester-1-diagnostic",
+              "title": "Діагностична робота з STEM за І семестр",
+              "topic": "І семестр, 5 клас",
+              "formats": [
+                "quiz"
+              ],
+              "exercises": [
+                {
+                  "id": "stem-5-semester-1-diagnostic-download",
+                  "label": "Діагностична робота з STEM за І семестр",
+                  "type": "homework",
+                  "formats": [
+                    "quiz"
+                  ],
+                  "text": "5 клас, І семестр. Два варіанти без відповідей: тестові, теоретичні та практичні завдання.",
+                  "studentPdf": "src/data/5_diagnostic/kontrolna-stem-2-varianty-bez-vidpovidey.pdf"
+                }
+              ]
+            },
+            {
               "id": "stem-5-semester-assessment",
               "title": "Семестрова контрольна робота з STEM",
               "topic": "Я у Всесвіті. Я так бачу! Під знаком STEM",
