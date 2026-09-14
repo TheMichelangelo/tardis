@@ -251,8 +251,16 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "lesson-1-shcho-take-stem-osvita-yaki-buvayut-prof-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 1
             },
             {
               "id": "lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu",
@@ -490,8 +498,16 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "lesson-2-shcho-take-proyekt-oznaky-proyektu-rezyu-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 2
             },
             {
               "id": "lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p",
@@ -736,8 +752,16 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "lesson-3-shlyakh-do-uspikhu-miy-nayvazhlyvishyy-p-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 3
             }
           ]
         }
@@ -776,8 +800,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: текст-опис однокласника (10-15 речень)."
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-4-ya-u-zakladi-osvity-ta-klasi-moya-shkola-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 4
             },
             {
               "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts",
@@ -859,8 +933,44 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: розв'язати 2 задачі з енергоефективності освітлення."
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-5-umovy-ta-zasoby-navchannya-yikh-evolyuts-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 5
             },
             {
               "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh",
@@ -887,8 +997,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: скласти таблицю питань/відповідей про заклад освіти."
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-6-moya-shkola-terytoriya-ta-budivlya-massh-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 6
             },
             {
               "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya",
@@ -915,8 +1075,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: створити 3D-модель будівлі школи."
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-7-doslidzhennya-umov-ta-zasobiv-navchannya-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 7
             },
             {
               "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva",
@@ -943,8 +1153,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: запропонувати рішення для оптимізації освітлення вдома і в школі."
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-8-chomu-enerhoefektyvnist-vazhlyva-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 8
             },
             {
               "id": "lesson-9-enerhoefektyvna-syhnalna-systema",
@@ -971,8 +1231,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: заповнити таблицю споживання електроенергії кабінетів школи."
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-9-enerhoefektyvna-syhnalna-systema-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 9
             },
             {
               "id": "lesson-10-shkola-moyeyi-mriyi",
@@ -999,14 +1309,64 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: скласти проєкт «Школа моєї мрії»."
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-10-shkola-moyeyi-mriyi-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 10
             }
           ]
         }
       ]
     },
-        {
+    {
       "id": "module-t2",
       "title": "Модуль 2. Людина – природа. Я у Всесвіті",
       "themes": [
@@ -1039,8 +1399,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Порахувати співвідношення розмірів планет на моделі."
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-17-ob-yekty-vsesvitu-optychni-prylady-dlya--placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 17
             },
             {
               "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap",
@@ -1067,8 +1477,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Змоделювати рух апарата по орбіті у Scratch."
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-18-istoriya-osvoyennya-kosmosu-kosmichni-ap-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 18
             },
             {
               "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm",
@@ -1095,8 +1555,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Обґрунтувати вибір матеріалів для захисту."
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-19-nebezpechni-faktory-kosmosu-zakhyst-kosm-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 19
             },
             {
               "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu",
@@ -1123,8 +1633,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Презентувати власний маршрут до обраної професії."
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-20-profesiyi-kosmosu-sohodni-i-v-maybutnomu-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 20
             },
             {
               "id": "lesson-21-ukrayina-kosmichna",
@@ -1151,8 +1711,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Захистити мініпроєкт у форматі 2-хвилинної презентації."
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-21-ukrayina-kosmichna-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 21
             }
           ]
         }
@@ -1191,8 +1801,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: текст (8-10 речень) «Чому повітряні кулі здіймаються?»."
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-11-istoriya-povitroplavannya-syly-u-pryrodi-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 11
             },
             {
               "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von",
@@ -1219,8 +1879,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: приклади з життя, де тертя допомагає або заважає."
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 12
             },
             {
               "id": "lesson-13-prosti-mashyny-ta-mekhanizmy",
@@ -1247,8 +1957,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: намалювати кран і підписати використані механізми."
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-13-prosti-mashyny-ta-mekhanizmy-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 13
             },
             {
               "id": "lesson-14-kryla-chomu-vony-litayut",
@@ -1275,8 +2035,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: розв'язати логічні задачі (а, б) із зошита."
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-14-kryla-chomu-vony-litayut-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 14
             },
             {
               "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya",
@@ -1303,8 +2113,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: повторити тему фізичних сил у природі."
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-15-kryla-chomu-vony-litayut-prodovzhennya-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 15
             },
             {
               "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro",
@@ -1331,8 +2191,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Домашнє: повторити матеріал за темою «Сили в природі»."
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-16-uzahalnennya-znan-za-temoyu-syly-v-pryro-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 16
             }
           ]
         }
@@ -1371,8 +2281,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Створити схему утворення кольорів."
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-22-svitlo-i-kolir-rozkladannya-biloho-svitl-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 22
             },
             {
               "id": "lesson-23-farby-i-vidtinky",
@@ -1399,8 +2359,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Оформити таблицю «рецепт кольору»."
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-23-farby-i-vidtinky-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 23
             },
             {
               "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo",
@@ -1427,15 +2437,66 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Написати короткий творчий текст за мотивами прочитаного."
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-24-poety-i-pysmennyky-pro-sontse-i-svitlo-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 24
             },
             {
               "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla",
               "title": "Фотографія як мистецтво світла",
               "topic": "STEM",
               "formats": [
-                "story", "competition"
+                "story",
+                "competition"
               ],
               "exercises": [
                 {
@@ -1443,19 +2504,25 @@
                   "label": "Вправа 1",
                   "type": "text",
                   "text": "З давніх-давен людина прагнула якимось чином відобразити кращі моменти свого життя. Так виникло мистецтво фотографії. А із чого все починалось? Камера-обскура, відома античним ученим, століттями допомагала художникам точно передавати перспективу. У XVIII–XIX століттях науковці почали досліджувати світлочутливі речовини, зокрема срібні солі, що темнішали під дією світла. Французький винахідник Жозеф Нісфор Ньєпс у 1826 році створив перший у світі постійний фотографічний знімок. Цей знімок, «Вид з вікна», був отриманий після восьмигодинної експозиції на металевій пластині, покритій бітумом. Після смерті Ньєпса його співпрацю з Луї Дагером продовжено, і той удосконалив процес, скоротивши час знімання. У 1839 році Дагер офіційно представив дагеротипію — перший практично застосовний метод фотографування. Майже одночасно англієць Вільям Генрі Фокс Тальбот запропонував калотипію, що використовувала паперовий негатив для створення кількох копій. Ці технології швидко поширилися Європою та Америкою, зробивши фотографію доступним інструментом для науки, мистецтва й повсякдення. Так фотографія перетворилася на могутній засіб збереження історичної пам’яті та візуального спілкування, назавжди змінивши людське сприйняття реальності. ",
-                  "questions": ["Хто створив перший постійний фотографічний знімок «Вид з вікна» і в якому році?", 
-                                " Яка принципова перевага калотипії Тальбота порівняно з дагеротипією Дагера?",
-                                "Яку роль відіграла камера-обскура у передісторії виникнення фотографії?"
-                              ]
+                  "questions": [
+                    "Хто створив перший постійний фотографічний знімок «Вид з вікна» і в якому році?",
+                    " Яка принципова перевага калотипії Тальбота порівняно з дагеротипією Дагера?",
+                    "Яку роль відіграла камера-обскура у передісторії виникнення фотографії?"
+                  ]
                 },
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-2",
                   "label": "Вправа 2",
-                  "formats": ["story"],
+                  "formats": [
+                    "story"
+                  ],
                   "text": "Переглянь відео про камеру обскура",
                   "type": "video",
                   "youtubeUrl": "https://www.youtube.com/watch?v=JSBsdX6yrL8",
-                  "questions": ["Яку головну ідею ти побачив?", "Який приклад запам'ятався?"]
+                  "questions": [
+                    "Яку головну ідею ти побачив?",
+                    "Який приклад запам'ятався?"
+                  ]
                 },
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-3",
@@ -1472,9 +2539,14 @@
                 {
                   "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-ex-5",
                   "label": "Заповни порівняльну таблицю камери обскури та сучасного фотоапарата",
-                  "formats": ["competition"],
+                  "formats": [
+                    "competition"
+                  ],
                   "type": "table",
-                  "columns": ["Камера обскура", "Сучасний фотоапарат"],
+                  "columns": [
+                    "Камера обскура",
+                    "Сучасний фотоапарат"
+                  ],
                   "rows": [
                     "Принцип утворення зображення",
                     "Отвір для проходження світла",
@@ -1504,7 +2576,11 @@
                       "id": "q1",
                       "question": "Що означає слово «камера обскура» у перекладі з латини?",
                       "answerTypes": {
-                        "singleChoice": ["Темна кімната", "Світловий малюнок", "Чарівна скринька"],
+                        "singleChoice": [
+                          "Темна кімната",
+                          "Світловий малюнок",
+                          "Чарівна скринька"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Темна кімната"
                       }
@@ -1513,7 +2589,11 @@
                       "id": "q2",
                       "question": "Як у камері обскура утворюється зображення?",
                       "answerTypes": {
-                        "singleChoice": ["Світло проходить крізь маленький отвір і малює зображення навпаки", "За допомогою дзеркала", "Художник малює його від руки"],
+                        "singleChoice": [
+                          "Світло проходить крізь маленький отвір і малює зображення навпаки",
+                          "За допомогою дзеркала",
+                          "Художник малює його від руки"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Світло проходить крізь маленький отвір і малює зображення навпаки"
                       }
@@ -1522,7 +2602,11 @@
                       "id": "q3",
                       "question": "Який елемент сучасного фотоапарата замінив маленький отвір у камері обскури?",
                       "answerTypes": {
-                        "singleChoice": ["Об'єктив", "Спалах", "Штатив"],
+                        "singleChoice": [
+                          "Об'єктив",
+                          "Спалах",
+                          "Штатив"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Об'єктив"
                       }
@@ -1531,7 +2615,11 @@
                       "id": "q4",
                       "question": "Що спільного між камерою обскурою та фотоапаратом?",
                       "answerTypes": {
-                        "singleChoice": ["У обох зображення утворюється завдяки проходженню світла крізь отвір", "Обидва працюють без світла", "Обидва роблять кольорові знімки"],
+                        "singleChoice": [
+                          "У обох зображення утворюється завдяки проходженню світла крізь отвір",
+                          "Обидва працюють без світла",
+                          "Обидва роблять кольорові знімки"
+                        ],
                         "trueFalse": "True",
                         "shortText": "У обох зображення утворюється завдяки проходженню світла крізь отвір"
                       }
@@ -1540,7 +2628,11 @@
                       "id": "q5",
                       "question": "Чому фотографію називають «мистецтвом світла»?",
                       "answerTypes": {
-                        "singleChoice": ["Бо саме світло малює зображення на плівці або сенсорі", "Бо фотографи люблять сонячні дні", "Бо фотоапарати світяться в темряві"],
+                        "singleChoice": [
+                          "Бо саме світло малює зображення на плівці або сенсорі",
+                          "Бо фотографи люблять сонячні дні",
+                          "Бо фотоапарати світяться в темряві"
+                        ],
                         "trueFalse": "True",
                         "shortText": "Бо саме світло малює зображення на плівці або сенсорі"
                       }
@@ -1552,9 +2644,31 @@
                   "label": "Вправа 7. Домашнє завдання",
                   "type": "homework",
                   "text": "Створити сканограму або фотоколаж. Ознайомся з правилами створення сканограм.",
-                   "imageExt": "png"
+                  "imageExt": "png"
+                },
+                {
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-25-fotohrafiya-yak-mystetstvo-svitla-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 25
             },
             {
               "id": "lesson-26-proyekt-namalyuyu-tobi-sontse",
@@ -1573,11 +2687,16 @@
                 {
                   "id": "lesson-26-proyekt-video",
                   "label": "Вправа 2",
-                  "formats": ["story"],
+                  "formats": [
+                    "story"
+                  ],
                   "text": "Переглянь відео з завданням до проєкту",
                   "type": "video",
                   "youtubeUrl": "https://www.youtube.com/watch?v=b2eI0e5Rlb8",
-                  "questions": ["Яку головну ідею ти побачив?", "Який приклад запам'ятався?"]
+                  "questions": [
+                    "Яку головну ідею ти побачив?",
+                    "Який приклад запам'ятався?"
+                  ]
                 },
                 {
                   "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-3",
@@ -1585,7 +2704,7 @@
                   "type": "diagram",
                   "imageExt": "png"
                 },
-                                {
+                {
                   "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-ex-4",
                   "label": "Виконайте в парах проект",
                   "type": "diagram",
@@ -1596,8 +2715,44 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Виконайте один з запропонованих."
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-26-proyekt-namalyuyu-tobi-sontse-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 26
             }
           ]
         }
@@ -1763,8 +2918,37 @@
                   "label": "Вправа 5",
                   "type": "homework",
                   "text": "Створи 4 піктограми для класу або шкільного кабінету та коротко підпиши значення кожної."
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-27-znaky-u-komunikatsiyi-pryrodni-ta-shtuch-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 27
             },
             {
               "id": "lesson-28-profesiyi-systemy-lyudyna-znak",
@@ -1791,8 +2975,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Підготувати мініінтерв'ю «Яка професія мені ближча»."
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-28-profesiyi-systemy-lyudyna-znak-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 28
             },
             {
               "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy",
@@ -1819,8 +3053,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Підготувати пояснення символів герба."
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-29-hrafichni-znakovi-systemy-heraldychna-sy-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 29
             },
             {
               "id": "lesson-30-koduvannya-imeni-stem-symvolika",
@@ -1847,8 +3131,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Порівняти 2 способи кодування інформації."
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-30-koduvannya-imeni-stem-symvolika-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 30
             },
             {
               "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem",
@@ -1875,8 +3209,58 @@
                   "label": "Вправа 3",
                   "type": "homework",
                   "text": "Презентувати емблему та пояснити символічні елементи."
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "lesson-31-proyekt-rozrobka-emblemy-ya-obyrayu-stem-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 31
             }
           ]
         }
@@ -1907,8 +3291,72 @@
                   ],
                   "text": "5 клас, І семестр. Два варіанти без відповідей: тестові, теоретичні та практичні завдання.",
                   "studentPdf": "src/data/5_diagnostic/kontrolna-stem-2-varianty-bez-vidpovidey.pdf"
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 32
             },
             {
               "id": "stem-5-semester-assessment",
@@ -1928,8 +3376,72 @@
                   "text": "5 клас. Два варіанти та тренувальний зразок: тести, теоретичні питання й практичні завдання. Відповіді доступні вчителю.",
                   "studentPdf": "src/data/5_diagnostic/semestrova-kontrolna-stem-5-klas.pdf",
                   "teacherPdf": "src/data/5_diagnostic/semestrova-kontrolna-stem-5-klas_answers.pdf"
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 33
             },
             {
               "id": "stem-5-plan-32-hours",
@@ -1954,8 +3466,72 @@
                       "label": "Завантажити"
                     }
                   ]
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 34
             },
             {
               "id": "stem-5-plan-48-hours",
@@ -1980,8 +3556,72 @@
                       "label": "Завантажити"
                     }
                   ]
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 35
             }
           ]
         }

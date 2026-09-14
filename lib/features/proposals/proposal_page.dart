@@ -157,6 +157,20 @@ class _ProposalPageState extends State<ProposalPage> {
   void _createProposal(StemClass data) {
     final themeKey = _themeKey;
     if (themeKey == null) return;
+    if (_target == ProposalTarget.exercise) {
+      final lesson = data.modules
+          .expand((module) => module.themes)
+          .expand((theme) => theme.lessons)
+          .where((lesson) => lesson.id == _lessonId)
+          .firstOrNull;
+      if (lesson == null) return;
+      if (lesson.visibleExercises.length >= StemLesson.maxExercises) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppStrings.get('exerciseLimit'))),
+        );
+        return;
+      }
+    }
     final parts = themeKey.split(':');
     final moduleId = parts.first;
     final themeId = parts.last;
@@ -172,13 +186,13 @@ class _ProposalPageState extends State<ProposalPage> {
       'themeName': themeName,
       'proposalType': _target.name,
       if (_target == ProposalTarget.lesson)
-        'lesson': {
+        'lesson': StemLesson.fromJson({
           'id': _newLessonId.trim(),
           'title': _newLessonTitle.trim(),
           'topic': _newLessonTopic.trim(),
           'formats': _lessonFormats.map((format) => format.jsonValue).toList(),
           'exercises': _lessonDrafts.map((draft) => draft.toJson()).toList(),
-        }
+        }).toJson()
       else ...{
         'lessonId': _lessonId,
         'exercise': _singleExerciseDraft.toJson(),
@@ -304,8 +318,10 @@ class _ProposalPageState extends State<ProposalPage> {
                         )),
                 if (_target == ProposalTarget.lesson)
                   OutlinedButton.icon(
-                    onPressed: () =>
-                        setState(() => _lessonDrafts.add(ExerciseDraft())),
+                    onPressed: _lessonDrafts.length >= StemLesson.maxExercises
+                        ? null
+                        : () =>
+                            setState(() => _lessonDrafts.add(ExerciseDraft())),
                     icon: const Icon(Icons.add),
                     label: Text(AppStrings.get('addExercise')),
                   ),

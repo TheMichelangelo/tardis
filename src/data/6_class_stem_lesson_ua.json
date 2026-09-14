@@ -230,8 +230,16 @@
                   "label": "Домашнє завдання: професійне інтерв’ю",
                   "type": "homework",
                   "text": "Проведи коротке інтерв’ю з одним дорослим. Запитай: 1) Як називається ваша професія або заняття? 2) Які завдання ви виконуєте? 3) Які знання й уміння потрібні? 4) Якими інструментами або технологіями ви користуєтеся? 5) Що змінилося у цій роботі з часом? 6) Чим ваша праця корисна людям або Україні? Запиши відповіді стисло. Додай професії ще 1–3 представників родини, якщо це можливо. Не збирай приватних даних. За потреби виконай альтернативу: досліди професію знайомої дорослої людини або професійну династію відомих українців."
+                },
+                {
+                  "id": "lesson-1-ukrayina-krayina-mriyi-profesiyi-rodyny-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 1
             },
             {
               "id": "solar-system-basics1",
@@ -304,8 +312,51 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "solar-system-basics1-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics1-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics1-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics1-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics1-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics1-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 2
             },
             {
               "id": "solar-system-basics",
@@ -378,8 +429,51 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "solar-system-basics-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 3
             }
           ]
         }
@@ -417,8 +511,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines1-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines1-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 4
             },
             {
               "id": "simple-machines2",
@@ -444,8 +595,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines2-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines2-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 5
             },
             {
               "id": "simple-machines3",
@@ -471,8 +679,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines3-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines3-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 6
             },
             {
               "id": "simple-machines4",
@@ -498,8 +763,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines4-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines4-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 7
             },
             {
               "id": "simple-machines5",
@@ -525,8 +847,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines5-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines5-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 8
             },
             {
               "id": "simple-machines6",
@@ -552,8 +931,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines6-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines6-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 9
             },
             {
               "id": "simple-machines7",
@@ -579,8 +1015,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines7-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines7-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 10
             }
           ]
         }
@@ -612,8 +1105,72 @@
                   "text": "Робота містить два рівноцінні варіанти по п’ять завдань. Вона допоможе визначити, які математичні вміння та базові поняття STEM потрібно повторити перед вивченням нових тем. Робота не оцінюється.",
                   "studentPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge.pdf",
                   "teacherPdf": "src/data/6_diagnostic/diagnostic_5_residual_knowledge_answers.pdf"
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "diagnostic-5-residual-knowledge-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 11
             },
             {
               "id": "stem-6-plan-32-hours",
@@ -638,8 +1195,72 @@
                       "label": "Завантажити"
                     }
                   ]
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 12
             },
             {
               "id": "stem-6-plan-48-hours",
@@ -664,8 +1285,72 @@
                       "label": "Завантажити"
                     }
                   ]
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 13
             }
           ]
         }

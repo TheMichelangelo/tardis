@@ -127,12 +127,15 @@ class StemTheme {
 }
 
 class StemLesson {
+  static const maxExercises = 10;
+
   const StemLesson({
     required this.id,
     required this.title,
     required this.topic,
     required this.formats,
     required this.exercises,
+    this.number,
   });
 
   final String id;
@@ -140,17 +143,35 @@ class StemLesson {
   final String topic;
   final List<LessonFormat> formats;
   final List<StemExercise> exercises;
+  final int? number;
 
   factory StemLesson.fromJson(Map<String, dynamic> json) {
     final exercises = json['exercises'] ?? json['exersices'];
+    final id = _string(json['id']);
     return StemLesson(
-      id: _string(json['id']),
+      id: id,
+      number: int.tryParse('${json['number'] ?? ''}'),
       title: _string(json['title']),
       topic: _string(json['topic']),
       formats: _values(json['formats']).map(LessonFormat.fromJson).toList(),
-      exercises: _mapList(exercises, StemExercise.fromJson),
+      exercises: _padExercises(id, _mapList(exercises, StemExercise.fromJson)),
     );
   }
+
+  static List<StemExercise> _padExercises(
+      String lessonId, List<StemExercise> exercises) {
+    if (exercises.length > maxExercises) {
+      throw const FormatException('A lesson can contain at most 10 exercises.');
+    }
+    return List.unmodifiable([
+      ...exercises,
+      for (var slot = exercises.length; slot < maxExercises; slot++)
+        StemExercise.placeholder(lessonId, slot),
+    ]);
+  }
+
+  List<StemExercise> get visibleExercises =>
+      exercises.where((exercise) => !exercise.isPlaceholder).toList();
 
   List<StemExercise> exercisesFor(LessonFormat selected) {
     final visible =
@@ -163,20 +184,24 @@ class StemLesson {
 
   Set<LessonFormat> get availableFormats => {
         ...formats,
-        ...exercises.expand((exercise) => exercise.formats),
+        ...visibleExercises.expand((exercise) => exercise.formats),
       }..remove(LessonFormat.all);
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        if (number != null) 'number': number,
         'title': title,
         'topic': topic,
         'formats': formats.map((format) => format.jsonValue).toList(),
-        'exercises': exercises.map((exercise) => exercise.toJson()).toList(),
+        'exercises': _padExercises(id, exercises)
+            .map((exercise) => exercise.toJson())
+            .toList(),
       };
 
-  StemLesson copyWith({List<StemExercise>? exercises}) {
+  StemLesson copyWith({List<StemExercise>? exercises, int? number}) {
     return StemLesson(
       id: id,
+      number: number ?? this.number,
       title: title,
       topic: topic,
       formats: formats,
@@ -199,6 +224,17 @@ class StemExercise {
   final ExerciseType type;
   final List<LessonFormat> formats;
   final Map<String, dynamic> data;
+
+  factory StemExercise.placeholder(String lessonId, int slot) =>
+      StemExercise.fromJson({
+        'id': '$lessonId-placeholder-${slot + 1}',
+        'label': '',
+        'type': 'text',
+        'formats': <String>[],
+        'isPlaceholder': true,
+      });
+
+  bool get isPlaceholder => data['isPlaceholder'] == true;
 
   factory StemExercise.fromJson(Map<String, dynamic> json) {
     return StemExercise(
@@ -232,6 +268,7 @@ class StemExercise {
     ..['formats'] = formats.map((format) => format.jsonValue).toList();
 
   bool isVisibleFor(LessonFormat selected) {
+    if (isPlaceholder) return false;
     return selected == LessonFormat.all ||
         type == ExerciseType.homework ||
         formats.isEmpty ||

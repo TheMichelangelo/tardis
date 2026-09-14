@@ -37,7 +37,7 @@ class LessonCard extends StatelessWidget {
               const SizedBox(height: 4),
               Text('${AppStrings.get('topic')}: ${lesson.topic}'),
               Text(
-                '${AppStrings.get('exercises')}: ${lesson.exercises.length}',
+                '${AppStrings.get('exercises')}: ${lesson.visibleExercises.length}',
               ),
               const SizedBox(height: 8),
               Wrap(
@@ -55,7 +55,7 @@ class LessonCard extends StatelessWidget {
               Wrap(
                 spacing: 6,
                 runSpacing: 6,
-                children: lesson.exercises
+                children: lesson.visibleExercises
                     .map((exercise) => exercise.type)
                     .toSet()
                     .map(

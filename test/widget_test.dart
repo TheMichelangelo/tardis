@@ -20,6 +20,7 @@ void main() {
     expect(find.text('6'), findsOneWidget);
     expect(find.text('7'), findsOneWidget);
     expect(find.text('Я вчитель'), findsOneWidget);
+    await tester.ensureVisible(find.text('7'));
     await tester.tap(find.text('7'));
     await tester.pump();
     await tester.runAsync(() async {

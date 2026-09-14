@@ -27,7 +27,7 @@ class LessonPdfService {
       theme: pw.ThemeData.withFont(base: regular, bold: bold),
     );
     final sections = <pw.Widget>[];
-    for (final exercise in lesson.exercises) {
+    for (final exercise in lesson.visibleExercises) {
       sections.add(await _exercise(lesson.id, exercise));
     }
     document.addPage(

@@ -1,5 +1,26 @@
 # STEM Laboratory
 
+Teachers can use **Share lesson** to select exercises, copy a code or link,
+and preview the student view. Students enter the code on the home page.
+Shared lessons show only the selected exercises in every display mode.
+
+Codes use **7 digits**: grade + two-digit stable lesson number + four-digit
+decimal exercise mask (`0001`–`1023`). Ten exercises have 1023 nonempty
+combinations, which cannot fit in a three-digit decimal mask. For example,
+`5010005` selects slots 1 and 3 of grade 5, lesson 01; `5011023` selects all
+available exercises. The least significant bit represents the first slot.
+
+Share links use the site root: `/?lessonCode=5010005`, preserving the hosting
+base path. Native builds use `https://themichelangelo.github.io/tardis/` by
+default; override it with `--dart-define=STEM_PUBLIC_URL=https://your-site/`.
+Codes resolve across interface languages, falling back to the original
+material when a translation is unavailable.
+
+Catalog lessons have a stable `number` and ten exercise slots. Empty slots
+have `isPlaceholder: true` and are hidden from students, teachers, counts and
+PDFs. Replace a placeholder when adding an exercise; keep existing slot order
+and lesson numbers stable so previously shared codes continue to work.
+
 [Українська версія](./README.md)
 
 Flutter/Dart application for grade 5–6 STEM lessons, built from one codebase for

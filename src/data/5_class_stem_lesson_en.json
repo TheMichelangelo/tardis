@@ -94,8 +94,44 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "fractions-fundamentals-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 36
             },
             {
               "id": "fractions-fundamentals1",
@@ -128,8 +164,65 @@
                     "4/6",
                     "="
                   ]
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "fractions-fundamentals1-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 37
             }
           ]
         },
@@ -160,8 +253,65 @@
                     "How many degrees in a triangle?",
                     "What is a right angle?"
                   ]
+                },
+                {
+                  "id": "angles-shapes-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "angles-shapes-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 38
             }
           ]
         }
@@ -210,8 +360,65 @@
                     "Grows leaves",
                     "Produces seeds"
                   ]
+                },
+                {
+                  "id": "seed-to-plant-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "seed-to-plant-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 39
             }
           ]
         }
@@ -242,8 +449,72 @@
                   ],
                   "text": "Grade 5, Semester 1. Two variants without answers: multiple-choice, written and practical tasks. The PDF is in Ukrainian.",
                   "studentPdf": "src/data/5_diagnostic/kontrolna-stem-2-varianty-bez-vidpovidey.pdf"
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-1-diagnostic-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 32
             },
             {
               "id": "stem-5-semester-assessment",
@@ -263,8 +534,72 @@
                   "text": "Grade 5. Two variants and a practice version with multiple-choice, written and practical tasks. Materials are in Ukrainian. Answers are available to teachers.",
                   "studentPdf": "src/data/5_diagnostic/semestrova-kontrolna-stem-5-klas.pdf",
                   "teacherPdf": "src/data/5_diagnostic/semestrova-kontrolna-stem-5-klas_answers.pdf"
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-semester-assessment-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 33
             },
             {
               "id": "stem-5-plan-32-hours",
@@ -289,8 +624,72 @@
                       "label": "Download"
                     }
                   ]
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-32-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 34
             },
             {
               "id": "stem-5-plan-48-hours",
@@ -315,8 +714,72 @@
                       "label": "Download"
                     }
                   ]
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-5-plan-48-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 35
             }
           ]
         }

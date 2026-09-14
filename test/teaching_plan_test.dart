@@ -33,7 +33,7 @@ void main() {
         final gradePlans = await plans(language, grade);
         expect(gradePlans.length, 2);
         for (final plan in gradePlans) {
-          final exercise = plan.exercises.single;
+          final exercise = plan.visibleExercises.single;
           final attachment = exercise.objectList('attachments').single;
           final path = attachment['path'] as String;
           expect(path, endsWith('.pdf'));

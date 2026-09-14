@@ -12,6 +12,7 @@ import '../../core/reading_settings.dart';
 import '../../core/responsive_layout.dart';
 import '../../core/stem_background.dart';
 import '../auth/auth_controller.dart';
+import 'lesson_code_entry.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -148,6 +149,8 @@ class HomePage extends StatelessWidget {
                                   semanticLabel:
                                       'STEM: Science, Technology, Engineering, Mathematics',
                                 ),
+                                const SizedBox(height: 20),
+                                const LessonCodeEntry(),
                                 const SizedBox(height: 20),
                                 Text(
                                   AppStrings.get('choose'),

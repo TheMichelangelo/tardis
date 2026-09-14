@@ -79,8 +79,51 @@
                       }
                     }
                   ]
+                },
+                {
+                  "id": "solar-system-basics-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "solar-system-basics-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 3
             }
           ]
         }
@@ -118,8 +161,65 @@
                   "label": "Watch simple machines video",
                   "type": "video",
                   "youtubeUrl": "hhttps://www.youtube.com/watch?v=VAgt2vo9HdE&list=PLJ9FKnrqZM71kB2c1gheBXiKyS9n3c4kg"
+                },
+                {
+                  "id": "simple-machines-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "simple-machines-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 14
             }
           ]
         }
@@ -156,8 +256,72 @@
                       "label": "Download"
                     }
                   ]
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-32-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 12
             },
             {
               "id": "stem-6-plan-48-hours",
@@ -182,8 +346,72 @@
                       "label": "Download"
                     }
                   ]
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-2",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-3",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-4",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-5",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-6",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-7",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-8",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-9",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
+                },
+                {
+                  "id": "stem-6-plan-48-hours-placeholder-10",
+                  "label": "",
+                  "type": "text",
+                  "formats": [],
+                  "isPlaceholder": true
                 }
-              ]
+              ],
+              "number": 13
             }
           ]
         }

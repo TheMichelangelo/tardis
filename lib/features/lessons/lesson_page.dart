@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
+import '../../core/lesson_code.dart';
 import '../../core/localization.dart';
 import '../../core/reading_settings.dart';
 import '../../core/responsive_layout.dart';
@@ -8,6 +9,7 @@ import '../../core/stem_background.dart';
 import '../../models.dart';
 import '../exercises/exercise_card.dart';
 import 'lesson_pdf_service.dart';
+import 'lesson_share_dialog.dart';
 import 'teaching_plan_page.dart';
 
 enum ExerciseViewMode { single, all }
@@ -18,6 +20,7 @@ class LessonPage extends StatefulWidget {
     required this.moduleTitle,
     required this.lesson,
     required this.isTeacher,
+    this.sharedCode,
     super.key,
   });
 
@@ -25,6 +28,7 @@ class LessonPage extends StatefulWidget {
   final String moduleTitle;
   final StemLesson lesson;
   final bool isTeacher;
+  final String? sharedCode;
 
   @override
   State<LessonPage> createState() => _LessonPageState();
@@ -35,6 +39,34 @@ class _LessonPageState extends State<LessonPage> {
   LessonFormat _selectedFormat = LessonFormat.all;
   ExerciseViewMode _viewMode = ExerciseViewMode.single;
   int _exerciseIndex = 0;
+  int? _shareMask;
+
+  bool get _canShare =>
+      widget.isTeacher &&
+      widget.lesson.number != null &&
+      widget.lesson.number! >= 1 &&
+      widget.lesson.number! <= 99 &&
+      widget.lesson.visibleExercises.isNotEmpty;
+
+  void _share() {
+    _shareMask ??= LessonCode.availableMask(widget.lesson.copyWith(
+      exercises: [
+        for (final (index, exercise) in widget.lesson.exercises.indexed)
+          exercise.isVisibleFor(_selectedFormat)
+              ? exercise
+              : StemExercise.placeholder(widget.lesson.id, index),
+      ],
+    ));
+    showDialog<void>(
+      context: context,
+      builder: (_) => LessonShareDialog(
+        classNumber: widget.classNumber,
+        lesson: widget.lesson,
+        initialMask: _shareMask!,
+        onSelectionChanged: (value) => _shareMask = value,
+      ),
+    );
+  }
 
   List<LessonFormat> get _availableFormats => [
         LessonFormat.all,
@@ -61,11 +93,15 @@ class _LessonPageState extends State<LessonPage> {
 
   @override
   Widget build(BuildContext context) {
-    final plan = widget.lesson.exercises
+    final plan = widget.lesson.visibleExercises
         .where((exercise) => exercise.text('planAsset').isNotEmpty)
         .firstOrNull;
     if (plan != null) {
-      return TeachingPlanPage(title: widget.lesson.title, exercise: plan);
+      return TeachingPlanPage(
+        title: widget.lesson.title,
+        exercise: plan,
+        onShare: _canShare ? _share : null,
+      );
     }
     final exercises = widget.lesson.exercisesFor(_selectedFormat);
     if (_exerciseIndex >= exercises.length) _exerciseIndex = 0;
@@ -75,6 +111,12 @@ class _LessonPageState extends State<LessonPage> {
             maxLines: 1, overflow: TextOverflow.ellipsis),
         actions: [
           const TextSizeButton(),
+          if (_canShare)
+            IconButton(
+              tooltip: AppStrings.get('shareLesson'),
+              onPressed: _share,
+              icon: const Icon(Icons.share),
+            ),
           if (widget.isTeacher) ...[
             IconButton(
               tooltip: AppStrings.get('printPdf'),
@@ -123,6 +165,10 @@ class _LessonPageState extends State<LessonPage> {
                     ?.copyWith(fontWeight: FontWeight.w800),
               ),
             const SizedBox(height: 14),
+            if (widget.sharedCode != null) ...[
+              Text('${AppStrings.get('lessonCode')}: ${widget.sharedCode}'),
+              const SizedBox(height: 12),
+            ],
             Wrap(
               spacing: 8,
               runSpacing: 8,

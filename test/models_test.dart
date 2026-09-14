@@ -3,6 +3,36 @@ import 'package:stem_laboratory/models.dart';
 
 void main() {
   group('StemLesson parsing', () {
+    test('pads empty slots and hides them from every format', () {
+      final lesson = StemLesson.fromJson({
+        'id': 'padded',
+        'number': 27,
+        'exercises': [
+          {'id': 'first', 'type': 'text', 'text': 'Visible'},
+        ],
+      });
+      expect(lesson.exercises, hasLength(10));
+      expect(lesson.exercises.map((e) => e.id).toSet(), hasLength(10));
+      expect(lesson.visibleExercises.single.id, 'first');
+      for (final format in LessonFormat.values) {
+        expect(lesson.exercisesFor(format).single.id, 'first');
+      }
+      final restored = StemLesson.fromJson(lesson.toJson());
+      expect(restored.exercises, hasLength(10));
+      expect(restored.exercises.where((e) => e.isPlaceholder), hasLength(9));
+      expect(restored.number, 27);
+      expect(StemLesson.fromJson({'id': 'empty'}).visibleExercises, isEmpty);
+    });
+
+    test('rejects an eleventh exercise without silently losing content', () {
+      expect(
+        () => StemLesson.fromJson({
+          'exercises': List.generate(11, (i) => {'id': '$i', 'type': 'text'}),
+        }),
+        throwsFormatException,
+      );
+    });
+
     test('supports legacy exersices key and normalizes flashcards', () {
       final lesson = StemLesson.fromJson({
         'id': 'lesson-1',
@@ -20,7 +50,7 @@ void main() {
       });
 
       expect(lesson.formats, [LessonFormat.competition]);
-      expect(lesson.exercises.single.type, ExerciseType.interactiveQuiz);
+      expect(lesson.visibleExercises.single.type, ExerciseType.interactiveQuiz);
       expect(
         lesson.exercisesFor(LessonFormat.competition),
         hasLength(1),
@@ -106,8 +136,8 @@ void main() {
 
       final restored = StemLesson.fromJson(lesson.toJson());
 
-      expect(restored.exercises.single.solution, 'Teacher answer');
-      expect(restored.exercises.single.formats, [LessonFormat.story]);
+      expect(restored.visibleExercises.single.solution, 'Teacher answer');
+      expect(restored.visibleExercises.single.formats, [LessonFormat.story]);
     });
   });
 }

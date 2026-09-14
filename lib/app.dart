@@ -13,6 +13,7 @@ import 'features/home/home_page.dart';
 import 'features/onboarding/material_setup.dart';
 import 'features/lessons/class_page.dart';
 import 'features/lessons/lesson_route_page.dart';
+import 'features/lessons/shared_lesson_page.dart';
 import 'features/proposals/proposal_page.dart';
 import 'repository.dart';
 
@@ -21,11 +22,13 @@ class StemApp extends StatefulWidget {
       {this.authController,
       this.languageController,
       this.readingSettings,
+      this.repository,
       super.key});
 
   final AuthController? authController;
   final LanguageController? languageController;
   final ReadingSettings? readingSettings;
+  final LessonRepository? repository;
 
   @override
   State<StemApp> createState() => _StemAppState();
@@ -42,7 +45,7 @@ class _StemAppState extends State<StemApp> {
   late final ReadingSettings _readingSettings =
       widget.readingSettings ?? ReadingSettings();
   final _navigationStore = NavigationStore();
-  final _repository = LessonRepository();
+  late final _repository = widget.repository ?? LessonRepository();
   late final Future<String> _initialization = _initialize();
 
   Future<String> _initialize() async {
@@ -76,7 +79,14 @@ class _StemAppState extends State<StemApp> {
       r'^/class/(5|6|7)/module/([^/]+)/lesson/([^/]+)$',
     ).firstMatch(uri.path);
 
-    if (uri.path == AppRoutes.login) {
+    if (uri.path == AppRoutes.home &&
+        uri.queryParameters.containsKey('lessonCode')) {
+      page = SharedLessonPage(
+        code: uri.queryParameters['lessonCode']!,
+        repository: _repository,
+        language: _languageController.language,
+      );
+    } else if (uri.path == AppRoutes.login) {
       page = LoginPage(controller: _authController);
     } else if (uri.path == '/propose') {
       final classNumber = int.tryParse(uri.queryParameters['class'] ?? '');
@@ -138,7 +148,8 @@ class _StemAppState extends State<StemApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
-            home: Scaffold(
+            // No navigator until initialization has resolved the incoming URL.
+            builder: (context, _) => Scaffold(
               body: Center(child: Text(AppStrings.get('loading'))),
             ),
           );

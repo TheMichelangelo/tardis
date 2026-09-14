@@ -31,6 +31,7 @@ class _ExerciseCardState extends State<ExerciseCard>
   Widget build(BuildContext context) {
     super.build(context);
     final exercise = widget.exercise;
+    if (exercise.isPlaceholder) return const SizedBox.shrink();
     return Card(
       margin: const EdgeInsets.only(bottom: 14),
       color: Colors.white,

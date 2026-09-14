@@ -14,10 +14,11 @@ import '../../models.dart';
 /// A reading view of the complete plan; downloads use the compiled source PDF.
 class TeachingPlanPage extends StatefulWidget {
   const TeachingPlanPage(
-      {required this.title, required this.exercise, super.key});
+      {required this.title, required this.exercise, this.onShare, super.key});
 
   final String title;
   final StemExercise exercise;
+  final VoidCallback? onShare;
 
   @override
   State<TeachingPlanPage> createState() => _TeachingPlanPageState();
@@ -75,7 +76,15 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title, maxLines: 1, overflow: TextOverflow.ellipsis),
-        actions: const [TextSizeButton()],
+        actions: [
+          const TextSizeButton(),
+          if (widget.onShare != null)
+            IconButton(
+              tooltip: AppStrings.get('shareLesson'),
+              onPressed: widget.onShare,
+              icon: const Icon(Icons.share),
+            ),
+        ],
       ),
       body: StemBackgroundBody(
         child: SingleChildScrollView(

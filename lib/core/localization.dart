@@ -7,6 +7,27 @@ abstract final class AppStrings {
   static void setLanguage(AppLanguage value) => _language = value;
 
   static const _uk = <String, String>{
+    'openByCode': 'Відкрити урок за кодом',
+    'lessonCode': 'Код уроку',
+    'lessonCodeHint': 'Введіть 7 цифр',
+    'invalidLessonCode':
+        'Введіть правильний код із 7 цифр для 5, 6 або 7 класу.',
+    'lessonCodeNotFound':
+        'Урок або вибрані вправи не знайдено. Перевірте код у вчителя.',
+    'shareLesson': 'Поділитися уроком',
+    'selectExercisesToShare':
+        'Оберіть вправи, які відкриються учням за кодом або посиланням.',
+    'selectAllExercises': 'Обрати всі',
+    'clearExerciseSelection': 'Зняти вибір',
+    'chooseAtLeastOneExercise': 'Оберіть хоча б одну вправу.',
+    'copyLessonCode': 'Копіювати код',
+    'copyLessonLink': 'Копіювати посилання',
+    'previewStudentLesson': 'Переглянути як учень',
+    'copied': 'Скопійовано',
+    'copyError': 'Не вдалося скопіювати. Виділіть і скопіюйте текст вручну.',
+    'close': 'Закрити',
+    'backHome': 'На головну',
+    'exerciseLimit': 'Урок може містити щонайбільше 10 вправ.',
     'textSize': 'Розмір тексту',
     'textSizeStandard': 'Звичайний',
     'textSizeLarge': 'Великий',
@@ -116,6 +137,26 @@ abstract final class AppStrings {
   };
 
   static const _en = <String, String>{
+    'openByCode': 'Open a lesson by code',
+    'lessonCode': 'Lesson code',
+    'lessonCodeHint': 'Enter 7 digits',
+    'invalidLessonCode': 'Enter a valid 7-digit code for grade 5, 6, or 7.',
+    'lessonCodeNotFound':
+        'The lesson or selected exercises were not found. Check the code with your teacher.',
+    'shareLesson': 'Share lesson',
+    'selectExercisesToShare':
+        'Choose the exercises students will open using the code or link.',
+    'selectAllExercises': 'Select all',
+    'clearExerciseSelection': 'Clear selection',
+    'chooseAtLeastOneExercise': 'Select at least one exercise.',
+    'copyLessonCode': 'Copy code',
+    'copyLessonLink': 'Copy link',
+    'previewStudentLesson': 'Preview as student',
+    'copied': 'Copied',
+    'copyError': 'Could not copy. Select and copy the text manually.',
+    'close': 'Close',
+    'backHome': 'Back to home',
+    'exerciseLimit': 'A lesson can contain at most 10 exercises.',
     'textSize': 'Text size',
     'textSizeStandard': 'Standard',
     'textSizeLarge': 'Large',
