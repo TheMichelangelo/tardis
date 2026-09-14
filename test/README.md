@@ -30,7 +30,7 @@ flutter test test/unicode_content_test.dart test/unicode_rendering_test.dart
 
 `unicode_rendering_test.dart` перевіряє точний текст після збереження,
 відображення розв'язку вчителю, введення української відповіді та відсутність
-обрізання тексту. Чотири PNG у `test/goldens` фіксують:
+обрізання тексту. Чотири PNG у `test/goldens` доступні для opt-in перевірки:
 
 - вправу учня на телефоні;
 - вправу вчителя з відкритим розв'язком на широкому екрані;
@@ -39,14 +39,21 @@ flutter test test/unicode_content_test.dart test/unicode_rendering_test.dart
 
 Тести завантажують наявні в проєкті Noto Sans Regular/Bold та Material Icons,
 фіксують платформу оформлення Android, розмір поверхні й щільність пікселів.
-Порівняння PNG точне, без порогу допустимих відмінностей. Воно не перевіряє
+Порівняння PNG точне, без порогу допустимих відмінностей, але вимкнене за
+замовчуванням у CI. Растери шрифтів і Material UI відрізняються між macOS та
+Ubuntu, тому обов'язкові CI-перевірки використовують семантичний текст,
+Unicode code points, розмітку та межі RenderParagraph. Для локального запуску
+golden-перевірок у середовищі, де створені PNG, використайте
+`--dart-define=RUN_UNICODE_GOLDENS=true`.
+
+Воно не перевіряє
 системні шрифти кожного пристрою чи вигляд експортованого PDF.
 
 Якщо вигляд інтерфейсу навмисно змінено, оновіть еталони:
 
 ```bash
-flutter test --update-goldens test/unicode_rendering_test.dart
-flutter test test/unicode_rendering_test.dart
+flutter test --dart-define=RUN_UNICODE_GOLDENS=true --update-goldens test/unicode_rendering_test.dart
+flutter test --dart-define=RUN_UNICODE_GOLDENS=true test/unicode_rendering_test.dart
 ```
 
 Перегляньте кожен змінений PNG перед додаванням у коміт. Не оновлюйте
