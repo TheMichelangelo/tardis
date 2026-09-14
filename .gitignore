@@ -11,6 +11,7 @@ npm-debug.*
 .idea/
 .metadata
 build/
+test/failures/
 *.iml
 android/.gradle/
 android/local.properties

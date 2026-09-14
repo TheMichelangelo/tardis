@@ -137,6 +137,9 @@ flutter analyze
 flutter test
 ```
 
+Перевірки UTF-8, збереження українського тексту та візуальні еталони описані
+в [test/README.md](test/README.md). Вони входять до звичайного `flutter test`.
+
 ## Release-збірки
 
 ### Android APK
