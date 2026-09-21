@@ -35,20 +35,31 @@ def export(total, grade=5):
         if 'longtable' in body:
             entries = []
             for line in body.splitlines():
-                if not re.match(r'^\d+ / ', line):
+                weekly = re.match(r'^\d+ / ', line)
+                lesson = total == 48 and re.match(r'^\d+ & \d+ & ', line)
+                if not weekly and not lesson:
                     continue
                 cells = [cell.strip() for cell in line.split(r'\\')[0].split('&')]
-                assert len(cells) == 6
-                number, hours = cells[0].split(' / ')
-                module, topic = cells[2].split(r'\par ', 1)
-                entry = dict(week=int(number), hours=hours, module=plain(module),
-                             topic=plain(topic), pages=plain(cells[3]),
-                             activity=plain(cells[4]), outcome=plain(cells[5]))
+                if lesson:
+                    assert len(cells) == 7
+                    number, week, hours = cells[0], cells[1], '1'
+                    module, topic = cells[3].split(r'\par ', 1)
+                    entry = dict(lesson=int(number), week=int(week), hours=hours,
+                                 module=plain(module), topic=plain(topic),
+                                 pages=plain(cells[4]), activity=plain(cells[5]),
+                                 outcome=plain(cells[6]))
+                else:
+                    assert len(cells) == 6
+                    number, hours = cells[0].split(' / ')
+                    module, topic = cells[2].split(r'\par ', 1)
+                    entry = dict(week=int(number), hours=hours, module=plain(module),
+                                 topic=plain(topic), pages=plain(cells[3]),
+                                 activity=plain(cells[4]), outcome=plain(cells[5]))
                 if grade == 6:
                     entry['referenceLabel'] = 'Програма'
                 entries.append(entry)
                 weeks.append(entry)
-            sections.append(dict(title=title, weeks=entries))
+            sections.append(dict(title=title, **{'lessons' if total == 48 else 'weeks': entries}))
         elif 'tabular' in body:
             rows = []
             for line in body.splitlines():
@@ -60,10 +71,16 @@ def export(total, grade=5):
             sections.append(dict(title=title, rows=rows))
         else:
             sections.append(dict(title=title, text=plain(body)))
-    assert [w['week'] for w in weeks] == list(range(1, 33))
+    if total == 48:
+        assert [w['lesson'] for w in weeks] == list(range(1, 49))
+        assert len({w['topic'] for w in weeks}) == 48
+        assert sorted({w['week'] for w in weeks}) == list(range(1, 33))
+    else:
+        assert [w['week'] for w in weeks] == list(range(1, 33))
     assert sum(float(w['hours'].replace(',', '.')) for w in weeks) == total
-    assert len(sections[-2]['weeks']) == 15
-    assert len(sections[-1]['weeks']) == 17
+    key = 'lessons' if total == 48 else 'weeks'
+    assert len({w['week'] for w in sections[-2][key]}) == 15
+    assert len({w['week'] for w in sections[-1][key]}) == 17
     (directory / f'{stem}.json').write_text(
         json.dumps(dict(sections=sections), ensure_ascii=False, indent=2) + '\n'
     )

@@ -147,6 +147,9 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
 
   Widget _section(BuildContext context, Map<String, dynamic> section) {
     final weeks = (section['weeks'] as List?)?.cast<Map<String, dynamic>>();
+    final lessons =
+        (section['lessons'] as List?)?.cast<Map<String, dynamic>>();
+    final schedule = lessons ?? weeks;
     final rows = section['rows'] as List?;
     return Card(
       margin: const EdgeInsets.only(bottom: 20),
@@ -189,24 +192,25 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
                   ],
                 ),
               ),
-            if (weeks != null)
-              for (final week in weeks) ...[
+            if (schedule != null)
+              for (final entry in schedule) ...[
                 Text(
-                  'Тиждень ${week['week']} • ${week['hours']} год • '
-                  '${week['referenceLabel'] ?? 'Зошит'}: с. ${week['pages']}',
+                  '${entry['lesson'] == null ? '' : 'Урок ${entry['lesson']} • '}'
+                  'Тиждень ${entry['week']} • ${entry['hours']} год • '
+                  '${entry['referenceLabel'] ?? 'Зошит'}: с. ${entry['pages']}',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 const SizedBox(height: 6),
-                Text(week['module'] as String),
-                Text(week['topic'] as String,
+                Text(entry['module'] as String),
+                Text(entry['topic'] as String,
                     style: const TextStyle(fontWeight: FontWeight.w700)),
                 const SizedBox(height: 8),
-                Text(week['activity'] as String,
+                Text(entry['activity'] as String,
                     style: const TextStyle(height: 1.5)),
                 const SizedBox(height: 8),
-                Text('Очікуваний результат: ${week['outcome']}',
+                Text('Очікуваний результат: ${entry['outcome']}',
                     style: const TextStyle(height: 1.5)),
-                if (week != weeks.last) const Divider(height: 32),
+                if (entry != schedule.last) const Divider(height: 32),
               ],
           ],
         ),

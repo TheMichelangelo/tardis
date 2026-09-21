@@ -42,18 +42,40 @@ void main() {
             await rootBundle.loadString(exercise.text('planAsset')),
           );
           final sections = document['sections'] as List;
-          final semesters =
-              sections.where((section) => section['weeks'] != null);
-          expect(semesters.map((s) => (s['weeks'] as List).length), [15, 17]);
-          final weeks = semesters.expand((s) => s['weeks'] as List).toList();
-          expect(weeks.map((w) => w['week']), List.generate(32, (i) => i + 1));
-          final total = weeks.fold<double>(
+          final is48Hours = plan.id.contains('48-hours');
+          final scheduleKey = is48Hours ? 'lessons' : 'weeks';
+          final semesters = sections
+              .where((section) => section[scheduleKey] != null)
+              .toList();
+          final schedule = semesters
+              .expand((section) => section[scheduleKey] as List)
+              .toList();
+          expect(
+            semesters.map((section) => (section[scheduleKey] as List)
+                .map((entry) => entry['week'])
+                .toSet()
+                .length),
+            [15, 17],
+          );
+          if (is48Hours) {
+            expect(semesters.map((s) => (s['lessons'] as List).length),
+                [22, 26]);
+            expect(schedule.map((entry) => entry['lesson']),
+                List.generate(48, (index) => index + 1));
+            expect(schedule.map((entry) => entry['topic']).toSet().length, 48);
+          } else {
+            expect(semesters.map((s) => (s['weeks'] as List).length),
+                [15, 17]);
+            expect(schedule.map((entry) => entry['week']),
+                List.generate(32, (index) => index + 1));
+          }
+          final total = schedule.fold<double>(
               0,
-              (sum, week) =>
-                  sum + double.parse(week['hours'].replaceAll(',', '.')));
-          expect(total, plan.id.contains('32-hours') ? 32 : 48);
+              (sum, entry) => sum +
+                  double.parse(entry['hours'].replaceAll(',', '.')));
+          expect(total, is48Hours ? 48 : 32);
           if (grade == 6) {
-            expect(weeks.every((week) => week['referenceLabel'] == 'Програма'),
+            expect(schedule.every((entry) => entry['referenceLabel'] == 'Програма'),
                 isTrue);
           }
         }
@@ -94,9 +116,14 @@ void main() {
             findsOneWidget);
         expect(
             find.text('STEM-фестиваль. Підсумкова рефлексія'), findsOneWidget);
-        expect(find.textContaining('Тиждень '), findsNWidgets(32));
+        final expectedLessons = plan.id.contains('48-hours') ? 48 : 32;
+        expect(find.textContaining('Тиждень '),
+            findsNWidgets(expectedLessons));
+        expect(find.textContaining('Урок '), plan.id.contains('48-hours')
+            ? findsNWidgets(48)
+            : findsNothing);
         expect(find.textContaining(grade == 6 ? 'Програма: с.' : 'Зошит: с.'),
-            findsNWidgets(32));
+            findsNWidgets(expectedLessons));
         expect(find.textContaining('LaTeX'), findsNothing);
         expect(find.byType(SegmentedButton<ExerciseViewMode>), findsNothing);
         expect(tester.takeException(), isNull);
