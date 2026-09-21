@@ -147,8 +147,7 @@ class _TeachingPlanPageState extends State<TeachingPlanPage> {
 
   Widget _section(BuildContext context, Map<String, dynamic> section) {
     final weeks = (section['weeks'] as List?)?.cast<Map<String, dynamic>>();
-    final lessons =
-        (section['lessons'] as List?)?.cast<Map<String, dynamic>>();
+    final lessons = (section['lessons'] as List?)?.cast<Map<String, dynamic>>();
     final schedule = lessons ?? weeks;
     final rows = section['rows'] as List?;
     return Card(

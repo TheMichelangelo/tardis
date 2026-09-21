@@ -58,24 +58,25 @@ void main() {
             [15, 17],
           );
           if (is48Hours) {
-            expect(semesters.map((s) => (s['lessons'] as List).length),
-                [22, 26]);
+            expect(
+                semesters.map((s) => (s['lessons'] as List).length), [22, 26]);
             expect(schedule.map((entry) => entry['lesson']),
                 List.generate(48, (index) => index + 1));
             expect(schedule.map((entry) => entry['topic']).toSet().length, 48);
           } else {
-            expect(semesters.map((s) => (s['weeks'] as List).length),
-                [15, 17]);
+            expect(semesters.map((s) => (s['weeks'] as List).length), [15, 17]);
             expect(schedule.map((entry) => entry['week']),
                 List.generate(32, (index) => index + 1));
           }
           final total = schedule.fold<double>(
               0,
-              (sum, entry) => sum +
-                  double.parse(entry['hours'].replaceAll(',', '.')));
+              (sum, entry) =>
+                  sum + double.parse(entry['hours'].replaceAll(',', '.')));
           expect(total, is48Hours ? 48 : 32);
           if (grade == 6) {
-            expect(schedule.every((entry) => entry['referenceLabel'] == 'Програма'),
+            expect(
+                schedule
+                    .every((entry) => entry['referenceLabel'] == 'Програма'),
                 isTrue);
           }
         }
@@ -117,11 +118,9 @@ void main() {
         expect(
             find.text('STEM-фестиваль. Підсумкова рефлексія'), findsOneWidget);
         final expectedLessons = plan.id.contains('48-hours') ? 48 : 32;
-        expect(find.textContaining('Тиждень '),
-            findsNWidgets(expectedLessons));
-        expect(find.textContaining('Урок '), plan.id.contains('48-hours')
-            ? findsNWidgets(48)
-            : findsNothing);
+        expect(find.textContaining('Тиждень '), findsNWidgets(expectedLessons));
+        expect(find.textContaining('Урок '),
+            plan.id.contains('48-hours') ? findsNWidgets(48) : findsNothing);
         expect(find.textContaining(grade == 6 ? 'Програма: с.' : 'Зошит: с.'),
             findsNWidgets(expectedLessons));
         expect(find.textContaining('LaTeX'), findsNothing);
