@@ -31,6 +31,9 @@ jobs:
       - run: flutter test
       - run: flutter build web --release --base-href /tardis/
       - run: |
+          mkdir -p build/web/src
+          cp -R public/src/. build/web/src/
+          find build/web/src -type f \( -name '*.tex' -o -name '.DS_Store' \) -delete
           cp build/web/index.html build/web/404.html
           touch build/web/.nojekyll
       - uses: actions/configure-pages@v6
