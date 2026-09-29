@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stem_laboratory/core/app_assets.dart';
 import 'package:stem_laboratory/core/language_controller.dart';
+import 'package:stem_laboratory/core/localization.dart';
 import 'package:stem_laboratory/core/reading_settings.dart';
 import 'package:stem_laboratory/core/responsive_layout.dart';
 import 'package:stem_laboratory/features/auth/auth_controller.dart';
@@ -146,6 +148,28 @@ void main() {
         expect(tester.takeException(), isNull, reason: '$size / $textSize');
       }
     }
+  });
+
+  testWidgets('home updates its labels as soon as the language changes',
+      (tester) async {
+    final settings = ReadingSettings();
+    final auth = AuthController();
+    final language = LanguageController();
+    AppStrings.setLanguage(AppLanguage.ukrainian);
+    addTearDown(settings.dispose);
+    addTearDown(auth.dispose);
+    addTearDown(language.dispose);
+    addTearDown(() => AppStrings.setLanguage(AppLanguage.ukrainian));
+
+    await tester.pumpWidget(_app(
+      settings,
+      HomePage(authController: auth, languageController: language),
+    ));
+    expect(find.text('Оберіть клас з уроками'), findsOneWidget);
+
+    await language.select(AppLanguage.english);
+    await tester.pump();
+    expect(find.text('Choose a class with lessons'), findsOneWidget);
   });
 
   testWidgets('exercise layouts support each screen and text size',

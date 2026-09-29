@@ -63,173 +63,180 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          const Positioned.fill(child: _StemImageBackground()),
-          // Keep the formulas above the STEM artwork, but behind controls.
-          const Positioned.fill(child: StemBackground()),
-          SafeArea(
-            child: LayoutBuilder(
-              builder: (context, viewport) {
-                final compact = viewport.maxWidth < 640;
-                final hasPlaceOfWork =
-                    authController.user?.placeOfWork.isNotEmpty ?? false;
-                final contentTop = hasPlaceOfWork
-                    ? (compact ? 164.0 : 148.0)
-                    : (compact ? 132.0 : 116.0);
-                return Stack(
-                  children: [
-                    if (showAndroidDownload)
+    return AnimatedBuilder(
+      animation: languageController,
+      builder: (context, _) => Scaffold(
+        body: Stack(
+          children: [
+            const Positioned.fill(child: _StemImageBackground()),
+            // Keep the formulas above the STEM artwork, but behind controls.
+            const Positioned.fill(child: StemBackground()),
+            SafeArea(
+              child: LayoutBuilder(
+                builder: (context, viewport) {
+                  final compact = viewport.maxWidth < 640;
+                  final hasPlaceOfWork =
+                      authController.user?.placeOfWork.isNotEmpty ?? false;
+                  final contentTop = hasPlaceOfWork
+                      ? (compact ? 164.0 : 148.0)
+                      : (compact ? 132.0 : 116.0);
+                  return Stack(
+                    children: [
+                      if (showAndroidDownload)
+                        Positioned(
+                          top: 8,
+                          left: 12,
+                          child: _DownloadAndroidButton(
+                            compact: compact,
+                            onPressed: () => _downloadAndroidApp(context),
+                          ),
+                        ),
                       Positioned(
                         top: 8,
-                        left: 12,
-                        child: _DownloadAndroidButton(
-                          compact: compact,
-                          onPressed: () => _downloadAndroidApp(context),
-                        ),
-                      ),
-                    Positioned(
-                      top: 8,
-                      right: 12,
-                      child: _OpenLessonCodeButton(
-                        compact: compact,
-                        onPressed: () => _showLessonCodeDialog(context),
-                      ),
-                    ),
-                    Positioned(
-                      top: 60,
-                      right: 12,
-                      child: AnimatedBuilder(
-                        animation: authController,
-                        builder: (context, _) => Wrap(
-                          spacing: 8,
-                          runSpacing: 4,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            const TextSizeButton(),
-                            FilledButton(
-                              style: FilledButton.styleFrom(
-                                backgroundColor: const Color(0xff0f172a),
-                              ),
-                              onPressed: authController.isLoggedIn
-                                  ? authController.logout
-                                  : () => _openLogin(context),
-                              child: Text(AppStrings.get(
-                                authController.isLoggedIn ? 'logout' : 'login',
-                              )),
-                            ),
-                            Tooltip(
-                              message: AppStrings.get('language'),
-                              child: DropdownButton<AppLanguage>(
-                                value: languageController.language,
-                                items: const [
-                                  DropdownMenuItem(
-                                    value: AppLanguage.ukrainian,
-                                    child: Text('UA'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: AppLanguage.english,
-                                    child: Text('EN'),
-                                  ),
-                                ],
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    languageController.select(value);
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    if (hasPlaceOfWork)
-                      Positioned(
-                        top: compact ? 124 : 116,
-                        left: 12,
                         right: 12,
-                        child: Text(authController.user!.placeOfWork),
+                        child: _OpenLessonCodeButton(
+                          compact: compact,
+                          onPressed: () => _showLessonCodeDialog(context),
+                        ),
                       ),
-                    Positioned.fill(
-                      top: contentTop,
-                      child: LayoutBuilder(builder: (context, constraints) {
-                        final width =
-                            math.min(680.0, constraints.maxWidth - 24);
-                        return SingleChildScrollView(
-                          padding: const EdgeInsets.fromLTRB(12, 16, 12, 24),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight:
-                                  math.max(0, constraints.maxHeight - 40),
-                            ),
-                            child: Center(
-                              child: SizedBox(
-                                width: width,
-                                child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withValues(alpha: .82),
-                                    borderRadius: BorderRadius.circular(28),
-                                    border: Border.all(
-                                      color: Colors.white.withValues(alpha: .8),
+                      Positioned(
+                        top: 60,
+                        right: 12,
+                        child: AnimatedBuilder(
+                          animation: authController,
+                          builder: (context, _) => Wrap(
+                            spacing: 8,
+                            runSpacing: 4,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              const TextSizeButton(),
+                              FilledButton(
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: const Color(0xff0f172a),
+                                ),
+                                onPressed: authController.isLoggedIn
+                                    ? authController.logout
+                                    : () => _openLogin(context),
+                                child: Text(AppStrings.get(
+                                  authController.isLoggedIn
+                                      ? 'logout'
+                                      : 'login',
+                                )),
+                              ),
+                              Tooltip(
+                                message: AppStrings.get('language'),
+                                child: DropdownButton<AppLanguage>(
+                                  value: languageController.language,
+                                  items: const [
+                                    DropdownMenuItem(
+                                      value: AppLanguage.ukrainian,
+                                      child: Text('UA'),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 24,
-                                      vertical: 28,
+                                    DropdownMenuItem(
+                                      value: AppLanguage.english,
+                                      child: Text('EN'),
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          AppStrings.get('choose'),
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headlineLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.w800,
+                                  ],
+                                  onChanged: (value) {
+                                    if (value != null) {
+                                      languageController.select(value);
+                                    }
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      if (hasPlaceOfWork)
+                        Positioned(
+                          top: compact ? 124 : 116,
+                          left: 12,
+                          right: 12,
+                          child: Text(authController.user!.placeOfWork),
+                        ),
+                      Positioned.fill(
+                        top: contentTop,
+                        child: LayoutBuilder(builder: (context, constraints) {
+                          final width =
+                              math.min(680.0, constraints.maxWidth - 24);
+                          return SingleChildScrollView(
+                            padding: const EdgeInsets.fromLTRB(12, 16, 12, 24),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight:
+                                    math.max(0, constraints.maxHeight - 40),
+                              ),
+                              child: Center(
+                                child: SizedBox(
+                                  width: width,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color:
+                                          Colors.white.withValues(alpha: .82),
+                                      borderRadius: BorderRadius.circular(28),
+                                      border: Border.all(
+                                        color:
+                                            Colors.white.withValues(alpha: .8),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 24,
+                                        vertical: 28,
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            AppStrings.get('choose'),
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headlineLarge
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.w800,
+                                                ),
+                                          ),
+                                          const SizedBox(height: 24),
+                                          const Wrap(
+                                            spacing: 22,
+                                            runSpacing: 16,
+                                            alignment: WrapAlignment.center,
+                                            children: [
+                                              _ClassButton(
+                                                number: 5,
+                                                color: Color(0xffff6b6b),
                                               ),
-                                        ),
-                                        const SizedBox(height: 24),
-                                        const Wrap(
-                                          spacing: 22,
-                                          runSpacing: 16,
-                                          alignment: WrapAlignment.center,
-                                          children: [
-                                            _ClassButton(
-                                              number: 5,
-                                              color: Color(0xffff6b6b),
-                                            ),
-                                            _ClassButton(
-                                              number: 6,
-                                              color: Color(0xff4d96ff),
-                                            ),
-                                            _ClassButton(
-                                              number: 7,
-                                              color: Color(0xff16a34a),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                              _ClassButton(
+                                                number: 6,
+                                                color: Color(0xff4d96ff),
+                                              ),
+                                              _ClassButton(
+                                                number: 7,
+                                                color: Color(0xff16a34a),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
-                    ),
-                  ],
-                );
-              },
+                          );
+                        }),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

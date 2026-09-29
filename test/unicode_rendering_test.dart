@@ -146,6 +146,7 @@ void main() {
     expect(find.text('Відкрити урок за кодом'), findsOneWidget);
     expect(find.text('Код уроку'), findsOneWidget);
     expect(find.text('Відкрити урок'), findsOneWidget);
+    expect(find.byType(TextField), findsNWidgets(7));
     _expectUnclippedText(tester);
     if (_runPixelGoldens) {
       await expectLater(find.byKey(_captureKey),

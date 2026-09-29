@@ -119,12 +119,12 @@ void main() {
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const Key('lesson-code-input')));
     await tester.enterText(
-        find.byKey(const Key('lesson-code-input')), '5010000');
+        find.byKey(const Key('lesson-code-digit-0')), '5010000');
     await tester.tap(find.byKey(const Key('open-lesson-code')));
     await tester.pumpAndSettle();
     expect(find.text(AppStrings.get('invalidLessonCode')), findsOneWidget);
     await tester.enterText(
-        find.byKey(const Key('lesson-code-input')), '5010005');
+        find.byKey(const Key('lesson-code-digit-0')), '5010005');
     await tester.tap(find.byKey(const Key('open-lesson-code')));
     await tester.pumpAndSettle();
     expect(find.text('Перша вправа'), findsOneWidget);
