@@ -92,15 +92,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                       Positioned(
-                        top: 8,
-                        right: 12,
-                        child: _OpenLessonCodeButton(
-                          compact: compact,
-                          onPressed: () => _showLessonCodeDialog(context),
-                        ),
-                      ),
-                      Positioned(
-                        top: 60,
+                        top: compact ? 60 : 8,
                         right: 12,
                         child: AnimatedBuilder(
                           animation: authController,
@@ -201,24 +193,62 @@ class HomePage extends StatelessWidget {
                                                 ),
                                           ),
                                           const SizedBox(height: 24),
-                                          const Wrap(
-                                            spacing: 22,
-                                            runSpacing: 16,
-                                            alignment: WrapAlignment.center,
-                                            children: [
-                                              _ClassButton(
-                                                number: 5,
-                                                color: Color(0xffff6b6b),
-                                              ),
-                                              _ClassButton(
-                                                number: 6,
-                                                color: Color(0xff4d96ff),
-                                              ),
-                                              _ClassButton(
-                                                number: 7,
-                                                color: Color(0xff16a34a),
-                                              ),
-                                            ],
+                                          LayoutBuilder(
+                                            builder: (context, constraints) {
+                                              final optionRowWidth = math.min(
+                                                constraints.maxWidth,
+                                                3 * 92 * readingScale(context) +
+                                                    44,
+                                              );
+                                              return SizedBox(
+                                                width: optionRowWidth,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    const Wrap(
+                                                      spacing: 22,
+                                                      runSpacing: 16,
+                                                      alignment:
+                                                          WrapAlignment.center,
+                                                      children: [
+                                                        _ClassButton(
+                                                          number: 5,
+                                                          color:
+                                                              Color(0xffff6b6b),
+                                                        ),
+                                                        _ClassButton(
+                                                          number: 6,
+                                                          color:
+                                                              Color(0xff4d96ff),
+                                                        ),
+                                                        _ClassButton(
+                                                          number: 7,
+                                                          color:
+                                                              Color(0xff16a34a),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 20),
+                                                    FilledButton.icon(
+                                                      key: const Key(
+                                                        'show-lesson-code-dialog',
+                                                      ),
+                                                      onPressed: () =>
+                                                          _showLessonCodeDialog(
+                                                              context),
+                                                      icon:
+                                                          const Icon(Icons.key),
+                                                      label:
+                                                          Text(AppStrings.get(
+                                                        'openByCode',
+                                                      )),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ],
                                       ),
@@ -252,31 +282,6 @@ class _StemImageBackground extends StatelessWidget {
           key: const Key('home-stem-image'),
           fit: BoxFit.cover,
           alignment: Alignment.center,
-        ),
-      );
-}
-
-class _OpenLessonCodeButton extends StatelessWidget {
-  const _OpenLessonCodeButton({required this.compact, required this.onPressed});
-
-  final bool compact;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) => Tooltip(
-        message: AppStrings.get('openByCode'),
-        child: FilledButton.icon(
-          key: const Key('show-lesson-code-dialog'),
-          onPressed: onPressed,
-          icon: const Icon(Icons.key),
-          label: compact
-              ? const SizedBox.shrink()
-              : Text(AppStrings.get('openByCode')),
-          style: FilledButton.styleFrom(
-            padding: compact
-                ? const EdgeInsets.symmetric(horizontal: 14, vertical: 14)
-                : null,
-          ),
         ),
       );
 }
