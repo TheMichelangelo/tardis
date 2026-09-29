@@ -6,7 +6,10 @@ import '../../core/lesson_code.dart';
 import '../../core/localization.dart';
 
 class LessonCodeEntry extends StatefulWidget {
-  const LessonCodeEntry({super.key});
+  const LessonCodeEntry({this.onOpenLesson, super.key});
+
+  /// Lets a dialog close itself before the app navigates to the lesson.
+  final ValueChanged<String>? onOpenLesson;
 
   @override
   State<LessonCodeEntry> createState() => _LessonCodeEntryState();
@@ -29,6 +32,10 @@ class _LessonCodeEntryState extends State<LessonCodeEntry> {
       return;
     }
     FocusScope.of(context).unfocus();
+    if (widget.onOpenLesson != null) {
+      widget.onOpenLesson!(code.toString());
+      return;
+    }
     Navigator.pushNamed(context, AppRoutes.sharedLesson(code.toString()));
   }
 

@@ -114,6 +114,9 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(StemApp(repository: _Repository()));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('lesson-code-input')), findsNothing);
+    await tester.tap(find.byKey(const Key('show-lesson-code-dialog')));
+    await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const Key('lesson-code-input')));
     await tester.enterText(
         find.byKey(const Key('lesson-code-input')), '5010000');
@@ -166,6 +169,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(AppStrings.get('lessonCodeNotFound')), findsOneWidget);
     await tester.tap(find.text('На головну'));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('lesson-code-input')), findsNothing);
+    await tester.tap(find.byKey(const Key('show-lesson-code-dialog')));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('lesson-code-input')), findsOneWidget);
     expect(tester.takeException(), isNull);

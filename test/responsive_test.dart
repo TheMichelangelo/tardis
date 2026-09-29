@@ -142,7 +142,7 @@ void main() {
         final image = tester.getRect(find.byKey(const Key('home-stem-image')));
         expect(image.left, greaterThanOrEqualTo(0));
         expect(image.right, lessThanOrEqualTo(size.width));
-        expect(image.height, lessThan(size.height));
+        expect(image.height, equals(size.height));
         expect(tester.takeException(), isNull, reason: '$size / $textSize');
       }
     }

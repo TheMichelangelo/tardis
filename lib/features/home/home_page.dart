@@ -40,155 +40,265 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  Future<void> _showLessonCodeDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (dialogContext) => Dialog(
+        insetPadding: const EdgeInsets.all(16),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 480),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(4),
+            child: LessonCodeEntry(
+              onOpenLesson: (code) {
+                Navigator.of(dialogContext).pop();
+                Navigator.of(context).pushNamed(AppRoutes.sharedLesson(code));
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+          const Positioned.fill(child: _StemImageBackground()),
+          // Keep the formulas above the STEM artwork, but behind controls.
           const Positioned.fill(child: StemBackground()),
           SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: AnimatedBuilder(
-                    animation: authController,
-                    builder: (context, _) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        OverflowBar(
-                          alignment: MainAxisAlignment.spaceBetween,
-                          overflowAlignment: OverflowBarAlignment.start,
-                          spacing: 12,
-                          overflowSpacing: 8,
+            child: LayoutBuilder(
+              builder: (context, viewport) {
+                final compact = viewport.maxWidth < 640;
+                final hasPlaceOfWork =
+                    authController.user?.placeOfWork.isNotEmpty ?? false;
+                final contentTop = hasPlaceOfWork
+                    ? (compact ? 164.0 : 148.0)
+                    : (compact ? 132.0 : 116.0);
+                return Stack(
+                  children: [
+                    if (showAndroidDownload)
+                      Positioned(
+                        top: 8,
+                        left: 12,
+                        child: _DownloadAndroidButton(
+                          compact: compact,
+                          onPressed: () => _downloadAndroidApp(context),
+                        ),
+                      ),
+                    Positioned(
+                      top: 8,
+                      right: 12,
+                      child: _OpenLessonCodeButton(
+                        compact: compact,
+                        onPressed: () => _showLessonCodeDialog(context),
+                      ),
+                    ),
+                    Positioned(
+                      top: 60,
+                      right: 12,
+                      child: AnimatedBuilder(
+                        animation: authController,
+                        builder: (context, _) => Wrap(
+                          spacing: 8,
+                          runSpacing: 4,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            if (showAndroidDownload)
-                              OutlinedButton.icon(
-                                key: const Key('download-android-apk'),
-                                onPressed: () => _downloadAndroidApp(context),
-                                icon: const Icon(Icons.android),
-                                label: Text(AppStrings.get('downloadAndroid')),
+                            const TextSizeButton(),
+                            FilledButton(
+                              style: FilledButton.styleFrom(
+                                backgroundColor: const Color(0xff0f172a),
                               ),
-                            Wrap(
-                              spacing: 10,
-                              runSpacing: 8,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: [
-                                const TextSizeButton(),
-                                FilledButton(
-                                  style: FilledButton.styleFrom(
-                                    backgroundColor: const Color(0xff0f172a),
+                              onPressed: authController.isLoggedIn
+                                  ? authController.logout
+                                  : () => _openLogin(context),
+                              child: Text(AppStrings.get(
+                                authController.isLoggedIn ? 'logout' : 'login',
+                              )),
+                            ),
+                            Tooltip(
+                              message: AppStrings.get('language'),
+                              child: DropdownButton<AppLanguage>(
+                                value: languageController.language,
+                                items: const [
+                                  DropdownMenuItem(
+                                    value: AppLanguage.ukrainian,
+                                    child: Text('UA'),
                                   ),
-                                  onPressed: authController.isLoggedIn
-                                      ? authController.logout
-                                      : () => _openLogin(context),
-                                  child: Text(AppStrings.get(
-                                    authController.isLoggedIn
-                                        ? 'logout'
-                                        : 'login',
-                                  )),
-                                ),
-                                Tooltip(
-                                  message: AppStrings.get('language'),
-                                  child: DropdownButton<AppLanguage>(
-                                    value: languageController.language,
-                                    items: const [
-                                      DropdownMenuItem(
-                                        value: AppLanguage.ukrainian,
-                                        child: Text('UA'),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: AppLanguage.english,
-                                        child: Text('EN'),
-                                      ),
-                                    ],
-                                    onChanged: (value) {
-                                      if (value != null) {
-                                        languageController.select(value);
-                                      }
-                                    },
+                                  DropdownMenuItem(
+                                    value: AppLanguage.english,
+                                    child: Text('EN'),
                                   ),
-                                ),
-                              ],
+                                ],
+                                onChanged: (value) {
+                                  if (value != null) {
+                                    languageController.select(value);
+                                  }
+                                },
+                              ),
                             ),
                           ],
                         ),
-                        if (authController.user?.placeOfWork.isNotEmpty ??
-                            false)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Text(authController.user!.placeOfWork),
-                          ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    final width = math.min(1200.0, constraints.maxWidth - 24);
-                    final imageHeight =
-                        math.min(width * 9 / 16, constraints.maxHeight * .6);
-                    return SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                            minHeight: math.max(0, constraints.maxHeight - 24)),
-                        child: Center(
-                          child: SizedBox(
-                            width: width,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  AppAssets.logo,
-                                  key: const Key('home-stem-image'),
-                                  width: width,
-                                  height: imageHeight,
-                                  fit: BoxFit.contain,
-                                  semanticLabel:
-                                      'STEM: Science, Technology, Engineering, Mathematics',
+                    if (hasPlaceOfWork)
+                      Positioned(
+                        top: compact ? 124 : 116,
+                        left: 12,
+                        right: 12,
+                        child: Text(authController.user!.placeOfWork),
+                      ),
+                    Positioned.fill(
+                      top: contentTop,
+                      child: LayoutBuilder(builder: (context, constraints) {
+                        final width =
+                            math.min(680.0, constraints.maxWidth - 24);
+                        return SingleChildScrollView(
+                          padding: const EdgeInsets.fromLTRB(12, 16, 12, 24),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight:
+                                  math.max(0, constraints.maxHeight - 40),
+                            ),
+                            child: Center(
+                              child: SizedBox(
+                                width: width,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: .82),
+                                    borderRadius: BorderRadius.circular(28),
+                                    border: Border.all(
+                                      color: Colors.white.withValues(alpha: .8),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 24,
+                                      vertical: 28,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          AppStrings.get('choose'),
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineLarge
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w800,
+                                              ),
+                                        ),
+                                        const SizedBox(height: 24),
+                                        const Wrap(
+                                          spacing: 22,
+                                          runSpacing: 16,
+                                          alignment: WrapAlignment.center,
+                                          children: [
+                                            _ClassButton(
+                                              number: 5,
+                                              color: Color(0xffff6b6b),
+                                            ),
+                                            _ClassButton(
+                                              number: 6,
+                                              color: Color(0xff4d96ff),
+                                            ),
+                                            _ClassButton(
+                                              number: 7,
+                                              color: Color(0xff16a34a),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(height: 20),
-                                const LessonCodeEntry(),
-                                const SizedBox(height: 20),
-                                Text(
-                                  AppStrings.get('choose'),
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineLarge
-                                      ?.copyWith(fontWeight: FontWeight.w800),
-                                ),
-                                const SizedBox(height: 24),
-                                const Wrap(
-                                  spacing: 22,
-                                  runSpacing: 16,
-                                  alignment: WrapAlignment.center,
-                                  children: [
-                                    _ClassButton(
-                                        number: 5, color: Color(0xffff6b6b)),
-                                    _ClassButton(
-                                        number: 6, color: Color(0xff4d96ff)),
-                                    _ClassButton(
-                                        number: 7, color: Color(0xff16a34a)),
-                                  ],
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ],
+                        );
+                      }),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],
       ),
     );
   }
+}
+
+class _StemImageBackground extends StatelessWidget {
+  const _StemImageBackground();
+
+  @override
+  Widget build(BuildContext context) => ExcludeSemantics(
+        child: Image.asset(
+          AppAssets.logo,
+          key: const Key('home-stem-image'),
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
+        ),
+      );
+}
+
+class _OpenLessonCodeButton extends StatelessWidget {
+  const _OpenLessonCodeButton({required this.compact, required this.onPressed});
+
+  final bool compact;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) => Tooltip(
+        message: AppStrings.get('openByCode'),
+        child: FilledButton.icon(
+          key: const Key('show-lesson-code-dialog'),
+          onPressed: onPressed,
+          icon: const Icon(Icons.key),
+          label: compact
+              ? const SizedBox.shrink()
+              : Text(AppStrings.get('openByCode')),
+          style: FilledButton.styleFrom(
+            padding: compact
+                ? const EdgeInsets.symmetric(horizontal: 14, vertical: 14)
+                : null,
+          ),
+        ),
+      );
+}
+
+class _DownloadAndroidButton extends StatelessWidget {
+  const _DownloadAndroidButton(
+      {required this.compact, required this.onPressed});
+
+  final bool compact;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) => Tooltip(
+        message: AppStrings.get('downloadAndroid'),
+        child: OutlinedButton.icon(
+          key: const Key('download-android-apk'),
+          onPressed: onPressed,
+          icon: const Icon(Icons.android),
+          label: compact
+              ? const SizedBox.shrink()
+              : Text(AppStrings.get('downloadAndroid')),
+          style: compact
+              ? OutlinedButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                )
+              : null,
+        ),
+      );
 }
 
 class _ClassButton extends StatelessWidget {
