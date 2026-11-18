@@ -1,0 +1,50 @@
+% Компілювати XeLaTeX
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[ukrainian]{babel}
+\usepackage[margin=18mm]{geometry}
+\usepackage{array,tabularx}
+\setmainfont{Arial}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\renewcommand{\arraystretch}{1.45}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\answer}[1]{\textbf{\textit{#1}}}
+\begin{document}
+
+\begin{center}
+\Large\textbf{Варіант 5 --- зразок із відповідями}\par
+\normalsize Діагностична робота з STEM, 5 клас
+\end{center}
+
+\textbf{Максимум: 12 балів.} Відповіді в зразку виділено \answer{жирним курсивом}. Допускаються інші коректні відповіді.
+
+\textbf{Завдання 1 (3 бали).} Для кожної з букв \textbf{M} і \textbf{T} наведи по 2 приклади професій, пов'язаних із відповідним складником STEM.\par
+\textbf{Відповідь:} \textbf{M} (Mathematics, математика): \answer{математик, бухгалтер}. \textbf{T} (Technology, технології): \answer{програміст, фахівець із ремонту комп'ютерів}.
+
+\textbf{Завдання 2 (3 бали).} Розподіли професії у три групи: людина---природа, людина---художній образ, людина---техніка.\par
+\textit{Професії:} ботанік, ветеринар, лісник, агроном, художник, дизайнер, фотограф, актор, інженер, механік.\par
+\begin{tabularx}{\linewidth}{|Y|Y|Y|}\hline
+\textbf{Людина---природа} & \textbf{\shortstack[l]{Людина---\\художній образ}} & \textbf{Людина---техніка}\\\hline
+\answer{ботанік, ветеринар, лісник, агроном} & \answer{художник, дизайнер, фотограф, актор} & \answer{інженер, механік}\\\hline
+\end{tabularx}
+
+\textbf{Завдання 3 (3 бали).} У кабінеті протягом \textbf{8 годин} працювали: 4 комп'ютери потужністю 100 Вт кожен, 1 проєктор потужністю 250 Вт і 6 настільних ламп потужністю 8 Вт кожна. Заповни таблицю та обчисли вартість електроенергії за тарифом \textbf{4,32 грн за 1 кВт\,год}.\par
+\begin{tabularx}{\linewidth}{|Y|>{\centering\arraybackslash}p{22mm}|>{\centering\arraybackslash}p{25mm}|>{\centering\arraybackslash}p{38mm}|}\hline
+\textbf{Назва пристрою} & \textbf{Кількість} & \textbf{Потужність} & \textbf{Спожита електроенергія за 8 год}\\\hline
+\answer{Комп'ютер} & \answer{4} & \answer{100 Вт} & \answer{$4\cdot100\cdot8=3{,}2$ кВт\,год}\\\hline
+\answer{Проєктор} & \answer{1} & \answer{250 Вт} & \answer{$1\cdot250\cdot8=2$ кВт\,год}\\\hline
+\answer{Настільна лампа} & \answer{6} & \answer{8 Вт} & \answer{$6\cdot8\cdot8=0{,}384$ кВт\,год}\\\hline
+\textbf{Разом} & & & \answer{5,584 кВт\,год}\\\hline
+\end{tabularx}\par
+Вартість: \answer{$5{,}584\cdot4{,}32=24{,}12288$ грн, тобто 24,12 грн} (до копійок).
+
+\textbf{Завдання 4 (3 бали).} Склади короткий план проєкту \textbf{«Створення велосипеда»}. Запиши мету, ідею, план роботи та потрібні ресурси.\par
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{43mm}|Y|}\hline
+\textbf{Мета проєкту} & \answer{Створити безпечну та зручну модель велосипеда для поїздок містом.}\\\hline
+\textbf{Ідея проєкту} & \answer{Зробити модель із двома колесами, рамою, кермом, сидінням і педалями; додати світловідбивачі для безпеки.}\\\hline
+\textbf{План роботи} & \answer{1. Намалювати ескіз і визначити розміри. 2. Відібрати матеріали. 3. Виготовити й зібрати деталі моделі. 4. Перевірити міцність та, за потреби, удосконалити модель.}\\\hline
+\textbf{Ресурси} & \answer{Картон, кольоровий папір, коктейльні трубочки або палички, кришечки для коліс, клей, ножиці, лінійка, олівець; допомога дорослого під час роботи з інструментами.}\\\hline
+\end{tabularx}
+
+\end{document}
