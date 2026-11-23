@@ -1,0 +1,17 @@
+Lesson 12: friction — image generation record
+Mode: built-in image_gen tool. Both illustrations were generated separately.
+Project asset directory: src/data/lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von/
+Web mirror: public/src/data/lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von/
+
+Asset: lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-1.png
+Prompt:
+Use case: scientific-educational. Asset type: landscape classroom illustration for a Ukrainian grade 5 lesson about friction. Draw a clean, friendly, polished textbook illustration of two everyday examples side by side on a white background: on the left a close-up of a child's sneaker with clearly visible rubber tread gripping a dry pavement during a normal step; on the right a large close-up of a sharpened graphite pencil writing a short dark wavy graphite line on textured paper. Emphasize the contact between the surfaces. Modern warm flat illustration with subtle texture, navy teal and amber, generous whitespace, scientifically plausible. No text, no letters, no labels, no logos, no watermark. Return a locally saved image suitable for using as an asset in this repository.
+
+Asset: lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-2.png
+Prompt:
+Use case: scientific-educational. Asset type: landscape illustration for grade 5 friction experiment. Primary request: clean illustrated comparison of sliding and rolling, same lightweight cardboard box on the same wooden tabletop in two separate side-by-side panels. Left panel: cardboard box resting directly on a tabletop, string attached at right pulled horizontally toward the right by a hand. Right panel: identical cardboard box resting on three clearly visible round wooden pencils used as parallel rollers on the tabletop, their circular ends facing the viewer, with an identical string attached at right pulled right by a hand. Clearly show contact and that rollers separate box from tabletop in the right panel. Correct simple mechanics, stable table well away from its edge, light closed boxes. Warm modern textbook illustration with subtle paper texture, navy teal and amber accents on white background. No text, no letters, no labels, no numeric force values, no charts, no logos, no watermark.
+
+Diagram and rebus assets are original programmatic graphics, not generated images.
+Recreate the Ukrainian and English PNGs with:
+python3 scripts/generate_friction_diagrams.py
+Dependency: Pillow. Fonts: the project's Noto Sans Regular and Bold.

@@ -36,6 +36,10 @@ class ExerciseContent extends StatelessWidget {
       ExerciseType.text => _TextExercise(
           text: exercise.text('text'),
           questions: exercise.stringList('questions'),
+          image: exercise.data.containsKey('imageExt') ||
+                  exercise.text('imageData').isNotEmpty
+              ? _ExerciseImage(lessonId: lessonId, exercise: exercise)
+              : null,
         ),
       ExerciseType.homework => _HomeworkExercise(
           lessonId: lessonId,
@@ -70,7 +74,9 @@ class _ExerciseImage extends StatelessWidget {
   Widget _image() {
     final encoded = exercise.text('imageData');
     return encoded.isNotEmpty
-        ? Image.memory(base64Decode(encoded), fit: BoxFit.contain)
+        ? Image.memory(base64Decode(encoded),
+            fit: BoxFit.contain,
+            semanticLabel: exercise.text('imageAlt', fallback: exercise.label))
         : FutureBuilder<Uint8List>(
             future: MaterialCache.readBytes(AppAssets.exerciseImage(
               lessonId: lessonId,
@@ -78,7 +84,10 @@ class _ExerciseImage extends StatelessWidget {
               extension: exercise.text('imageExt', fallback: 'png'),
             )),
             builder: (context, snapshot) => snapshot.hasData
-                ? Image.memory(snapshot.requireData, fit: BoxFit.contain)
+                ? Image.memory(snapshot.requireData,
+                    fit: BoxFit.contain,
+                    semanticLabel:
+                        exercise.text('imageAlt', fallback: exercise.label))
                 : snapshot.hasError
                     ? const Center(
                         child: Icon(Icons.image_not_supported, size: 48))
@@ -98,6 +107,11 @@ class _ExerciseImage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (exercise.type != ExerciseType.text &&
+            exercise.text('text').isNotEmpty) ...[
+          Text(exercise.text('text')),
+          const SizedBox(height: 12),
+        ],
         InkWell(
           onTap: () => _zoom(context),
           child: ConstrainedBox(
@@ -111,6 +125,12 @@ class _ExerciseImage extends StatelessWidget {
           icon: const Icon(Icons.zoom_in),
           label: Text(AppStrings.get('zoomImage')),
         ),
+        if (exercise.type != ExerciseType.text)
+          ...exercise.stringList('questions').indexed.map((entry) => ListTile(
+                leading: CircleAvatar(child: Text('${entry.$1 + 1}')),
+                title: Text(entry.$2),
+                contentPadding: EdgeInsets.zero,
+              )),
       ],
     );
   }
@@ -178,9 +198,11 @@ class _ImageViewerState extends State<_ImageViewer> {
 }
 
 class _TextExercise extends StatelessWidget {
-  const _TextExercise({required this.text, required this.questions});
+  const _TextExercise(
+      {required this.text, required this.questions, this.image});
   final String text;
   final List<String> questions;
+  final Widget? image;
 
   @override
   Widget build(BuildContext context) {
@@ -188,6 +210,10 @@ class _TextExercise extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(text),
+        if (image != null) ...[
+          const SizedBox(height: 12),
+          image!,
+        ],
         ...questions.indexed.map((entry) => ListTile(
               leading: CircleAvatar(child: Text('${entry.$1 + 1}')),
               title: Text(entry.$2),

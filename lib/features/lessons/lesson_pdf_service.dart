@@ -56,10 +56,19 @@ class LessonPdfService {
     switch (exercise.type) {
       case ExerciseType.diagram:
       case ExerciseType.rebus:
+        final text = exercise.text('text');
+        if (text.isNotEmpty) children.add(pw.Text(text));
         final image = await _image(lessonId, exercise);
-        if (image != null) children.add(pw.Image(image, height: 240));
+        if (image != null) {
+          children.add(pw.Image(image,
+              height: (exercise.data['pdfImageHeight'] as num?)?.toDouble() ??
+                  240));
+        }
+        children.addAll(_list(exercise.stringList('questions')));
       case ExerciseType.text:
         children.add(pw.Text(exercise.text('text')));
+        final image = await _image(lessonId, exercise);
+        if (image != null) children.add(pw.Image(image, height: 200));
         children.addAll(_list(exercise.stringList('questions')));
       case ExerciseType.video:
         final url = exercise.text('youtubeUrl');
@@ -145,7 +154,8 @@ class LessonPdfService {
       return pw.MemoryImage(base64Decode(encoded));
     }
     if (!exercise.data.containsKey('imageExt') &&
-        exercise.type == ExerciseType.homework) {
+        exercise.type != ExerciseType.diagram &&
+        exercise.type != ExerciseType.rebus) {
       return null;
     }
     try {

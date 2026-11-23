@@ -3312,6 +3312,8 @@
               "exercises": [
                 {
                   "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-1",
+                  "imageExt": "png",
+                  "imageAlt": "A treaded shoe grips a path; a graphite pencil leaves a mark on paper.",
                   "label": "Friction helps and hinders",
                   "type": "text",
                   "formats": [
@@ -3326,6 +3328,8 @@
                 },
                 {
                   "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-2",
+                  "imageExt": "png",
+                  "imageAlt": "The same box is pulled across a tabletop directly and on round pencil rollers.",
                   "label": "Compare sliding and rolling",
                   "type": "text",
                   "formats": [
@@ -3521,18 +3525,41 @@
                   "text": "Homework: give everyday examples where friction helps or hinders."
                 },
                 {
-                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-7",
-                  "label": "",
-                  "type": "text",
-                  "formats": [],
-                  "isPlaceholder": true
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-diagram",
+                  "pdfImageHeight": 400,
+                  "label": "Three types of friction: explore the diagram",
+                  "type": "diagram",
+                  "formats": [
+                    "story",
+                    "competition"
+                  ],
+                  "imageExt": "en.png",
+                  "text": "Explore the diagram of static, sliding and rolling friction. Notice what happens where the surfaces touch. Classify the following situations and explain your choices.",
+                  "imageAlt": "Diagram: static friction — a box is pushed but does not slide; sliding friction — a sled slides over snow; rolling friction — a wheel rolls along a path.",
+                  "questions": [
+                    "You push a wardrobe gently, but it stays in place. Which type of friction prevents sliding from starting?",
+                    "A sled slides over snow and a suitcase travels on wheels. Name the type of friction in each situation.",
+                    "Give your own example of each type of friction. Why do wheels often make a load easier to move?"
+                  ],
+                  "solution": "Wardrobe: static friction with the floor. Sled: sliding friction between runners and snow. Suitcase: rolling friction at the wheels. Static means no relative sliding at the contact, not necessarily that the whole object is motionless. In many everyday situations, rolling resistance is lower than sliding resistance."
                 },
                 {
-                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-8",
-                  "label": "",
-                  "type": "text",
-                  "formats": [],
-                  "isPlaceholder": true
+                  "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-ex-rebus",
+                  "pdfImageHeight": 400,
+                  "label": "Rebuses: decode words about friction",
+                  "type": "rebus",
+                  "formats": [
+                    "quiz",
+                    "competition"
+                  ],
+                  "imageExt": "en.png",
+                  "text": "Solve the three picture rebuses. The label below each picture gives its word. A minus sign means remove the specified letters; a plus sign means join the remaining parts in order. Write all three answers.",
+                  "imageAlt": "Three rebuses: 1) FROG - OG + ICE - E + T + LION - L. 2) SLIDE - E + RING - R. 3) ROLL + RING - R.",
+                  "questions": [
+                    "Which answer names the interaction involved in both walking and writing with a pencil?",
+                    "Which two ways of moving are hidden in the other rebuses? Give one example of each."
+                  ],
+                  "solution": "1. FROG - OG = FR; ICE - E = IC; LION - L = ION; FR + IC + T + ION = FRICTION. 2. SLIDE - E = SLID; RING - R = ING; SLID + ING = SLIDING. 3. ROLL + (RING - R) = ROLLING. Examples: a sled slides; a ball rolls."
                 },
                 {
                   "id": "lesson-12-syla-tertya-shcho-stanetsya-yakshcho-von-placeholder-9",
