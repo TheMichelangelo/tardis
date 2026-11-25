@@ -6,7 +6,6 @@ import 'core/app_assets.dart';
 import 'core/lesson_code.dart';
 import 'data/storage/lesson_storage.dart';
 import 'data/storage/storage_factory.dart';
-import 'data/material_cache.dart';
 import 'models.dart';
 
 class LessonLoadException implements Exception {
@@ -35,21 +34,17 @@ class LessonRepository {
 
     try {
       final path = AppAssets.classLessons(classNumber, language);
-      String bundledRaw;
-      try {
-        bundledRaw = await MaterialCache.readString(path);
-      } catch (_) {
-        bundledRaw = await rootBundle.loadString(path);
-      }
+      // Catalogs ship with the app. A previously downloaded copy must not hide
+      // new modules or restore demo exercises after an application update.
+      final bundledRaw = await rootBundle.loadString(path);
+      final bundled = StemClass.fromJson(jsonDecode(bundledRaw));
       final storedRaw = await _storage.read(classNumber, language.code);
       final json = jsonDecode(storedRaw ?? bundledRaw);
       if (json is! Map<String, dynamic>) {
         throw const FormatException('Root JSON value must be an object.');
       }
-      final data = StemClass.fromJson(json);
+      final data = _refreshCatalog(bundled, StemClass.fromJson(json));
       // Older local catalogs do not yet have stable lesson numbers.
-      final bundled =
-          StemClass.fromJson(jsonDecode(await rootBundle.loadString(path)));
       final numbers = {
         for (final module in bundled.modules)
           for (final theme in module.themes)
@@ -73,6 +68,55 @@ class LessonRepository {
         error,
       );
     }
+  }
+
+  /// Refresh published content while retaining locally authored additions.
+  /// Legacy storage contains complete snapshots of the published catalog,
+  /// including obsolete titles, topics and demonstration exercises.
+  static StemClass _refreshCatalog(StemClass bundled, StemClass stored) {
+    final moduleIds = bundled.modules.map((m) => m.id).toSet();
+    final lessonIds = bundled.modules
+        .expand((m) => m.themes)
+        .expand((t) => t.lessons)
+        .map((l) => l.id)
+        .toSet();
+    final hasPublishedContent = stored.modules.any((m) =>
+        moduleIds.contains(m.id) ||
+        m.themes.any((t) => t.lessons.any((l) => lessonIds.contains(l.id))));
+    // A standalone local catalog is not an outdated published snapshot.
+    if (!hasPublishedContent) return stored;
+
+    List<StemLesson> additions(StemTheme theme) =>
+        theme.lessons.where((l) => !lessonIds.contains(l.id)).toList();
+
+    return bundled.copyWith(
+      generatedLessons: stored.generatedLessons,
+      modules: [
+        for (final module in bundled.modules)
+          module.copyWith(themes: [
+            for (final theme in module.themes)
+              theme.copyWith(lessons: [
+                ...theme.lessons,
+                for (final savedModule in stored.modules)
+                  if (savedModule.id == module.id)
+                    for (final savedTheme in savedModule.themes)
+                      if (savedTheme.id == theme.id) ...additions(savedTheme),
+              ]),
+            for (final savedModule in stored.modules)
+              if (savedModule.id == module.id)
+                for (final savedTheme in savedModule.themes)
+                  if (!module.themes.any((t) => t.id == savedTheme.id) &&
+                      additions(savedTheme).isNotEmpty)
+                    savedTheme.copyWith(lessons: additions(savedTheme)),
+          ]),
+        for (final savedModule in stored.modules)
+          if (!moduleIds.contains(savedModule.id))
+            savedModule.copyWith(themes: [
+              for (final savedTheme in savedModule.themes)
+                savedTheme.copyWith(lessons: additions(savedTheme)),
+            ]),
+      ],
+    );
   }
 
   Future<({StemModule module, StemLesson lesson})> loadShared(
