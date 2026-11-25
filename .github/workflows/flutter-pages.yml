@@ -15,10 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -39,10 +36,23 @@ jobs:
           cp build/web/index.html build/web/404.html
           touch build/web/.nojekyll
       - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
+      # This documented Pages pair uses the same artifact service client.
+      # upload-pages-artifact@v5 uses upload-artifact@v7, which the deployment
+      # action cannot discover with its older artifact client.
+      - uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages
           path: build/web
-          include-hidden-files: true
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages
